@@ -4,10 +4,64 @@
  */
 package bbdd;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author jintae
  */
 public class Conexion {
+
+    public static Connection conn;
+
+    public static void conectar() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC";
+            conn = DriverManager.getConnection(url, "root", "");
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, "¡Error al conectar a la base de datos!", ex);
+        }
+    }
+
+    /**
+     * Finaliza la conexión activa para liberar recursos en el servidor.
+     */
+    public static void cerrarConexion() {
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (SQLException ex) {
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+
+    public static boolean acceder(String user, String pass) {
+
+        try {
+            String consulta = "SELECT usuario, pass FROM usuarios WHERE usuario=? and pass=?";
+            PreparedStatement pst;
+            ResultSet rs;
+
+            pst = conn.prepareStatement(consulta);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+
+            rs = pst.executeQuery();
+
+            return (rs.next());
+
+        } catch (SQLException ex) {
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        return false;
+    }
+
     
+
 }
