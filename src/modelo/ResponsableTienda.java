@@ -8,6 +8,6 @@ package modelo;
  *
  * @author jintae
  */
-public class Responsable_tienda {
+public class ResponsableTienda {
     
 }
