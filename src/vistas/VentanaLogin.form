@@ -52,17 +52,19 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="62" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="70" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="botonAcceso" min="-2" pref="128" max="-2" attributes="0"/>
-                      <Component id="campoPass" pref="137" max="32767" attributes="0"/>
-                      <Component id="campoUsuario" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="70" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="botonAcceso" min="-2" pref="128" max="-2" attributes="0"/>
+                              <Component id="campoPass" pref="137" max="32767" attributes="0"/>
+                              <Component id="campoUsuario" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="62" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="188" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="129" max="32767" attributes="0"/>
@@ -101,6 +103,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Acceso"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAccesoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoUsuario">
         </Component>
