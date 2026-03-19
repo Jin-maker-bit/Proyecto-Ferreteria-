@@ -4,6 +4,12 @@
  */
 package vistas;
 
+import bbdd.Conexion;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.JOptionPane;
+import vistas.vistasAdmin.VentanaAdmin;
+import vistas.vistasUser.VentanaUser;
+
 /**
  *
  * @author jintae
@@ -45,6 +51,11 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLabel1.setText("AQUI VA EL ICONO");
 
         botonAcceso.setText("Acceso");
+        botonAcceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAccesoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Usuario:");
 
@@ -57,16 +68,17 @@ public class VentanaLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                    .addComponent(campoUsuario)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(campoUsuario)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,6 +117,10 @@ public class VentanaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccesoActionPerformed
+ acceso();        // TODO add your handling code here:
+    }//GEN-LAST:event_botonAccesoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -139,4 +155,35 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+     private String pass;
+    public static String user;
+    public static String tipoUsuario;
+    public void acceso() {
+        user = campoUsuario.getText();
+        pass = new String(campoPass.getPassword());
+        
+        Conexion.conectar();
+        if (Conexion.acceder(user, pass)) {
+            tipoUsuario = Conexion.recuperaTipo(user);
+            System.out.println(tipoUsuario);
+        
+        Conexion.cerrarConexion();
+        if ("admin".equals(tipoUsuario)) {
+            VentanaAdmin va = new VentanaAdmin();
+            va.setVisible(true);
+            va.setExtendedState(MAXIMIZED_BOTH);
+            this.dispose();
+        }
+        else{
+            VentanaUser vu = new VentanaUser();
+            vu.setVisible(true);
+            this.dispose();
+            
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Intentelo de nuevo.");
+            campoPass.setText("");
+        }
+    }
 }
