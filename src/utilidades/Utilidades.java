@@ -4,10 +4,19 @@
  */
 package utilidades;
 
-import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.JLabel;
+import javax.swing.border.AbstractBorder;
 
 /**
  *
@@ -34,6 +43,7 @@ public class Utilidades {
         JOptionPane.showMessageDialog(null,
                 "Debe seleccionar un elemento en el desplegable " + combo.getName());
     }
+
     public static boolean compruebaEntero(JTextField campo) {
         String numeroTecleado = campo.getText();
         int miNumero;
@@ -109,5 +119,48 @@ public class Utilidades {
         JOptionPane.showMessageDialog(null, "Formato no válido\n");
 
         campo.setBackground(Color.RED);
+    }
+
+    public class DisenoUtil {
+
+        /**
+         * Aplica un diseño redondeado y colores de la paleta Nexus a un JLabel.
+         *
+         * @param label El JLabel a modificar
+         * @param radio Grado de redondeo (ej: 20)
+         */
+        public static void aplicarEstiloRedondeado(JLabel label, int radio) {
+            label.setOpaque(false);
+
+            // Aplicamos un borde personalizado que dibuja el fondo redondeado
+            label.setBorder(new BordeRedondeado(radio));
+        }
+
+        // Clase interna para gestionar el dibujo del borde y el fondo
+        private static class BordeRedondeado extends AbstractBorder {
+
+            private final int arco;
+
+            BordeRedondeado(int arco) {
+                this.arco = arco;
+            }
+
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujamos el fondo redondeado con el color del componente
+                g2.setColor(c.getBackground());
+                g2.fill(new RoundRectangle2D.Double(x, y, width - 1, height - 1, arco, arco));
+
+                g2.dispose();
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets(5, 15, 5, 15); // Margen interno para que el texto no toque el borde
+            }
+        }
     }
 }

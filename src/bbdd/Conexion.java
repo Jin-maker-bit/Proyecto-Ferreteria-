@@ -22,8 +22,10 @@ public class Conexion {
     public static void conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3307/ferreteria?serverTimezone=UTC";
-            conn = DriverManager.getConnection(url, "root", "");
+            // Cambiado 8809 por 8889 (Puerto por defecto de MAMP) (mac Jose)
+            
+            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "root");
         } catch (ClassNotFoundException | SQLException ex) {
             System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, "¡Error al conectar a la base de datos!", ex);
         }
