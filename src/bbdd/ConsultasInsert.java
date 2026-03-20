@@ -4,16 +4,10 @@
  */
 package bbdd;
 
-import static bbdd.Conexion.conn;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 /**
  *
  * @author jintae
  */
-public class Consultas {
-   
+public class ConsultasInsert extends Conexion {
+    
 }
