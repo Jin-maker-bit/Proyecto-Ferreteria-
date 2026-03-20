@@ -8,6 +8,6 @@ package bbdd;
  *
  * @author jintae
  */
-public class ConsultasInsert extends Conexion {
+public class ConsultasTiendas extends Conexion{
     
 }

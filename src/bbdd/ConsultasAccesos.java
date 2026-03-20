@@ -8,6 +8,6 @@ package bbdd;
  *
  * @author jintae
  */
-public class ConsultasDelete extends Conexion {
+public class ConsultasAccesos extends Conexion{
     
 }
