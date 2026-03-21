@@ -169,4 +169,41 @@ public class Utilidades {
             }
         }
     }
+    
+    
+    /**
+     * Configura el icono de la ventana proporcionada, sirve tanto para JFrame como para JDialog.
+     * Aplicamos POLIMORFISMO al recibir un objeto de tipo 'Window', esto nos permite que el método sea universal y acepte tanto JFrames como JDialogs.
+     * @param ventana La ventana, Frame o Dialog, a la que se le asigna el logo.
+     */
+    public static void establecerIcono(java.awt.Window ventana) {
+        
+        try {
+            // Buscamos la imagen en el paquete imágenes
+            java.net.URL url = ventana.getClass().getResource("/imagenes/LogoEmpresa.jpg");
+
+            if (url != null) {
+                
+                java.awt.Image icono = new javax.swing.ImageIcon(url).getImage();
+
+                // Comprobamos si es un Frame o un Dialog para aplicar el icono
+                if (ventana instanceof javax.swing.JFrame) {
+                    
+                    ((javax.swing.JFrame) ventana).setIconImage(icono);
+                    
+                } else if (ventana instanceof javax.swing.JDialog) {
+                    // En JDialog el método se llama igual pero a veces requiere casting
+                    ((javax.swing.JDialog) ventana).setIconImage(icono);
+                }
+
+            } else {
+                
+                System.err.println("Error: Logo no encontrado en /imagenes/LogoEmpresa.jpg");
+            }
+        } catch (Exception e) {
+            
+            System.err.println("Error al cargar icono: " + e.getMessage());
+        }
+    }
+
 }
