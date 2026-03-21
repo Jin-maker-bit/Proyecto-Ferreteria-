@@ -54,7 +54,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         botonAcceso = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jToolBar2 = new javax.swing.JToolBar();
-        jLabel1 = new javax.swing.JLabel();
+        lblBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
@@ -152,10 +152,10 @@ public class VentanaLogin extends javax.swing.JFrame {
         jToolBar2.setMaximumSize(new java.awt.Dimension(2, 2));
         jToolBar2.setMinimumSize(new java.awt.Dimension(2, 2));
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(191, 150, 99));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BIENVENIDO A JP");
+        lblBienvenida.setFont(new java.awt.Font("Trebuchet MS", 3, 36)); // NOI18N
+        lblBienvenida.setForeground(new java.awt.Color(191, 150, 99));
+        lblBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBienvenida.setText("BIENVENIDO A JP");
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -168,7 +168,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                         .addComponent(lblImagen))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
@@ -183,7 +183,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
@@ -248,11 +248,11 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField campoPass1;
     private javax.swing.JTextField campoUsuario;
     private javax.swing.JTextField campoUsuario1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblPass1;
