@@ -11,7 +11,10 @@ import vistas.vistasAdmin.VentanaAdmin;
 import vistas.vistasUser.VentanaUser;
 
 /**
- *
+ * Ventana de Login - inicio de sesión de la aplicación Ferretería JP Fusión.
+ * Permite el acceso a dos tipos de usuarios Admin y / o user.
+ * Admin accede a la ventana VentanaAdmin con gestión completa.
+ * User accede a la ventana VentanaUser con gestión parcial y con más opciones de tipo consulta.
  * @author jintae
  */
 public class VentanaLogin extends javax.swing.JFrame {
@@ -19,6 +22,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
 
     /**
+     * Constructor de la ventana de login.
      * Creates new form VentanaLogin
      */
     public VentanaLogin() {
@@ -69,16 +73,18 @@ public class VentanaLogin extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(62, 62, 62)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                .addComponent(campoUsuario)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(campoUsuario))))
                 .addContainerGap(129, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +123,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccesoActionPerformed
- acceso();        // TODO add your handling code here:
+         acceso();        
     }//GEN-LAST:event_botonAccesoActionPerformed
 
     /**
@@ -154,36 +160,60 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-     private String pass;
+     
+    /**
+     * Contraseña introducida por el usuario en el campo Pass en la ventana de login
+     */
+    private String pass;
+    
+    /**
+     * Nombre de Usuario introducido por el usuario para logarse. 
+     */
     public static String user;
+    
+    /**
+     * Determina qué ventana principal se abre tras el login.
+     */
     public static String tipoUsuario;
+    
+    /**
+     * Método que realiza la comprobación del usuario logado llamando a los métodos específicos de la clase conexión para hacer la comprobación
+     * del usuario y en caso de logado correcto rescatar el tipo de usuario
+     */
     public void acceso() {
+        
         user = campoUsuario.getText();
         pass = new String(campoPass.getPassword());
         
         Conexion.conectar();
+        
         if (Conexion.acceder(user, pass)) {
+            
             tipoUsuario = Conexion.recuperaTipo(user);
             System.out.println(tipoUsuario);
         
-        Conexion.cerrarConexion();
+            Conexion.cerrarConexion();
+        
         if ("admin".equals(tipoUsuario)) {
+            
             VentanaAdmin va = new VentanaAdmin();
             va.setVisible(true);
             va.setExtendedState(MAXIMIZED_BOTH);
             this.dispose();
-        }
-        else{
+            
+        } else {
+            
             VentanaUser vu = new VentanaUser();
             vu.setVisible(true);
             vu.setExtendedState(MAXIMIZED_BOTH);
             this.dispose();
             
         }
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Intentelo de nuevo.");
+        } else{
+            
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Inténtelo de nuevo.");
             campoPass.setText("");
+            campoUsuario.setText("");
         }
     }
 }

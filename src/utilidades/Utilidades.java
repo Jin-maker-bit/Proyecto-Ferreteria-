@@ -18,10 +18,16 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
 
+
 /**
- *
+ * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
+ * Proporciona métodos reutilizables para el diseño y comportamiento de los componentes gráficos de la interfaz.
  * @author jintae
  */
+
+    // ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
+    // DEL PROYECTO 
+
 public class Utilidades {
 
     public static boolean compruebaCampoVacio(JTextField campo) {
