@@ -5,14 +5,13 @@
 package vistas.vistasUser;
 
 import java.time.LocalDateTime;
-import utilidades.Utilidades.DisenoUtil;
 
 /**
  *
  * @author jintae
  */
 public class VentanaUser extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUser.class.getName());
 
     /**
@@ -21,13 +20,13 @@ public class VentanaUser extends javax.swing.JFrame {
     public VentanaUser() {
         initComponents();
         // DisenoUtil.aplicarEstiloRedondeado(lbl, 20); 
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
-        
+
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
-        lblRescataFechayHora.setText("Admin activo — " 
+        lblRescataFechayHora.setText("Admin activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
     }
 
@@ -136,24 +135,44 @@ public class VentanaUser extends javax.swing.JFrame {
         botonVerArticulosUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerArticulosUser.setText("Ver Artículos");
         botonVerArticulosUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerArticulosUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerArticulosUserActionPerformed(evt);
+            }
+        });
 
         botonVerDestacadosUser.setBackground(new java.awt.Color(112, 137, 140));
         botonVerDestacadosUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerDestacadosUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerDestacadosUser.setText("Ver Destacados");
         botonVerDestacadosUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerDestacadosUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerDestacadosUserActionPerformed(evt);
+            }
+        });
 
         botonVerOfertasUser.setBackground(new java.awt.Color(112, 137, 140));
         botonVerOfertasUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerOfertasUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerOfertasUser.setText("Ver Ofertas");
         botonVerOfertasUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerOfertasUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerOfertasUserActionPerformed(evt);
+            }
+        });
 
         botonVerMiCuentaUser.setBackground(new java.awt.Color(112, 137, 140));
         botonVerMiCuentaUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerMiCuentaUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerMiCuentaUser.setText("Mi Cuenta");
         botonVerMiCuentaUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerMiCuentaUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerMiCuentaUserActionPerformed(evt);
+            }
+        });
 
         botonSalir.setBackground(new java.awt.Color(191, 150, 99));
         botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -256,11 +275,11 @@ public class VentanaUser extends javax.swing.JFrame {
 
         lbl3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl3.setForeground(new java.awt.Color(191, 150, 99));
-        lbl3.setText("Destacados");
+        lbl3.setText("Articulos destacados");
 
         lbl2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl2.setForeground(new java.awt.Color(191, 150, 99));
-        lbl2.setText("En Oferta");
+        lbl2.setText("Articulos en oferta");
 
         javax.swing.GroupLayout panelRescatarLabelsLayout = new javax.swing.GroupLayout(panelRescatarLabels);
         panelRescatarLabels.setLayout(panelRescatarLabelsLayout);
@@ -274,19 +293,14 @@ public class VentanaUser extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(lbl2)))
-                .addGap(12, 12, 12)
-                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblRescatarDestacados, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRescatarDestacados, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(lbl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         panelRescatarLabelsLayout.setVerticalGroup(
@@ -299,10 +313,10 @@ public class VentanaUser extends javax.swing.JFrame {
                     .addComponent(lbl2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                    .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblRescatarDestacados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addGap(78, 78, 78))
         );
 
         tablaArticulosRegistrados.setBackground(new java.awt.Color(112, 137, 140));
@@ -359,12 +373,14 @@ public class VentanaUser extends javax.swing.JFrame {
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addGap(81, 81, 81)
                                 .addComponent(lblAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGap(68, 68, 68)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(80, 80, 80)
                                 .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 72, Short.MAX_VALUE))
         );
@@ -384,20 +400,23 @@ public class VentanaUser extends javax.swing.JFrame {
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblUsuario)
                                     .addComponent(textImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(lblAcceso)
+                        .addComponent(lblAcceso)))
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(panelUserSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -442,6 +461,26 @@ public class VentanaUser extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonVerArticulosUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosUserActionPerformed
+        VerListadoArticulo la = new VerListadoArticulo(null, true);
+        la.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerArticulosUserActionPerformed
+
+    private void botonVerDestacadosUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDestacadosUserActionPerformed
+        VerArticuloDestacado ad = new VerArticuloDestacado(null, true);
+        ad.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerDestacadosUserActionPerformed
+
+    private void botonVerOfertasUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerOfertasUserActionPerformed
+       VerArticuloOferta ao = new VerArticuloOferta(null, true);
+       ao.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_botonVerOfertasUserActionPerformed
+
+    private void botonVerMiCuentaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerMiCuentaUserActionPerformed
+       VerDatosCuenta dc = new VerDatosCuenta(null, true);
+        dc.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMiCuentaUserActionPerformed
 
     /**
      * @param args the command line arguments
