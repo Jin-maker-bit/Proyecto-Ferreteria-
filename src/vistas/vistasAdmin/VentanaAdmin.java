@@ -94,7 +94,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemOrigenes = new javax.swing.JMenuItem();
         menuMiCuenta = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VENTANA PRINCIPAL ADMINISTRADOR");
         setResizable(false);
 
