@@ -30,7 +30,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
         
         // Rescata Administrador:
-        textImprimirAdmin.setText(VentanaLogin.user);
+        lblImprimirAdmin.setText(VentanaLogin.user);
         
         // Rescatar lbl de Tiendas abiertas, productos Nacionales, Usuarios Totales y Usuarios activos
         // Consultas en paquete de bbdd Consultas y rescatar aquí:
@@ -51,7 +51,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblAdmin = new javax.swing.JLabel();
-        textImprimirAdmin = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         lblAcceso = new javax.swing.JLabel();
@@ -79,6 +78,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblSistemaGestion = new javax.swing.JLabel();
         lblRescataFechayHora = new javax.swing.JLabel();
         lblNovedadesInventario1 = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         menuBarAdmin = new javax.swing.JMenuBar();
         menuInventario = new javax.swing.JMenu();
         itemRegistrarArticulo = new javax.swing.JMenuItem();
@@ -93,12 +93,13 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemCategorias = new javax.swing.JMenuItem();
         itemOrigenes = new javax.swing.JMenuItem();
         menuMiCuenta = new javax.swing.JMenu();
+        itemVerMiCuenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VENTANA PRINCIPAL ADMINISTRADOR");
         setResizable(false);
 
-        panelPrincipal.setBackground(new java.awt.Color(9, 48, 64));
+        panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
 
         panelLogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 3));
         panelLogo.setOpaque(false);
@@ -136,11 +137,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblAdmin.setForeground(new java.awt.Color(191, 150, 99));
         lblAdmin.setText("Administrador:");
 
-        textImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
-        textImprimirAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
-        textImprimirAdmin.setEnabled(false);
-        textImprimirAdmin.setOpaque(true);
-
         lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
         lblTitulo.setText("Panel de control");
@@ -155,7 +151,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         panelAdminSidebar.setOpaque(false);
 
-        botonRegistrarArticulo.setBackground(new java.awt.Color(112, 137, 140));
+        botonRegistrarArticulo.setBackground(new java.awt.Color(9, 48, 64));
         botonRegistrarArticulo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonRegistrarArticulo.setForeground(new java.awt.Color(191, 150, 99));
         botonRegistrarArticulo.setText("+ Registrar Artículo");
@@ -166,7 +162,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonRegistrarUsuario.setBackground(new java.awt.Color(112, 137, 140));
+        botonRegistrarUsuario.setBackground(new java.awt.Color(9, 48, 64));
         botonRegistrarUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonRegistrarUsuario.setForeground(new java.awt.Color(191, 150, 99));
         botonRegistrarUsuario.setText("+ Registrar Usuario");
@@ -177,7 +173,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonVerArticulos.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerArticulos.setBackground(new java.awt.Color(9, 48, 64));
         botonVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerArticulos.setForeground(new java.awt.Color(191, 150, 99));
         botonVerArticulos.setText("Ver Artículos");
@@ -188,7 +184,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonVerUsuarios.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerUsuarios.setBackground(new java.awt.Color(9, 48, 64));
         botonVerUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerUsuarios.setForeground(new java.awt.Color(191, 150, 99));
         botonVerUsuarios.setText("Ver Usuarios");
@@ -199,7 +195,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonCategorias.setBackground(new java.awt.Color(112, 137, 140));
+        botonCategorias.setBackground(new java.awt.Color(9, 48, 64));
         botonCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonCategorias.setForeground(new java.awt.Color(191, 150, 99));
         botonCategorias.setText("Categorías");
@@ -210,7 +206,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonOrigenes.setBackground(new java.awt.Color(112, 137, 140));
+        botonOrigenes.setBackground(new java.awt.Color(9, 48, 64));
         botonOrigenes.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonOrigenes.setForeground(new java.awt.Color(191, 150, 99));
         botonOrigenes.setText("Orígenes");
@@ -221,7 +217,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonTiendas.setBackground(new java.awt.Color(112, 137, 140));
+        botonTiendas.setBackground(new java.awt.Color(9, 48, 64));
         botonTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonTiendas.setForeground(new java.awt.Color(191, 150, 99));
         botonTiendas.setText("Tiendas");
@@ -287,25 +283,25 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelRescatarLabels.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
         panelRescatarLabels.setOpaque(false);
 
-        lblRescatarTiendas.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarTiendas.setBackground(new java.awt.Color(9, 48, 64));
         lblRescatarTiendas.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarTiendas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarTiendas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarTiendas.setOpaque(true);
 
-        lblRescatarProductoNacional.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarProductoNacional.setBackground(new java.awt.Color(9, 48, 64));
         lblRescatarProductoNacional.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarProductoNacional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarProductoNacional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarProductoNacional.setOpaque(true);
 
-        lblRescatarUsuariosTotales.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarUsuariosTotales.setBackground(new java.awt.Color(9, 48, 64));
         lblRescatarUsuariosTotales.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarUsuariosTotales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarUsuariosTotales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarUsuariosTotales.setOpaque(true);
 
-        lblRescatarUsuariosActivos.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarUsuariosActivos.setBackground(new java.awt.Color(9, 48, 64));
         lblRescatarUsuariosActivos.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarUsuariosActivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarUsuariosActivos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
@@ -377,7 +373,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        tablaArticulosRegistrados.setBackground(new java.awt.Color(112, 137, 140));
+        tablaArticulosRegistrados.setBackground(new java.awt.Color(9, 48, 64));
         tablaArticulosRegistrados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
         tablaArticulosRegistrados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         tablaArticulosRegistrados.setForeground(new java.awt.Color(191, 150, 99));
@@ -405,41 +401,47 @@ public class VentanaAdmin extends javax.swing.JFrame {
         tablaArticulosRegistrados.setShowGrid(false);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
 
-        panelFinal.setBackground(new java.awt.Color(112, 137, 140));
+        panelFinal.setBackground(new java.awt.Color(9, 48, 64));
+        panelFinal.setForeground(new java.awt.Color(191, 150, 99));
 
         lblSistemaGestion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblSistemaGestion.setForeground(new java.awt.Color(0, 0, 51));
+        lblSistemaGestion.setForeground(new java.awt.Color(191, 150, 99));
         lblSistemaGestion.setText("Sistema de gestión Ferretería JP Fusión");
 
-        lblRescataFechayHora.setBackground(new java.awt.Color(154, 176, 179));
+        lblRescataFechayHora.setBackground(new java.awt.Color(3, 32, 38));
         lblRescataFechayHora.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        lblRescataFechayHora.setForeground(new java.awt.Color(0, 0, 51));
-        lblRescataFechayHora.setOpaque(true);
+        lblRescataFechayHora.setForeground(new java.awt.Color(191, 150, 99));
 
         javax.swing.GroupLayout panelFinalLayout = new javax.swing.GroupLayout(panelFinal);
         panelFinal.setLayout(panelFinalLayout);
         panelFinalLayout.setHorizontalGroup(
             panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFinalLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         panelFinalLayout.setVerticalGroup(
             panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinalLayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+            .addGroup(panelFinalLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSistemaGestion))
-                .addContainerGap())
+                    .addComponent(lblSistemaGestion)
+                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         lblNovedadesInventario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblNovedadesInventario1.setForeground(new java.awt.Color(191, 150, 99));
         lblNovedadesInventario1.setText("Novedades de inventario");
+
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
+        lblImprimirAdmin.setOpaque(true);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -459,24 +461,20 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblSubtitulo)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(textImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38))))
+                            .addComponent(lblSubtitulo)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNovedadesInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1)
                             .addComponent(panelRescatarLabels, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(44, 44, 44))))
+                            .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(44, 44, 44))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,12 +489,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
                         .addComponent(panelAdminSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAdmin)
-                            .addComponent(lblTitulo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSubtitulo)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblAdmin)
+                                    .addComponent(lblTitulo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSubtitulo))
+                            .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -634,11 +634,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
         menuMiCuenta.setForeground(new java.awt.Color(10, 49, 64));
         menuMiCuenta.setText("Mi cuenta");
         menuMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        menuMiCuenta.addActionListener(new java.awt.event.ActionListener() {
+
+        itemVerMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerMiCuenta.setText("Ver mi cuenta");
+        itemVerMiCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuMiCuentaActionPerformed(evt);
+                itemVerMiCuentaActionPerformed(evt);
             }
         });
+        menuMiCuenta.add(itemVerMiCuenta);
+
         menuBarAdmin.add(menuMiCuenta);
 
         setJMenuBar(menuBarAdmin);
@@ -737,15 +742,15 @@ public class VentanaAdmin extends javax.swing.JFrame {
         vlistor.setVisible(true);
     }//GEN-LAST:event_itemOrigenesActionPerformed
 
-    private void menuMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMiCuentaActionPerformed
-        VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
-        vdatcuent.setVisible(true);
-    }//GEN-LAST:event_menuMiCuentaActionPerformed
-
     private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
         RegistrarArticulo regart = new RegistrarArticulo(this, true);
         regart.setVisible(true);
     }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
+
+    private void itemVerMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerMiCuentaActionPerformed
+        VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
+        vdatcuent.setVisible(true);
+    }//GEN-LAST:event_itemVerMiCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -788,6 +793,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRegistrarArticulo;
     private javax.swing.JMenuItem itemRegistrarUsuario;
     private javax.swing.JMenuItem itemVerArticulos;
+    private javax.swing.JMenuItem itemVerMiCuenta;
     private javax.swing.JMenuItem itemVerTiendas;
     private javax.swing.JMenuItem itemVerUsuarios;
     private javax.swing.JScrollPane jScrollPane1;
@@ -797,6 +803,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lbl4;
     private javax.swing.JLabel lblAcceso;
     private javax.swing.JLabel lblAdmin;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNovedadesInventario1;
@@ -819,6 +826,5 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelRescatarLabels;
     private javax.swing.JTable tablaArticulosRegistrados;
-    private javax.swing.JTextField textImprimirAdmin;
     // End of variables declaration//GEN-END:variables
 }
