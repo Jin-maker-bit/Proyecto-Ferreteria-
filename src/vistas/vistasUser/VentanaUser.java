@@ -5,7 +5,8 @@
 package vistas.vistasUser;
 
 import java.time.LocalDateTime;
-import utilidades.Utilidades.DisenoUtil;
+import utilidades.Utilidades;
+
 import vistas.VentanaLogin;
 
 /**
@@ -33,6 +34,9 @@ public class VentanaUser extends javax.swing.JFrame {
         
         // Rescata Usuario:
         textImprimirUsuario.setText(VentanaLogin.user);
+        
+        Utilidades.AplicarBorde.aplicarEstiloUniversal(lblRescatarArticulosDisponibles, 40);
+     
               
     }
 
@@ -265,6 +269,7 @@ public class VentanaUser extends javax.swing.JFrame {
         lblRescatarArticulosDisponibles.setBackground(new java.awt.Color(112, 137, 140));
         lblRescatarArticulosDisponibles.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarArticulosDisponibles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRescatarArticulosDisponibles.setText("sdsdsd");
         lblRescatarArticulosDisponibles.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarArticulosDisponibles.setOpaque(true);
 

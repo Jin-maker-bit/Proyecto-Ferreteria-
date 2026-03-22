@@ -14,20 +14,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
-import javax.swing.JLabel;
+import javax.swing.AbstractButton;
+import javax.swing.JComponent;
 import javax.swing.border.AbstractBorder;
-
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
- * Proporciona métodos reutilizables para el diseño y comportamiento de los componentes gráficos de la interfaz.
+ * Proporciona métodos reutilizables para el diseño y comportamiento de los
+ * componentes gráficos de la interfaz.
+ *
  * @author jintae
  */
-
-    // ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
-    // DEL PROYECTO 
-
+// ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
+// DEL PROYECTO 
 public class Utilidades {
 
     public static boolean compruebaCampoVacio(JTextField campo) {
@@ -127,89 +126,91 @@ public class Utilidades {
         campo.setBackground(Color.RED);
     }
 
-    public class DisenoUtil {
+    public class AplicarBorde {
 
-        /**
-         * Aplica un diseño redondeado y colores de la paleta Nexus a un JLabel.
-         *
-         * @param label El JLabel a modificar
-         * @param radio Grado de redondeo (ej: 20)
-         */
-        public static void aplicarEstiloRedondeado(JLabel label, int radio) {
-            label.setOpaque(false);
+        public static void aplicarEstiloUniversal(JComponent componente, int arco) {
+            // 1. Quitamos la opacidad estándar para que no dibuje el rectángulo gris
+            componente.setOpaque(false);
 
-            // Aplicamos un borde personalizado que dibuja el fondo redondeado
-            label.setBorder(new BordeRedondeado(radio));
-        }
-
-        // Clase interna para gestionar el dibujo del borde y el fondo
-        private static class BordeRedondeado extends AbstractBorder {
-
-            private final int arco;
-
-            BordeRedondeado(int arco) {
-                this.arco = arco;
+            // 2. Si es un botón, limpiamos los estilos de fábrica
+            if (componente instanceof AbstractButton) {
+                AbstractButton b = (AbstractButton) componente;
+                b.setContentAreaFilled(false);
+                b.setBorderPainted(false);
+                b.setFocusPainted(false);
             }
 
-            @Override
-            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            // 3. Aplicamos el dibujo mediante un Border personalizado
+            componente.setBorder(new AbstractBorder() {
+                @Override
+                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                    Graphics2D g2 = (Graphics2D) g.create();
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Dibujamos el fondo redondeado con el color del componente
-                g2.setColor(c.getBackground());
-                g2.fill(new RoundRectangle2D.Double(x, y, width - 1, height - 1, arco, arco));
+                    // IMPORTANTE: Dibujamos el fondo redondeado
+                    // Usamos el color que hayas puesto en la pestaña "Properties" del IDE
+                    g2.setColor(c.getBackground());
+                    g2.fillRoundRect(x, y, width - 1, height - 1, arco, arco);
 
-                g2.dispose();
-            }
+                    // Dibujamos el borde (Color dorado de tu diseño)
+                    g2.setColor(new Color(184, 154, 108));
+                    g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
 
-            @Override
-            public Insets getBorderInsets(Component c) {
-                return new Insets(5, 15, 5, 15); // Margen interno para que el texto no toque el borde
-            }
+                    g2.dispose();
+                }
+
+                @Override
+                public Insets getBorderInsets(Component c) {
+                    // Margen interno para que el texto no toque los bordes (Arriba, Izquierda, Abajo, Derecha)
+                    return new Insets(8, 25, 8, 25);
+                }
+            });
         }
     }
-    
-    
+
     /**
-     * Configura el icono de la ventana proporcionada, sirve tanto para JFrame como para JDialog.
-     * Aplicamos POLIMORFISMO al recibir un objeto de tipo 'Window', esto nos permite que el método sea universal y acepte tanto JFrames como JDialogs.
+     * Configura el icono de la ventana proporcionada, sirve tanto para JFrame
+     * como para JDialog. Aplicamos POLIMORFISMO al recibir un objeto de tipo
+     * 'Window', esto nos permite que el método sea universal y acepte tanto
+     * JFrames como JDialogs.
+     *
      * @param ventana La ventana, Frame o Dialog, a la que se le asigna el logo.
      */
     public static void establecerIcono(java.awt.Window ventana) {
-        
+
         try {
             // Buscamos la imagen en el paquete imágenes
             java.net.URL url = ventana.getClass().getResource("/imagenes/LogoEmpresa.jpg");
 
             if (url != null) {
-                
+
                 java.awt.Image icono = new javax.swing.ImageIcon(url).getImage();
 
                 // Comprobamos si es un Frame o un Dialog para aplicar el icono
                 if (ventana instanceof javax.swing.JFrame) {
-                    
+
                     ((javax.swing.JFrame) ventana).setIconImage(icono);
-                    
+
                 } else if (ventana instanceof javax.swing.JDialog) {
                     // En JDialog el método se llama igual pero a veces requiere casting
                     ((javax.swing.JDialog) ventana).setIconImage(icono);
                 }
 
             } else {
-                
+
                 System.err.println("Error: Logo no encontrado en /imagenes/LogoEmpresa.jpg");
             }
         } catch (Exception e) {
-            
+
             System.err.println("Error al cargar icono: " + e.getMessage());
         }
     }
-    
-    
+
     /**
-     * Método centralizado que muestra un diálogo de confirmación antes de cerrar la aplicación.
-     * Cumple con el requerimiento RI2 - comunicación con el usuario.
+     * Método centralizado que muestra un diálogo de confirmación antes de
+     * cerrar la aplicación. Cumple con el requerimiento RI2 - comunicación con
+     * el usuario.
+     *
      * @param ventana La ventana desde la que se invoca el cierre.
      */
     public static void salirAplicacion(java.awt.Window ventana) {
@@ -223,10 +224,8 @@ public class Utilidades {
 
         if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
 
-        System.exit(0);
+            System.exit(0);
         }
     }
-    
-    
-    
+
 }

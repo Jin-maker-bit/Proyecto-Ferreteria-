@@ -121,6 +121,11 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         botonVerArticulosUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerArticulosUser.setText("Ver Artículos");
         botonVerArticulosUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerArticulosUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerArticulosUserActionPerformed(evt);
+            }
+        });
 
         botonVerDestacadosUser.setBackground(new java.awt.Color(112, 137, 140));
         botonVerDestacadosUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -338,6 +343,10 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonVerArticulosUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerArticulosUserActionPerformed
 
     /**
      * @param args the command line arguments
