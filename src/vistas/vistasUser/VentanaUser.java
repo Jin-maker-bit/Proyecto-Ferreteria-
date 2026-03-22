@@ -6,6 +6,7 @@ package vistas.vistasUser;
 
 import java.time.LocalDateTime;
 import utilidades.Utilidades.DisenoUtil;
+import vistas.VentanaLogin;
 
 /**
  *
@@ -29,6 +30,10 @@ public class VentanaUser extends javax.swing.JFrame {
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Admin activo — " 
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        
+        // Rescata Usuario:
+        textImprimirUsuario.setText(VentanaLogin.user);
+              
     }
 
     /**
@@ -159,6 +164,11 @@ public class VentanaUser extends javax.swing.JFrame {
         botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonSalir.setText("Salir del sistema");
         botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelUserSidebarLayout = new javax.swing.GroupLayout(panelUserSidebar);
         panelUserSidebar.setLayout(panelUserSidebarLayout);
@@ -442,6 +452,10 @@ public class VentanaUser extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        utilidades.Utilidades.salirAplicacion(this);
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments

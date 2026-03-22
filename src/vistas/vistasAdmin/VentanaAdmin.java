@@ -5,6 +5,7 @@
 package vistas.vistasAdmin;
 
 import java.time.LocalDateTime;
+import vistas.VentanaLogin;
 
 /**
  *
@@ -27,6 +28,13 @@ public class VentanaAdmin extends javax.swing.JFrame {
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Admin activo — " 
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        
+        // Rescata Administrador:
+        textImprimirAdmin.setText(VentanaLogin.user);
+        
+        // Rescatar lbl de Tiendas abiertas, productos Nacionales, Usuarios Totales y Usuarios activos
+        // Consultas en paquete de bbdd Consultas y rescatar aquí:
+        
     }
 
     /**
@@ -152,47 +160,87 @@ public class VentanaAdmin extends javax.swing.JFrame {
         botonRegistrarArticulo.setForeground(new java.awt.Color(191, 150, 99));
         botonRegistrarArticulo.setText("+ Registrar Artículo");
         botonRegistrarArticulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarArticuloActionPerformed(evt);
+            }
+        });
 
         botonRegistrarUsuario.setBackground(new java.awt.Color(112, 137, 140));
         botonRegistrarUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonRegistrarUsuario.setForeground(new java.awt.Color(191, 150, 99));
         botonRegistrarUsuario.setText("+ Registrar Usuario");
         botonRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarUsuarioActionPerformed(evt);
+            }
+        });
 
         botonVerArticulos.setBackground(new java.awt.Color(112, 137, 140));
         botonVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerArticulos.setForeground(new java.awt.Color(191, 150, 99));
         botonVerArticulos.setText("Ver Artículos");
         botonVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerArticulosActionPerformed(evt);
+            }
+        });
 
         botonVerUsuarios.setBackground(new java.awt.Color(112, 137, 140));
         botonVerUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerUsuarios.setForeground(new java.awt.Color(191, 150, 99));
         botonVerUsuarios.setText("Ver Usuarios");
         botonVerUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerUsuariosActionPerformed(evt);
+            }
+        });
 
         botonCategorias.setBackground(new java.awt.Color(112, 137, 140));
         botonCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonCategorias.setForeground(new java.awt.Color(191, 150, 99));
         botonCategorias.setText("Categorías");
         botonCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCategoriasActionPerformed(evt);
+            }
+        });
 
         botonOrigenes.setBackground(new java.awt.Color(112, 137, 140));
         botonOrigenes.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonOrigenes.setForeground(new java.awt.Color(191, 150, 99));
         botonOrigenes.setText("Orígenes");
         botonOrigenes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonOrigenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOrigenesActionPerformed(evt);
+            }
+        });
 
         botonTiendas.setBackground(new java.awt.Color(112, 137, 140));
         botonTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonTiendas.setForeground(new java.awt.Color(191, 150, 99));
         botonTiendas.setText("Tiendas");
         botonTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonTiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTiendasActionPerformed(evt);
+            }
+        });
 
         botonSalir.setBackground(new java.awt.Color(191, 150, 99));
         botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonSalir.setText("Salir del sistema");
         botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAdminSidebarLayout = new javax.swing.GroupLayout(panelAdminSidebar);
         panelAdminSidebar.setLayout(panelAdminSidebarLayout);
@@ -474,24 +522,44 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemRegistrarArticulo.setForeground(new java.awt.Color(10, 49, 64));
         itemRegistrarArticulo.setText("Registrar Artículo");
         itemRegistrarArticulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRegistrarArticuloActionPerformed(evt);
+            }
+        });
         menuInventario.add(itemRegistrarArticulo);
 
         itemVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemVerArticulos.setForeground(new java.awt.Color(10, 49, 64));
         itemVerArticulos.setText("Ver Artículos");
         itemVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerArticulosActionPerformed(evt);
+            }
+        });
         menuInventario.add(itemVerArticulos);
 
         itemDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemDestacados.setForeground(new java.awt.Color(10, 49, 64));
         itemDestacados.setText("Destacados");
         itemDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemDestacados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDestacadosActionPerformed(evt);
+            }
+        });
         menuInventario.add(itemDestacados);
 
         itemOfertas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemOfertas.setForeground(new java.awt.Color(10, 49, 64));
         itemOfertas.setText("Ofertas");
         itemOfertas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemOfertas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemOfertasActionPerformed(evt);
+            }
+        });
         menuInventario.add(itemOfertas);
 
         menuBarAdmin.add(menuInventario);
@@ -504,12 +572,22 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemRegistrarUsuario.setForeground(new java.awt.Color(10, 49, 64));
         itemRegistrarUsuario.setText("Registrar Usuario");
         itemRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRegistrarUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuarios.add(itemRegistrarUsuario);
 
         itemVerUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemVerUsuarios.setForeground(new java.awt.Color(10, 49, 64));
         itemVerUsuarios.setText("Ver Usuarios");
         itemVerUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerUsuariosActionPerformed(evt);
+            }
+        });
         menuUsuarios.add(itemVerUsuarios);
 
         menuBarAdmin.add(menuUsuarios);
@@ -522,18 +600,33 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemVerTiendas.setForeground(new java.awt.Color(10, 49, 64));
         itemVerTiendas.setText("Ver Tiendas");
         itemVerTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerTiendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerTiendasActionPerformed(evt);
+            }
+        });
         menuTiendas.add(itemVerTiendas);
 
         itemCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemCategorias.setForeground(new java.awt.Color(10, 49, 64));
         itemCategorias.setText("Categorías");
         itemCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCategoriasActionPerformed(evt);
+            }
+        });
         menuTiendas.add(itemCategorias);
 
         itemOrigenes.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemOrigenes.setForeground(new java.awt.Color(10, 49, 64));
         itemOrigenes.setText("Orígenes");
         itemOrigenes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemOrigenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemOrigenesActionPerformed(evt);
+            }
+        });
         menuTiendas.add(itemOrigenes);
 
         menuBarAdmin.add(menuTiendas);
@@ -541,6 +634,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         menuMiCuenta.setForeground(new java.awt.Color(10, 49, 64));
         menuMiCuenta.setText("Mi cuenta");
         menuMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        menuMiCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMiCuentaActionPerformed(evt);
+            }
+        });
         menuBarAdmin.add(menuMiCuenta);
 
         setJMenuBar(menuBarAdmin);
@@ -559,6 +657,95 @@ public class VentanaAdmin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        utilidades.Utilidades.salirAplicacion(this);
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
+        RegistrarArticulo regart = new RegistrarArticulo(this, true);
+        regart.setVisible(true);
+    }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
+
+    private void botonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarUsuarioActionPerformed
+        RegistrarUsuario regusu = new RegistrarUsuario(this, true);
+        regusu.setVisible(true);
+    }//GEN-LAST:event_botonRegistrarUsuarioActionPerformed
+
+    private void botonVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosActionPerformed
+        VerListadoArticulos vlistart = new VerListadoArticulos(this, true);
+        vlistart.setVisible(true);
+    }//GEN-LAST:event_botonVerArticulosActionPerformed
+
+    private void botonCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCategoriasActionPerformed
+        VerListadoCategorias vlistcat = new VerListadoCategorias(this, true);
+        vlistcat.setVisible(true);
+    }//GEN-LAST:event_botonCategoriasActionPerformed
+
+    private void botonVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerUsuariosActionPerformed
+        VerListadoUsuarios vlistusu = new VerListadoUsuarios(this, true);
+        vlistusu.setVisible(true);
+    }//GEN-LAST:event_botonVerUsuariosActionPerformed
+
+    private void botonOrigenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrigenesActionPerformed
+        VerListadoOrigen vlistor = new VerListadoOrigen(this, true);
+        vlistor.setVisible(true);
+    }//GEN-LAST:event_botonOrigenesActionPerformed
+
+    private void botonTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTiendasActionPerformed
+        VerListadoTiendas vlisttien = new VerListadoTiendas(this, true);
+        vlisttien.setVisible(true);
+    }//GEN-LAST:event_botonTiendasActionPerformed
+
+    private void itemRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarArticuloActionPerformed
+        RegistrarArticulo regart = new RegistrarArticulo(this, true);
+        regart.setVisible(true);
+    }//GEN-LAST:event_itemRegistrarArticuloActionPerformed
+
+    private void itemVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerArticulosActionPerformed
+        VerListadoArticulos vlistart = new VerListadoArticulos(this, true);
+        vlistart.setVisible(true);
+    }//GEN-LAST:event_itemVerArticulosActionPerformed
+
+    private void itemDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDestacadosActionPerformed
+        VerListadoDestacados vlistdes = new VerListadoDestacados(this, true);
+        vlistdes.setVisible(true);
+    }//GEN-LAST:event_itemDestacadosActionPerformed
+
+    private void itemOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemOfertasActionPerformed
+        VerListadoOfertas vlistof = new VerListadoOfertas(this, true);
+        vlistof.setVisible(true);
+    }//GEN-LAST:event_itemOfertasActionPerformed
+
+    private void itemRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarUsuarioActionPerformed
+        RegistrarUsuario regusu = new RegistrarUsuario(this, true);
+        regusu.setVisible(true);
+    }//GEN-LAST:event_itemRegistrarUsuarioActionPerformed
+
+    private void itemVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerUsuariosActionPerformed
+        VerListadoUsuarios vlistusu = new VerListadoUsuarios(this, true);
+        vlistusu.setVisible(true);
+    }//GEN-LAST:event_itemVerUsuariosActionPerformed
+
+    private void itemVerTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerTiendasActionPerformed
+        VerListadoTiendas vlisttien = new VerListadoTiendas(this, true);
+        vlisttien.setVisible(true);
+    }//GEN-LAST:event_itemVerTiendasActionPerformed
+
+    private void itemCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCategoriasActionPerformed
+        VerListadoCategorias vlistcat = new VerListadoCategorias(this, true);
+        vlistcat.setVisible(true);
+    }//GEN-LAST:event_itemCategoriasActionPerformed
+
+    private void itemOrigenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemOrigenesActionPerformed
+        VerListadoOrigen vlistor = new VerListadoOrigen(this, true);
+        vlistor.setVisible(true);
+    }//GEN-LAST:event_itemOrigenesActionPerformed
+
+    private void menuMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMiCuentaActionPerformed
+        VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
+        vdatcuent.setVisible(true);
+    }//GEN-LAST:event_menuMiCuentaActionPerformed
 
     /**
      * @param args the command line arguments

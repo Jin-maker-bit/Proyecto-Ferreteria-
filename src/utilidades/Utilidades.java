@@ -205,5 +205,28 @@ public class Utilidades {
             System.err.println("Error al cargar icono: " + e.getMessage());
         }
     }
+    
+    
+    /**
+     * Método centralizado que muestra un diálogo de confirmación antes de cerrar la aplicación.
+     * Cumple con el requerimiento RI2 - comunicación con el usuario.
+     * @param ventana La ventana desde la que se invoca el cierre.
+     */
+    public static void salirAplicacion(java.awt.Window ventana) {
+        int confirmar = javax.swing.JOptionPane.showConfirmDialog(
+                ventana,
+                "¿Desea salir de la aplicación Ferretería JP?",
+                "Confirmar Salida",
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
 
+        if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
+
+        System.exit(0);
+        }
+    }
+    
+    
+    
 }
