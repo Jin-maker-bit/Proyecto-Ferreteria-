@@ -4,7 +4,9 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
+import javax.swing.table.DefaultTableModel;
 import vistas.VentanaLogin;
 
 /**
@@ -31,6 +33,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
         
         // Rescata Administrador:
         lblImprimirAdmin.setText(VentanaLogin.user);
+        
+        // Cargar tabla 3 últimos artículos 
+        ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         
         // Rescatar lbl de Tiendas abiertas, productos Nacionales, Usuarios Totales y Usuarios activos
         // Consultas en paquete de bbdd Consultas y rescatar aquí:
@@ -332,28 +337,27 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
                         .addComponent(lbl2)
                         .addGap(30, 30, 30)
                         .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
-                        .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+                        .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
         );
         panelRescatarLabelsLayout.setVerticalGroup(
             panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,11 +370,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addComponent(lbl2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                     .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addGap(65, 65, 65))
         );
 
         tablaArticulosRegistrados.setBackground(new java.awt.Color(9, 48, 64));
@@ -396,6 +400,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosRegistrados.setEnabled(false);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setOpaque(false);
         tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setShowGrid(false);
@@ -403,6 +408,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         panelFinal.setBackground(new java.awt.Color(9, 48, 64));
         panelFinal.setForeground(new java.awt.Color(191, 150, 99));
+        panelFinal.setOpaque(false);
 
         lblSistemaGestion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSistemaGestion.setForeground(new java.awt.Color(191, 150, 99));
@@ -438,10 +444,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblNovedadesInventario1.setText("Novedades de inventario");
 
         lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
         lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImprimirAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
-        lblImprimirAdmin.setOpaque(true);
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -458,7 +463,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                         .addGap(79, 79, 79)
                         .addComponent(lblAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSubtitulo)
@@ -466,15 +471,17 @@ public class VentanaAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblNovedadesInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1)
-                            .addComponent(panelRescatarLabels, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(44, 44, 44))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblNovedadesInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1)
+                                .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(panelRescatarLabels, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(38, 38, 38))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,14 +498,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAdmin)
-                                    .addComponent(lblTitulo))
+                                .addComponent(lblTitulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblSubtitulo))
-                            .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdmin))))
                         .addGap(26, 26, 26)
-                        .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblNovedadesInventario1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -637,6 +646,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         itemVerMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         itemVerMiCuenta.setText("Ver mi cuenta");
+        itemVerMiCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         itemVerMiCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemVerMiCuentaActionPerformed(evt);
@@ -825,6 +835,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelRescatarLabels;
-    private javax.swing.JTable tablaArticulosRegistrados;
+    public javax.swing.JTable tablaArticulosRegistrados;
     // End of variables declaration//GEN-END:variables
 }

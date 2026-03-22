@@ -43,7 +43,7 @@ public class ConsultasProducto extends Conexion {
 
             // Recorremos el ResultSet y llenamos el modelo
             while (rs.next()) {
-                fila[0] = rs.getInt(1);    
+                fila[0] = rs.getString(1);    
                 fila[1] = rs.getString(2);
                 fila[2] = rs.getString(3); 
                 fila[3] = rs.getInt(4);    
@@ -53,10 +53,11 @@ public class ConsultasProducto extends Conexion {
             }
 
         } catch (SQLException e) {
-            // Estilo Reynaldo: Mensaje de error visual
+            
             javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar últimos artículos: " + e.getMessage());
+            
         } finally {
-            // 5. Cerramos siempre la conexión para evitar errores de Executor
+            
             cerrarConexion();
         }
     }

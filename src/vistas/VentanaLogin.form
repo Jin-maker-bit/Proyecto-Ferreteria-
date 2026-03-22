@@ -36,7 +36,6 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelPrincipal" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,7 +44,7 @@
     <Container class="javax.swing.JPanel" name="panelPrincipal">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="40" green="30" red="9" type="rgb"/>
+          <Color blue="26" green="20" red="3" type="rgb"/>
         </Property>
       </Properties>
 
@@ -88,7 +87,7 @@
                           <Component id="panelLogin" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Component id="jToolBar2" min="-2" pref="13" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
@@ -205,7 +204,7 @@
             <Component class="javax.swing.JTextField" name="campoUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="86" red="6c" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="1"/>
@@ -224,10 +223,13 @@
             <Component class="javax.swing.JPasswordField" name="campoPass">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="86" red="6c" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="60" green="9e" red="bf" type="rgb"/>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Texto"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="CAMPO CONTRASE&#xd1;A" noResource="true"/>
               </Properties>

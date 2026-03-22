@@ -38,7 +38,7 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         setTitle("VENTANA REGISTRAR ORIGEN");
         setResizable(false);
 
-        panelPrincipal.setBackground(new java.awt.Color(9, 48, 64));
+        panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);

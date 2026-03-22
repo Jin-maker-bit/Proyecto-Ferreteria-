@@ -61,7 +61,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(3, 32, 38));
         setResizable(false);
 
-        panelPrincipal.setBackground(new java.awt.Color(9, 48, 64));
+        panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
 
         lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ImagenGeneral_JP.png"))); // NOI18N
@@ -84,14 +84,15 @@ public class VentanaLogin extends javax.swing.JFrame {
         lblPass.setText("Contraseña:");
         lblPass.setOpaque(true);
 
-        campoUsuario.setBackground(new java.awt.Color(108, 134, 140));
+        campoUsuario.setBackground(new java.awt.Color(9, 48, 64));
         campoUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(191, 158, 96));
         campoUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         campoUsuario.setName("CAMPO USUARIO"); // NOI18N
 
-        campoPass.setBackground(new java.awt.Color(108, 134, 140));
+        campoPass.setBackground(new java.awt.Color(9, 48, 64));
         campoPass.setForeground(new java.awt.Color(191, 158, 96));
+        campoPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         campoPass.setName("CAMPO CONTRASEÑA"); // NOI18N
 
         botonAcceso.setBackground(new java.awt.Color(191, 158, 96));
@@ -189,7 +190,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -204,8 +205,7 @@ public class VentanaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,25 +243,16 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAcceso;
-    private javax.swing.JButton botonAcceso1;
     private javax.swing.JPasswordField campoPass;
-    private javax.swing.JPasswordField campoPass1;
     private javax.swing.JTextField campoUsuario;
-    private javax.swing.JTextField campoUsuario1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblPass;
-    private javax.swing.JLabel lblPass1;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JPanel panelLogin1;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JPanel panelPrincipal1;
     // End of variables declaration//GEN-END:variables
      
     /**
