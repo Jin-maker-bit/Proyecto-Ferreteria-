@@ -9,7 +9,7 @@ package vistas.vistasUser;
  * @author jintae
  */
 public class VerArticuloDestacado extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerArticuloDestacado.class.getName());
 
     /**
@@ -18,7 +18,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     public VerArticuloDestacado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
     }
@@ -54,9 +54,13 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         tablaArticulosDestacados = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA ARTÍCULO DESTACADO");
@@ -150,16 +154,16 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         panelUserSidebarLayout.setHorizontalGroup(
             panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUserSidebarLayout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonVerArticulosUser, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(botonVerArticulosUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVerOfertasUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVerMiCuentaUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonVerDestacadosUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonVerDestacadosUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUserSidebarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(botonVolverVP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonVolverVP, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelUserSidebarLayout.setVerticalGroup(
@@ -300,26 +304,57 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
 
         jMenu1.setBackground(new java.awt.Color(10, 49, 64));
         jMenu1.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu1.setText("Ver Artículos");
+        jMenu1.setText("Articulos");
         jMenu1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem1.setText("Ver articulos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(10, 49, 64));
         jMenu2.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu2.setText("Ver Destacados");
+        jMenu2.setText("Destacados");
         jMenu2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem2.setText("Ver destacados");
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setBackground(new java.awt.Color(10, 49, 64));
         jMenu3.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu3.setText("Ver Ofertas");
+        jMenu3.setText("Ofertas");
         jMenu3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem3.setText("Ver ofertas");
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(10, 49, 64));
         jMenu4.setForeground(new java.awt.Color(10, 49, 64));
         jMenu4.setText("Mi Cuenta");
         jMenu4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("Ver mi cuenta");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -328,7 +363,9 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,6 +375,21 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        VerDatosCuenta dc = new VerDatosCuenta(null, true);
+        this.dispose();
+        dc.setVisible(true);
+       
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,6 +439,10 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAcceso;
     private javax.swing.JLabel lblLogo;
