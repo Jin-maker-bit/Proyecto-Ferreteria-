@@ -255,11 +255,11 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="panelLogo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="panelSidebar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="panelAdminSidebar" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                           <Component id="lblAcceso" min="-2" pref="122" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -305,7 +305,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblAcceso" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="panelSidebar" min="-2" max="-2" attributes="0"/>
+                          <Component id="panelAdminSidebar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -325,7 +326,7 @@
                           <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -451,7 +452,7 @@
             <Property name="text" type="java.lang.String" value="ACCESO R&#xc1;PIDO"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="panelSidebar">
+        <Container class="javax.swing.JPanel" name="panelAdminSidebar">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -462,7 +463,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="botonOrigenes" max="32767" attributes="0"/>
                                   <Component id="botonCategorias" max="32767" attributes="0"/>
@@ -474,20 +475,18 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botonSalir" alignment="1" pref="160" max="32767" attributes="0"/>
-                                  <Component id="botonTiendas" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="botonTiendas" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="botonSalir" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="botonRegistrarArticulo" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonRegistrarUsuario" min="-2" pref="29" max="-2" attributes="0"/>
@@ -501,9 +500,8 @@
                       <Component id="botonOrigenes" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonTiendas" min="-2" pref="29" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="botonSalir" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="botonSalir" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -663,7 +661,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="lblAdmin1" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="lbl1" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -673,9 +671,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lblAdmin4" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="lblAdmin3" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="lbl3" min="-2" pref="120" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="lblRescatarProductoNacional" min="-2" pref="143" max="-2" attributes="0"/>
@@ -691,7 +689,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblAdmin2" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="lbl4" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -703,10 +701,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAdmin1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAdmin2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAdmin3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAdmin4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -797,7 +795,7 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblAdmin1">
+            <Component class="javax.swing.JLabel" name="lbl1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
@@ -808,7 +806,7 @@
                 <Property name="text" type="java.lang.String" value="Tiendas Abiertas"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblAdmin2">
+            <Component class="javax.swing.JLabel" name="lbl4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
@@ -819,7 +817,7 @@
                 <Property name="text" type="java.lang.String" value="Usuarios Activos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblAdmin3">
+            <Component class="javax.swing.JLabel" name="lbl3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
@@ -830,7 +828,7 @@
                 <Property name="text" type="java.lang.String" value="Usuarios Totales"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblAdmin4">
+            <Component class="javax.swing.JLabel" name="lbl2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
@@ -850,7 +848,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaVentanaAdmin">
+            <Component class="javax.swing.JTable" name="tablaArticulosRegistrados">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="8c" green="89" red="70" type="rgb"/>
