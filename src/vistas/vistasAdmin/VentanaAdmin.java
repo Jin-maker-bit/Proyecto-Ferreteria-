@@ -4,6 +4,8 @@
  */
 package vistas.vistasAdmin;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author jintae
@@ -20,6 +22,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — " 
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
     }
 
     /**
@@ -32,6 +39,52 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        panelLogo = new javax.swing.JPanel();
+        lblLogo = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblAdmin = new javax.swing.JLabel();
+        textImprimirAdmin = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        lblAcceso = new javax.swing.JLabel();
+        panelSidebar = new javax.swing.JPanel();
+        botonRegistrarArticulo = new javax.swing.JButton();
+        botonRegistrarUsuario = new javax.swing.JButton();
+        botonVerArticulos = new javax.swing.JButton();
+        botonVerUsuarios = new javax.swing.JButton();
+        botonCategorias = new javax.swing.JButton();
+        botonOrigenes = new javax.swing.JButton();
+        botonTiendas = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
+        panelRescatarLabels = new javax.swing.JPanel();
+        lblRescatarTiendas = new javax.swing.JLabel();
+        lblRescatarProductoNacional = new javax.swing.JLabel();
+        lblRescatarUsuariosTotales = new javax.swing.JLabel();
+        lblRescatarUsuariosActivos = new javax.swing.JLabel();
+        lblAdmin1 = new javax.swing.JLabel();
+        lblAdmin2 = new javax.swing.JLabel();
+        lblAdmin3 = new javax.swing.JLabel();
+        lblAdmin4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaVentanaAdmin = new javax.swing.JTable();
+        panelFinal = new javax.swing.JPanel();
+        lblSistemaGestion = new javax.swing.JLabel();
+        lblRescataFechayHora = new javax.swing.JLabel();
+        lblNovedadesInventario1 = new javax.swing.JLabel();
+        menuBarAdmin = new javax.swing.JMenuBar();
+        menuInventario = new javax.swing.JMenu();
+        itemRegistrarArticulo = new javax.swing.JMenuItem();
+        itemVerArticulos = new javax.swing.JMenuItem();
+        itemDestacados = new javax.swing.JMenuItem();
+        itemOfertas = new javax.swing.JMenuItem();
+        menuUsuarios = new javax.swing.JMenu();
+        itemRegistrarUsuario = new javax.swing.JMenuItem();
+        itemVerUsuarios = new javax.swing.JMenuItem();
+        menuTiendas = new javax.swing.JMenu();
+        itemVerTiendas = new javax.swing.JMenuItem();
+        itemCategorias = new javax.swing.JMenuItem();
+        itemOrigenes = new javax.swing.JMenuItem();
+        menuMiCuenta = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA PRINCIPAL ADMINISTRADOR");
@@ -39,16 +92,459 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         panelPrincipal.setBackground(new java.awt.Color(9, 48, 64));
 
+        panelLogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 3));
+        panelLogo.setOpaque(false);
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoEmpresaPequeño.jpg"))); // NOI18N
+
+        lblNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(191, 150, 99));
+        lblNombre.setText("Ferretería JP Fusión");
+
+        javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
+        panelLogo.setLayout(panelLogoLayout);
+        panelLogoLayout.setHorizontalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLogoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLogo)
+                .addGap(50, 50, 50))
+            .addGroup(panelLogoLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        panelLogoLayout.setVerticalGroup(
+            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLogoLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblLogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNombre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lblAdmin.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblAdmin.setText("Administrador:");
+
+        textImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        textImprimirAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
+        textImprimirAdmin.setEnabled(false);
+        textImprimirAdmin.setOpaque(true);
+
+        lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
+        lblTitulo.setText("Panel de control");
+
+        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo.setText("Gestión de inventario y personal");
+
+        lblAcceso.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAcceso.setForeground(new java.awt.Color(112, 137, 140));
+        lblAcceso.setText("ACCESO RÁPIDO");
+
+        panelSidebar.setOpaque(false);
+
+        botonRegistrarArticulo.setBackground(new java.awt.Color(112, 137, 140));
+        botonRegistrarArticulo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonRegistrarArticulo.setForeground(new java.awt.Color(191, 150, 99));
+        botonRegistrarArticulo.setText("+ Registrar Artículo");
+        botonRegistrarArticulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonRegistrarUsuario.setBackground(new java.awt.Color(112, 137, 140));
+        botonRegistrarUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonRegistrarUsuario.setForeground(new java.awt.Color(191, 150, 99));
+        botonRegistrarUsuario.setText("+ Registrar Usuario");
+        botonRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonVerArticulos.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerArticulos.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerArticulos.setText("Ver Artículos");
+        botonVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonVerUsuarios.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerUsuarios.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerUsuarios.setText("Ver Usuarios");
+        botonVerUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonCategorias.setBackground(new java.awt.Color(112, 137, 140));
+        botonCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonCategorias.setForeground(new java.awt.Color(191, 150, 99));
+        botonCategorias.setText("Categorías");
+        botonCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonOrigenes.setBackground(new java.awt.Color(112, 137, 140));
+        botonOrigenes.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonOrigenes.setForeground(new java.awt.Color(191, 150, 99));
+        botonOrigenes.setText("Orígenes");
+        botonOrigenes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonTiendas.setBackground(new java.awt.Color(112, 137, 140));
+        botonTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonTiendas.setForeground(new java.awt.Color(191, 150, 99));
+        botonTiendas.setText("Tiendas");
+        botonTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        botonSalir.setBackground(new java.awt.Color(191, 150, 99));
+        botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonSalir.setText("Salir del sistema");
+        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout panelSidebarLayout = new javax.swing.GroupLayout(panelSidebar);
+        panelSidebar.setLayout(panelSidebarLayout);
+        panelSidebarLayout.setHorizontalGroup(
+            panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSidebarLayout.createSequentialGroup()
+                .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelSidebarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonOrigenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(botonVerArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonVerUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSidebarLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(botonTiendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(17, 17, 17))
+        );
+        panelSidebarLayout.setVerticalGroup(
+            panelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSidebarLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(botonVerArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonVerUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonOrigenes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panelRescatarLabels.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
+        panelRescatarLabels.setOpaque(false);
+
+        lblRescatarTiendas.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarTiendas.setForeground(new java.awt.Color(191, 150, 99));
+        lblRescatarTiendas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRescatarTiendas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
+        lblRescatarTiendas.setOpaque(true);
+
+        lblRescatarProductoNacional.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarProductoNacional.setForeground(new java.awt.Color(191, 150, 99));
+        lblRescatarProductoNacional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRescatarProductoNacional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
+        lblRescatarProductoNacional.setOpaque(true);
+
+        lblRescatarUsuariosTotales.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarUsuariosTotales.setForeground(new java.awt.Color(191, 150, 99));
+        lblRescatarUsuariosTotales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRescatarUsuariosTotales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
+        lblRescatarUsuariosTotales.setOpaque(true);
+
+        lblRescatarUsuariosActivos.setBackground(new java.awt.Color(112, 137, 140));
+        lblRescatarUsuariosActivos.setForeground(new java.awt.Color(191, 150, 99));
+        lblRescatarUsuariosActivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRescatarUsuariosActivos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
+        lblRescatarUsuariosActivos.setOpaque(true);
+
+        lblAdmin1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAdmin1.setForeground(new java.awt.Color(191, 150, 99));
+        lblAdmin1.setText("Tiendas Abiertas");
+
+        lblAdmin2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAdmin2.setForeground(new java.awt.Color(191, 150, 99));
+        lblAdmin2.setText("Usuarios Activos");
+
+        lblAdmin3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAdmin3.setForeground(new java.awt.Color(191, 150, 99));
+        lblAdmin3.setText("Usuarios Totales");
+
+        lblAdmin4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblAdmin4.setForeground(new java.awt.Color(191, 150, 99));
+        lblAdmin4.setText("Productos Nacionales");
+
+        javax.swing.GroupLayout panelRescatarLabelsLayout = new javax.swing.GroupLayout(panelRescatarLabels);
+        panelRescatarLabels.setLayout(panelRescatarLabelsLayout);
+        panelRescatarLabelsLayout.setHorizontalGroup(
+            panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lblAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                        .addComponent(lblAdmin4)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblAdmin3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                        .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
+        );
+        panelRescatarLabelsLayout.setVerticalGroup(
+            panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAdmin1)
+                    .addComponent(lblAdmin2)
+                    .addComponent(lblAdmin3)
+                    .addComponent(lblAdmin4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
+        );
+
+        tablaVentanaAdmin.setBackground(new java.awt.Color(112, 137, 140));
+        tablaVentanaAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaVentanaAdmin.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaVentanaAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        tablaVentanaAdmin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nombre", "Categoría", "Stock", "Precio venta"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaVentanaAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaVentanaAdmin.setEnabled(false);
+        tablaVentanaAdmin.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaVentanaAdmin.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaVentanaAdmin.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaVentanaAdmin.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaVentanaAdmin);
+
+        panelFinal.setBackground(new java.awt.Color(112, 137, 140));
+
+        lblSistemaGestion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSistemaGestion.setForeground(new java.awt.Color(0, 0, 51));
+        lblSistemaGestion.setText("Sistema de gestión Ferretería JP Fusión");
+
+        lblRescataFechayHora.setBackground(new java.awt.Color(154, 176, 179));
+        lblRescataFechayHora.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        lblRescataFechayHora.setForeground(new java.awt.Color(0, 0, 51));
+        lblRescataFechayHora.setOpaque(true);
+
+        javax.swing.GroupLayout panelFinalLayout = new javax.swing.GroupLayout(panelFinal);
+        panelFinal.setLayout(panelFinalLayout);
+        panelFinalLayout.setHorizontalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFinalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelFinalLayout.setVerticalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinalLayout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSistemaGestion))
+                .addContainerGap())
+        );
+
+        lblNovedadesInventario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblNovedadesInventario1.setForeground(new java.awt.Color(191, 150, 99));
+        lblNovedadesInventario1.setText("Novedades de inventario");
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(lblAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(lblSubtitulo)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(textImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblNovedadesInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1)
+                            .addComponent(panelRescatarLabels, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(44, 44, 44))))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAcceso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAdmin)
+                            .addComponent(lblTitulo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSubtitulo)
+                        .addGap(26, 26, 26)
+                        .addComponent(panelRescatarLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblNovedadesInventario1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        menuBarAdmin.setBackground(new java.awt.Color(10, 49, 64));
+        menuBarAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        menuBarAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        menuInventario.setBackground(new java.awt.Color(10, 49, 64));
+        menuInventario.setForeground(new java.awt.Color(10, 49, 64));
+        menuInventario.setText("Inventario");
+        menuInventario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemRegistrarArticulo.setBackground(new java.awt.Color(10, 49, 64));
+        itemRegistrarArticulo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemRegistrarArticulo.setForeground(new java.awt.Color(10, 49, 64));
+        itemRegistrarArticulo.setText("Registrar Artículo");
+        itemRegistrarArticulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuInventario.add(itemRegistrarArticulo);
+
+        itemVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerArticulos.setForeground(new java.awt.Color(10, 49, 64));
+        itemVerArticulos.setText("Ver Artículos");
+        itemVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuInventario.add(itemVerArticulos);
+
+        itemDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemDestacados.setForeground(new java.awt.Color(10, 49, 64));
+        itemDestacados.setText("Destacados");
+        itemDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuInventario.add(itemDestacados);
+
+        itemOfertas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemOfertas.setForeground(new java.awt.Color(10, 49, 64));
+        itemOfertas.setText("Ofertas");
+        itemOfertas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuInventario.add(itemOfertas);
+
+        menuBarAdmin.add(menuInventario);
+
+        menuUsuarios.setForeground(new java.awt.Color(10, 49, 64));
+        menuUsuarios.setText("Usuarios");
+        menuUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemRegistrarUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemRegistrarUsuario.setForeground(new java.awt.Color(10, 49, 64));
+        itemRegistrarUsuario.setText("Registrar Usuario");
+        itemRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuUsuarios.add(itemRegistrarUsuario);
+
+        itemVerUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerUsuarios.setForeground(new java.awt.Color(10, 49, 64));
+        itemVerUsuarios.setText("Ver Usuarios");
+        itemVerUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuUsuarios.add(itemVerUsuarios);
+
+        menuBarAdmin.add(menuUsuarios);
+
+        menuTiendas.setForeground(new java.awt.Color(10, 49, 64));
+        menuTiendas.setText("Tiendas");
+        menuTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemVerTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerTiendas.setForeground(new java.awt.Color(10, 49, 64));
+        itemVerTiendas.setText("Ver Tiendas");
+        itemVerTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuTiendas.add(itemVerTiendas);
+
+        itemCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemCategorias.setForeground(new java.awt.Color(10, 49, 64));
+        itemCategorias.setText("Categorías");
+        itemCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuTiendas.add(itemCategorias);
+
+        itemOrigenes.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemOrigenes.setForeground(new java.awt.Color(10, 49, 64));
+        itemOrigenes.setText("Orígenes");
+        itemOrigenes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuTiendas.add(itemOrigenes);
+
+        menuBarAdmin.add(menuTiendas);
+
+        menuMiCuenta.setForeground(new java.awt.Color(10, 49, 64));
+        menuMiCuenta.setText("Mi cuenta");
+        menuMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        menuBarAdmin.add(menuMiCuenta);
+
+        setJMenuBar(menuBarAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +587,52 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCategorias;
+    private javax.swing.JButton botonOrigenes;
+    private javax.swing.JButton botonRegistrarArticulo;
+    private javax.swing.JButton botonRegistrarUsuario;
+    private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonTiendas;
+    private javax.swing.JButton botonVerArticulos;
+    private javax.swing.JButton botonVerUsuarios;
+    private javax.swing.JMenuItem itemCategorias;
+    private javax.swing.JMenuItem itemDestacados;
+    private javax.swing.JMenuItem itemOfertas;
+    private javax.swing.JMenuItem itemOrigenes;
+    private javax.swing.JMenuItem itemRegistrarArticulo;
+    private javax.swing.JMenuItem itemRegistrarUsuario;
+    private javax.swing.JMenuItem itemVerArticulos;
+    private javax.swing.JMenuItem itemVerTiendas;
+    private javax.swing.JMenuItem itemVerUsuarios;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAcceso;
+    private javax.swing.JLabel lblAdmin;
+    private javax.swing.JLabel lblAdmin1;
+    private javax.swing.JLabel lblAdmin2;
+    private javax.swing.JLabel lblAdmin3;
+    private javax.swing.JLabel lblAdmin4;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNovedadesInventario1;
+    private javax.swing.JLabel lblRescataFechayHora;
+    private javax.swing.JLabel lblRescatarProductoNacional;
+    private javax.swing.JLabel lblRescatarTiendas;
+    private javax.swing.JLabel lblRescatarUsuariosActivos;
+    private javax.swing.JLabel lblRescatarUsuariosTotales;
+    private javax.swing.JLabel lblSistemaGestion;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenuBar menuBarAdmin;
+    private javax.swing.JMenu menuInventario;
+    private javax.swing.JMenu menuMiCuenta;
+    private javax.swing.JMenu menuTiendas;
+    private javax.swing.JMenu menuUsuarios;
+    private javax.swing.JPanel panelFinal;
+    private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelRescatarLabels;
+    private javax.swing.JPanel panelSidebar;
+    private javax.swing.JTable tablaVentanaAdmin;
+    private javax.swing.JTextField textImprimirAdmin;
     // End of variables declaration//GEN-END:variables
 }
