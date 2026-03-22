@@ -662,11 +662,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         utilidades.Utilidades.salirAplicacion(this);
     }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
-        RegistrarArticulo regart = new RegistrarArticulo(this, true);
-        regart.setVisible(true);
-    }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
-
     private void botonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarUsuarioActionPerformed
         RegistrarUsuario regusu = new RegistrarUsuario(this, true);
         regusu.setVisible(true);
@@ -746,6 +741,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
         vdatcuent.setVisible(true);
     }//GEN-LAST:event_menuMiCuentaActionPerformed
+
+    private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
+        RegistrarArticulo regart = new RegistrarArticulo(this, true);
+        regart.setVisible(true);
+    }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
 
     /**
      * @param args the command line arguments
