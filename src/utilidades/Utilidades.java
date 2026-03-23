@@ -227,5 +227,24 @@ public class Utilidades {
             System.exit(0);
         }
     }
+    
+    
+    /**
+     * Muestra un diálogo informativo con los datos de la aplicación corporativa y técnica del sistema.
+     * Se ha diseñado utilizando un parámetro genérico para aprovechar el polimorfismo.
+     * Reutilizable desde cualquier ventana de la aplicación.
+     * @param parent Componente padre desde el que se lanza el diálogo.
+     */
+    public static void mostrarAcercaDe(java.awt.Component parent) {
+        javax.swing.JOptionPane.showMessageDialog(
+            parent,
+            "Ferretería JP Fusión\n" +
+            "Versión 1.0\n" +
+            "Desarrollado por Jose & Patricia\n" +
+            "Año 2026",
+            "Acerca de",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }
 
 }
