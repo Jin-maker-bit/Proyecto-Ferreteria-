@@ -4,10 +4,10 @@
  */
 package utilidades;
 
+import java.awt.BasicStroke;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -17,6 +17,7 @@ import java.awt.RenderingHints;
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.border.AbstractBorder;
+import javax.swing.border.LineBorder;
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
@@ -129,10 +130,21 @@ public class Utilidades {
     public class AplicarBorde {
 
         public static void aplicarEstiloUniversal(JComponent componente, int arco) {
-            // 1. Quitamos la opacidad estándar para que no dibuje el rectángulo gris
-            componente.setOpaque(false);
+            // 1. Extraemos los datos de la propiedad "border" que pusiste en el IDE
+            int grosorDetectado = 1;
+            Color colorDetectado = new Color(184, 154, 108); // Dorado por defecto
 
-            // 2. Si es un botón, limpiamos los estilos de fábrica
+            if (componente.getBorder() instanceof LineBorder) {
+                LineBorder lb = (LineBorder) componente.getBorder();
+                grosorDetectado = lb.getThickness(); // Lee el "Thickness" de tu captura
+                colorDetectado = lb.getLineColor();  // Lee el "Color" de tu captura
+            }
+
+            final int grosorFinal = grosorDetectado;
+            final Color colorFinal = colorDetectado;
+
+            // 2. Quitamos la opacidad y estilos por defecto
+            componente.setOpaque(false);
             if (componente instanceof AbstractButton) {
                 AbstractButton b = (AbstractButton) componente;
                 b.setContentAreaFilled(false);
@@ -140,29 +152,33 @@ public class Utilidades {
                 b.setFocusPainted(false);
             }
 
-            // 3. Aplicamos el dibujo mediante un Border personalizado
+            // 3. Aplicamos el nuevo borde redondeado basado en esos datos
             componente.setBorder(new AbstractBorder() {
                 @Override
                 public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                     Graphics2D g2 = (Graphics2D) g.create();
                     g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                    // IMPORTANTE: Dibujamos el fondo redondeado
-                    // Usamos el color que hayas puesto en la pestaña "Properties" del IDE
+                    // Pintamos el fondo (Propiedad 'background' del IDE)
                     g2.setColor(c.getBackground());
                     g2.fillRoundRect(x, y, width - 1, height - 1, arco, arco);
 
-                    // Dibujamos el borde (Color dorado de tu diseño)
-                    g2.setColor(new Color(184, 154, 108));
-                    g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
+                    // Pintamos el borde con el grosor y color de la propiedad 'border'
+                    g2.setStroke(new BasicStroke(grosorFinal));
+                    g2.setColor(colorFinal);
+
+                    // Ajuste matemático para que el grosor no se salga del componente
+                    int desplazamiento = grosorFinal / 2;
+                    g2.drawRoundRect(x + desplazamiento, y + desplazamiento,
+                            width - grosorFinal, height - grosorFinal, arco, arco);
 
                     g2.dispose();
                 }
 
                 @Override
                 public Insets getBorderInsets(Component c) {
-                    // Margen interno para que el texto no toque los bordes (Arriba, Izquierda, Abajo, Derecha)
-                    return new Insets(8, 25, 8, 25);
+                    // El margen interno se ajusta según el grosor para no pisar el texto
+                    return new Insets(grosorFinal + 5, 20, grosorFinal + 5, 20);
                 }
             });
         }
