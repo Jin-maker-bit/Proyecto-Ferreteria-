@@ -33,6 +33,19 @@ public class VerListadoOrigen extends javax.swing.JDialog {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaArticulosDestacados = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        lblImprimirUsuario = new javax.swing.JLabel();
+        lblUsuario1 = new javax.swing.JLabel();
+        panelFinal = new javax.swing.JPanel();
+        lblSistemaGestion = new javax.swing.JLabel();
+        lblRescataFechayHora = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        botonActualizar = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -44,16 +57,183 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         setResizable(false);
 
         panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
+        panelPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
+        lblTitulo.setText("Origen de procedencia de producto");
+
+        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo.setText("Listado de origen de cada producto disponible en tienda");
+
+        tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
+        tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaArticulosDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaArticulosDestacados.setForeground(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Origen", "Descripción"
+            }
+        ));
+        tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaArticulosDestacados.setEnabled(false);
+        tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaArticulosDestacados);
+
+        jPanel1.setBackground(new java.awt.Color(3, 32, 38));
+
+        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
+        lblUsuario1.setText("Usuario:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUsuario1)
+                .addGap(6, 6, 6)
+                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsuario1)
+                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        panelFinal.setBackground(new java.awt.Color(112, 137, 140));
+        panelFinal.setOpaque(false);
+
+        lblSistemaGestion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSistemaGestion.setForeground(new java.awt.Color(191, 150, 99));
+        lblSistemaGestion.setText("Sistema de gestión Ferretería JP Fusión");
+
+        lblRescataFechayHora.setBackground(new java.awt.Color(154, 176, 179));
+        lblRescataFechayHora.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        lblRescataFechayHora.setForeground(new java.awt.Color(191, 150, 99));
+
+        javax.swing.GroupLayout panelFinalLayout = new javax.swing.GroupLayout(panelFinal);
+        panelFinal.setLayout(panelFinalLayout);
+        panelFinalLayout.setHorizontalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFinalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+        panelFinalLayout.setVerticalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jToolBar1.setBackground(new java.awt.Color(191, 150, 99));
+        jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(2, 2));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(2, 2));
+
+        botonActualizar.setBackground(new java.awt.Color(191, 150, 99));
+        botonActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonActualizar.setText("NUEVO ORIGEN");
+        botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
+
+        botonVolver.setBackground(new java.awt.Color(3, 32, 38));
+        botonVolver.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(191, 150, 99));
+        botonVolver.setText("Volver");
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(botonVolver)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lblTitulo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(botonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -115,6 +295,17 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+        RegistrarOrigen ro = new RegistrarOrigen(null, true);
+        this.dispose();
+        ro.setVisible(true);
+       // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -153,11 +344,24 @@ public class VerListadoOrigen extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblRescataFechayHora;
+    private javax.swing.JLabel lblSistemaGestion;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblUsuario1;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
+    private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JTable tablaArticulosDestacados;
     // End of variables declaration//GEN-END:variables
 }

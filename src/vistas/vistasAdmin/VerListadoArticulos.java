@@ -35,17 +35,18 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         panelPrincipal = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
-        panelLogo = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
-        lblLogo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArticulosOferta = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        textImprimirUsuario1 = new javax.swing.JLabel();
+        lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
         lblRescataFechayHora = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        botonVolver = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -61,43 +62,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
         lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
-        lblTitulo.setText("Listado total de articulos ");
+        lblTitulo.setText("Listado total de artículos ");
 
-        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
         lblSubtitulo.setText("Listado de articulos en la tienda");
-
-        panelLogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 3));
-        panelLogo.setOpaque(false);
-
-        lblNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(191, 150, 99));
-        lblNombre.setText("Ferretería JP Fusión");
-
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoEmpresaPequeño.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout panelLogoLayout = new javax.swing.GroupLayout(panelLogo);
-        panelLogo.setLayout(panelLogoLayout);
-        panelLogoLayout.setHorizontalGroup(
-            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNombre)
-                .addContainerGap())
-            .addGroup(panelLogoLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblLogo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelLogoLayout.setVerticalGroup(
-            panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNombre)
-                .addContainerGap())
-        );
 
         tablaArticulosOferta.setBackground(new java.awt.Color(9, 48, 64));
         tablaArticulosOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -129,14 +98,16 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(3, 32, 38));
 
-        textImprimirUsuario1.setBackground(new java.awt.Color(9, 48, 64));
-        textImprimirUsuario1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        textImprimirUsuario1.setForeground(new java.awt.Color(191, 150, 99));
-        textImprimirUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
-        lblUsuario1.setText("Administrador");
+        lblUsuario1.setText("Usuario:");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoIcono_Nexus.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -146,16 +117,20 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(textImprimirUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(textImprimirUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 9, Short.MAX_VALUE))
+                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelFinal.setBackground(new java.awt.Color(112, 137, 140));
@@ -182,12 +157,38 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         panelFinalLayout.setVerticalGroup(
             panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinalLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jToolBar1.setBackground(new java.awt.Color(191, 150, 99));
+        jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(2, 2));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(2, 2));
+
+        botonVolver.setBackground(new java.awt.Color(3, 32, 38));
+        botonVolver.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(191, 150, 99));
+        botonVolver.setText("Volver");
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+
+        botonActualizar.setBackground(new java.awt.Color(191, 150, 99));
+        botonActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonActualizar.setText("REGISTRAR NUEVO ARTICULO");
+        botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -195,43 +196,50 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(263, 263, 263)
+                        .addGap(32, 32, 32)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 65, Short.MAX_VALUE))
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(89, 89, 89))))
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botonVolver)
+                                    .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13)))))
                 .addContainerGap())
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(lblTitulo)
-                        .addGap(80, 80, 80)
-                        .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(botonVolver)
+                .addGap(18, 18, 18)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -294,6 +302,17 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+    RegistrarArticulo ra = new RegistrarArticulo(null, true);
+    this.dispose();
+    ra.setVisible(true);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,13 +351,16 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblNombre;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblImprimirUsuario;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
@@ -347,9 +369,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
-    private javax.swing.JPanel panelLogo;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaArticulosOferta;
-    private javax.swing.JLabel textImprimirUsuario1;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,8 +66,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
         botonVerUsuarios = new javax.swing.JButton();
         botonCategorias = new javax.swing.JButton();
         botonOrigenes = new javax.swing.JButton();
-        botonTiendas = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        botonTienda = new javax.swing.JButton();
         panelRescatarLabels = new javax.swing.JPanel();
         lblRescatarTiendas = new javax.swing.JLabel();
         lblRescatarProductoNacional = new javax.swing.JLabel();
@@ -256,17 +256,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonTiendas.setBackground(new java.awt.Color(9, 48, 64));
-        botonTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        botonTiendas.setForeground(new java.awt.Color(191, 150, 99));
-        botonTiendas.setText("Tiendas");
-        botonTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonTiendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonTiendasActionPerformed(evt);
-            }
-        });
-
         botonSalir.setBackground(new java.awt.Color(191, 150, 99));
         botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonSalir.setText("Salir del sistema");
@@ -277,24 +266,31 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
+        botonTienda.setBackground(new java.awt.Color(9, 48, 64));
+        botonTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonTienda.setForeground(new java.awt.Color(191, 150, 99));
+        botonTienda.setText("Tiendas");
+        botonTienda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTiendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdminSidebarLayout = new javax.swing.GroupLayout(panelAdminSidebar);
         panelAdminSidebar.setLayout(panelAdminSidebarLayout);
         panelAdminSidebarLayout.setHorizontalGroup(
             panelAdminSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdminSidebarLayout.createSequentialGroup()
-                .addGroup(panelAdminSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelAdminSidebarLayout.createSequentialGroup()
-                        .addGap(0, 18, Short.MAX_VALUE)
-                        .addGroup(panelAdminSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(botonOrigenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(botonVerArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonVerUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAdminSidebarLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(botonTiendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 18, Short.MAX_VALUE)
+                .addGroup(panelAdminSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(botonOrigenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(botonVerArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonTienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
             .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -313,9 +309,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 .addComponent(botonCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonOrigenes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -377,32 +373,26 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelRescatarLabels.setLayout(panelRescatarLabelsLayout);
         panelRescatarLabelsLayout.setHorizontalGroup(
             panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
+            .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(4, 4, 4)
                         .addComponent(lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
+                    .addComponent(lblRescatarTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbl2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addComponent(lbl2)
-                        .addGap(30, 30, 30)
-                        .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRescatarLabelsLayout.createSequentialGroup()
-                        .addComponent(lblRescatarProductoNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
-                        .addComponent(lbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRescatarLabelsLayout.createSequentialGroup()
-                        .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
+                    .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRescatarUsuariosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRescatarUsuariosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         panelRescatarLabelsLayout.setVerticalGroup(
             panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -741,11 +731,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -780,11 +770,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         VerListadoOrigen vlistor = new VerListadoOrigen(this, true);
         vlistor.setVisible(true);
     }//GEN-LAST:event_botonOrigenesActionPerformed
-
-    private void botonTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTiendasActionPerformed
-        VerListadoTiendas vlisttien = new VerListadoTiendas(this, true);
-        vlisttien.setVisible(true);
-    }//GEN-LAST:event_botonTiendasActionPerformed
 
     private void itemRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRegistrarArticuloActionPerformed
         RegistrarArticulo regart = new RegistrarArticulo(this, true);
@@ -845,6 +830,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void botonTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTiendaActionPerformed
+        VerListadoTiendas vlt = new VerListadoTiendas(this, true);
+        vlt.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_botonTiendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -876,7 +866,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton botonRegistrarArticulo;
     private javax.swing.JButton botonRegistrarUsuario;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JButton botonTiendas;
+    private javax.swing.JButton botonTienda;
     private javax.swing.JButton botonVerArticulos;
     private javax.swing.JButton botonVerUsuarios;
     private javax.swing.JMenuItem itemCategorias;
