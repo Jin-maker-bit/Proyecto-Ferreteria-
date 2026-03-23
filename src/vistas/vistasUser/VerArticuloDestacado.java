@@ -112,25 +112,25 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
 
         panelUserSidebar.setOpaque(false);
 
-        botonVerArticulosUser.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerArticulosUser.setBackground(new java.awt.Color(9, 48, 64));
         botonVerArticulosUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerArticulosUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerArticulosUser.setText("Ver Artículos");
         botonVerArticulosUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        botonVerDestacadosUser.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerDestacadosUser.setBackground(new java.awt.Color(9, 48, 64));
         botonVerDestacadosUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerDestacadosUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerDestacadosUser.setText("Ver Destacados");
         botonVerDestacadosUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        botonVerOfertasUser.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerOfertasUser.setBackground(new java.awt.Color(9, 48, 64));
         botonVerOfertasUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerOfertasUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerOfertasUser.setText("Ver Ofertas");
         botonVerOfertasUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        botonVerMiCuentaUser.setBackground(new java.awt.Color(112, 137, 140));
+        botonVerMiCuentaUser.setBackground(new java.awt.Color(9, 48, 64));
         botonVerMiCuentaUser.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         botonVerMiCuentaUser.setForeground(new java.awt.Color(191, 150, 99));
         botonVerMiCuentaUser.setText("Mi Cuenta");
@@ -178,7 +178,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         lblAcceso.setForeground(new java.awt.Color(112, 137, 140));
         lblAcceso.setText("ACCESO RÁPIDO");
 
-        tablaArticulosDestacados.setBackground(new java.awt.Color(112, 137, 140));
+        tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
         tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
         tablaArticulosDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         tablaArticulosDestacados.setForeground(new java.awt.Color(191, 150, 99));

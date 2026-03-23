@@ -366,7 +366,7 @@
             <Component class="javax.swing.JButton" name="botonVerArticulosUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="1"/>
@@ -383,7 +383,7 @@
             <Component class="javax.swing.JButton" name="botonVerDestacadosUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="1"/>
@@ -400,7 +400,7 @@
             <Component class="javax.swing.JButton" name="botonVerOfertasUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="1"/>
@@ -417,7 +417,7 @@
             <Component class="javax.swing.JButton" name="botonVerMiCuentaUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="12" style="1"/>
@@ -468,7 +468,7 @@
             <Component class="javax.swing.JTable" name="tablaArticulosDestacados">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                  <Color blue="40" green="30" red="9" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
