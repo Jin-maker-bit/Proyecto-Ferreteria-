@@ -33,6 +33,21 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        panelSecundario = new javax.swing.JPanel();
+        lblCategoria = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        botonCancelarCategoria = new javax.swing.JButton();
+        botonRegistrarCategoria = new javax.swing.JButton();
+        textCategoria = new javax.swing.JTextField();
+        textDescripcion = new javax.swing.JTextField();
+        jToolBar1 = new javax.swing.JToolBar();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuArchivo = new javax.swing.JMenu();
+        itemCerrar = new javax.swing.JMenuItem();
+        menuAyuda = new javax.swing.JMenu();
+        itemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA REGISTRAR CATEGORÍA");
@@ -40,16 +55,169 @@ public class RegistrarCategoria extends javax.swing.JDialog {
 
         panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
 
+        lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
+        lblTitulo.setText("Registrar Categoría");
+
+        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo.setText("Nueva categoría de productos");
+
+        panelSecundario.setBackground(new java.awt.Color(9, 48, 64));
+
+        lblCategoria.setBackground(new java.awt.Color(191, 150, 99));
+        lblCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCategoria.setText("Categoría");
+        lblCategoria.setOpaque(true);
+
+        lblDescripcion.setBackground(new java.awt.Color(112, 137, 140));
+        lblDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescripcion.setText("Descripción");
+        lblDescripcion.setOpaque(true);
+
+        botonCancelarCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        botonCancelarCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonCancelarCategoria.setForeground(new java.awt.Color(191, 150, 99));
+        botonCancelarCategoria.setText("Cancelar");
+        botonCancelarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCancelarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarCategoriaActionPerformed(evt);
+            }
+        });
+
+        botonRegistrarCategoria.setBackground(new java.awt.Color(191, 150, 99));
+        botonRegistrarCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonRegistrarCategoria.setText("Registrar");
+        botonRegistrarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        textCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        textCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        textCategoria.setForeground(new java.awt.Color(112, 137, 140));
+        textCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+
+        textDescripcion.setBackground(new java.awt.Color(3, 32, 38));
+        textDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        textDescripcion.setForeground(new java.awt.Color(112, 137, 140));
+        textDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+
+        javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
+        panelSecundario.setLayout(panelSecundarioLayout);
+        panelSecundarioLayout.setHorizontalGroup(
+            panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelSecundarioLayout.createSequentialGroup()
+                            .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(54, 54, 54)
+                            .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+        panelSecundarioLayout.setVerticalGroup(
+            panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSecundarioLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)))
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        jToolBar1.setBackground(new java.awt.Color(191, 150, 99));
+        jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(2, 2));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(2, 2));
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblSubtitulo))
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblSubtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+
+        menuArchivo.setText("Archivo");
+        menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuArchivo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemCerrar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemCerrar.setText("Cerrar");
+        itemCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCerrarActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(itemCerrar);
+
+        jMenuBar1.add(menuArchivo);
+
+        menuAyuda.setText("Ayuda");
+        menuAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuAyuda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemAcercaDe.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemAcercaDe.setText("Acerca de");
+        itemAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAcercaDeActionPerformed(evt);
+            }
+        });
+        menuAyuda.add(itemAcercaDe);
+
+        jMenuBar1.add(menuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +233,18 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaDeActionPerformed
+        utilidades.Utilidades.mostrarAcercaDe(this);
+    }//GEN-LAST:event_itemAcercaDeActionPerformed
+
+    private void botonCancelarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarCategoriaActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarCategoriaActionPerformed
+
+    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_itemCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,6 +284,21 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCancelarCategoria;
+    private javax.swing.JButton botonRegistrarCategoria;
+    private javax.swing.JMenuItem itemAcercaDe;
+    private javax.swing.JMenuItem itemCerrar;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenu menuArchivo;
+    private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSecundario;
+    private javax.swing.JTextField textCategoria;
+    private javax.swing.JTextField textDescripcion;
     // End of variables declaration//GEN-END:variables
 }

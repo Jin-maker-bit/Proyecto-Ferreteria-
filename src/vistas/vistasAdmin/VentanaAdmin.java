@@ -99,6 +99,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
         itemOrigenes = new javax.swing.JMenuItem();
         menuMiCuenta = new javax.swing.JMenu();
         itemVerMiCuenta = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VENTANA PRINCIPAL ADMINISTRADOR");
@@ -656,6 +658,20 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         menuBarAdmin.add(menuMiCuenta);
 
+        jMenu1.setText("Ayuda");
+        jMenu1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenuItem1.setText("Acerca de");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        menuBarAdmin.add(jMenu1);
+
         setJMenuBar(menuBarAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -762,6 +778,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         vdatcuent.setVisible(true);
     }//GEN-LAST:event_itemVerMiCuentaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        utilidades.Utilidades.mostrarAcercaDe(this);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -806,6 +826,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemVerMiCuenta;
     private javax.swing.JMenuItem itemVerTiendas;
     private javax.swing.JMenuItem itemVerUsuarios;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;

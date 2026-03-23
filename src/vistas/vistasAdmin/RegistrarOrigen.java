@@ -33,6 +33,21 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblSubtitulo = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        panelSecundario = new javax.swing.JPanel();
+        lblOrigen = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JButton();
+        botonRegistrarOrigen = new javax.swing.JButton();
+        campoOrigen = new javax.swing.JTextField();
+        campoDescripcion = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuArchivo = new javax.swing.JMenu();
+        itemCerrar = new javax.swing.JMenuItem();
+        menuAyuda = new javax.swing.JMenu();
+        itemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA REGISTRAR ORIGEN");
@@ -40,16 +55,171 @@ public class RegistrarOrigen extends javax.swing.JDialog {
 
         panelPrincipal.setBackground(new java.awt.Color(3, 32, 38));
 
+        lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(191, 150, 99));
+        lblTitulo.setText("Registrar Origen");
+
+        lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo.setText("Nueva origen de productos");
+
+        jToolBar1.setBackground(new java.awt.Color(191, 150, 99));
+        jToolBar1.setRollover(true);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(2, 2));
+        jToolBar1.setMinimumSize(new java.awt.Dimension(2, 2));
+
+        panelSecundario.setBackground(new java.awt.Color(9, 48, 64));
+
+        lblOrigen.setBackground(new java.awt.Color(191, 150, 99));
+        lblOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblOrigen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOrigen.setText("Origen");
+        lblOrigen.setOpaque(true);
+
+        lblDescripcion.setBackground(new java.awt.Color(112, 137, 140));
+        lblDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDescripcion.setText("Descripción");
+        lblDescripcion.setOpaque(true);
+
+        botonCancelar.setBackground(new java.awt.Color(3, 32, 38));
+        botonCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(191, 150, 99));
+        botonCancelar.setText("Cancelar");
+        botonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+
+        botonRegistrarOrigen.setBackground(new java.awt.Color(191, 150, 99));
+        botonRegistrarOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonRegistrarOrigen.setText("Registrar");
+        botonRegistrarOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        campoOrigen.setBackground(new java.awt.Color(3, 32, 38));
+        campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoOrigen.setForeground(new java.awt.Color(112, 137, 140));
+        campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoOrigen.setName("Origen"); // NOI18N
+
+        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
+        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
+        campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoDescripcion.setName("Descripción"); // NOI18N
+
+        javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
+        panelSecundario.setLayout(panelSecundarioLayout);
+        panelSecundarioLayout.setHorizontalGroup(
+            panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSecundarioLayout.createSequentialGroup()
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85)
+                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(402, 402, 402)
+                        .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        panelSecundarioLayout.setVerticalGroup(
+            panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelSecundarioLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(53, 53, 53)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblSubtitulo))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblSubtitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+
+        menuArchivo.setText("Archivo");
+        menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuArchivo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemCerrar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemCerrar.setText("Cerrar");
+        itemCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCerrarActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(itemCerrar);
+
+        jMenuBar1.add(menuArchivo);
+
+        menuAyuda.setText("Ayuda");
+        menuAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuAyuda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemAcercaDe.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemAcercaDe.setText("Acerca de");
+        itemAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAcercaDeActionPerformed(evt);
+            }
+        });
+        menuAyuda.add(itemAcercaDe);
+
+        jMenuBar1.add(menuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +235,18 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaDeActionPerformed
+        utilidades.Utilidades.mostrarAcercaDe(this);
+    }//GEN-LAST:event_itemAcercaDeActionPerformed
+
+    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_itemCerrarActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,6 +286,21 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonRegistrarOrigen;
+    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextField campoOrigen;
+    private javax.swing.JMenuItem itemAcercaDe;
+    private javax.swing.JMenuItem itemCerrar;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblOrigen;
+    private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JMenu menuArchivo;
+    private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSecundario;
     // End of variables declaration//GEN-END:variables
 }
