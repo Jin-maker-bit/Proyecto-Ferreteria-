@@ -4,7 +4,9 @@
  */
 package vistas.vistasUser;
 
+import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
+import javax.swing.table.DefaultTableModel;
 import utilidades.Utilidades;
 
 import vistas.VentanaLogin;
@@ -32,8 +34,11 @@ public class VentanaUser extends javax.swing.JFrame {
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
 
+        // Cargar tabla 3 últimos artículos 
+        ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
+        
         // Rescata Usuario:
-        textImprimirUsuario.setText(VentanaLogin.user);
+        lblImprimirUsuario.setText(VentanaLogin.user);
 
         Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarArticulosDisponibles, 20);
         Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarEnOferta, 20);
@@ -79,17 +84,22 @@ public class VentanaUser extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArticulosRegistrados = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        textImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        menuAyuda = new javax.swing.JMenu();
+        itemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA PRINCIPAL USUARIO");
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         panelPrincipal4.setBackground(new java.awt.Color(3, 32, 38));
@@ -420,7 +430,6 @@ public class VentanaUser extends javax.swing.JFrame {
         tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosRegistrados.setEnabled(false);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setOpaque(false);
         tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setShowGrid(false);
@@ -454,10 +463,10 @@ public class VentanaUser extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
-        textImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        textImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        textImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        textImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(191, 150, 99));
@@ -471,7 +480,7 @@ public class VentanaUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblUsuario)
                 .addGap(6, 6, 6)
-                .addComponent(textImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -479,7 +488,7 @@ public class VentanaUser extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario)
-                    .addComponent(textImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -496,27 +505,73 @@ public class VentanaUser extends javax.swing.JFrame {
 
         jMenu1.setBackground(new java.awt.Color(10, 49, 64));
         jMenu1.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu1.setText("Ver Artículos");
+        jMenu1.setText("Artículos");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenuItem1.setText("Ver Artículos");
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(10, 49, 64));
         jMenu2.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu2.setText("Ver Destacados");
+        jMenu2.setText("Destacados");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenuItem2.setText("Ver Destacados");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setBackground(new java.awt.Color(10, 49, 64));
         jMenu3.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu3.setText("Ver Ofertas");
+        jMenu3.setText("Ofertas");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenuItem3.setText("Ver Ofertas");
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(10, 49, 64));
         jMenu4.setForeground(new java.awt.Color(10, 49, 64));
         jMenu4.setText("Mi Cuenta");
+        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        jMenuItem4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jMenuItem4.setText("Ver Mi Cuenta");
+        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu4.add(jMenuItem4);
+
         jMenuBar1.add(jMenu4);
+
+        menuAyuda.setBackground(new java.awt.Color(10, 49, 64));
+        menuAyuda.setForeground(new java.awt.Color(10, 49, 64));
+        menuAyuda.setText("Ayuda");
+        menuAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuAyuda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+
+        itemAcercaDe.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemAcercaDe.setText("Acerca de");
+        itemAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAcercaDeActionPerformed(evt);
+            }
+        });
+        menuAyuda.add(itemAcercaDe);
+
+        jMenuBar1.add(menuAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -559,6 +614,10 @@ public class VentanaUser extends javax.swing.JFrame {
         vlart.setVisible(true);
     }//GEN-LAST:event_botonVerArticulosUserActionPerformed
 
+    private void itemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaDeActionPerformed
+        utilidades.Utilidades.mostrarAcercaDe(this);
+    }//GEN-LAST:event_itemAcercaDeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -590,11 +649,16 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JButton botonVerDestacadosUser;
     private javax.swing.JButton botonVerMiCuentaUser;
     private javax.swing.JButton botonVerOfertasUser;
+    private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -602,6 +666,7 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
     private javax.swing.JLabel lblAcceso;
+    private javax.swing.JLabel lblImprimirUsuario;
     private javax.swing.JLabel lblLogo4;
     private javax.swing.JLabel lblNombre4;
     private javax.swing.JLabel lblRescataFechayHora;
@@ -612,12 +677,12 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JLabel lblSubtitulo4;
     private javax.swing.JLabel lblTitulo4;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelLogo4;
     private javax.swing.JPanel panelPrincipal4;
     private javax.swing.JPanel panelRescatarLabels;
     private javax.swing.JPanel panelUserSidebar;
     private javax.swing.JTable tablaArticulosRegistrados;
-    private javax.swing.JLabel textImprimirUsuario;
     // End of variables declaration//GEN-END:variables
 }
