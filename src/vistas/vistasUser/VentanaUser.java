@@ -35,10 +35,10 @@ public class VentanaUser extends javax.swing.JFrame {
         // Rescata Usuario:
         textImprimirUsuario.setText(VentanaLogin.user);
 
-        Utilidades.AplicarBorde.aplicarEstiloUniversal(lblRescatarArticulosDisponibles, 40);
-        Utilidades.AplicarBorde.aplicarEstiloUniversal(lblRescatarEnOferta, 40);
-        Utilidades.AplicarBorde.aplicarEstiloUniversal(lblRescatarDestacados, 40);
-        Utilidades.AplicarBorde.aplicarEstiloUniversal(panelRescatarLabels, 40);
+        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarArticulosDisponibles, 20);
+        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarEnOferta, 20);
+        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarDestacados, 20);
+      
         
     }
 

@@ -16,6 +16,7 @@ import java.awt.Insets;
 import java.awt.RenderingHints;
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.LineBorder;
 
@@ -129,56 +130,41 @@ public class Utilidades {
 
     public class AplicarBorde {
 
-        public static void aplicarEstiloUniversal(JComponent componente, int arco) {
-            // 1. Extraemos los datos de la propiedad "border" que pusiste en el IDE
-            int grosorDetectado = 1;
-            Color colorDetectado = new Color(184, 154, 108); // Dorado por defecto
+        public static void aplicarBordeOvalado(JLabel label, int arco) {
+            // 1. IMPORTANTE: Quitar la opacidad estándar para que no dibuje el cuadrado
+            label.setOpaque(false);
 
-            if (componente.getBorder() instanceof LineBorder) {
-                LineBorder lb = (LineBorder) componente.getBorder();
-                grosorDetectado = lb.getThickness(); // Lee el "Thickness" de tu captura
-                colorDetectado = lb.getLineColor();  // Lee el "Color" de tu captura
-            }
-
-            final int grosorFinal = grosorDetectado;
-            final Color colorFinal = colorDetectado;
-
-            // 2. Quitamos la opacidad y estilos por defecto
-            componente.setOpaque(false);
-            if (componente instanceof AbstractButton) {
-                AbstractButton b = (AbstractButton) componente;
-                b.setContentAreaFilled(false);
-                b.setBorderPainted(false);
-                b.setFocusPainted(false);
-            }
-
-            // 3. Aplicamos el nuevo borde redondeado basado en esos datos
-            componente.setBorder(new AbstractBorder() {
+            label.setBorder(new AbstractBorder() {
                 @Override
                 public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                     Graphics2D g2 = (Graphics2D) g.create();
+
+                    // Suavizado para que no se vea "pixelado"
                     g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                    // Pintamos el fondo (Propiedad 'background' del IDE)
+                    // --- EL SECRETO SENIOR ---
+                    // En lugar de un fondo sólido que tape el texto, 
+                    // pintamos el fondo redondeado AQUÍ, pero el JLabel 
+                    // ya se encargará de pintar su texto después por su cuenta.
+                    // 1. Pintar el fondo con el color que elegiste en NetBeans
                     g2.setColor(c.getBackground());
                     g2.fillRoundRect(x, y, width - 1, height - 1, arco, arco);
 
-                    // Pintamos el borde con el grosor y color de la propiedad 'border'
-                    g2.setStroke(new BasicStroke(grosorFinal));
-                    g2.setColor(colorFinal);
-
-                    // Ajuste matemático para que el grosor no se salga del componente
-                    int desplazamiento = grosorFinal / 2;
-                    g2.drawRoundRect(x + desplazamiento, y + desplazamiento,
-                            width - grosorFinal, height - grosorFinal, arco, arco);
+                    // 2. Pintar el contorno (puedes usar el color de texto o uno fijo)
+                    g2.setColor(new Color(184, 154, 108)); // Dorado
+                    g2.setStroke(new BasicStroke(1));
+                    g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
+                    
+                    
 
                     g2.dispose();
                 }
 
                 @Override
                 public Insets getBorderInsets(Component c) {
-                    // El margen interno se ajusta según el grosor para no pisar el texto
-                    return new Insets(grosorFinal + 5, 20, grosorFinal + 5, 20);
+                    // Reducimos los márgenes para que el texto tenga espacio
+                    // Si pones 20 como antes, el texto se "sale" del label
+                    return new Insets(4, 10, 4, 10);
                 }
             });
         }
@@ -243,23 +229,24 @@ public class Utilidades {
             System.exit(0);
         }
     }
-    
-    
+
     /**
-     * Muestra un diálogo informativo con los datos de la aplicación corporativa y técnica del sistema.
-     * Se ha diseñado utilizando un parámetro genérico para aprovechar el polimorfismo.
-     * Reutilizable desde cualquier ventana de la aplicación.
+     * Muestra un diálogo informativo con los datos de la aplicación corporativa
+     * y técnica del sistema. Se ha diseñado utilizando un parámetro genérico
+     * para aprovechar el polimorfismo. Reutilizable desde cualquier ventana de
+     * la aplicación.
+     *
      * @param parent Componente padre desde el que se lanza el diálogo.
      */
     public static void mostrarAcercaDe(java.awt.Component parent) {
         javax.swing.JOptionPane.showMessageDialog(
-            parent,
-            "Ferretería JP Fusión\n" +
-            "Versión 1.0\n" +
-            "Desarrollado por Jose & Patricia\n" +
-            "Año 2026",
-            "Acerca de",
-            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                parent,
+                "Ferretería JP Fusión\n"
+                + "Versión 1.0\n"
+                + "Desarrollado por Jose & Patricia\n"
+                + "Año 2026",
+                "Acerca de",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
     }
 
