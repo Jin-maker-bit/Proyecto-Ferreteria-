@@ -144,7 +144,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="71" max="32767" attributes="0"/>
+                          <EmptySpace pref="73" max="32767" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
@@ -153,7 +153,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -177,11 +177,14 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -219,13 +222,18 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="lblSubtitulo9" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblSubtitulo7" min="-2" pref="52" max="-2" attributes="0"/>
                                   <Component id="lblSubtitulo8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSubtitulo7" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -233,26 +241,20 @@
                                   <Component id="labelUsuario" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblSubtitulo11" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="lblSubtitulo12" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="lblSubtitulo12" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="lblSubtitulo11" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelRol" min="-2" pref="52" max="-2" attributes="0"/>
                                   <Component id="labelNombre" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="lblSubtitulo9" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -266,12 +268,12 @@
                           <Component id="lblSubtitulo12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelNombre" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblSubtitulo11" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelRol" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblSubtitulo11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelTienda" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSubtitulo7" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -281,7 +283,7 @@
                           <Component id="lblSubtitulo8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -407,37 +409,37 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="127" max="32767" attributes="0"/>
+                      <Component id="lblSubtitulo" min="-2" pref="235" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="78" max="32767" attributes="0"/>
-                              <Component id="lblSubtitulo" min="-2" pref="235" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="lblSubtitulo10" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblSubtitulo3" min="-2" pref="141" max="-2" attributes="0"/>
-                                  <Component id="lblSubtitulo2" min="-2" pref="141" max="-2" attributes="0"/>
                                   <Component id="lblSubtitulo4" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="campoApellido" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Component id="campoNombre" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Component id="campoPass" alignment="1" min="-2" pref="186" max="-2" attributes="0"/>
-                                  <Component id="campoPass1" min="-2" pref="186" max="-2" attributes="0"/>
+                              <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="campoPass" max="32767" attributes="0"/>
+                                  <Component id="campoPass1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblSubtitulo2" min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="campoNombreYApellidos" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="botonGuardar" min="-2" pref="235" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonVolver" min="-2" pref="133" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -448,28 +450,20 @@
                       <Component id="lblSubtitulo" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="campoNombreYApellidos" pref="46" max="32767" attributes="0"/>
                           <Component id="lblSubtitulo2" max="32767" attributes="0"/>
-                          <Component id="campoNombre" pref="34" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblSubtitulo3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="campoApellido" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblSubtitulo4" min="-2" pref="46" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                              <Component id="campoPass" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="lblSubtitulo4" max="32767" attributes="0"/>
+                          <Component id="campoPass" pref="46" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblSubtitulo10" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="campoPass1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="lblSubtitulo10" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="campoPass1" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonVolver" alignment="3" pref="60" max="32767" attributes="0"/>
                           <Component id="botonGuardar" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -500,41 +494,11 @@
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Nombre"/>
+                <Property name="text" type="java.lang.String" value="Nombre y apellidos"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblSubtitulo3">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="63" green="96" red="bf" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="14" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Apellidos"/>
-                <Property name="opaque" type="boolean" value="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="campoNombre">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="26" green="20" red="3" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="14" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
-                  </Border>
-                </Property>
-                <Property name="opaque" type="boolean" value="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="campoApellido">
+            <Component class="javax.swing.JTextField" name="campoNombreYApellidos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
@@ -732,8 +696,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblRescataFechayHora" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblSistemaGestion" alignment="0" pref="34" max="32767" attributes="0"/>
+                          <Component id="lblSistemaGestion" max="32767" attributes="0"/>
+                          <Component id="lblRescataFechayHora" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

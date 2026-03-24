@@ -194,12 +194,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelPrincipal4" pref="1564" max="32767" attributes="0"/>
+          <Component id="panelPrincipal4" pref="1014" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelPrincipal4" pref="664" max="32767" attributes="0"/>
+          <Component id="panelPrincipal4" pref="573" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -322,7 +322,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="0" gridY="8" gridWidth="3" gridHeight="1" fill="0" ipadX="36" ipadY="-65" insetsTop="18" insetsLeft="15" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="0" gridY="8" gridWidth="3" gridHeight="2" fill="0" ipadX="36" ipadY="-65" insetsTop="18" insetsLeft="15" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
 
@@ -494,7 +494,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="3" gridY="10" gridWidth="4" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="64" insetsLeft="8" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="3" gridY="10" gridWidth="8" gridHeight="1" fill="0" ipadX="115" ipadY="0" insetsTop="4" insetsLeft="136" insetsBottom="6" insetsRight="6" anchor="18" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
 
@@ -504,9 +504,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblSistemaGestion" min="-2" pref="276" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblRescataFechayHora" min="-2" pref="263" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                      <Component id="lblRescataFechayHora" min="-2" pref="233" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -515,8 +515,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblSistemaGestion" max="32767" attributes="0"/>
                           <Component id="lblRescataFechayHora" max="32767" attributes="0"/>
-                          <Component id="lblSistemaGestion" pref="34" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -584,9 +584,9 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblRescatarEnOferta" min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="lbl2" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblRescatarEnOferta" max="32767" attributes="0"/>
+                          <Component id="lbl2" pref="143" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -627,7 +627,6 @@
                   <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="sdsdsd"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder thickness="2">
@@ -684,6 +683,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Art&#xed;culos Disponibles"/>
               </Properties>
             </Component>
@@ -695,6 +695,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Articulos destacados"/>
               </Properties>
             </Component>
@@ -706,6 +707,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Articulos en oferta"/>
               </Properties>
             </Component>
@@ -719,16 +721,19 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="3" gridY="8" gridWidth="5" gridHeight="2" fill="0" ipadX="0" ipadY="0" insetsTop="76" insetsLeft="26" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="3" gridY="8" gridWidth="4" gridHeight="1" fill="0" ipadX="0" ipadY="2" insetsTop="18" insetsLeft="6" insetsBottom="0" insetsRight="0" anchor="18" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="666" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="666" max="-2" attributes="0"/>
+                          <Component id="lblSubtitulo5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -736,7 +741,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <Component id="lblSubtitulo5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="214" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -796,6 +803,17 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="lblSubtitulo5">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="ARTICULOS A&#xd1;ADIDOS RECIENTEMENTE A LA TIENDA"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -806,7 +824,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="7" gridY="0" gridWidth="6" gridHeight="1" fill="0" ipadX="0" ipadY="9" insetsTop="6" insetsLeft="24" insetsBottom="0" insetsRight="6" anchor="18" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="6" gridY="0" gridWidth="5" gridHeight="1" fill="0" ipadX="0" ipadY="9" insetsTop="6" insetsLeft="24" insetsBottom="0" insetsRight="6" anchor="18" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
 

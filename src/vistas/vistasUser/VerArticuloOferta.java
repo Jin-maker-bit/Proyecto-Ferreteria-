@@ -4,6 +4,9 @@
  */
 package vistas.vistasUser;
 
+import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
+import javax.swing.table.DefaultTableModel;
 import vistas.VentanaLogin;
 
 /**
@@ -11,7 +14,7 @@ import vistas.VentanaLogin;
  * @author jintae
  */
 public class VerArticuloOferta extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerArticuloOferta.class.getName());
 
     /**
@@ -20,12 +23,18 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     public VerArticuloOferta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
-        
+
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Usuario activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
+
     }
 
     /**
@@ -290,7 +299,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
     /**

@@ -39,10 +39,13 @@ public class VentanaUser extends javax.swing.JFrame {
         
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        
+        lblRescatarArticulosDisponibles.setText(String.valueOf(ConsultasProducto.rescataArticulosDisponibles()));
+        lblRescatarEnOferta.setText(String.valueOf(ConsultasProducto.rescataArticulosOferta()));
+        lblRescatarDestacados.setText(String.valueOf(ConsultasProducto.rescataArticulosDestacados()));
+        
 
-        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarArticulosDisponibles, 20);
-        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarEnOferta, 20);
-        Utilidades.AplicarBorde.aplicarBordeOvalado(lblRescatarDestacados, 20);
+        
       
         
     }
@@ -83,6 +86,7 @@ public class VentanaUser extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArticulosRegistrados = new javax.swing.JTable();
+        lblSubtitulo5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
@@ -265,6 +269,7 @@ public class VentanaUser extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 36;
         gridBagConstraints.ipady = -65;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -300,26 +305,27 @@ public class VentanaUser extends javax.swing.JFrame {
             .addGroup(panelFinalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelFinalLayout.setVerticalGroup(
             panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.ipadx = 115;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(64, 8, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(4, 136, 6, 6);
         panelPrincipal4.add(panelFinal, gridBagConstraints);
 
         panelRescatarLabels.setBackground(new java.awt.Color(3, 32, 38));
@@ -328,7 +334,6 @@ public class VentanaUser extends javax.swing.JFrame {
         lblRescatarArticulosDisponibles.setBackground(new java.awt.Color(9, 48, 64));
         lblRescatarArticulosDisponibles.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarArticulosDisponibles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRescatarArticulosDisponibles.setText("sdsdsd");
         lblRescatarArticulosDisponibles.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarArticulosDisponibles.setOpaque(true);
 
@@ -346,14 +351,17 @@ public class VentanaUser extends javax.swing.JFrame {
 
         lbl1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl1.setForeground(new java.awt.Color(191, 150, 99));
+        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl1.setText("Artículos Disponibles");
 
         lbl3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl3.setForeground(new java.awt.Color(191, 150, 99));
+        lbl3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl3.setText("Articulos destacados");
 
         lbl2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lbl2.setForeground(new java.awt.Color(191, 150, 99));
+        lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl2.setText("Articulos en oferta");
 
         javax.swing.GroupLayout panelRescatarLabelsLayout = new javax.swing.GroupLayout(panelRescatarLabels);
@@ -369,9 +377,9 @@ public class VentanaUser extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblRescatarDestacados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -435,19 +443,27 @@ public class VentanaUser extends javax.swing.JFrame {
         tablaArticulosRegistrados.setShowGrid(false);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
 
+        lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo5.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo5.setText("ARTICULOS AÑADIDOS RECIENTEMENTE A LA TIENDA");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtitulo5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(lblSubtitulo5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -455,10 +471,10 @@ public class VentanaUser extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(76, 26, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
         panelPrincipal4.add(jPanel2, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
@@ -493,9 +509,9 @@ public class VentanaUser extends javax.swing.JFrame {
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 6);
@@ -579,11 +595,11 @@ public class VentanaUser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 1564, Short.MAX_VALUE)
+            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
@@ -675,6 +691,7 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JLabel lblRescatarEnOferta;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo4;
+    private javax.swing.JLabel lblSubtitulo5;
     private javax.swing.JLabel lblTitulo4;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenu menuAyuda;
@@ -685,4 +702,5 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JPanel panelUserSidebar;
     private javax.swing.JTable tablaArticulosRegistrados;
     // End of variables declaration//GEN-END:variables
+
 }

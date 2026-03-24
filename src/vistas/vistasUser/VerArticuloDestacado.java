@@ -4,6 +4,9 @@
  */
 package vistas.vistasUser;
 
+import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
+import javax.swing.table.DefaultTableModel;
 import vistas.VentanaLogin;
 
 /**
@@ -23,9 +26,14 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
 
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
-        
+
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Usuario activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+        ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
     }
 
     /**
@@ -222,11 +230,11 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -282,17 +290,17 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         this.dispose();
-    }//GEN-LAST:event_itemCerrarActionPerformed
+    }//GEN-LAST:event_botonVolverActionPerformed
 
     private void itemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaDeActionPerformed
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
-    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-         this.dispose();
-    }//GEN-LAST:event_botonVolverActionPerformed
+    private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_itemCerrarActionPerformed
 
     /**
      * @param args the command line arguments
