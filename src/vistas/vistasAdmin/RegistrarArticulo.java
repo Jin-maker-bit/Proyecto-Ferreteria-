@@ -15,7 +15,7 @@ import utilidades.Utilidades;
 /**
  * Ventana modal encargada de registrar nuevos artículos en el sistema.
  * Implementa la interfaz gráfica para la introducción de datos del producto, delegando la carga de listas desplegables y la persistencia de datos a la capa de modelo - BBDD.
- * @author jintae
+ * @author Jose y Patricia.
  */
 public class RegistrarArticulo extends javax.swing.JDialog {
     
@@ -77,8 +77,8 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioCompra = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
         lblTienda2 = new javax.swing.JLabel();
-        botonRegistrarUsuario1 = new javax.swing.JButton();
-        botonCancelar1 = new javax.swing.JButton();
+        botonRegistrarArticulo = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -140,7 +140,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         comboOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboOrigen.setName("Estado"); // NOI18N
+        comboOrigen.setName("Orígen"); // NOI18N
 
         lblNombre.setBackground(new java.awt.Color(191, 150, 99));
         lblNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -165,26 +165,26 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(112, 137, 140));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombre.setName("Usuario"); // NOI18N
+        campoNombre.setName("Nombre"); // NOI18N
 
         comboCategoria.setBackground(new java.awt.Color(3, 32, 38));
         comboCategoria.setForeground(new java.awt.Color(112, 137, 140));
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboCategoria.setName("Tipo"); // NOI18N
+        comboCategoria.setName("Categoría"); // NOI18N
 
         campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
         campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
         campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setName("Nombre y Apellidos"); // NOI18N
+        campoDescripcion.setName("Descripción"); // NOI18N
 
         campoCodigo.setBackground(new java.awt.Color(3, 32, 38));
         campoCodigo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodigo.setForeground(new java.awt.Color(112, 137, 140));
         campoCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCodigo.setName("Nombre y Apellidos"); // NOI18N
+        campoCodigo.setName("Código"); // NOI18N
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -275,7 +275,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboOferta.setName("Estado"); // NOI18N
+        comboOferta.setName("Oferta"); // NOI18N
 
         lblNombre1.setBackground(new java.awt.Color(191, 150, 99));
         lblNombre1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -293,26 +293,26 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioVenta.setName("Usuario"); // NOI18N
+        campoPrecioVenta.setName("Precio Venta"); // NOI18N
 
         comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
         comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
         comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboDestacado.setName("Tipo"); // NOI18N
+        comboDestacado.setName("Destacado"); // NOI18N
 
         campoPrecioCompra.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioCompra.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioCompra.setName("Nombre y Apellidos"); // NOI18N
+        campoPrecioCompra.setName("Precio Compra"); // NOI18N
 
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoStock.setName("Usuario"); // NOI18N
+        campoStock.setName("Stock"); // NOI18N
 
         lblTienda2.setBackground(new java.awt.Color(191, 182, 158));
         lblTienda2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -367,24 +367,24 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                 .addContainerGap(208, Short.MAX_VALUE))
         );
 
-        botonRegistrarUsuario1.setBackground(new java.awt.Color(191, 150, 99));
-        botonRegistrarUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonRegistrarUsuario1.setText("Registrar");
-        botonRegistrarUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonRegistrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistrarArticulo.setBackground(new java.awt.Color(191, 150, 99));
+        botonRegistrarArticulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonRegistrarArticulo.setText("Registrar");
+        botonRegistrarArticulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistrarUsuario1ActionPerformed(evt);
+                botonRegistrarArticuloActionPerformed(evt);
             }
         });
 
-        botonCancelar1.setBackground(new java.awt.Color(3, 32, 38));
-        botonCancelar1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonCancelar1.setForeground(new java.awt.Color(191, 150, 99));
-        botonCancelar1.setText("Cancelar");
-        botonCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        botonSalir.setBackground(new java.awt.Color(3, 32, 38));
+        botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonSalir.setForeground(new java.awt.Color(191, 150, 99));
+        botonSalir.setText("Cancelar");
+        botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelar1ActionPerformed(evt);
+                botonSalirActionPerformed(evt);
             }
         });
 
@@ -406,9 +406,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonRegistrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -431,8 +431,8 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonRegistrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))))
         );
 
@@ -499,13 +499,13 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void botonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelar1ActionPerformed
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();     
-    }//GEN-LAST:event_botonCancelar1ActionPerformed
+    }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void botonRegistrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarUsuario1ActionPerformed
+    private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
         registrarArticulo();
-    }//GEN-LAST:event_botonRegistrarUsuario1ActionPerformed
+    }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -546,9 +546,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
-    private javax.swing.JButton botonCancelar1;
+    private javax.swing.JButton botonRegistrarArticulo;
     private javax.swing.JButton botonRegistrarUsuario;
-    private javax.swing.JButton botonRegistrarUsuario1;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JTextField campoCodigo;
     private javax.swing.JTextField campoDescripcion;
     private javax.swing.JTextField campoNombre;
@@ -593,7 +593,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
      */
     public void registrarArticulo() {
 
-    // VALIDACIONES
+    // Validaciones
 
     if (Utilidades.compruebaCampoVacio(campoCodigo)) {
         Utilidades.lanzaAlertaVacio(campoCodigo);

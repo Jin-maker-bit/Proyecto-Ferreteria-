@@ -44,4 +44,45 @@ public class ConsultasCategorias extends Conexion {
         return lista;
     }
     
+    
+    
+    /**
+     * Inserta una nueva categoría en la base de datos.
+     * @param cat Objeto Categoria con los datos a insertar.
+     * @return true si se insertó correctamente, false si hubo un error.
+     */
+    public static boolean registrarCategoria(modelo.Categoria cat) {
+       
+        boolean exito = false;
+        
+        String consulta = "INSERT INTO categorias (categoria, descripcion) VALUES (?, ?)";
+        
+        Conexion.conectar(); 
+        
+        try {
+            
+            java.sql.PreparedStatement pst = Conexion.conn.prepareStatement(consulta);
+            
+            pst.setString(1, cat.getCategoria());
+            pst.setString(2, cat.getDescripcion());
+            
+            int filasAfectadas = pst.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                exito = true; 
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Error al registrar una nueva categoría: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion(); 
+        }
+        
+        return exito;
+    }
+    
 }

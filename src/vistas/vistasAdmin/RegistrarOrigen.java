@@ -4,15 +4,23 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.Conexion;
+import bbdd.ConsultasOrigen;
+import javax.swing.JOptionPane;
+
+
 /**
- *
- * @author jintae
+ * Ventana modal encargada de registrar nuevos orígenes de productos en el sistema.
+ * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
+ * @author Jose y Patricia.
  */
 public class RegistrarOrigen extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarOrigen.class.getName());
 
     /**
+     * Constructor principal de la ventana Registrar Origen.
+     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
      * Creates new form RegistrarOrigen
      */
     public RegistrarOrigen(java.awt.Frame parent, boolean modal) {
@@ -103,6 +111,11 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         botonRegistrarOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonRegistrarOrigen.setText("Registrar");
         botonRegistrarOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarOrigenActionPerformed(evt);
+            }
+        });
 
         campoOrigen.setBackground(new java.awt.Color(3, 32, 38));
         campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -330,6 +343,10 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void botonRegistrarOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarOrigenActionPerformed
+        registrarOrigen();
+    }//GEN-LAST:event_botonRegistrarOrigenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,4 +408,53 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSecundario;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    /**
+     * Ventana modal encargada de registrar nuevas orígenes en el sistema.
+     * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
+     * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
+     */
+    public void registrarOrigen() {
+
+        if (utilidades.Utilidades.compruebaCampoVacio(campoOrigen)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoOrigen);
+
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDescripcion)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoDescripcion);
+        
+        } else {
+
+            String nombreOrigen = campoOrigen.getText().trim();
+            String descripcion = campoDescripcion.getText().trim();
+
+            modelo.Origen nuevoOrigen = new modelo.Origen(nombreOrigen, descripcion);
+
+            Conexion.conectar();
+            
+            if (ConsultasOrigen.registrarOrigen(nuevoOrigen)) {
+                
+                JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
+                } 
+            
+            Conexion.cerrarConexion();
+                
+            limpiarOrigen();
+                   
+        }
+    }
+    
+
+    /**
+     * Limpia todos los campos del formulario de registro de origen.
+     */
+    public void limpiarOrigen() {
+        
+        campoOrigen.setText("");
+        campoDescripcion.setText("");
+        
+    }
+
+
 }

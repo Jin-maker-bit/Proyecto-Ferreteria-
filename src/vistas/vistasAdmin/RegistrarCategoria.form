@@ -209,14 +209,14 @@
                       </Group>
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textCategoria" min="-2" pref="465" max="-2" attributes="0"/>
+                          <Component id="campoCategoria" min="-2" pref="465" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="botonRegistrarCategoria" min="-2" pref="135" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Component id="botonCancelarCategoria" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="textDescripcion" min="-2" pref="465" max="-2" attributes="0"/>
+                              <Component id="campoDescripcion" min="-2" pref="465" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="85" max="32767" attributes="0"/>
@@ -229,7 +229,7 @@
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblCategoria" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="textCategoria" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="campoCategoria" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -239,7 +239,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="textDescripcion" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="campoDescripcion" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -312,8 +312,11 @@
                   <Color id="Cursor de Mano"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarCategoriaActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="textCategoria">
+            <Component class="javax.swing.JTextField" name="campoCategoria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
@@ -331,9 +334,10 @@
                     </LineBorder>
                   </Border>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Categoria" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="textDescripcion">
+            <Component class="javax.swing.JTextField" name="campoDescripcion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
@@ -351,6 +355,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Descripci&#xf3;n" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

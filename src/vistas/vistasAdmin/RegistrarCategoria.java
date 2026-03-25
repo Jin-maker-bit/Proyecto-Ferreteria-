@@ -4,15 +4,24 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.Conexion;
+import bbdd.ConsultasCategorias;
+import javax.swing.JOptionPane;
+
+
 /**
- *
- * @author jintae
+ * Ventana modal encargada de registrar nuevos categorías de productos en el sistema.
+ * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
+ * Aplica validaciones de formato, evitando campos vacíos, y delega la persistencia de los datos a la capa de base de datos.
+ * @author Jose y Patricia.
  */
 public class RegistrarCategoria extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarCategoria.class.getName());
 
     /**
+     * Constructor principal de la ventana Registrar Categoría.
+     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
      * Creates new form RegistrarCategoria
      */
     public RegistrarCategoria(java.awt.Frame parent, boolean modal) {
@@ -40,8 +49,8 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         lblDescripcion = new javax.swing.JLabel();
         botonCancelarCategoria = new javax.swing.JButton();
         botonRegistrarCategoria = new javax.swing.JButton();
-        textCategoria = new javax.swing.JTextField();
-        textDescripcion = new javax.swing.JTextField();
+        campoCategoria = new javax.swing.JTextField();
+        campoDescripcion = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
@@ -98,16 +107,23 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         botonRegistrarCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonRegistrarCategoria.setText("Registrar");
         botonRegistrarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarCategoriaActionPerformed(evt);
+            }
+        });
 
-        textCategoria.setBackground(new java.awt.Color(3, 32, 38));
-        textCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        textCategoria.setForeground(new java.awt.Color(112, 137, 140));
-        textCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        campoCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoCategoria.setForeground(new java.awt.Color(112, 137, 140));
+        campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoCategoria.setName("Categoria"); // NOI18N
 
-        textDescripcion.setBackground(new java.awt.Color(3, 32, 38));
-        textDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        textDescripcion.setForeground(new java.awt.Color(112, 137, 140));
-        textDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
+        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
+        campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoDescripcion.setName("Descripción"); // NOI18N
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -120,13 +136,13 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(panelSecundarioLayout.createSequentialGroup()
                             .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(54, 54, 54)
                             .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         panelSecundarioLayout.setVerticalGroup(
@@ -135,7 +151,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                 .addGap(60, 60, 60)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
                         .addGap(94, 94, 94)
@@ -143,7 +159,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                         .addGap(76, 76, 76))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)))
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,6 +342,10 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_itemCerrarActionPerformed
 
+    private void botonRegistrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarCategoriaActionPerformed
+        registrarCategoria();
+    }//GEN-LAST:event_botonRegistrarCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,6 +386,8 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelarCategoria;
     private javax.swing.JButton botonRegistrarCategoria;
+    private javax.swing.JTextField campoCategoria;
+    private javax.swing.JTextField campoDescripcion;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
@@ -384,7 +406,55 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSecundario;
-    private javax.swing.JTextField textCategoria;
-    private javax.swing.JTextField textDescripcion;
     // End of variables declaration//GEN-END:variables
+
+    
+    /**
+     * Ventana modal encargada de registrar nuevas categorías en el sistema.
+     * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
+     * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
+     */
+    public void registrarCategoria() {
+       
+        if (utilidades.Utilidades.compruebaCampoVacio(campoCategoria)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoCategoria);
+
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDescripcion)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoDescripcion);
+        
+        } else {
+           
+            String nombreCategoria = campoCategoria.getText().trim();
+            String descripcion = campoDescripcion.getText().trim();
+          
+            modelo.Categoria nuevaCategoria = new modelo.Categoria(nombreCategoria, descripcion);
+           
+            Conexion.conectar();
+             
+            if (ConsultasCategorias.registrarCategoria(nuevaCategoria)) {
+                
+                JOptionPane.showMessageDialog(this, "Categoría registrada correctamente.");  
+                } 
+            
+            Conexion.cerrarConexion();
+
+            limpiarCategoria();
+                           
+            }
+        }
+    
+
+    /**
+     * Limpia todos los campos del formulario de registro de categoría.
+     */
+    public void limpiarCategoria() {
+        
+        campoCategoria.setText("");
+        campoDescripcion.setText("");
+        
+    }
+    
 }
+
+
+

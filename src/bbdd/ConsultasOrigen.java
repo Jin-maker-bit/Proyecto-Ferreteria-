@@ -44,4 +44,45 @@ public class ConsultasOrigen extends Conexion {
         return lista;
     }
     
+    
+    
+    /**
+     * Inserta un nuevo origen en la base de datos de la ferretería.
+     * Utiliza PreparedStatement para evitar inyecciones SQL y maneja su propia conexión.
+     * @param o Objeto Origen con los datos a insertar.
+     * @return true si se insertó correctamente, false si hubo un error.
+     */
+    public static boolean registrarOrigen(modelo.Origen o) {
+        
+        boolean exito = false;
+        
+        String consulta = "INSERT INTO origen (origen, descripcion) VALUES (?, ?)";
+        
+        Conexion.conectar(); 
+        
+        try {
+            
+            java.sql.PreparedStatement pst = Conexion.conn.prepareStatement(consulta);
+            pst.setString(1, o.getOrigen());
+            pst.setString(2, o.getDescripcion());
+            
+            int filasAfectadas = pst.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                exito = true; 
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Error al registrar el origen: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion(); 
+        }
+        
+        return exito;
+    }
+    
 }

@@ -126,9 +126,9 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="botonRegistrarUsuario1" min="-2" pref="124" max="-2" attributes="0"/>
+                          <Component id="botonRegistrarArticulo" min="-2" pref="124" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="botonCancelar1" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="botonSalir" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -156,8 +156,8 @@
                           <Component id="panelSecundario" min="-2" pref="288" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botonCancelar1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="botonRegistrarUsuario1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="botonSalir" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="botonRegistrarArticulo" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
@@ -389,7 +389,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Estado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Or&#xed;gen" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -455,7 +455,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Nombre" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboCategoria">
@@ -481,7 +481,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Tipo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Categor&#xed;a" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -505,7 +505,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Nombre y Apellidos" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Descripci&#xf3;n" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoCodigo">
@@ -526,7 +526,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Nombre y Apellidos" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="C&#xf3;digo" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -648,7 +648,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Estado" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Oferta" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -698,7 +698,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Precio Venta" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboDestacado">
@@ -724,7 +724,7 @@
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Tipo" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Destacado" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -748,7 +748,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Nombre y Apellidos" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Precio Compra" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoStock">
@@ -769,7 +769,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Stock" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTienda2">
@@ -787,7 +787,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="botonRegistrarUsuario1">
+        <Component class="javax.swing.JButton" name="botonRegistrarArticulo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="63" green="96" red="bf" type="rgb"/>
@@ -801,10 +801,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarUsuario1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarArticuloActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonCancelar1">
+        <Component class="javax.swing.JButton" name="botonSalir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="26" green="20" red="3" type="rgb"/>
@@ -821,7 +821,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCancelar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
