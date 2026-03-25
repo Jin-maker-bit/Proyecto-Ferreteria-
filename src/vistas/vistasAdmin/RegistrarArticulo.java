@@ -257,7 +257,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
         comboOferta.setBackground(new java.awt.Color(3, 32, 38));
         comboOferta.setForeground(new java.awt.Color(112, 137, 140));
-        comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "SI", "NO" }));
+        comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboOferta.setName("Estado"); // NOI18N
@@ -288,7 +288,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
         comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
         comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
-        comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "SI", "NO" }));
+        comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboDestacado.setName("Tipo"); // NOI18N

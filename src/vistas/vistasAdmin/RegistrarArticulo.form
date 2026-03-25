@@ -650,10 +650,8 @@
                   <Color blue="8c" green="89" red="70" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="1">
                     <StringItem index="0" value="Seleccione"/>
-                    <StringItem index="1" value="SI"/>
-                    <StringItem index="2" value="NO"/>
                   </StringArray>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -741,10 +739,8 @@
                   <Color blue="8c" green="89" red="70" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="1">
                     <StringItem index="0" value="Seleccione"/>
-                    <StringItem index="1" value="SI"/>
-                    <StringItem index="2" value="NO"/>
                   </StringArray>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

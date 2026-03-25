@@ -65,11 +65,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoPrecioCompra = new javax.swing.JTextField();
         campoPrecioVenta = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
-        campoOrgien = new javax.swing.JTextField();
-        campoDestacado = new javax.swing.JTextField();
-        campoOferta = new javax.swing.JTextField();
-        campoNombre11 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        campoFecha = new javax.swing.JTextField();
+        comboCategoria = new javax.swing.JComboBox<>();
+        comboOrigen = new javax.swing.JComboBox<>();
+        comboDestacado = new javax.swing.JComboBox<>();
+        comboOferta = new javax.swing.JComboBox<>();
         botonGuardar = new javax.swing.JButton();
         botonEditarProducto = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -304,31 +304,39 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoStock.setName("Denominación"); // NOI18N
 
-        campoOrgien.setBackground(new java.awt.Color(3, 32, 38));
-        campoOrgien.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoOrgien.setForeground(new java.awt.Color(112, 137, 140));
-        campoOrgien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOrgien.setName("Denominación"); // NOI18N
+        campoFecha.setBackground(new java.awt.Color(3, 32, 38));
+        campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoFecha.setForeground(new java.awt.Color(112, 137, 140));
+        campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoFecha.setName("Denominación"); // NOI18N
 
-        campoDestacado.setBackground(new java.awt.Color(3, 32, 38));
-        campoDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoDestacado.setForeground(new java.awt.Color(112, 137, 140));
-        campoDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDestacado.setName("Denominación"); // NOI18N
+        comboCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        comboCategoria.setForeground(new java.awt.Color(112, 137, 140));
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", " " }));
+        comboCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        comboCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboCategoria.setName("Tipo"); // NOI18N
 
-        campoOferta.setBackground(new java.awt.Color(3, 32, 38));
-        campoOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoOferta.setForeground(new java.awt.Color(112, 137, 140));
-        campoOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOferta.setName("Denominación"); // NOI18N
+        comboOrigen.setBackground(new java.awt.Color(3, 32, 38));
+        comboOrigen.setForeground(new java.awt.Color(112, 137, 140));
+        comboOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        comboOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        comboOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboOrigen.setName("Tipo"); // NOI18N
 
-        campoNombre11.setBackground(new java.awt.Color(3, 32, 38));
-        campoNombre11.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoNombre11.setForeground(new java.awt.Color(112, 137, 140));
-        campoNombre11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombre11.setName("Denominación"); // NOI18N
+        comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
+        comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
+        comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        comboDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboDestacado.setName("Tipo"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboOferta.setBackground(new java.awt.Color(3, 32, 38));
+        comboOferta.setForeground(new java.awt.Color(112, 137, 140));
+        comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        comboOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboOferta.setName("Tipo"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -348,7 +356,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario4)
                     .addComponent(lblUsuario3)
                     .addComponent(lblUsuario2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(campoCodProducto)
                     .addComponent(campoNombre)
@@ -356,11 +364,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(campoPrecioCompra, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoPrecioVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoStock, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoOrgien, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoDestacado, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoOferta, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoNombre11, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, 0, 252, Short.MAX_VALUE))
+                    .addComponent(campoFecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboCategoria, 0, 252, Short.MAX_VALUE)
+                    .addComponent(comboOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDestacado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboOferta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -375,9 +383,9 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario3)
                     .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario5)
@@ -395,21 +403,21 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario8)
                     .addComponent(campoStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblUsuario9)
-                    .addComponent(campoOrgien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario10)
-                    .addComponent(campoDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario11)
-                    .addComponent(campoOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario12)
-                    .addComponent(campoNombre11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
@@ -629,18 +637,18 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoCodProducto;
-    private javax.swing.JTextField campoDestacado;
+    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
-    private javax.swing.JTextField campoNombre11;
-    private javax.swing.JTextField campoOferta;
-    private javax.swing.JTextField campoOrgien;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
     private javax.swing.JTextField campoStock;
+    private javax.swing.JComboBox<String> comboCategoria;
+    private javax.swing.JComboBox<String> comboDestacado;
+    private javax.swing.JComboBox<String> comboOferta;
+    private javax.swing.JComboBox<String> comboOrigen;
     private javax.swing.JComboBox comboTipo;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
