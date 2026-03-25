@@ -16,7 +16,7 @@ import vistas.VentanaLogin;
  * @author jintae
  */
 public class VentanaAdmin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAdmin.class.getName());
 
     /**
@@ -24,28 +24,27 @@ public class VentanaAdmin extends javax.swing.JFrame {
      */
     public VentanaAdmin() {
         initComponents();
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
-        
+
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
-        lblRescataFechayHora.setText("Admin activo — " 
+        lblRescataFechayHora.setText("Admin activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        
+
         // Rescata Administrador:
         lblImprimirAdmin.setText(VentanaLogin.user);
-        
+
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         lblRescatarTiendas.setText(String.valueOf(ConsultasTiendas.rescataTienda()));
         lblRescatarProductoNacional.setText(String.valueOf(ConsultasProducto.rescatarProductosNacionales()));
         lblRescatarUsuariosTotales.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosTotales()));
         lblRescatarUsuariosActivos.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosActivos()));
-        
+
         // Rescatar lbl de Tiendas abiertas, productos Nacionales, Usuarios Totales y Usuarios activos
         // Consultas en paquete de bbdd Consultas y rescatar aquí:
-        
     }
 
     /**
@@ -74,6 +73,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         botonOrigenes = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         botonTienda = new javax.swing.JButton();
+        botonVerMiCuenta = new javax.swing.JButton();
         panelRescatarLabels = new javax.swing.JPanel();
         lblRescatarTiendas = new javax.swing.JLabel();
         lblRescatarProductoNacional = new javax.swing.JLabel();
@@ -166,7 +166,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(24, 36, 0, 0);
@@ -178,7 +177,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 36, 0, 0);
         panelPrincipal.add(lblSubtitulo, gridBagConstraints);
@@ -283,6 +282,17 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
+        botonVerMiCuenta.setBackground(new java.awt.Color(9, 48, 64));
+        botonVerMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerMiCuenta.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerMiCuenta.setText("Mi cuenta");
+        botonVerMiCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerMiCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerMiCuentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdminSidebarLayout = new javax.swing.GroupLayout(panelAdminSidebar);
         panelAdminSidebar.setLayout(panelAdminSidebarLayout);
         panelAdminSidebarLayout.setHorizontalGroup(
@@ -296,7 +306,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(botonVerArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVerUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonTienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonTienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerMiCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
             .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -305,19 +316,21 @@ public class VentanaAdmin extends javax.swing.JFrame {
             .addGroup(panelAdminSidebarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(botonVerArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVerUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonOrigenes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonVerMiCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -327,7 +340,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 6;
         gridBagConstraints.ipadx = 18;
-        gridBagConstraints.ipady = 10;
+        gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 42, 0, 0);
         panelPrincipal.add(panelAdminSidebar, gridBagConstraints);
@@ -425,7 +438,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 5;
         gridBagConstraints.ipadx = 28;
         gridBagConstraints.ipady = -47;
@@ -465,9 +478,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 337, 0, 0);
@@ -508,11 +521,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 12;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.gridheight = 7;
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 109, 6, 6);
+        gridBagConstraints.insets = new java.awt.Insets(30, 109, 0, 0);
         panelPrincipal.add(panelFinal, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(3, 32, 38));
@@ -576,8 +589,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
@@ -743,11 +756,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
         );
 
         pack();
@@ -847,6 +860,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         vlt.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_botonTiendaActionPerformed
 
+    private void botonVerMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerMiCuentaActionPerformed
+        VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
+        vdatcuent.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMiCuentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -880,6 +898,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonTienda;
     private javax.swing.JButton botonVerArticulos;
+    private javax.swing.JButton botonVerMiCuenta;
     private javax.swing.JButton botonVerUsuarios;
     private javax.swing.JMenuItem itemCategorias;
     private javax.swing.JMenuItem itemDestacados;
