@@ -7,6 +7,7 @@ package vistas.vistasUser;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
 import vistas.VentanaLogin;
 
 /**
@@ -23,7 +24,8 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     public VerArticuloOferta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
@@ -103,13 +105,25 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaArticulosOferta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosOferta.setEnabled(false);
+        tablaArticulosOferta.setFillsViewportHeight(true);
         tablaArticulosOferta.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosOferta.setRowHeight(40);
         tablaArticulosOferta.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setShowGrid(false);
+        tablaArticulosOferta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaArticulosOfertaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaArticulosOferta);
+        if (tablaArticulosOferta.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosOferta.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tablaArticulosOferta.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosOferta.getColumnModel().getColumn(2).setPreferredWidth(150);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -193,10 +207,12 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(9, 48, 64));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INFORMACION DE PRODUCTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(191, 150, 99))); // NOI18N
 
+        imprimirInfoProducto.setEditable(false);
         imprimirInfoProducto.setBackground(new java.awt.Color(3, 32, 38));
         imprimirInfoProducto.setColumns(20);
         imprimirInfoProducto.setForeground(new java.awt.Color(191, 150, 99));
         imprimirInfoProducto.setRows(5);
+        imprimirInfoProducto.setFocusable(false);
         jScrollPane2.setViewportView(imprimirInfoProducto);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -205,7 +221,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -243,7 +259,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18))))
@@ -266,7 +282,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
                 .addComponent(botonVolver)
@@ -340,6 +356,23 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    private void tablaArticulosOfertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosOfertaMouseClicked
+        int fila = tablaArticulosOferta.getSelectedRow();
+
+        if (fila != -1) {
+            String codigo = tablaArticulosOferta.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.buscarProductoPorCodigo(codigo);
+            if (p != null) {
+                imprimirInfoProducto.setText(p.toString());
+
+                imprimirInfoProducto.setCaretPosition(0);
+            } else {
+                imprimirInfoProducto.setText("Error: No se encontró información");
+
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaArticulosOfertaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -400,4 +433,5 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaArticulosOferta;
     // End of variables declaration//GEN-END:variables
+
 }

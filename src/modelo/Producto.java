@@ -11,17 +11,18 @@ import java.util.Date;
  * @author jintae
  */
 public class Producto {
+
     private String codProducto;
     private String nombre;
     private String categoria;
     private String descripcion;
-    private double precioCompra; 
-    private double precioVenta;  
-    private int stock;           
+    private double precioCompra;
+    private double precioVenta;
+    private int stock;
     private String origen;
-    private String destacado;    
-    private String oferta;      
-    private Date fechaAlta; 
+    private String destacado;
+    private String oferta;
+    private Date fechaAlta;
 
     public Producto() {
     }
@@ -127,5 +128,24 @@ public class Producto {
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
-    
+
+    @Override
+    public String toString() {
+        return "===== DETALLE DE ARTICULO =====\n\n"
+                + "CODIGO:         " + codProducto + "\n"
+                + "NOMBRE:         " + nombre + "\n"
+                + "CATEGORÍA:      " + categoria + "\n"
+                + "ORIGEN:         " + origen + "\n"
+                + "DESTACADO:      " + destacado + "\n"
+                + "OFERTA:         " + oferta + "\n"
+                + "-------------------------------\n"
+                + " \n"
+                + "PRECIO COMPRA:  " + precioCompra + " €\n"
+                + "PRECIO PVP:     " + precioVenta + " €\n"
+                + "STOCK:          " + stock + " unidades\n"
+                + "-------------------------------\n"
+                + "DESCRIPCIÓN:\n" + descripcion + "\n\n"
+                + "FECHA ALTA:     " + fechaAlta;
+    }
+
 }

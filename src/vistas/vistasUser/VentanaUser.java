@@ -7,7 +7,6 @@ package vistas.vistasUser;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
-import utilidades.Utilidades;
 
 import vistas.VentanaLogin;
 
@@ -332,18 +331,21 @@ public class VentanaUser extends javax.swing.JFrame {
         panelRescatarLabels.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
 
         lblRescatarArticulosDisponibles.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarArticulosDisponibles.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarArticulosDisponibles.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarArticulosDisponibles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarArticulosDisponibles.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarArticulosDisponibles.setOpaque(true);
 
         lblRescatarEnOferta.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarEnOferta.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarEnOferta.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarEnOferta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarEnOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarEnOferta.setOpaque(true);
 
         lblRescatarDestacados.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarDestacados.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarDestacados.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarDestacados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
@@ -396,10 +398,10 @@ public class VentanaUser extends javax.swing.JFrame {
                     .addComponent(lbl2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRescatarLabelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                     .addComponent(lblRescatarEnOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblRescatarArticulosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(lblRescatarDestacados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(78, 78, 78))
+                .addGap(69, 69, 69))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,7 +419,7 @@ public class VentanaUser extends javax.swing.JFrame {
 
         tablaArticulosRegistrados.setBackground(new java.awt.Color(9, 48, 64));
         tablaArticulosRegistrados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(191, 150, 99), 4, true));
-        tablaArticulosRegistrados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaArticulosRegistrados.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         tablaArticulosRegistrados.setForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -435,13 +437,22 @@ public class VentanaUser extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaArticulosRegistrados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosRegistrados.setEnabled(false);
+        tablaArticulosRegistrados.setFillsViewportHeight(true);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setRowHeight(50);
         tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setShowGrid(false);
+        tablaArticulosRegistrados.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
+        if (tablaArticulosRegistrados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosRegistrados.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaArticulosRegistrados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosRegistrados.getColumnModel().getColumn(2).setPreferredWidth(150);
+        }
 
         lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo5.setForeground(new java.awt.Color(112, 137, 140));
@@ -517,7 +528,9 @@ public class VentanaUser extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 6);
         panelPrincipal4.add(jPanel1, gridBagConstraints);
 
+        jMenuBar1.setBackground(new java.awt.Color(10, 49, 64));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
         jMenu1.setBackground(new java.awt.Color(10, 49, 64));
         jMenu1.setForeground(new java.awt.Color(10, 49, 64));

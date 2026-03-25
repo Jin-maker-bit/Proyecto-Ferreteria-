@@ -7,6 +7,7 @@ package vistas.vistasUser;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
 import vistas.VentanaLogin;
 
 /**
@@ -23,6 +24,9 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     public VerArticuloDestacado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
 
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -102,13 +106,25 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaArticulosDestacados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosDestacados.setEnabled(false);
+        tablaArticulosDestacados.setFillsViewportHeight(true);
         tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setRowHeight(50);
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setShowGrid(false);
+        tablaArticulosDestacados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaArticulosDestacadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaArticulosDestacados);
+        if (tablaArticulosDestacados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosDestacados.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaArticulosDestacados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosDestacados.getColumnModel().getColumn(2).setPreferredWidth(150);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -192,19 +208,21 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(9, 48, 64));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INFORMACION DE PRODUCTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(191, 150, 99))); // NOI18N
 
+        imprimirInfoProducto.setEditable(false);
         imprimirInfoProducto.setBackground(new java.awt.Color(3, 32, 38));
         imprimirInfoProducto.setColumns(20);
         imprimirInfoProducto.setForeground(new java.awt.Color(191, 150, 99));
         imprimirInfoProducto.setRows(5);
+        imprimirInfoProducto.setFocusable(false);
         jScrollPane2.setViewportView(imprimirInfoProducto);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -242,7 +260,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
                 .addGap(76, 76, 76))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
@@ -341,6 +359,23 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_itemCerrarActionPerformed
 
+    private void tablaArticulosDestacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosDestacadosMouseClicked
+        int fila = tablaArticulosDestacados.getSelectedRow();
+
+        if (fila != -1) {
+            String codigo = tablaArticulosDestacados.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.buscarProductoPorCodigo(codigo);
+            if (p != null) {
+                imprimirInfoProducto.setText(p.toString());
+
+                imprimirInfoProducto.setCaretPosition(0);
+            } else {
+                imprimirInfoProducto.setText("Error: No se encontró información");
+
+            }
+        }
+    }//GEN-LAST:event_tablaArticulosDestacadosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -401,4 +436,5 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaArticulosDestacados;
     // End of variables declaration//GEN-END:variables
+
 }

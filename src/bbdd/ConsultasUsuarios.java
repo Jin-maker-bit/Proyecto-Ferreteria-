@@ -4,11 +4,15 @@
  */
 package bbdd;
 
+import static bbdd.Conexion.cerrarConexion;
+import static bbdd.Conexion.conectar;
+import static bbdd.Conexion.conn;
 import modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,5 +43,52 @@ public class ConsultasUsuarios extends Conexion {
             cerrarConexion();
         }
         return user;
+    }
+
+    public static int rescatarUsuariosTotales() {
+
+        int rescatarProducto = 0;
+        String consulta = "SELECT count(idUsuario) FROM usuarios";
+
+        conectar();
+
+        try {
+            PreparedStatement comando = conn.prepareStatement(consulta);
+            try (ResultSet reader = comando.executeQuery()) {
+                if (reader.next()) {
+                    rescatarProducto = reader.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+        } finally {
+            cerrarConexion();
+        }
+
+        return rescatarProducto;
+    }
+
+    public static int rescatarUsuariosActivos() {
+
+        int rescatarProducto = 0;
+        String consulta = "SELECT count(idUsuario) FROM usuarios "
+                + "where estado = 'Activo'";
+
+        conectar();
+
+        try {
+            PreparedStatement comando = conn.prepareStatement(consulta);
+            try (ResultSet reader = comando.executeQuery()) {
+                if (reader.next()) {
+                    rescatarProducto = reader.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+        } finally {
+            cerrarConexion();
+        }
+
+        return rescatarProducto;
     }
 }

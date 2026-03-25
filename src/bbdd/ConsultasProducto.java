@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Producto;
 
 /**
  *
@@ -256,5 +258,64 @@ public class ConsultasProducto extends Conexion {
 
             cerrarConexion();
         }
+    }
+
+    public static int rescatarProductosNacionales() {
+
+        int rescatarProducto = 0;
+        String consulta = "SELECT count(origen) FROM producto "
+                + "where origen = 'Nacional'";
+
+        conectar();
+
+        try {
+            PreparedStatement comando = conn.prepareStatement(consulta);
+            try (ResultSet reader = comando.executeQuery()) {
+                if (reader.next()) {
+                    rescatarProducto = reader.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+        } finally {
+            cerrarConexion();
+        }
+
+        return rescatarProducto;
+    }
+
+    public static Producto buscarProductoPorCodigo(String codigo) {
+        Producto p = null;
+        String sql = "SELECT * FROM producto WHERE codProducto = ?";
+
+        conectar();
+
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, codigo);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    p = new Producto(
+                            rs.getString("codProducto"),
+                            rs.getString("nombre"),
+                            rs.getString("categoria"),
+                            rs.getString("descripcion"),
+                            rs.getDouble("precio_compra"),
+                            rs.getDouble("precio_venta"),
+                            rs.getInt("stock"),
+                            rs.getString("origen"),
+                            rs.getString("destacado"),
+                            rs.getString("oferta"),
+                            rs.getDate("fecha_alta")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Error SQL al buscar producto: " + e.getMessage());
+        } finally {
+            cerrarConexion();
+        }
+
+        return p;
     }
 }

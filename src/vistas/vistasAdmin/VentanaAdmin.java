@@ -5,6 +5,8 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasProducto;
+import bbdd.ConsultasTiendas;
+import bbdd.ConsultasUsuarios;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import vistas.VentanaLogin;
@@ -36,6 +38,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
+        lblRescatarTiendas.setText(String.valueOf(ConsultasTiendas.rescataTienda()));
+        lblRescatarProductoNacional.setText(String.valueOf(ConsultasProducto.rescatarProductosNacionales()));
+        lblRescatarUsuariosTotales.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosTotales()));
+        lblRescatarUsuariosActivos.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosActivos()));
         
         // Rescatar lbl de Tiendas abiertas, productos Nacionales, Usuarios Totales y Usuarios activos
         // Consultas en paquete de bbdd Consultas y rescatar aquí:
@@ -77,16 +83,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lbl4 = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
         lbl2 = new javax.swing.JLabel();
-        lblNovedadesInventario1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulosRegistrados = new javax.swing.JTable();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
         lblRescataFechayHora = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaArticulosRegistrados = new javax.swing.JTable();
+        lblSubtitulo5 = new javax.swing.JLabel();
         menuBarAdmin = new javax.swing.JMenuBar();
         menuInventario = new javax.swing.JMenu();
         itemRegistrarArticulo = new javax.swing.JMenuItem();
@@ -330,24 +336,28 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelRescatarLabels.setOpaque(false);
 
         lblRescatarTiendas.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarTiendas.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarTiendas.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarTiendas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarTiendas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarTiendas.setOpaque(true);
 
         lblRescatarProductoNacional.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarProductoNacional.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarProductoNacional.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarProductoNacional.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarProductoNacional.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarProductoNacional.setOpaque(true);
 
         lblRescatarUsuariosTotales.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarUsuariosTotales.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarUsuariosTotales.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarUsuariosTotales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarUsuariosTotales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
         lblRescatarUsuariosTotales.setOpaque(true);
 
         lblRescatarUsuariosActivos.setBackground(new java.awt.Color(9, 48, 64));
+        lblRescatarUsuariosActivos.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblRescatarUsuariosActivos.setForeground(new java.awt.Color(191, 150, 99));
         lblRescatarUsuariosActivos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRescatarUsuariosActivos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
@@ -423,17 +433,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(26, 26, 0, 0);
         panelPrincipal.add(panelRescatarLabels, gridBagConstraints);
 
-        lblNovedadesInventario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblNovedadesInventario1.setForeground(new java.awt.Color(191, 150, 99));
-        lblNovedadesInventario1.setText("Novedades de inventario");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 26, 0, 0);
-        panelPrincipal.add(lblNovedadesInventario1, gridBagConstraints);
-
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
         lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
@@ -473,62 +472,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(19, 337, 0, 0);
         panelPrincipal.add(jPanel1, gridBagConstraints);
-
-        jPanel2.setBackground(new java.awt.Color(3, 32, 38));
-
-        tablaArticulosRegistrados.setBackground(new java.awt.Color(9, 48, 64));
-        tablaArticulosRegistrados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(191, 150, 99), 4, true));
-        tablaArticulosRegistrados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        tablaArticulosRegistrados.setForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Código", "Nombre", "Categoría", "Stock", "Precio venta"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosRegistrados.setEnabled(false);
-        tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setOpaque(false);
-        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setShowGrid(false);
-        jScrollPane1.setViewportView(tablaArticulosRegistrados);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
-        panelPrincipal.add(jPanel2, gridBagConstraints);
 
         panelFinal.setBackground(new java.awt.Color(9, 48, 64));
         panelFinal.setForeground(new java.awt.Color(191, 150, 99));
@@ -571,6 +514,74 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 109, 6, 6);
         panelPrincipal.add(panelFinal, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(3, 32, 38));
+
+        tablaArticulosRegistrados.setBackground(new java.awt.Color(9, 48, 64));
+        tablaArticulosRegistrados.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(191, 150, 99), 4, true));
+        tablaArticulosRegistrados.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        tablaArticulosRegistrados.setForeground(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nombre", "Categoría", "Stock", "Precio venta"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaArticulosRegistrados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaArticulosRegistrados.setEnabled(false);
+        tablaArticulosRegistrados.setFillsViewportHeight(true);
+        tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setRowHeight(50);
+        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaArticulosRegistrados.setShowGrid(false);
+        tablaArticulosRegistrados.setShowHorizontalLines(true);
+        jScrollPane1.setViewportView(tablaArticulosRegistrados);
+
+        lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo5.setForeground(new java.awt.Color(112, 137, 140));
+        lblSubtitulo5.setText("ARTICULOS AÑADIDOS RECIENTEMENTE A LA TIENDA");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtitulo5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(lblSubtitulo5)
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        panelPrincipal.add(jPanel2, gridBagConstraints);
 
         menuBarAdmin.setBackground(new java.awt.Color(10, 49, 64));
         menuBarAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -736,7 +747,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
 
         pack();
@@ -893,7 +904,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblNovedadesInventario1;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblRescatarProductoNacional;
     private javax.swing.JLabel lblRescatarTiendas;
@@ -901,6 +911,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblRescatarUsuariosTotales;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
+    private javax.swing.JLabel lblSubtitulo5;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuBar menuBarAdmin;
@@ -915,4 +926,5 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel panelRescatarLabels;
     private javax.swing.JTable tablaArticulosRegistrados;
     // End of variables declaration//GEN-END:variables
+
 }
