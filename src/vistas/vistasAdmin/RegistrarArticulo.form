@@ -564,17 +564,15 @@
                           <Component id="lblTienda2" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="comboOferta" pref="225" max="32767" attributes="0"/>
-                              <Component id="comboDestacado" alignment="1" max="32767" attributes="0"/>
-                              <Component id="campoStock" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoPrecioVenta" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoPrecioCompra" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="calendario" min="-2" pref="246" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="comboOferta" pref="225" max="32767" attributes="0"/>
+                          <Component id="comboDestacado" alignment="1" max="32767" attributes="0"/>
+                          <Component id="campoStock" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoPrecioVenta" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoPrecioCompra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoFecha" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -607,11 +605,11 @@
                           <Component id="comboOferta" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblTienda1" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="calendario" min="-2" pref="168" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTienda1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="campoFecha" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -786,34 +784,6 @@
                 <Property name="name" type="java.lang.String" value="Nombre y Apellidos" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JCalendar" name="calendario">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="63" green="96" red="bf" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder thickness="2">
-                      <Color PropertyName="color" blue="63" green="96" red="bf" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="63" green="96" red="bf" type="rgb"/>
-                </Property>
-                <Property name="decorationBordersVisible" type="boolean" value="true"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="12" style="1"/>
-                </Property>
-                <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
-                  <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,2,75,-50,93,-15,-48,120"/>
-                </Property>
-                <Property name="minSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
-                  <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,-101,118,-37,-87,-48,120"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="Calendario" noResource="true"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="campoStock">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -846,6 +816,27 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Oferta"/>
                 <Property name="opaque" type="boolean" value="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="campoFecha">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="26" green="20" red="3" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="8c" green="89" red="70" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="8c" green="89" red="70" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

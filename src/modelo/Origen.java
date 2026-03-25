@@ -9,5 +9,31 @@ package modelo;
  * @author jintae
  */
 public class Origen {
+    private String origen;
+    private String descripcion;
+
+    public Origen() {
+    }
+
+    public Origen(String origen, String descripcion) {
+        this.origen = origen;
+        this.descripcion = descripcion;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
     
 }
