@@ -51,7 +51,7 @@ public class ConsultasTiendas extends Conexion {
     public static java.util.ArrayList<String> obtenerResponsables() {
         
         java.util.ArrayList<String> lista = new java.util.ArrayList<>();
-        // Ajusta el SELECT a los nombres reales de tu tabla y columna
+        
         String consulta = "SELECT nombre_apellidos FROM responsables_tienda";
         
         Conexion.conectar();
