@@ -4,16 +4,14 @@
  */
 package bbdd;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import vistas.VentanaLogin;
+
 
 /**
  * Clase de gestión de la conexión con la base de datos MySQL. Proporciona
@@ -205,5 +203,56 @@ public class Conexion {
 
         }
         return false;
+    }
+    
+    
+    /**
+     * Extrae los valores permitidos de una columna tipo ENUM en la base de datos.
+     * Utiliza la sentencia SQL para obtener la definición estructural de la columna.
+     * Posteriormente, procesa la cadena devuelta por el motor de base de datos para aislar los valores.
+     * Gestiona su propio ciclo de vida de conexión - abrir / cerrar -  para garantizar la seguridad y liberar recursos en el bloque.
+     * @param tabla El nombre de la tabla 
+     * @param columna El nombre de la columna 
+     * @return ArrayList con los valores limpios del ENUM.
+     */
+    public static java.util.ArrayList<String> obtenerValoresEnum(String tabla, String columna) {
+        
+        java.util.ArrayList<String> lista = new java.util.ArrayList<>();
+        
+        String consulta = "SHOW COLUMNS FROM " + tabla + " LIKE '" + columna + "'";
+        
+        Conexion.conectar();
+        
+        try {
+            
+            java.sql.Statement st = Conexion.conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(consulta);
+            
+            if (rs.next()) {
+                
+                String tipoEnum = rs.getString("Type"); 
+                
+               
+                tipoEnum = tipoEnum.replace("enum(", "").replace(")", "").replace("'", "");
+                
+                
+                String[] valores = tipoEnum.split(",");
+                
+                
+                for (String valor : valores) {
+                    
+                    lista.add(valor);
+                }
+            }
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar ENUM: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion();
+        }
+        
+        return lista;
     }
 }

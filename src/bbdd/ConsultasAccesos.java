@@ -53,7 +53,4 @@ public class ConsultasAccesos extends Conexion{
         
     }
     
-    
-   
-    
 }

@@ -9,7 +9,6 @@ import static bbdd.Conexion.conectar;
 import static bbdd.Conexion.conn;
 import modelo.Usuario;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -19,17 +18,23 @@ import javax.swing.JOptionPane;
  * @author jintae
  */
 public class ConsultasUsuarios extends Conexion {
+    
 
     public static Usuario obtenerDatosUsuario(String loginUsuario) {
+        
         conectar();
+        
         Usuario user = null;
+        
         String sql = "SELECT * FROM usuarios WHERE usuario = ?";
 
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            
             pst.setString(1, loginUsuario);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
+                
                 user = new Usuario();
                 user.setNombre(rs.getString("nombre_appellidos"));
                 user.setTipo(rs.getString("tipo"));
@@ -37,9 +42,13 @@ public class ConsultasUsuarios extends Conexion {
                 user.setUsuario(rs.getString("usuario"));
 
             }
+            
         } catch (SQLException e) {
+            
             System.err.println("Error al obtener datos: " + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
         return user;

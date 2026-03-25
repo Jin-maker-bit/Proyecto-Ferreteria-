@@ -4,8 +4,17 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.Conexion;
+import bbdd.ConsultasProducto;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import modelo.Producto;
+import utilidades.Utilidades;
+
+
 /**
- *
+ * Ventana modal encargada de registrar nuevos artículos en el sistema.
+ * Implementa la interfaz gráfica para la introducción de datos del producto, delegando la carga de listas desplegables y la persistencia de datos a la capa de modelo - BBDD.
  * @author jintae
  */
 public class RegistrarArticulo extends javax.swing.JDialog {
@@ -13,14 +22,22 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarArticulo.class.getName());
 
     /**
+     * Constructor principal de la ventana.
+     * Inicializa los componentes visuales, aplica la identidad corporativa y carga dinámicamente los datos de los desplegables.
      * Creates new form RegistrarArticulo
      */
     public RegistrarArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
         initComponents();
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Cargar Combos - Realmente la Conexión no hace falta desde aquí Preguntar ya que está en las consultas(?)
+        Conexion.conectar();
+        cargarCombos();
+        Conexion.cerrarConexion();    
     }
 
     /**
@@ -55,13 +72,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         comboOferta = new javax.swing.JComboBox<>();
         lblNombre1 = new javax.swing.JLabel();
         lblEstado1 = new javax.swing.JLabel();
-        lblTienda1 = new javax.swing.JLabel();
         campoPrecioVenta = new javax.swing.JTextField();
         comboDestacado = new javax.swing.JComboBox<>();
         campoPrecioCompra = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
         lblTienda2 = new javax.swing.JLabel();
-        campoFecha = new javax.swing.JTextField();
         botonRegistrarUsuario1 = new javax.swing.JButton();
         botonCancelar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -274,12 +289,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblEstado1.setText("Destacado");
         lblEstado1.setOpaque(true);
 
-        lblTienda1.setBackground(new java.awt.Color(191, 182, 158));
-        lblTienda1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        lblTienda1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTienda1.setText("Fecha de Alta");
-        lblTienda1.setOpaque(true);
-
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
@@ -311,12 +320,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblTienda2.setText("Oferta");
         lblTienda2.setOpaque(true);
 
-        campoFecha.setBackground(new java.awt.Color(3, 32, 38));
-        campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoFecha.setForeground(new java.awt.Color(112, 137, 140));
-        campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoFecha.setName("Usuario"); // NOI18N
-
         javax.swing.GroupLayout panelSecundario1Layout = new javax.swing.GroupLayout(panelSecundario1);
         panelSecundario1.setLayout(panelSecundario1Layout);
         panelSecundario1Layout.setHorizontalGroup(
@@ -327,7 +330,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     .addComponent(lblTipo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblUsuario1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblEstado1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTienda2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -336,8 +338,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     .addComponent(comboDestacado, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(campoStock)
                     .addComponent(campoPrecioVenta)
-                    .addComponent(campoPrecioCompra)
-                    .addComponent(campoFecha))
+                    .addComponent(campoPrecioCompra))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         panelSecundario1Layout.setVerticalGroup(
@@ -363,17 +364,18 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                 .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTienda2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(207, 207, 207))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         botonRegistrarUsuario1.setBackground(new java.awt.Color(191, 150, 99));
         botonRegistrarUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonRegistrarUsuario1.setText("Registrar");
         botonRegistrarUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarUsuario1ActionPerformed(evt);
+            }
+        });
 
         botonCancelar1.setBackground(new java.awt.Color(3, 32, 38));
         botonCancelar1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -423,7 +425,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,8 +435,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                             .addComponent(botonRegistrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))))
         );
-
-        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
 
         menuArchivo.setText("Archivo");
         menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -500,8 +500,12 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelar1ActionPerformed
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();     
     }//GEN-LAST:event_botonCancelar1ActionPerformed
+
+    private void botonRegistrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarUsuario1ActionPerformed
+        registrarArticulo();
+    }//GEN-LAST:event_botonRegistrarUsuario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,7 +551,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JButton botonRegistrarUsuario1;
     private javax.swing.JTextField campoCodigo;
     private javax.swing.JTextField campoDescripcion;
-    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
@@ -566,7 +569,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblSubtitulo;
-    private javax.swing.JLabel lblTienda1;
     private javax.swing.JLabel lblTienda2;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTipo1;
@@ -579,4 +581,157 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JPanel panelSecundario;
     private javax.swing.JPanel panelSecundario1;
     // End of variables declaration//GEN-END:variables
+
+
+
+    /**
+     * Realiza el registro de un nuevo artículo en la base de datos.
+     * Aplica validaciones sobre todos los campos del formulario antes de proceder.
+     * Si todas las validaciones son correctas, rescata los valores, calcula el precio de venta automáticamente, crea un objeto y lo inserta en la base de datos.
+     * Si el registro es correcto, muestra mensaje de confirmación y limpia el formulario.
+     * 
+     */
+    public void registrarArticulo() {
+
+    // VALIDACIONES
+
+    if (Utilidades.compruebaCampoVacio(campoCodigo)) {
+        Utilidades.lanzaAlertaVacio(campoCodigo);
+
+    } else if (Utilidades.compruebaCampoVacio(campoNombre)) {
+        Utilidades.lanzaAlertaVacio(campoNombre);
+
+    } else if (Utilidades.compruebaComboNoSeleccionado(comboCategoria)) {
+        Utilidades.lanzaAlertaCombo(comboCategoria);
+
+    } else if (Utilidades.compruebaComboNoSeleccionado(comboOrigen)) {
+        Utilidades.lanzaAlertaCombo(comboOrigen);
+
+    } else if (Utilidades.compruebaCampoVacio(campoDescripcion)) {
+        Utilidades.lanzaAlertaVacio(campoDescripcion);
+
+    } else if (Utilidades.compruebaCampoVacio(campoPrecioCompra)) {
+        Utilidades.lanzaAlertaVacio(campoPrecioCompra);
+
+    } else if (!Utilidades.compruebaDouble(campoPrecioCompra)) { 
+        Utilidades.lanzaAlertaDoubleNoValido(campoPrecioCompra);
+        
+    } else if (Utilidades.compruebaCampoVacio(campoPrecioVenta)) {
+        Utilidades.lanzaAlertaVacio(campoPrecioVenta);
+
+    } else if (!Utilidades.compruebaDouble(campoPrecioVenta)) { 
+        Utilidades.lanzaAlertaDoubleNoValido(campoPrecioVenta);
+
+    } else if (Utilidades.compruebaCampoVacio(campoStock)) {
+        Utilidades.lanzaAlertaVacio(campoStock);
+
+    } else if (!Utilidades.compruebaEntero(campoStock)) { 
+        Utilidades.lanzaAlertaNumeroNoValido(campoStock);
+
+    } else if (Utilidades.compruebaComboNoSeleccionado(comboDestacado)) {
+        Utilidades.lanzaAlertaCombo(comboDestacado);
+
+    } else if (Utilidades.compruebaComboNoSeleccionado(comboOferta)) {
+        Utilidades.lanzaAlertaCombo(comboOferta);
+    
+    } else {
+
+        // Rescatar valores
+        String codProducto = campoCodigo.getText().trim();
+        String nombre = campoNombre.getText().trim();
+        String categoria = comboCategoria.getSelectedItem().toString();
+        String descripcion = campoDescripcion.getText().trim();
+        double precioCompra = Double.parseDouble(campoPrecioCompra.getText().trim());
+        double precioVenta = precioCompra * 1.30 * 1.21;
+        int stock = Integer.parseInt(campoStock.getText().trim());
+        String origen = comboOrigen.getSelectedItem().toString();
+        String destacado = comboDestacado.getSelectedItem().toString();
+        String oferta = comboOferta.getSelectedItem().toString();
+        Date fechaAlta = new Date();
+
+        // Crear objeto producto
+        Producto p = new Producto(codProducto, nombre, categoria, descripcion,
+            precioCompra, precioVenta, stock, origen, destacado, oferta, fechaAlta); 
+
+        // fechaAlta no aparece en Interfaz pero sí aquí
+        // lo quitamos de Interfaz ya que no hace falta que aparezca allí 
+        // pero sí que nos lo rescate para que lo mande a la BBDD
+        
+
+        // BBDD
+        Conexion.conectar();
+        
+        if (ConsultasProducto.registrarProducto(p)) {
+            
+            JOptionPane.showMessageDialog(this, "Artículo registrado correctamente.");
+        }
+        
+        Conexion.cerrarConexion();
+
+        // Limpiar campos registrar artículo
+        limpiarArticulo();
+    }
+}
+
+    /**
+     * Limpia todos los campos del formulario de registro de artículo.
+     */
+    public void limpiarArticulo() {
+        campoCodigo.setText("");
+        campoNombre.setText("");
+        campoDescripcion.setText("");
+        campoPrecioCompra.setText("");
+        campoPrecioVenta.setText("");
+        campoStock.setText("");
+        comboCategoria.setSelectedIndex(0);
+        comboOrigen.setSelectedIndex(0);
+        comboDestacado.setSelectedIndex(0);
+        comboOferta.setSelectedIndex(0);
+    }
+    
+    /**
+     * Llena dinámicamente todos los JComboBox. 
+     * Obtiene y carga los datos de registro de las tablas desde la base de datos Ferretería.
+     * Siempre restablece los componentes e inserta la opción "Seleccione" en el índice 0.
+     */
+    private void cargarCombos() {
+        
+        // --- Combo Categoría ---
+        comboCategoria.removeAllItems();
+        comboCategoria.addItem("Seleccione");
+        java.util.ArrayList<String> categorias = bbdd.ConsultasCategorias.obtenerCategorias();
+        for (String categ : categorias) {
+            comboCategoria.addItem(categ);
+        }
+
+        // --- Combo Origen ---
+        comboOrigen.removeAllItems();
+        comboOrigen.addItem("Seleccione");
+        java.util.ArrayList<String> origenes = bbdd.ConsultasOrigen.obtenerOrigenes();
+        for (String orig : origenes) {
+            comboOrigen.addItem(orig);
+        }
+
+        // --- Combo Destacado --- Saca el SI y NO de la tabla producto, columna destacado
+        comboDestacado.removeAllItems();
+        comboDestacado.addItem("Seleccione");
+        
+        // Le decimos: "Vete a la tabla 'producto' y saca los valores de 'destacado'"
+        java.util.ArrayList<String> destacados = bbdd.Conexion.obtenerValoresEnum("producto", "destacado");
+        for (String dest : destacados) {
+            comboDestacado.addItem(dest);
+        }
+        
+       // --- Combo Oferta --- Saca el SI y NO de la tabla producto, columna oferta
+        comboOferta.removeAllItems();
+        comboOferta.addItem("Seleccione");
+        
+        
+        java.util.ArrayList<String> ofertas = bbdd.Conexion.obtenerValoresEnum("producto", "oferta");
+        for (String of : ofertas) {
+            comboOferta.addItem(of);
+        }
+    }
+    
+    
 }
