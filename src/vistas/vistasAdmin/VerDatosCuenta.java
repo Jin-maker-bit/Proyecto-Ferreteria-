@@ -58,6 +58,14 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
         lblRescataFechayHora = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        labelNombre = new javax.swing.JLabel();
+        labelRol = new javax.swing.JLabel();
+        lblSubtitulo9 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
+        lblSubtitulo10 = new javax.swing.JLabel();
+        lblSubtitulo11 = new javax.swing.JLabel();
+        lblSubtitulo12 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -319,6 +327,80 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                     .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        jPanel2.setBackground(new java.awt.Color(191, 150, 99));
+
+        labelNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        labelNombre.setText("RESNOMBRE");
+
+        labelRol.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        labelRol.setForeground(new java.awt.Color(204, 0, 0));
+        labelRol.setText("resRol");
+
+        lblSubtitulo9.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo9.setForeground(new java.awt.Color(0, 51, 51));
+        lblSubtitulo9.setText("Usuario:");
+
+        labelUsuario.setBackground(new java.awt.Color(204, 255, 204));
+        labelUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        labelUsuario.setText("ResUsuario");
+
+        lblSubtitulo10.setBackground(new java.awt.Color(9, 48, 64));
+        lblSubtitulo10.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
+        lblSubtitulo10.setForeground(new java.awt.Color(191, 150, 99));
+        lblSubtitulo10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubtitulo10.setText("JP");
+        lblSubtitulo10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
+        lblSubtitulo10.setOpaque(true);
+
+        lblSubtitulo11.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo11.setForeground(new java.awt.Color(0, 51, 51));
+        lblSubtitulo11.setText("Rol:");
+
+        lblSubtitulo12.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSubtitulo12.setForeground(new java.awt.Color(0, 51, 51));
+        lblSubtitulo12.setText("Nombre:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblSubtitulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSubtitulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtitulo11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubtitulo9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelRol, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUsuario))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(lblSubtitulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSubtitulo12)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSubtitulo11)
+                    .addComponent(labelRol))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSubtitulo9)
+                    .addComponent(labelUsuario))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelPrincipal8Layout = new javax.swing.GroupLayout(panelPrincipal8);
         panelPrincipal8.setLayout(panelPrincipal8Layout);
         panelPrincipal8Layout.setHorizontalGroup(
@@ -339,7 +421,9 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                         .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipal8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(54, 54, 54)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelSecundario8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -348,18 +432,23 @@ public class VerDatosCuenta extends javax.swing.JDialog {
             .addGroup(panelPrincipal8Layout.createSequentialGroup()
                 .addGroup(panelPrincipal8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipal8Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(lblTitulo8))
-                    .addGroup(panelPrincipal8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblSubtitulo8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(panelSecundario8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addGroup(panelPrincipal8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipal8Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(lblTitulo8))
+                            .addGroup(panelPrincipal8Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblSubtitulo8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToolBar9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(panelSecundario8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipal8Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)))
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -478,7 +567,11 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar9;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelRol;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel lblDenominacion1;
     private javax.swing.JLabel lblDenominacion2;
     private javax.swing.JLabel lblDenominacion3;
@@ -487,7 +580,11 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JLabel lblDenominacion6;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
+    private javax.swing.JLabel lblSubtitulo10;
+    private javax.swing.JLabel lblSubtitulo11;
+    private javax.swing.JLabel lblSubtitulo12;
     private javax.swing.JLabel lblSubtitulo8;
+    private javax.swing.JLabel lblSubtitulo9;
     private javax.swing.JLabel lblTitulo8;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenu menuArchivo;

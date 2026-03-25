@@ -574,6 +574,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         menuBarAdmin.setBackground(new java.awt.Color(10, 49, 64));
         menuBarAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        menuBarAdmin.setForeground(new java.awt.Color(255, 255, 255));
         menuBarAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuInventario.setBackground(new java.awt.Color(10, 49, 64));

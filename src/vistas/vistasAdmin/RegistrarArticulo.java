@@ -59,9 +59,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioVenta = new javax.swing.JTextField();
         comboDestacado = new javax.swing.JComboBox<>();
         campoPrecioCompra = new javax.swing.JTextField();
-        calendario = new com.toedter.calendar.JCalendar();
         campoStock = new javax.swing.JTextField();
         lblTienda2 = new javax.swing.JLabel();
+        campoFecha = new javax.swing.JTextField();
         botonRegistrarUsuario1 = new javax.swing.JButton();
         botonCancelar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -299,15 +299,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoPrecioCompra.setName("Nombre y Apellidos"); // NOI18N
 
-        calendario.setBackground(new java.awt.Color(191, 150, 99));
-        calendario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 2));
-        calendario.setForeground(new java.awt.Color(191, 150, 99));
-        calendario.setDecorationBordersVisible(true);
-        calendario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        calendario.setMaxSelectableDate(new java.util.Date(2524608066000L));
-        calendario.setMinSelectableDate(new java.util.Date(1767225666000L));
-        calendario.setName("Calendario"); // NOI18N
-
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
@@ -319,6 +310,12 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblTienda2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTienda2.setText("Oferta");
         lblTienda2.setOpaque(true);
+
+        campoFecha.setBackground(new java.awt.Color(3, 32, 38));
+        campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoFecha.setForeground(new java.awt.Color(112, 137, 140));
+        campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoFecha.setName("Usuario"); // NOI18N
 
         javax.swing.GroupLayout panelSecundario1Layout = new javax.swing.GroupLayout(panelSecundario1);
         panelSecundario1.setLayout(panelSecundario1Layout);
@@ -334,15 +331,14 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     .addComponent(lblNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTienda2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(comboOferta, 0, 225, Short.MAX_VALUE)
-                        .addComponent(comboDestacado, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campoStock)
-                        .addComponent(campoPrecioVenta)
-                        .addComponent(campoPrecioCompra))
-                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboOferta, 0, 225, Short.MAX_VALUE)
+                    .addComponent(comboDestacado, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoStock)
+                    .addComponent(campoPrecioVenta)
+                    .addComponent(campoPrecioCompra)
+                    .addComponent(campoFecha))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         panelSecundario1Layout.setVerticalGroup(
             panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,10 +364,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     .addComponent(lblTienda2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80))
+                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(207, 207, 207))
         );
 
         botonRegistrarUsuario1.setBackground(new java.awt.Color(191, 150, 99));
@@ -549,9 +545,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JButton botonCancelar1;
     private javax.swing.JButton botonRegistrarUsuario;
     private javax.swing.JButton botonRegistrarUsuario1;
-    private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JTextField campoCodigo;
     private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
