@@ -108,6 +108,11 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         botonRegistrarOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonRegistrarOrigen.setText("Registrar");
         botonRegistrarOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarOrigenActionPerformed(evt);
+            }
+        });
 
         campoDireccion.setBackground(new java.awt.Color(3, 32, 38));
         campoDireccion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -352,6 +357,10 @@ public class RegistrarTiendas extends javax.swing.JDialog {
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonRegistrarOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarOrigenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistrarOrigenActionPerformed
 
     /**
      * @param args the command line arguments

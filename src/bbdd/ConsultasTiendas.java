@@ -42,4 +42,82 @@ public class ConsultasTiendas extends Conexion {
     }
     
     
+    
+    /**
+     * Obtiene la lista de nombres de los responsables desde la base de datos.
+     * @return ArrayList con los nombres de los responsables.
+     */
+    
+    public static java.util.ArrayList<String> obtenerResponsables() {
+        
+        java.util.ArrayList<String> lista = new java.util.ArrayList<>();
+        // Ajusta el SELECT a los nombres reales de tu tabla y columna
+        String consulta = "SELECT nombre_apellidos FROM responsables_tienda";
+        
+        Conexion.conectar();
+        
+        try {
+            
+            java.sql.Statement st = Conexion.conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(consulta);
+            while (rs.next()) {
+                
+                lista.add(rs.getString("nombre_apellidos"));
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar responsables: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion();
+        }
+        
+        return lista;
+    }
+
+    
+    
+    /**
+     * Inserta una nueva tienda en la base de datos.
+     * @param ti Objeto Tienda con los datos a insertar.
+     * @return true si se insertó correctamente, false si hubo un error.
+     */
+    public static boolean registrarTienda(modelo.Tienda ti) {
+        
+        boolean exito = false;
+        
+        String consulta = "INSERT INTO tiendas (denominacion, direccion, responsable) VALUES (?, ?, ?)";
+        
+        Conexion.conectar();
+        
+        try {
+            
+            java.sql.PreparedStatement pst = Conexion.conn.prepareStatement(consulta);
+            
+            pst.setString(1, ti.getDenominacion());
+            pst.setString(2, ti.getDireccion());
+            pst.setString(3, ti.getResponsable());
+            
+            int filasAfectadas = pst.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                exito = true; 
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Error al registrar la tienda: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion();
+            
+        }
+        return exito;
+    }
+    
+    
 }
