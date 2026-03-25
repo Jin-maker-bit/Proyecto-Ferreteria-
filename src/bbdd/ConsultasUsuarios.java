@@ -36,7 +36,7 @@ public class ConsultasUsuarios extends Conexion {
             if (rs.next()) {
                 
                 user = new Usuario();
-                user.setNombre(rs.getString("nombre_appellidos"));
+                user.setNombreCompleto(rs.getString("nombre_appellidos"));
                 user.setTipo(rs.getString("tipo"));
                 user.setTienda(rs.getString("tienda"));
                 user.setUsuario(rs.getString("usuario"));

@@ -11,8 +11,7 @@ import java.util.Date;
  * @author jintae
  */
 public class Usuario {
-    private String nombre;
-    private String Apellidos;
+    private String nombreCompleto;
     private String usuario;
     private String pass;
     private String tipo;    
@@ -23,9 +22,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String Apellidos, String usuario, String pass, String tipo, String estado, Date fechaAlta, String tienda) {
-        this.nombre = nombre;
-        this.Apellidos = Apellidos;
+    public Usuario(String nombreCompleto, String usuario, String pass, String tipo, String estado, Date fechaAlta, String tienda) {
+        this.nombreCompleto = nombreCompleto;
         this.usuario = usuario;
         this.pass = pass;
         this.tipo = tipo;
@@ -34,20 +32,12 @@ public class Usuario {
         this.tienda = tienda;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return Apellidos;
-    }
-
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getUsuario() {
@@ -98,4 +88,5 @@ public class Usuario {
         this.tienda = tienda;
     }
 
+    
 }
