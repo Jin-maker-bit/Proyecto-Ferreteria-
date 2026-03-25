@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import modelo.Producto;
 
 /**
  *
@@ -22,8 +23,7 @@ public class ConsultasProducto extends Conexion {
     /**
      * Recupera los tres últimos artículos registrados en la base de datos
      * ordenados por fecha de alta de forma descendente y los carga en la tabla.
-     * La tabla que carga este método aparece tanto en VentanaAdmin como en
-     * VentanaUser.
+     * La tabla que carga este método aparece tanto en VentanaAdmin como en VentanaUser.
      *
      * @param modelo
      */
@@ -32,7 +32,7 @@ public class ConsultasProducto extends Conexion {
         // Limpiamos la tabla para que no se dupliquen los datos al pulsar el botón
         modelo.setRowCount(0);
 
-        // Definimos el array de objetos (fila) con 5 columnas según nuestro SELECT
+        // Definimos el array de objetos con 5 columnas según nuestro SELECT
         Object[] fila = new Object[5];
 
         conectar();
@@ -256,5 +256,51 @@ public class ConsultasProducto extends Conexion {
 
             cerrarConexion();
         }
+        
+    }
+    
+    /**
+     * Registra un nuevo producto en la tabla producto de la base de datos.
+     * Inserta todos los campos del producto incluyendo el precio de venta calculado automáticamente.
+     * @param p
+     * @return 
+     */
+    public static boolean registrarProducto(Producto p) {
+        
+        String consulta = "INSERT INTO producto (codProducto, nombre, categoria, descripcion, " +
+                      "precio_compra, precio_venta, stock, origen, destacado, oferta, fecha_alta) " +
+                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+
+            PreparedStatement pst = conn.prepareStatement(consulta);
+
+            pst.setString(1, p.getCodProducto());
+            pst.setString(2, p.getNombre());
+            pst.setString(3, p.getCategoria());
+            pst.setString(4, p.getDescripcion());
+            pst.setDouble(5, p.getPrecioCompra());
+            pst.setDouble(6, p.getPrecioVenta());
+            pst.setInt(7, p.getStock());
+            pst.setString(8, p.getOrigen());
+            pst.setString(9, p.getDestacado());
+            pst.setString(10, p.getOferta());
+            pst.setDate(11, new java.sql.Date(p.getFechaAlta().getTime()));
+
+            pst.executeUpdate();
+
+            return true;
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null,
+
+                "Error al registrar artículo: " + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+
+            return false;
+        }
+
     }
 }

@@ -28,12 +28,13 @@ public class ConsultasResponsableTienda extends Conexion{
             java.sql.ResultSet rs = st.executeQuery(consulta);
             
             while (rs.next()) {
-                // Añadimos cada nombre a la lista en lugar de al JComboBox directamente
+                
                 listaResponsables.add(rs.getString("nombre_apellidos"));
             }
         } catch (java.sql.SQLException ex) {
-            // Es mejor imprimir el error en consola para depurar, y devolver la lista vacía
+           
             System.err.println("Error al cargar responsables: " + ex.getMessage());
+            
         } finally {
             
             cerrarConexion(); 

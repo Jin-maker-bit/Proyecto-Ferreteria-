@@ -14,11 +14,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
-import javax.swing.AbstractButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
-import javax.swing.border.LineBorder;
+
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
@@ -27,8 +25,12 @@ import javax.swing.border.LineBorder;
  *
  * @author jintae
  */
+
+
 // ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
 // DEL PROYECTO 
+
+
 public class Utilidades {
 
     public static boolean compruebaCampoVacio(JTextField campo) {
@@ -39,7 +41,7 @@ public class Utilidades {
     public static void lanzaAlertaVacio(JTextField campo) {
         JOptionPane.showMessageDialog(null,
                 "El campo " + campo.getName() + " es obligatorio");
-        campo.setBackground(Color.red);
+        campo.setBackground(Color.magenta);
     }
 
     public static boolean compruebaComboNoSeleccionado(JComboBox combo) {
@@ -64,7 +66,7 @@ public class Utilidades {
 
     public static void lanzaAlertaNumeroNoValido(JTextField campo) {
         JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " debe ser númerico");
-        campo.setBackground(Color.red);
+        campo.setBackground(Color.magenta);
     }
 
     static String patronDNI = "^[0-9]{8}[A-Za-z]$";
@@ -75,7 +77,7 @@ public class Utilidades {
 
     public static void lanzaAlertaFormatoDNI(JTextField campo) {
         JOptionPane.showMessageDialog(null, "El formato DNI es invalido");
-        campo.setBackground(Color.red);
+        campo.setBackground(Color.magenta);
     }
 
     public static boolean compruebaTelefonoValido(JTextField campo) {
@@ -90,7 +92,7 @@ public class Utilidades {
 
     public static void lanzaAlertaTelefonoNoValido(JTextField campo) {
         JOptionPane.showMessageDialog(null, "Formato de teléfono no válido\n");
-        campo.setBackground(Color.red);
+        campo.setBackground(Color.magenta);
 
     }
 
@@ -109,7 +111,7 @@ public class Utilidades {
     public static void lanzaAlertaEmailNoValido(JTextField campo) {
         JOptionPane.showMessageDialog(null,
                 "Formato de email no válido");
-        campo.setBackground(Color.red);
+        campo.setBackground(Color.magenta);
     }
 
     public static boolean compruebaCiclo(JTextField campo) {
@@ -125,7 +127,32 @@ public class Utilidades {
     public static void lanzaAlertaCicloNoValido(JTextField campo) {
         JOptionPane.showMessageDialog(null, "Formato no válido\n");
 
-        campo.setBackground(Color.RED);
+        campo.setBackground(Color.magenta);
+      
+    }
+    
+    /**
+     * Comprueba si el contenido de un JTextField es un número decimal válido.
+     * @param campo El JTextField a comprobar.
+     * @return true si es un double válido, false si no lo es.
+     */
+    public static boolean compruebaDouble(JTextField campo) {
+        try {
+            Double.parseDouble(campo.getText().trim());
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Muestra alerta de número decimal no válido.
+     * @param campo El JTextField con el valor incorrecto.
+     */
+    public static void lanzaAlertaDoubleNoValido(JTextField campo) {
+        JOptionPane.showMessageDialog(null, 
+            "El campo " + campo.getName() + " debe ser un número decimal válido");
+        campo.setBackground(Color.magenta);
     }
 
     public class AplicarBorde {
