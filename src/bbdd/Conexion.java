@@ -4,12 +4,16 @@
  */
 package bbdd;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import vistas.VentanaLogin;
 
 /**
  * Clase de gestión de la conexión con la base de datos MySQL.
@@ -22,6 +26,7 @@ public class Conexion {
      * Objeto de conexión estático.
      */
     public static Connection conn;
+    private static String ip;
 
     
     /**
@@ -35,8 +40,8 @@ public class Conexion {
             
             // PC DE JOSÉ: Cambiado 8809 por 8889 (Puerto por defecto de MAMP) - Con contraseña "root" (mac Jose).
             // PC DE PATRI: Puerto 3307 - Xampp - Sin contraseña.
-            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC&useSSL=false";
-            conn = DriverManager.getConnection(url, "root", "root");
+            String url = "jdbc:mysql://localhost:3307/ferreteria?serverTimezone=UTC&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "");
             
         } catch (ClassNotFoundException | SQLException ex) {
             
@@ -195,5 +200,28 @@ public class Conexion {
         }
         return false;
     }
+    
+    
+    /**
+     * Rescata los datos del acceso actual del usuario logado.
+     * Obtiene la IP local y la fecha actual del sistema para registrarlos en la tabla de la base de datos.
+     */
+    public static void rescatarDatosAcceso() {
+    
+
+        try {
+            // Obtener IP Local:
+            InetAddress localHost = InetAddress.getLocalHost();
+            Date fecha = new Date();
+            
+            ConsultasAccesos.registrarAcceso(VentanaLogin.user, fecha, ip);
+               
+        } catch (UnknownHostException ex) {
+            
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    
+    }
+    
 
 }

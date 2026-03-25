@@ -283,6 +283,8 @@ public class VentanaLogin extends javax.swing.JFrame {
         
         if (Conexion.acceder(user, pass)) {
             
+            Conexion.rescatarDatosAcceso();
+            
             tipoUsuario = Conexion.recuperaTipo(user);
             System.out.println(tipoUsuario);
         
