@@ -5,32 +5,37 @@
 package vistas;
 
 import bbdd.Conexion;
+import bbdd.ConsultasAccesos;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.Acceso;
 import vistas.vistasAdmin.VentanaAdmin;
 import vistas.vistasUser.VentanaUser;
 
 /**
  * Ventana de Login - inicio de sesión de la aplicación Ferretería JP Fusión.
- * Permite el acceso a dos tipos de usuarios Admin y / o user.
- * Admin accede a la ventana VentanaAdmin con gestión completa.
- * User accede a la ventana VentanaUser con gestión parcial y con más opciones de tipo consulta.
+ * Permite el acceso a dos tipos de usuarios Admin y / o user. Admin accede a la
+ * ventana VentanaAdmin con gestión completa. User accede a la ventana
+ * VentanaUser con gestión parcial y con más opciones de tipo consulta.
+ *
  * @author jintae
  */
 public class VentanaLogin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
 
     /**
-     * Constructor de la ventana de login.
-     * Creates new form VentanaLogin
+     * Constructor de la ventana de login. Creates new form VentanaLogin
      */
     public VentanaLogin() {
         initComponents();
-        
+
         // Carácter del campo contraseña:
         campoPass.setEchoChar('⚒');
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
     }
@@ -213,7 +218,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccesoActionPerformed
-         acceso();        
+        acceso();
     }//GEN-LAST:event_botonAccesoActionPerformed
 
     /**
@@ -254,62 +259,87 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
-     
+
     /**
-     * Contraseña introducida por el usuario en el campo Pass en la ventana de login
+     * Contraseña introducida por el usuario en el campo Pass en la ventana de
+     * login
      */
     private String pass;
-    
+
     /**
-     * Nombre de Usuario introducido por el usuario para logarse. 
+     * Nombre de Usuario introducido por el usuario para logarse.
      */
     public static String user;
-    
+
     /**
      * Determina qué ventana principal se abre tras el login.
      */
     public static String tipoUsuario;
-    
+    public static String ip;
+
     /**
-     * Método que realiza la comprobación del usuario logado llamando a los métodos específicos de la clase conexión para hacer la comprobación
-     * del usuario y en caso de logado correcto rescatar el tipo de usuario
+     * Método que realiza la comprobación del usuario logado llamando a los
+     * métodos específicos de la clase conexión para hacer la comprobación del
+     * usuario y en caso de logado correcto rescatar el tipo de usuario
      */
     public void acceso() {
-        
+
         user = campoUsuario.getText();
         pass = new String(campoPass.getPassword());
-        
-        Conexion.conectar();
-        
+
+        ConsultasAccesos.conectar();
+
         if (Conexion.acceder(user, pass)) {
-            
-            Conexion.rescatarDatosAcceso();
-            
+            ip = rescataIp();
             tipoUsuario = Conexion.recuperaTipo(user);
-            System.out.println(tipoUsuario);
-        
-            Conexion.cerrarConexion();
-        
-        if ("admin".equals(tipoUsuario)) {
-            
-            VentanaAdmin va = new VentanaAdmin();
-            va.setVisible(true);
-            va.setExtendedState(MAXIMIZED_BOTH);
-            this.dispose();
-            
+            Date fecha = new Date();
+
+            Acceso a = new Acceso(user, fecha, ip);
+            ConsultasAccesos.registrarAcceso(a);
+
+            ConsultasAccesos.cerrarConexion();
+
+            if ("admin".equals(tipoUsuario)) {
+
+                VentanaAdmin va  = new VentanaAdmin();
+                va.setVisible(true);
+                va.setExtendedState(MAXIMIZED_BOTH);
+                this.dispose();
+
+            } else {
+
+                VentanaUser vu = new VentanaUser();
+                vu.setVisible(true);
+                vu.setExtendedState(MAXIMIZED_BOTH);
+                this.dispose();
+
+            }
         } else {
-            
-            VentanaUser vu = new VentanaUser();
-            vu.setVisible(true);
-            vu.setExtendedState(MAXIMIZED_BOTH);
-            this.dispose();
-            
-        }
-        } else{
-            
+            Conexion.cerrarConexion();
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Inténtelo de nuevo.");
             campoPass.setText("");
             campoUsuario.setText("");
         }
+    }
+
+    /**
+     *
+     */
+    public String rescataIp() {
+
+        String ip = null;
+
+        try {
+
+            // Obtener IP Local
+            InetAddress localHost = InetAddress.getLocalHost();
+            ip = localHost.getHostAddress();
+
+        } catch (UnknownHostException e) {
+
+            e.printStackTrace();
+        }
+
+        return ip;
     }
 }

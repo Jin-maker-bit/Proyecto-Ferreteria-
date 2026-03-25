@@ -4,10 +4,10 @@
  */
 package bbdd;
 
-import java.util.Date;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import modelo.Acceso;
 
 /**
  *
@@ -26,24 +26,34 @@ public class ConsultasAccesos extends Conexion{
      * @param fecha
      * @param ip 
      */
-    public static void registrarAcceso(String usuario, Date fecha, String ip) {
+    public static void registrarAcceso(Acceso a) {
         
     String consulta = "INSERT INTO accesos (usuario, fecha, ip) VALUES (?, ?, ?)";
+    
+        conectar(); 
     
         try {
             
             PreparedStatement pst = conn.prepareStatement(consulta);
-            pst.setString(1, usuario);
-            pst.setDate(2, new java.sql.Date(fecha.getTime()));
-            pst.setString(3, ip);
-            pst.executeUpdate();
+            pst.setString(1, a.getUsuario());
+            pst.setDate(2, new java.sql.Date(a.getFecha().getTime())); // (a.getFecha().getTime()));
+            pst.setString(3, a.getIp());
+            
+            pst.execute();
             
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, 
                 "Error al registrar acceso: " + ex.getMessage());
-        }
+            
+        } finally {
+            
+        cerrarConexion(); 
     }
+        
+    }
+    
+    
    
     
 }
