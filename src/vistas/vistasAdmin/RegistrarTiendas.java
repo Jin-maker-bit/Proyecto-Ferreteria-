@@ -467,16 +467,23 @@ public class RegistrarTiendas extends javax.swing.JDialog {
                 
                 JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
                 
-            } 
+             
             
             Conexion.cerrarConexion();
 
             limpiarTienda();
             
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al registrar tienda.");
         }
+        
     }
     
-
+ }
+            
+       
+   
         /**
          * Limpia los campos del formulario.
          */

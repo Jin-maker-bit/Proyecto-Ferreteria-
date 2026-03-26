@@ -436,14 +436,20 @@ public class RegistrarOrigen extends javax.swing.JDialog {
             if (ConsultasOrigen.registrarOrigen(nuevoOrigen)) {
                 
                 JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
-                } 
+                 
             
             Conexion.cerrarConexion();
                 
             limpiarOrigen();
-                   
+            
+         } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al registrar el orígen.");
         }
+        
     }
+    
+ }
     
 
     /**
