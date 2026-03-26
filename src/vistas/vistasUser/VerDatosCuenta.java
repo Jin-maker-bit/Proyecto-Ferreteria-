@@ -4,10 +4,12 @@
  */
 package vistas.vistasUser;
 
-import bbdd.Conexion;
-import bbdd.ConsultasUsuarios;
+import static bbdd.ConsultasUsuarios.actualizarDatos;
+import static bbdd.ConsultasUsuarios.obtenerDatosPerfil;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -24,7 +26,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     public VerDatosCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        cargarDatosPerfil();
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
@@ -34,7 +36,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        
+
     }
 
     /**
@@ -67,7 +69,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoPass = new javax.swing.JPasswordField();
         botonGuardar = new javax.swing.JButton();
         lblSubtitulo10 = new javax.swing.JLabel();
-        campoPass1 = new javax.swing.JPasswordField();
+        campoNuevoPass = new javax.swing.JPasswordField();
         botonVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
@@ -101,11 +103,9 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(191, 150, 99));
 
         labelNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        labelNombre.setText("RESNOMBRE");
 
         labelRol.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         labelRol.setForeground(new java.awt.Color(204, 0, 0));
-        labelRol.setText("resRol");
 
         lblSubtitulo7.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo7.setForeground(new java.awt.Color(0, 51, 51));
@@ -117,11 +117,9 @@ public class VerDatosCuenta extends javax.swing.JDialog {
 
         labelTienda.setBackground(new java.awt.Color(204, 255, 204));
         labelTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        labelTienda.setText("ResTienda");
 
         labelUsuario.setBackground(new java.awt.Color(204, 255, 204));
         labelUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        labelUsuario.setText("ResUsuario");
 
         lblSubtitulo9.setBackground(new java.awt.Color(9, 48, 64));
         lblSubtitulo9.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
@@ -144,29 +142,28 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 82, Short.MAX_VALUE)
                 .addComponent(lblSubtitulo9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSubtitulo8)
-                            .addComponent(lblSubtitulo7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblSubtitulo8, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                            .addComponent(lblSubtitulo7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelTienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSubtitulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSubtitulo11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblSubtitulo12, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                            .addComponent(lblSubtitulo11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelRol, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 45, Short.MAX_VALUE)))
+                            .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,19 +174,19 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubtitulo12)
-                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSubtitulo11)
-                    .addComponent(labelRol))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSubtitulo11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTienda)
-                    .addComponent(lblSubtitulo7))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSubtitulo7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubtitulo8)
-                    .addComponent(labelUsuario))
+                    .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -207,8 +204,10 @@ public class VerDatosCuenta extends javax.swing.JDialog {
 
         campoNombreYApellidos.setBackground(new java.awt.Color(3, 32, 38));
         campoNombreYApellidos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        campoNombreYApellidos.setForeground(new java.awt.Color(191, 150, 99));
         campoNombreYApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoNombreYApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoNombreYApellidos.setName("NOMBRE Y APELLIDOS"); // NOI18N
         campoNombreYApellidos.setOpaque(true);
 
         lblSubtitulo4.setBackground(new java.awt.Color(112, 137, 140));
@@ -219,14 +218,21 @@ public class VerDatosCuenta extends javax.swing.JDialog {
 
         campoPass.setBackground(new java.awt.Color(3, 32, 38));
         campoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        campoPass.setForeground(new java.awt.Color(191, 150, 99));
         campoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoPass.setName("CONTRASEÑA ACTUAL"); // NOI18N
 
         botonGuardar.setBackground(new java.awt.Color(191, 182, 158));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(3, 32, 38));
         botonGuardar.setText("Guardar Cambios");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
         lblSubtitulo10.setBackground(new java.awt.Color(112, 137, 140));
         lblSubtitulo10.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -234,10 +240,12 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         lblSubtitulo10.setText("Nueva Contraseña");
         lblSubtitulo10.setOpaque(true);
 
-        campoPass1.setBackground(new java.awt.Color(3, 32, 38));
-        campoPass1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        campoPass1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoPass1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoNuevoPass.setBackground(new java.awt.Color(3, 32, 38));
+        campoNuevoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        campoNuevoPass.setForeground(new java.awt.Color(191, 150, 99));
+        campoNuevoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoNuevoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoNuevoPass.setName("NUEVA CONTRASEÑA"); // NOI18N
 
         botonVolver.setBackground(new java.awt.Color(191, 150, 99));
         botonVolver.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -268,7 +276,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoPass)
-                            .addComponent(campoPass1)))
+                            .addComponent(campoNuevoPass)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(lblSubtitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
@@ -295,8 +303,8 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubtitulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoNuevoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -412,15 +420,16 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 .addComponent(lblSubtitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(40, 40, 40))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 100, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -488,6 +497,10 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        actualizarDatosUser(); // TODO add your handling code here:
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,8 +542,8 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoNombreYApellidos;
+    private javax.swing.JPasswordField campoNuevoPass;
     private javax.swing.JPasswordField campoPass;
-    private javax.swing.JPasswordField campoPass1;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
@@ -562,5 +575,47 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatosPerfil() {
+
+        String userActivo = VentanaLogin.user;
+
+        Usuario logado = obtenerDatosPerfil(userActivo);
+
+        if (logado != null) {
+            labelNombre.setText(logado.getNombreCompleto());
+            labelRol.setText(logado.getTipo());
+            labelTienda.setText(logado.getTienda());
+            labelUsuario.setText(logado.getUsuario());
+        }
+    }
+
+    private void actualizarDatosUser() {
+        String nuevoNombre = campoNombreYApellidos.getText();
+        String passActual = new String(campoPass.getPassword());
+        String nuevaPass = new String(campoNuevoPass.getPassword());
+        String usuarioActivo = VentanaLogin.user;
+        if (Utilidades.compruebaCampoVacio(campoNombreYApellidos)) {
+            Utilidades.lanzaAlertaVacio(campoNombreYApellidos);
+            return;
+        }
+        if (Utilidades.compruebaCampoVacio(campoPass)) {
+            Utilidades.lanzaAlertaVacio(campoPass);
+            return;
+        }
+        if (Utilidades.compruebaCampoVacio(campoNuevoPass)) {
+            Utilidades.lanzaAlertaVacio(campoNombreYApellidos);
+            return;
+        }
+
+        boolean exito = actualizarDatos(usuarioActivo, nuevoNombre, nuevaPass, passActual);
+
+        if (exito) {
+            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error: La contraseña actual no es correcta.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 }

@@ -18,23 +18,22 @@ import javax.swing.JOptionPane;
  * @author jintae
  */
 public class ConsultasUsuarios extends Conexion {
-    
 
     public static Usuario obtenerDatosUsuario(String loginUsuario) {
-        
+
         conectar();
-        
+
         Usuario user = null;
-        
+
         String sql = "SELECT * FROM usuarios WHERE usuario = ?";
 
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            
+
             pst.setString(1, loginUsuario);
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                
+
                 user = new Usuario();
                 user.setNombreCompleto(rs.getString("nombre_appellidos"));
                 user.setTipo(rs.getString("tipo"));
@@ -42,13 +41,13 @@ public class ConsultasUsuarios extends Conexion {
                 user.setUsuario(rs.getString("usuario"));
 
             }
-            
+
         } catch (SQLException e) {
-            
+
             System.err.println("Error al obtener datos: " + e.getMessage());
-            
+
         } finally {
-            
+
             cerrarConexion();
         }
         return user;
@@ -100,4 +99,56 @@ public class ConsultasUsuarios extends Conexion {
 
         return rescatarProducto;
     }
+
+    public static Usuario obtenerDatosPerfil(String userLogado) {
+        Usuario u = null;
+
+        String sql = "SELECT nombre_apellidos, usuario, tipo, tienda FROM usuarios WHERE usuario = ?";
+
+        Conexion.conectar();
+
+        try (PreparedStatement ps = Conexion.conn.prepareStatement(sql)) {
+            ps.setString(1, userLogado);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    u = new Usuario();
+                    u.setNombreCompleto(rs.getString("nombre_apellidos"));
+                    u.setUsuario(rs.getString("usuario"));
+                    u.setTipo(rs.getString("tipo"));
+                    u.setTienda(rs.getString("tienda"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en obtener datos del perfil: " + e.getMessage());
+        } finally {
+            Conexion.cerrarConexion();
+        }
+        return u;
+    }
+
+    public static boolean actualizarDatos(String user, String nuevoNombre, String nuevaPass, String passActual) {
+        boolean actualizado = false;
+        
+        String sql = "UPDATE usuarios SET nombre_apellidos = ?, pass = ? WHERE usuario = ? AND pass = ?";
+
+        Conexion.conectar();
+        try (PreparedStatement ps = Conexion.conn.prepareStatement(sql)) {
+            ps.setString(1, nuevoNombre);
+            ps.setString(2, nuevaPass);
+            ps.setString(3, user);
+            ps.setString(4, passActual);
+
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                actualizado = true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar: " + e.getMessage());
+        } finally {
+            Conexion.cerrarConexion();
+        }
+        return actualizado;
+    }
+
 }
