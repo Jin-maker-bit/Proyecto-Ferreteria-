@@ -604,7 +604,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
             return;
         }
         if (Utilidades.compruebaCampoVacio(campoNuevoPass)) {
-            Utilidades.lanzaAlertaVacio(campoNombreYApellidos);
+            Utilidades.lanzaAlertaVacio(campoNuevoPass);
             return;
         }
 
