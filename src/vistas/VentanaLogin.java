@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
  * ventana VentanaAdmin con gestión completa. User accede a la ventana
  * VentanaUser con gestión parcial y con más opciones de tipo consulta.
  *
- * @author jintae
+ * @author Jose y Patricia.
  */
 public class VentanaLogin extends javax.swing.JFrame {
 
@@ -52,7 +52,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         lblPass = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
         campoPass = new javax.swing.JPasswordField();
-        botonAcceso = new javax.swing.JButton();
+        botonAccesoLogin = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jToolBar2 = new javax.swing.JToolBar();
         lblBienvenida = new javax.swing.JLabel();
@@ -89,22 +89,22 @@ public class VentanaLogin extends javax.swing.JFrame {
         campoUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(191, 158, 96));
         campoUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        campoUsuario.setName("CAMPO USUARIO"); // NOI18N
+        campoUsuario.setName("Usuario"); // NOI18N
 
         campoPass.setBackground(new java.awt.Color(9, 48, 64));
         campoPass.setForeground(new java.awt.Color(191, 158, 96));
         campoPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        campoPass.setName("CAMPO CONTRASEÑA"); // NOI18N
+        campoPass.setName("Contraseña"); // NOI18N
 
-        botonAcceso.setBackground(new java.awt.Color(191, 158, 96));
-        botonAcceso.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonAcceso.setForeground(new java.awt.Color(242, 242, 242));
-        botonAcceso.setText("Acceso");
-        botonAcceso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonAcceso.setOpaque(true);
-        botonAcceso.addActionListener(new java.awt.event.ActionListener() {
+        botonAccesoLogin.setBackground(new java.awt.Color(191, 158, 96));
+        botonAccesoLogin.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonAccesoLogin.setForeground(new java.awt.Color(242, 242, 242));
+        botonAccesoLogin.setText("Acceso");
+        botonAccesoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAccesoLogin.setOpaque(true);
+        botonAccesoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAccesoActionPerformed(evt);
+                botonAccesoLoginActionPerformed(evt);
             }
         });
 
@@ -125,7 +125,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                             .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
-                        .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonAccesoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(109, 109, 109))))
         );
         panelLoginLayout.setVerticalGroup(
@@ -140,7 +140,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                     .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addComponent(botonAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonAccesoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -213,9 +213,9 @@ public class VentanaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccesoActionPerformed
-        acceso();
-    }//GEN-LAST:event_botonAccesoActionPerformed
+    private void botonAccesoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAccesoLoginActionPerformed
+        accesoLogin();
+    }//GEN-LAST:event_botonAccesoLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,7 +243,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAcceso;
+    private javax.swing.JButton botonAccesoLogin;
     private javax.swing.JPasswordField campoPass;
     private javax.swing.JTextField campoUsuario;
     private javax.swing.JToolBar jToolBar1;
@@ -283,7 +283,7 @@ public class VentanaLogin extends javax.swing.JFrame {
      * Comprueba credenciales y bloqueos en la BBDD.
      * Redirige a la interfaz correspondiente.
      */
-    public void acceso() {
+    public void accesoLogin() {
         
         // Validaciones
         
@@ -294,8 +294,7 @@ public class VentanaLogin extends javax.swing.JFrame {
             utilidades.Utilidades.lanzaAlertaVacio(campoPass);
             
         } else {
-            
-            
+                        
             // Rescate de datos
             user = campoUsuario.getText().trim();
             String pass = new String(campoPass.getPassword());
@@ -304,18 +303,21 @@ public class VentanaLogin extends javax.swing.JFrame {
             String[] datosUsuario = ConsultasAccesos.verificarLogin(user, pass);
 
             if (datosUsuario != null) {
+                
                 tipoUsuario = datosUsuario[0];
                 String estadoUsuario = datosUsuario[1];
 
                 // Caso Usuario Bloqueado
                 if ("Bloqueado".equalsIgnoreCase(estadoUsuario)) {
+                    
                     javax.swing.JOptionPane.showMessageDialog(this, 
                         "Usuario bloqueado.", 
                         "Acceso Denegado", 
                         javax.swing.JOptionPane.WARNING_MESSAGE);
                         
                     campoPass.setText("");
-                    campoUsuario.setText("");                   
+                    campoUsuario.setText(""); 
+                    
                     return; 
                 }
 
@@ -327,14 +329,18 @@ public class VentanaLogin extends javax.swing.JFrame {
 
                 // Rescatar IP y guardar
                 ip = rescataIp();
-                bbdd.ConsultasAccesos.registrarAcceso(new modelo.Acceso(user, new java.util.Date(), ip));
+                
+                ConsultasAccesos.registrarAcceso(new modelo.Acceso(user, new java.util.Date(), ip));
 
                 // Abrir ventanas correspondientes - Admin o User
                 if ("admin".equalsIgnoreCase(tipoUsuario)) {
+                    
                     vistas.vistasAdmin.VentanaAdmin va = new vistas.vistasAdmin.VentanaAdmin();
                     va.setVisible(true);
                     va.setExtendedState(MAXIMIZED_BOTH);
+                    
                 } else {
+                    
                     vistas.vistasUser.VentanaUser vu = new vistas.vistasUser.VentanaUser();
                     vu.setVisible(true);
                     vu.setExtendedState(MAXIMIZED_BOTH);

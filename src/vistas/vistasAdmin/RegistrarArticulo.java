@@ -664,14 +664,22 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         if (ConsultasProducto.registrarProducto(p)) {
             
             JOptionPane.showMessageDialog(this, "Artículo registrado correctamente.");
-        }
+        
         
         Conexion.cerrarConexion();
 
         // Limpiar campos registrar artículo
         limpiarArticulo();
+        
+        } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al registrar el artículo.");
+        }
+        
     }
-}
+    
+ }
+
 
     /**
      * Limpia todos los campos del formulario de registro de artículo.

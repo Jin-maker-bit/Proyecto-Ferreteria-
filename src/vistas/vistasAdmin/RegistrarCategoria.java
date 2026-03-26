@@ -434,14 +434,20 @@ public class RegistrarCategoria extends javax.swing.JDialog {
             if (ConsultasCategorias.registrarCategoria(nuevaCategoria)) {
                 
                 JOptionPane.showMessageDialog(this, "Categoría registrada correctamente.");  
-                } 
+                
             
             Conexion.cerrarConexion();
 
             limpiarCategoria();
                            
-            }
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al registrar la categoría.");
         }
+        
+    }
+    
+ }
     
 
     /**

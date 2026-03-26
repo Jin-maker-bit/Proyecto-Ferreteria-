@@ -226,9 +226,8 @@
                           <Component id="lblNombre" min="-2" pref="135" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lblFecha" pref="133" max="32767" attributes="0"/>
                                   <Component id="lblTipo" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblContraseña" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblContraseña" alignment="0" pref="133" max="32767" attributes="0"/>
                                   <Component id="lblUsuario" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblEstado" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblTienda" max="32767" attributes="0"/>
@@ -244,7 +243,6 @@
                           <Component id="comboTienda" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
                           <Component id="campoPass" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
                           <Component id="campoNombre" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
-                          <Component id="campoFecha" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="191" max="32767" attributes="0"/>
                   </Group>
@@ -290,12 +288,7 @@
                           <Component id="lblTienda" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="comboTienda" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblFecha" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="campoFecha" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonCancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="botonRegistrarUsuario" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -450,22 +443,6 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblFecha">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="9e" green="b6" red="bf" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="12" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Fecha de Alta"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor de Mano"/>
-                </Property>
-                <Property name="opaque" type="boolean" value="true"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="campoUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -578,27 +555,6 @@
                   </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="Nombre y Apellidos" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="campoFecha">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="26" green="20" red="3" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="12" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="8c" green="89" red="70" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-                <Property name="name" type="java.lang.String" value="Fecha de alta" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
