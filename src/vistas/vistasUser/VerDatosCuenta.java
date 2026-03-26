@@ -71,6 +71,10 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         lblSubtitulo10 = new javax.swing.JLabel();
         campoNuevoPass = new javax.swing.JPasswordField();
         botonVolver = new javax.swing.JButton();
+        lblDenominacion3 = new javax.swing.JLabel();
+        campoUsuario = new javax.swing.JTextField();
+        lblDenominacion6 = new javax.swing.JLabel();
+        campoTipo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -199,14 +203,14 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         lblSubtitulo2.setBackground(new java.awt.Color(191, 150, 99));
         lblSubtitulo2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSubtitulo2.setText("Nombre y apellidos");
+        lblSubtitulo2.setText("Nombre completo");
         lblSubtitulo2.setOpaque(true);
 
         campoNombreYApellidos.setBackground(new java.awt.Color(3, 32, 38));
         campoNombreYApellidos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         campoNombreYApellidos.setForeground(new java.awt.Color(191, 150, 99));
         campoNombreYApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoNombreYApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoNombreYApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoNombreYApellidos.setName("NOMBRE Y APELLIDOS"); // NOI18N
         campoNombreYApellidos.setOpaque(true);
 
@@ -220,7 +224,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         campoPass.setForeground(new java.awt.Color(191, 150, 99));
         campoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoPass.setName("CONTRASEÑA ACTUAL"); // NOI18N
 
         botonGuardar.setBackground(new java.awt.Color(191, 182, 158));
@@ -244,7 +248,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoNuevoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         campoNuevoPass.setForeground(new java.awt.Color(191, 150, 99));
         campoNuevoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        campoNuevoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        campoNuevoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoNuevoPass.setName("NUEVA CONTRASEÑA"); // NOI18N
 
         botonVolver.setBackground(new java.awt.Color(191, 150, 99));
@@ -258,33 +262,69 @@ public class VerDatosCuenta extends javax.swing.JDialog {
             }
         });
 
+        lblDenominacion3.setBackground(new java.awt.Color(191, 150, 99));
+        lblDenominacion3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblDenominacion3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDenominacion3.setText("Usuario");
+        lblDenominacion3.setOpaque(true);
+
+        campoUsuario.setBackground(new java.awt.Color(3, 32, 38));
+        campoUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        campoUsuario.setForeground(new java.awt.Color(112, 137, 140));
+        campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoUsuario.setEnabled(false);
+        campoUsuario.setName("Denominación"); // NOI18N
+
+        lblDenominacion6.setBackground(new java.awt.Color(191, 150, 99));
+        lblDenominacion6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblDenominacion6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDenominacion6.setText("Tipo");
+        lblDenominacion6.setOpaque(true);
+
+        campoTipo.setBackground(new java.awt.Color(3, 32, 38));
+        campoTipo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        campoTipo.setForeground(new java.awt.Color(112, 137, 140));
+        campoTipo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoTipo.setEnabled(false);
+        campoTipo.setName("Denominación"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(177, 177, 177))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSubtitulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSubtitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblDenominacion3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPass)
-                            .addComponent(campoNuevoPass)))
+                        .addComponent(campoUsuario))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblSubtitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(campoPass))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(lblSubtitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(campoNombreYApellidos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblSubtitulo10, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(lblDenominacion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoTipo)
+                            .addComponent(campoNuevoPass))))
                 .addGap(38, 38, 38))
         );
         jPanel2Layout.setVerticalGroup(
@@ -294,17 +334,25 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoNombreYApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(campoNombreYApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                     .addComponent(lblSubtitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblSubtitulo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSubtitulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNuevoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(lblDenominacion3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoPass)
+                    .addComponent(lblSubtitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSubtitulo10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoNuevoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDenominacion6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -398,7 +446,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
@@ -428,7 +476,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)))
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -544,6 +592,8 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JTextField campoNombreYApellidos;
     private javax.swing.JPasswordField campoNuevoPass;
     private javax.swing.JPasswordField campoPass;
+    private javax.swing.JTextField campoTipo;
+    private javax.swing.JTextField campoUsuario;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
@@ -555,6 +605,8 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JLabel labelRol;
     private javax.swing.JLabel labelTienda;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JLabel lblDenominacion3;
+    private javax.swing.JLabel lblDenominacion6;
     private javax.swing.JLabel lblImprimirUsuario;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
@@ -587,6 +639,9 @@ public class VerDatosCuenta extends javax.swing.JDialog {
             labelRol.setText(logado.getTipo());
             labelTienda.setText(logado.getTienda());
             labelUsuario.setText(logado.getUsuario());
+            campoNombreYApellidos.setText(logado.getNombreCompleto());
+            campoUsuario.setText(logado.getUsuario());
+            campoTipo.setText(logado.getTipo());
         }
     }
 

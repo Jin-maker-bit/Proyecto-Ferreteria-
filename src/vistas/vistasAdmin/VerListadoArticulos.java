@@ -58,14 +58,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario9 = new javax.swing.JLabel();
         lblUsuario10 = new javax.swing.JLabel();
         lblUsuario11 = new javax.swing.JLabel();
-        lblUsuario12 = new javax.swing.JLabel();
         campoCodProducto = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
         textoDescripcion = new javax.swing.JTextField();
         campoPrecioCompra = new javax.swing.JTextField();
         campoPrecioVenta = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
-        campoFecha = new javax.swing.JTextField();
         comboCategoria = new javax.swing.JComboBox<>();
         comboOrigen = new javax.swing.JComboBox<>();
         comboDestacado = new javax.swing.JComboBox<>();
@@ -259,10 +257,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario11.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario11.setText("OFERTA:");
 
-        lblUsuario12.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblUsuario12.setForeground(new java.awt.Color(191, 150, 99));
-        lblUsuario12.setText("FECHA ALTA:");
-
         campoCodProducto.setBackground(new java.awt.Color(3, 32, 38));
         campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
@@ -303,12 +297,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoStock.setName("Denominación"); // NOI18N
-
-        campoFecha.setBackground(new java.awt.Color(3, 32, 38));
-        campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoFecha.setForeground(new java.awt.Color(112, 137, 140));
-        campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoFecha.setName("Denominación"); // NOI18N
 
         comboCategoria.setBackground(new java.awt.Color(3, 32, 38));
         comboCategoria.setForeground(new java.awt.Color(112, 137, 140));
@@ -351,7 +339,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario9)
                     .addComponent(lblUsuario10)
                     .addComponent(lblUsuario11)
-                    .addComponent(lblUsuario12)
                     .addComponent(lblUsuario5)
                     .addComponent(lblUsuario4)
                     .addComponent(lblUsuario3)
@@ -364,7 +351,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(campoPrecioCompra, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoPrecioVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoStock, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(comboCategoria, 0, 252, Short.MAX_VALUE)
                     .addComponent(comboOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboDestacado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -414,10 +400,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario11)
                     .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario12)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
 
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
@@ -637,7 +620,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoCodProducto;
-    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
@@ -646,7 +628,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboDestacado;
     private javax.swing.JComboBox<String> comboOferta;
     private javax.swing.JComboBox<String> comboOrigen;
-    private javax.swing.JComboBox comboTipo;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JLabel jLabel2;
@@ -663,7 +644,6 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JLabel lblUsuario1;
     private javax.swing.JLabel lblUsuario10;
     private javax.swing.JLabel lblUsuario11;
-    private javax.swing.JLabel lblUsuario12;
     private javax.swing.JLabel lblUsuario2;
     private javax.swing.JLabel lblUsuario3;
     private javax.swing.JLabel lblUsuario4;

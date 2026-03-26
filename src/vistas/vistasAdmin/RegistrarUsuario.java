@@ -57,13 +57,11 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         lblNombre = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         lblTienda = new javax.swing.JLabel();
-        lblFecha = new javax.swing.JLabel();
         campoUsuario = new javax.swing.JTextField();
         comboTienda = new javax.swing.JComboBox<>();
         comboTipo = new javax.swing.JComboBox<>();
         campoPass = new javax.swing.JPasswordField();
         campoNombre = new javax.swing.JTextField();
-        campoFecha = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -162,13 +160,6 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         lblTienda.setText("Tienda");
         lblTienda.setOpaque(true);
 
-        lblFecha.setBackground(new java.awt.Color(191, 182, 158));
-        lblFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFecha.setText("Fecha de Alta");
-        lblFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblFecha.setOpaque(true);
-
         campoUsuario.setBackground(new java.awt.Color(3, 32, 38));
         campoUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(112, 137, 140));
@@ -200,12 +191,6 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoNombre.setName("Nombre y Apellidos"); // NOI18N
 
-        campoFecha.setBackground(new java.awt.Color(3, 32, 38));
-        campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoFecha.setForeground(new java.awt.Color(112, 137, 140));
-        campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoFecha.setName("Fecha de alta"); // NOI18N
-
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
         panelSecundarioLayout.setHorizontalGroup(
@@ -216,9 +201,8 @@ public class RegistrarUsuario extends javax.swing.JDialog {
                     .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
                         .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                             .addComponent(lblTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                             .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -230,8 +214,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(191, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,11 +250,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(71, 71, 71)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -492,7 +471,6 @@ public class RegistrarUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrarUsuario;
-    private javax.swing.JTextField campoFecha;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JPasswordField campoPass;
     private javax.swing.JTextField campoUsuario;
@@ -506,7 +484,6 @@ public class RegistrarUsuario extends javax.swing.JDialog {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRescataFechayHora;

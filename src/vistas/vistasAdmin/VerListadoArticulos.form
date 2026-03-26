@@ -495,7 +495,6 @@
                           <Component id="lblUsuario9" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUsuario10" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUsuario11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUsuario12" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUsuario5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUsuario4" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUsuario3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -509,7 +508,6 @@
                           <Component id="campoPrecioCompra" alignment="1" max="32767" attributes="0"/>
                           <Component id="campoPrecioVenta" alignment="1" max="32767" attributes="0"/>
                           <Component id="campoStock" alignment="1" max="32767" attributes="0"/>
-                          <Component id="campoFecha" alignment="1" max="32767" attributes="0"/>
                           <Component id="comboCategoria" pref="252" max="32767" attributes="0"/>
                           <Component id="comboOrigen" max="32767" attributes="0"/>
                           <Component id="comboDestacado" max="32767" attributes="0"/>
@@ -572,11 +570,7 @@
                           <Component id="lblUsuario11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="comboOferta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblUsuario12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -692,17 +686,6 @@
                 <Property name="text" type="java.lang.String" value="OFERTA:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblUsuario12">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="63" green="96" red="bf" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="FECHA ALTA:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="campoCodProducto">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -812,27 +795,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoStock">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="26" green="20" red="3" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="12" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="8c" green="89" red="70" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
-                      <Color PropertyName="color" blue="8c" green="89" red="70" type="rgb"/>
-                    </LineBorder>
-                  </Border>
-                </Property>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="campoFecha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
