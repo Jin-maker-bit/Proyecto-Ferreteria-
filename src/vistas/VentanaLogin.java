@@ -377,6 +377,8 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         return ip;
     }
+    
+    
 }
     
     

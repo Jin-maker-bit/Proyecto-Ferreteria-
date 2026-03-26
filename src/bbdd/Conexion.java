@@ -4,14 +4,13 @@
  */
 package bbdd;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import modelo.Usuario;
 
 /**
  * Clase de gestión de la conexión con la base de datos MySQL. Proporciona
@@ -146,34 +145,11 @@ public class Conexion {
      * @param user Nombre de usuario del que se quieren recuperar los datos.
      * @return Array con nombre, apellidos y tipo o nulo si no se encuentra.
      */
-    public static String[] recuperaDatosLogado(String user) {
-
-        String[] usuario = new String[3];
-        String consultaRecuperaDatos = "select nombre, apellidos, tipo from usuarios where usuario = '" + user + "'";
-
-        Statement st;
-        ResultSet rs;
-
-        try {
-
-            st = conn.createStatement();
-            rs = st.executeQuery(consultaRecuperaDatos);
-
-            if (rs.next()) {
-
-                usuario[0] = rs.getString(1); // nombre
-                usuario[1] = rs.getString(2); // apellidos
-                usuario[2] = rs.getString(3); // tipo - admin / user
-
-            }
-
-        } catch (SQLException ex) {
-
-            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-
-        }
-        return usuario;
-    }
+    /**
+     * Recupera el objeto Usuario completo según el login. Ajustado para que
+     * coincida con el campo único 'nombreCompleto' de la DB.
+     */
+    
 
     /**
      * Método que comprueba si un nombre de usuario existe en la base de datos
@@ -204,55 +180,54 @@ public class Conexion {
         }
         return false;
     }
-    
-    
+
     /**
-     * Extrae los valores permitidos de una columna tipo ENUM en la base de datos.
-     * Utiliza la sentencia SQL para obtener la definición estructural de la columna.
-     * Posteriormente, procesa la cadena devuelta por el motor de base de datos para aislar los valores.
-     * Gestiona su propio ciclo de vida de conexión - abrir / cerrar -  para garantizar la seguridad y liberar recursos en el bloque.
-     * @param tabla El nombre de la tabla 
-     * @param columna El nombre de la columna 
+     * Extrae los valores permitidos de una columna tipo ENUM en la base de
+     * datos. Utiliza la sentencia SQL para obtener la definición estructural de
+     * la columna. Posteriormente, procesa la cadena devuelta por el motor de
+     * base de datos para aislar los valores. Gestiona su propio ciclo de vida
+     * de conexión - abrir / cerrar - para garantizar la seguridad y liberar
+     * recursos en el bloque.
+     *
+     * @param tabla El nombre de la tabla
+     * @param columna El nombre de la columna
      * @return ArrayList con los valores limpios del ENUM.
      */
     public static java.util.ArrayList<String> obtenerValoresEnum(String tabla, String columna) {
-        
+
         java.util.ArrayList<String> lista = new java.util.ArrayList<>();
-        
+
         String consulta = "SHOW COLUMNS FROM " + tabla + " LIKE '" + columna + "'";
-        
+
         Conexion.conectar();
-        
+
         try {
-            
+
             java.sql.Statement st = Conexion.conn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(consulta);
-            
+
             if (rs.next()) {
-                
-                String tipoEnum = rs.getString("Type"); 
-                
-               
+
+                String tipoEnum = rs.getString("Type");
+
                 tipoEnum = tipoEnum.replace("enum(", "").replace(")", "").replace("'", "");
-                
-                
+
                 String[] valores = tipoEnum.split(",");
-                
-                
+
                 for (String valor : valores) {
-                    
+
                     lista.add(valor);
                 }
             }
         } catch (java.sql.SQLException ex) {
-            
+
             javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar ENUM: " + ex.getMessage());
-            
+
         } finally {
-            
+
             Conexion.cerrarConexion();
         }
-        
+
         return lista;
     }
 }
