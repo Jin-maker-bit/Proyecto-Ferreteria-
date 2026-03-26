@@ -4,16 +4,11 @@
  */
 package vistas;
 
-import bbdd.Conexion;
 import bbdd.ConsultasAccesos;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Date;
-import javax.swing.JOptionPane;
-import modelo.Acceso;
-import vistas.vistasAdmin.VentanaAdmin;
-import vistas.vistasUser.VentanaUser;
+
 
 /**
  * Ventana de Login - inicio de sesión de la aplicación Ferretería JP Fusión.
@@ -28,7 +23,8 @@ public class VentanaLogin extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
 
     /**
-     * Constructor de la ventana de login. Creates new form VentanaLogin
+     * Constructor de la ventana de login. 
+     * Creates new form VentanaLogin
      */
     public VentanaLogin() {
         initComponents();
@@ -260,6 +256,8 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     /**
      * Contraseña introducida por el usuario en el campo Pass en la ventana de
      * login
@@ -276,54 +274,91 @@ public class VentanaLogin extends javax.swing.JFrame {
      */
     public static String tipoUsuario;
     public static String ip;
-
+    
+    
+    
     /**
-     * Método que realiza la comprobación del usuario logado llamando a los
-     * métodos específicos de la clase conexión para hacer la comprobación del
-     * usuario y en caso de logado correcto rescatar el tipo de usuario
+     * Método que procesa el intento de inicio de sesión.
+     * Valida que los campos no estén vacíos usando la clase Utilidades.
+     * Comprueba credenciales y bloqueos en la BBDD.
+     * Redirige a la interfaz correspondiente.
      */
     public void acceso() {
+        
+        // Validaciones
+        
+        if (utilidades.Utilidades.compruebaCampoVacio(campoUsuario)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoUsuario);
 
-        user = campoUsuario.getText();
-        pass = new String(campoPass.getPassword());
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoPass)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoPass);
+            
+        } else {
+            
+            
+            // Rescate de datos
+            user = campoUsuario.getText().trim();
+            String pass = new String(campoPass.getPassword());
 
-        ConsultasAccesos.conectar();
+            // Comprobar la bbdd
+            String[] datosUsuario = ConsultasAccesos.verificarLogin(user, pass);
 
-        if (Conexion.acceder(user, pass)) {
-            ip = rescataIp();
-            tipoUsuario = Conexion.recuperaTipo(user);
-            Date fecha = new Date();
+            if (datosUsuario != null) {
+                tipoUsuario = datosUsuario[0];
+                String estadoUsuario = datosUsuario[1];
 
-            Acceso a = new Acceso(user, fecha, ip);
-            ConsultasAccesos.registrarAcceso(a);
+                // Caso Usuario Bloqueado
+                if ("Bloqueado".equalsIgnoreCase(estadoUsuario)) {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "Usuario bloqueado.", 
+                        "Acceso Denegado", 
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                        
+                    campoPass.setText("");
+                    campoUsuario.setText("");                   
+                    return; 
+                }
 
-            ConsultasAccesos.cerrarConexion();
+                // Caso Login Correcto
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Usuario logado correctamente.", 
+                    "Bienvenido a JP Fusión", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-            if ("admin".equals(tipoUsuario)) {
+                // Rescatar IP y guardar
+                ip = rescataIp();
+                bbdd.ConsultasAccesos.registrarAcceso(new modelo.Acceso(user, new java.util.Date(), ip));
 
-                VentanaAdmin va  = new VentanaAdmin();
-                va.setVisible(true);
-                va.setExtendedState(MAXIMIZED_BOTH);
-                this.dispose();
+                // Abrir ventanas correspondientes - Admin o User
+                if ("admin".equalsIgnoreCase(tipoUsuario)) {
+                    vistas.vistasAdmin.VentanaAdmin va = new vistas.vistasAdmin.VentanaAdmin();
+                    va.setVisible(true);
+                    va.setExtendedState(MAXIMIZED_BOTH);
+                } else {
+                    vistas.vistasUser.VentanaUser vu = new vistas.vistasUser.VentanaUser();
+                    vu.setVisible(true);
+                    vu.setExtendedState(MAXIMIZED_BOTH);
+                }
+                
+                this.dispose(); 
 
             } else {
-
-                VentanaUser vu = new VentanaUser();
-                vu.setVisible(true);
-                vu.setExtendedState(MAXIMIZED_BOTH);
-                this.dispose();
-
+                // Caso Login Incorrecto
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Usuario o contraseña incorrectos. Inténtelo de nuevo.", 
+                    "Error de Acceso", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                
+                campoPass.setText("");
+                campoUsuario.setText("");
+                
             }
-        } else {
-            Conexion.cerrarConexion();
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos. Inténtelo de nuevo.");
-            campoPass.setText("");
-            campoUsuario.setText("");
         }
     }
-
+    
     /**
-     *
+     * Rescatar la IP del equipo para accesos.
+     * @ return La IP del equipo.
      */
     public String rescataIp() {
 
@@ -343,3 +378,5 @@ public class VentanaLogin extends javax.swing.JFrame {
         return ip;
     }
 }
+    
+    

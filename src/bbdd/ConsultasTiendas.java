@@ -120,4 +120,41 @@ public class ConsultasTiendas extends Conexion {
     }
     
     
+    /**
+     * Obtiene la lista de denominaciones de tiendas desde la base de datos.
+     * @return ArrayList con los nombres de las tiendas.
+     */
+    public static java.util.ArrayList<String> obtenerNombresTiendas() {
+        
+        java.util.ArrayList<String> lista = new java.util.ArrayList<>();
+        
+        String consulta = "SELECT denominacion FROM tiendas"; 
+        
+        Conexion.conectar();
+        
+        try {
+            
+            java.sql.Statement st = Conexion.conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(consulta);
+            
+            while (rs.next()) {
+                
+                lista.add(rs.getString("denominacion"));
+                
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar tiendas: " + ex.getMessage());
+            
+        } finally {
+            
+            Conexion.cerrarConexion();
+            
+        }
+        return lista;
+    }
+    
+    
+    
 }

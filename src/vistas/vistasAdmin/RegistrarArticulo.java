@@ -36,7 +36,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         
         // Cargar Combos - Realmente la Conexión no hace falta desde aquí Preguntar ya que está en las consultas(?)
         Conexion.conectar();
-        cargarCombos();
+        cargarCombosArticulos();
         Conexion.cerrarConexion();    
     }
 
@@ -694,7 +694,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
      * Obtiene y carga los datos de registro de las tablas desde la base de datos Ferretería.
      * Siempre restablece los componentes e inserta la opción "Seleccione" en el índice 0.
      */
-    private void cargarCombos() {
+    private void cargarCombosArticulos() {
         
         // --- Combo Categoría ---
         comboCategoria.removeAllItems();

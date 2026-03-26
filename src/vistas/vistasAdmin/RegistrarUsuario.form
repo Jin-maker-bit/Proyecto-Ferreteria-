@@ -365,6 +365,9 @@
                   <Color id="Cursor de Mano"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarUsuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipo">
               <Properties>
@@ -595,7 +598,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Fecha de alta" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -4,15 +4,23 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.Conexion;
+import bbdd.ConsultasUsuarios;
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+
 /**
- *
- * @author jintae
+ * Ventana modal encargada de registrar nuevos usuarios en el sistema.
+ * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
+ * @author Jose y Patricia.
  */
 public class RegistrarUsuario extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName());
 
     /**
+     * Constructor principal de la ventana Registrar Usuario.
+     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
      * Creates new form RegistrarUsuario
      */
     public RegistrarUsuario(java.awt.Frame parent, boolean modal) {
@@ -21,6 +29,9 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Aquí ejecutamos el método
+        cargarComboUsuarios();
     }
 
     /**
@@ -114,6 +125,11 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         botonRegistrarUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonRegistrarUsuario.setText("Registrar");
         botonRegistrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarUsuarioActionPerformed(evt);
+            }
+        });
 
         lblTipo.setBackground(new java.awt.Color(112, 137, 140));
         lblTipo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -188,7 +204,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         campoFecha.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoFecha.setForeground(new java.awt.Color(112, 137, 140));
         campoFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoFecha.setName("Usuario"); // NOI18N
+        campoFecha.setName("Fecha de alta"); // NOI18N
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -432,6 +448,10 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void botonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarUsuarioActionPerformed
+       registrarUsuario();
+    }//GEN-LAST:event_botonRegistrarUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -503,4 +523,99 @@ public class RegistrarUsuario extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSecundario;
     // End of variables declaration//GEN-END:variables
+
+    
+    /**
+      * Ventana modal encargada de registrar nuevos usuarios en el sistema.
+      * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
+      * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
+     */
+    public void registrarUsuario() {
+       
+        if (utilidades.Utilidades.compruebaCampoVacio(campoNombre)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoNombre);
+            
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoUsuario)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoUsuario);
+            
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoPass)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoPass);
+            
+        } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboTipo)) {
+            utilidades.Utilidades.lanzaAlertaCombo(comboTipo);
+            
+        } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboEstado)) {
+            utilidades.Utilidades.lanzaAlertaCombo(comboEstado);
+            
+        } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboTienda)) {
+            utilidades.Utilidades.lanzaAlertaCombo(comboTienda);
+            
+        } else {
+            
+            String nombre = campoNombre.getText().trim();
+            String user = campoUsuario.getText().trim();
+            String pass = new String (campoPass.getPassword()); // JPasswordField 
+            String tipo = comboTipo.getSelectedItem().toString();
+            String estado = comboEstado.getSelectedItem().toString();
+            String tienda = comboTienda.getSelectedItem().toString();
+            
+            // La fecha siempre será la de hoy en el momento de crear el objeto
+            java.util.Date fechaAlta = new java.util.Date(); 
+
+           
+            Usuario nuevoUsuario = new Usuario(nombre, user, pass, tipo, estado, fechaAlta, tienda);
+
+            if (ConsultasUsuarios.registrarUsuario(nuevoUsuario)) {
+                
+                JOptionPane.showMessageDialog(this, "Usuario registrado correctamente.");
+                
+                Conexion.cerrarConexion();
+                
+                limpiarUsuario();
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al registrar el usuario.");
+            }
+        }
+    }
+
+    
+    /**
+     * Limpia los campos del formulario.
+     */
+    public void limpiarUsuario() {
+        campoNombre.setText("");
+        campoUsuario.setText("");
+        campoPass.setText("");
+        comboTipo.setSelectedIndex(0);
+        comboEstado.setSelectedIndex(0);
+        comboTienda.setSelectedIndex(0);
+    }
+    
+       
+    /**
+     * Llena el JComboBox solicitando los datos a la capa de base de datos.
+     */
+    private void cargarComboUsuarios() {
+        
+        comboTipo.removeAllItems();
+        comboTipo.addItem("Seleccione");
+        java.util.ArrayList<String> tipos = ConsultasUsuarios.obtenerValoresEnum("usuarios", "tipo");
+        for (String t : tipos) { comboTipo.addItem(t); }
+
+        
+        comboEstado.removeAllItems();
+        comboEstado.addItem("Seleccione");
+        java.util.ArrayList<String> estados = ConsultasUsuarios.obtenerValoresEnum("usuarios", "estado");
+        for (String e : estados) { comboEstado.addItem(e); }
+
+        
+        comboTienda.removeAllItems();
+        comboTienda.addItem("Seleccione");
+        java.util.ArrayList<String> tiendas = bbdd.ConsultasTiendas.obtenerNombresTiendas();
+        for (String t : tiendas) { comboTienda.addItem(t); }
+    }
+
+
 }

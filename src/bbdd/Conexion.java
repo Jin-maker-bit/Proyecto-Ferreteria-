@@ -40,8 +40,8 @@ public class Conexion {
 
             // PC DE JOSÉ: Cambiado 8809 por 8889 (Puerto por defecto de MAMP) - Con contraseña "root" (mac Jose).
             // PC DE PATRI: Puerto 3307 - Xampp - Sin contraseña.
-            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC&useSSL=false";
-            conn = DriverManager.getConnection(url, "root", "root");
+            String url = "jdbc:mysql://localhost:3307/ferreteria?serverTimezone=UTC&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "");
 
         } catch (ClassNotFoundException | SQLException ex) {
 
@@ -83,7 +83,7 @@ public class Conexion {
 
         try {
 
-            String consulta = "SELECT usuario, pass FROM usuarios WHERE usuario=? and pass=?";
+            String consulta = "SELECT usuario, pass FROM usuarios WHERE usuario=? and pass=? and estado ='activo'";
 
             PreparedStatement pst;
             ResultSet rs;

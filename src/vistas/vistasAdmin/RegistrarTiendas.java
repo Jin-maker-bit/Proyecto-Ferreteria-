@@ -4,15 +4,24 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.Conexion;
+import bbdd.ConsultasTiendas;
+import javax.swing.JOptionPane;
+import modelo.Tienda;
+
+
 /**
- *
- * @author jintae
+ * Ventana modal encargada de registrar nuevas tiendas de productos en el sistema.
+ * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
+ * @author Jose y Patricia.
  */
 public class RegistrarTiendas extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarTiendas.class.getName());
 
     /**
+     * Constructor principal de la ventana Registrar Tienda.
+     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
      * Creates new form RegistrarTiendas
      */
     public RegistrarTiendas(java.awt.Frame parent, boolean modal) {
@@ -23,7 +32,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         utilidades.Utilidades.establecerIcono(this);
         
         // Aquí ejecutamos el método
-        cargarComboResponsables();
+        cargarComboResponsable();
     }
 
     /**
@@ -359,7 +368,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarOrigenActionPerformed
-        // TODO add your handling code here:
+        registrarTienda();
     }//GEN-LAST:event_botonRegistrarOrigenActionPerformed
 
     /**
@@ -426,24 +435,71 @@ public class RegistrarTiendas extends javax.swing.JDialog {
     private javax.swing.JPanel panelSecundario;
     // End of variables declaration//GEN-END:variables
 
+    
+     /**
+      * Ventana modal encargada de registrar nuevos registros en el sistema.
+      * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
+      * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
+      */
+    public void registrarTienda() {
 
-    /**
-     * Llena el JComboBox solicitando los datos a la capa de base de datos.
-     */
-    private void cargarComboResponsables() {
-        comboResponsable.removeAllItems();
-        comboResponsable.addItem("Seleccione un responsable..."); 
-        
-        // Pedimos la lista a la base de datos
-        java.util.ArrayList<String> responsables = bbdd.ConsultasResponsableTienda.obtenerResponsables();
-        
-        // Recorremos la lista y llenamos el componente visual
-        for (String nombre : responsables) {
-            comboResponsable.addItem(nombre);
+        if (utilidades.Utilidades.compruebaCampoVacio(campoDenominacion)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoDenominacion);
+
+        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDireccion)) {
+            utilidades.Utilidades.lanzaAlertaVacio(campoDireccion);
+            
+        } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboResponsable)) {
+            utilidades.Utilidades.lanzaAlertaCombo(comboResponsable);
+            
+        } else {
+            
+            String denominacion = campoDenominacion.getText().trim();
+            String direccion = campoDireccion.getText().trim();
+            String responsable = comboResponsable.getSelectedItem().toString();
+
+            
+            Tienda nuevaTienda = new Tienda(denominacion, direccion, responsable);
+            
+            Conexion.conectar();
+
+            if (ConsultasTiendas.registrarTienda(nuevaTienda)) {
+                
+                JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
+                
+            } 
+            
+            Conexion.cerrarConexion();
+
+            limpiarTienda();
+            
         }
     }
+    
 
+        /**
+         * Limpia los campos del formulario.
+         */
+        public void limpiarTienda() {
+            campoDenominacion.setText("");
+            campoDireccion.setText("");
+            comboResponsable.setSelectedIndex(0);
+        
+        }
 
+        /**
+         * Llena el JComboBox solicitando los datos a la capa de base de datos.
+         */
+        private void cargarComboResponsable() {
+            
+            comboResponsable.removeAllItems();
+            comboResponsable.addItem("Seleccione");
 
+            java.util.ArrayList<String> responsables = ConsultasTiendas.obtenerResponsables();
+            for (String resp : responsables) {
+                comboResponsable.addItem(resp);
+            }
+        }
 
-}
+    }
+
