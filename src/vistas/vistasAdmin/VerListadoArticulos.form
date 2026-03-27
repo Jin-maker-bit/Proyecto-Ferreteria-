@@ -712,6 +712,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="campoCodProducto">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -728,6 +729,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
               </Properties>
             </Component>
@@ -749,6 +751,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
               </Properties>
             </Component>

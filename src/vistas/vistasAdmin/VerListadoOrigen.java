@@ -4,6 +4,9 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasOrigen;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -21,6 +24,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        ConsultasOrigen.ListadoOrigenesAdmin((DefaultTableModel) tablaListaOrigen.getModel());
     }
 
     /**
@@ -36,7 +40,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulosDestacados = new javax.swing.JTable();
+        tablaListaOrigen = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -67,11 +71,11 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
         lblSubtitulo.setText("Listado de origen de cada producto disponible en tienda");
 
-        tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
-        tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
-        tablaArticulosDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        tablaArticulosDestacados.setForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaOrigen.setBackground(new java.awt.Color(9, 48, 64));
+        tablaListaOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaListaOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaListaOrigen.setForeground(new java.awt.Color(191, 150, 99));
+        tablaListaOrigen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -79,13 +83,20 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                 "Origen", "Descripción"
             }
         ));
-        tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosDestacados.setEnabled(false);
-        tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setShowGrid(false);
-        jScrollPane1.setViewportView(tablaArticulosDestacados);
+        tablaListaOrigen.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaListaOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaListaOrigen.setEnabled(false);
+        tablaListaOrigen.setFillsViewportHeight(true);
+        tablaListaOrigen.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaListaOrigen.setRowHeight(35);
+        tablaListaOrigen.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaListaOrigen.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaListaOrigen.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaListaOrigen);
+        if (tablaListaOrigen.getColumnModel().getColumnCount() > 0) {
+            tablaListaOrigen.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaListaOrigen.getColumnModel().getColumn(1).setPreferredWidth(250);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -198,11 +209,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(730, Short.MAX_VALUE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addComponent(botonVolver)
@@ -210,6 +217,10 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(189, 189, 189)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,6 +373,6 @@ public class VerListadoOrigen extends javax.swing.JDialog {
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tablaArticulosDestacados;
+    private javax.swing.JTable tablaListaOrigen;
     // End of variables declaration//GEN-END:variables
 }

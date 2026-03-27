@@ -10,6 +10,7 @@ import static bbdd.Conexion.conn;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author jintae
  */
 public class ConsultasTiendas extends Conexion {
-
+// metodo para rescaar datos en la jlael de usuario admin
     public static int rescataTienda() {
 
         int numeroTienda = 0;
@@ -155,6 +156,38 @@ public class ConsultasTiendas extends Conexion {
         return lista;
     }
     
-    
+    public static void listadoTiendasAdmin(javax.swing.table.DefaultTableModel modelo) {
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[2];
+
+        conectar();
+
+        try {
+
+            String consulta = "SELECT denominacion, direccion, responsable "
+                    + "FROM tienda ";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de productos " + e.getMessage());
+
+        } finally {
+
+            cerrarConexion();
+        }
+
+    }
     
 }

@@ -4,6 +4,13 @@
  */
 package bbdd;
 
+import static bbdd.Conexion.cerrarConexion;
+import static bbdd.Conexion.conectar;
+import static bbdd.Conexion.conn;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author jintae
@@ -11,9 +18,11 @@ package bbdd;
 public class ConsultasOrigen extends Conexion {
     
     /**
-     * Carga todos los orígenes de la tabla origen.
+     * Carga todos los orígenes de la tabla  origen de la base de datos.
      * @return ArrayList con los nombres de los orígenes.
      */
+    
+    //Este metodo carga el combo origen de la ventana registrar articulo de vistas admin.
     public static java.util.ArrayList<String> obtenerOrigenes() {
         
         java.util.ArrayList<String> lista = new java.util.ArrayList<>();
@@ -85,4 +94,39 @@ public class ConsultasOrigen extends Conexion {
         return exito;
     }
     
+    // metodo exlusivo para usarlo para rescatarlo en la tabla origenes, esto es una consulta para rescatar expresamente datos en la tabla de vistas
+    //ver origen
+    public static void ListadoOrigenesAdmin(javax.swing.table.DefaultTableModel modelo) {
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[2];
+
+        conectar();
+
+        try {
+
+            String consulta = "SELECT origen, descripcion "
+                    + "FROM origen ";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de productos " + e.getMessage());
+
+        } finally {
+
+            cerrarConexion();
+        }
+
+    }
 }

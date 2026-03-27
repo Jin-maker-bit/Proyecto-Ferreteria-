@@ -266,16 +266,19 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario11.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario11.setText("OFERTA:");
 
+        campoCodProducto.setEditable(false);
         campoCodProducto.setBackground(new java.awt.Color(3, 32, 38));
         campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
         campoCodProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoCodProducto.setEnabled(false);
         campoCodProducto.setName("Denominación"); // NOI18N
 
         campoNombre.setBackground(new java.awt.Color(3, 32, 38));
         campoNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(112, 137, 140));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoNombre.setEnabled(false);
         campoNombre.setName("Denominación"); // NOI18N
 
         textoDescripcion.setBackground(new java.awt.Color(3, 32, 38));

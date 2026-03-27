@@ -85,7 +85,6 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         ));
         tablaCategorias.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaCategorias.setEnabled(false);
         tablaCategorias.setFillsViewportHeight(true);
         tablaCategorias.setGridColor(new java.awt.Color(191, 150, 99));
         tablaCategorias.setRowHeight(40);

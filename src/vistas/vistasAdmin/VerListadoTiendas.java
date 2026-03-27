@@ -4,6 +4,10 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasOrigen;
+import bbdd.ConsultasTiendas;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -21,6 +25,7 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        ConsultasTiendas.listadoTiendasAdmin((DefaultTableModel) tablaListaTiendas.getModel());
     }
 
     /**
@@ -36,7 +41,7 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulosDestacados = new javax.swing.JTable();
+        tablaListaTiendas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -67,11 +72,11 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
         lblSubtitulo.setText("Listado y actualización de tiendas ");
 
-        tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
-        tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
-        tablaArticulosDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        tablaArticulosDestacados.setForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListaTiendas.setBackground(new java.awt.Color(9, 48, 64));
+        tablaListaTiendas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaListaTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaListaTiendas.setForeground(new java.awt.Color(191, 150, 99));
+        tablaListaTiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -79,13 +84,16 @@ public class VerListadoTiendas extends javax.swing.JDialog {
                 "Denominacíon", "Dirección", "Responsable"
             }
         ));
-        tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosDestacados.setEnabled(false);
-        tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setShowGrid(false);
-        jScrollPane1.setViewportView(tablaArticulosDestacados);
+        tablaListaTiendas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaListaTiendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaListaTiendas.setEnabled(false);
+        tablaListaTiendas.setFillsViewportHeight(true);
+        tablaListaTiendas.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaListaTiendas.setRowHeight(35);
+        tablaListaTiendas.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaListaTiendas.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaListaTiendas.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaListaTiendas);
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -362,6 +370,6 @@ public class VerListadoTiendas extends javax.swing.JDialog {
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tablaArticulosDestacados;
+    private javax.swing.JTable tablaListaTiendas;
     // End of variables declaration//GEN-END:variables
 }
