@@ -4,6 +4,10 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasCategorias;
+import bbdd.ConsultasProducto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -18,7 +22,7 @@ public class VerListadoCategorias extends javax.swing.JDialog {
     public VerListadoCategorias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        ConsultasCategorias.listadoCategorias((DefaultTableModel) tablaCategorias.getModel());
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
     }
@@ -36,7 +40,7 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulosDestacados = new javax.swing.JTable();
+        tablaCategorias = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -67,11 +71,11 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
         lblSubtitulo.setText("Listado de categorías disponuibles en la tienda");
 
-        tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
-        tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
-        tablaArticulosDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        tablaArticulosDestacados.setForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCategorias.setBackground(new java.awt.Color(9, 48, 64));
+        tablaCategorias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaCategorias.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaCategorias.setForeground(new java.awt.Color(191, 150, 99));
+        tablaCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -79,13 +83,21 @@ public class VerListadoCategorias extends javax.swing.JDialog {
                 "Categoría", "Descripción"
             }
         ));
-        tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosDestacados.setEnabled(false);
-        tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setShowGrid(false);
-        jScrollPane1.setViewportView(tablaArticulosDestacados);
+        tablaCategorias.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaCategorias.setEnabled(false);
+        tablaCategorias.setFillsViewportHeight(true);
+        tablaCategorias.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaCategorias.setRowHeight(40);
+        tablaCategorias.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaCategorias.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaCategorias.setShowGrid(false);
+        tablaCategorias.setShowHorizontalLines(true);
+        jScrollPane1.setViewportView(tablaCategorias);
+        if (tablaCategorias.getColumnModel().getColumnCount() > 0) {
+            tablaCategorias.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaCategorias.getColumnModel().getColumn(1).setPreferredWidth(350);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -362,6 +374,6 @@ public class VerListadoCategorias extends javax.swing.JDialog {
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tablaArticulosDestacados;
+    private javax.swing.JTable tablaCategorias;
     // End of variables declaration//GEN-END:variables
 }

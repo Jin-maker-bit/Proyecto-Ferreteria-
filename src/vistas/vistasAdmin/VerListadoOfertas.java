@@ -4,6 +4,9 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasProducto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -19,6 +22,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        ConsultasProducto.ArticulosOfertaAdmin((DefaultTableModel) tablaArticulosOferta.getModel());
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
     }
@@ -86,12 +90,16 @@ public class VerListadoOfertas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaArticulosOferta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosOferta.setEnabled(false);
+        tablaArticulosOferta.setFillsViewportHeight(true);
         tablaArticulosOferta.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosOferta.setRowHeight(40);
         tablaArticulosOferta.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setShowGrid(false);
+        tablaArticulosOferta.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaArticulosOferta);
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));

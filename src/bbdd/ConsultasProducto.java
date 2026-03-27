@@ -24,7 +24,8 @@ public class ConsultasProducto extends Conexion {
     /**
      * Recupera los tres últimos artículos registrados en la base de datos
      * ordenados por fecha de alta de forma descendente y los carga en la tabla.
-     * La tabla que carga este método aparece tanto en VentanaAdmin como en VentanaUser.
+     * La tabla que carga este método aparece tanto en VentanaAdmin como en
+     * VentanaUser.
      *
      * @param modelo
      */
@@ -68,6 +69,7 @@ public class ConsultasProducto extends Conexion {
             cerrarConexion();
         }
     }
+// Metodo para rescatar Articulos disponibles en un Jlabel de nuestra interfaz de usuario
 
     public static int rescataArticulosDisponibles() {
 
@@ -92,6 +94,7 @@ public class ConsultasProducto extends Conexion {
         return numeroVentas;
     }
 
+    // Metodo para rescatar articulos en oferta en un jlabel de nuestra vestanaprincipal user
     public static int rescataArticulosOferta() {
 
         int numeroVentas = 0;
@@ -116,10 +119,11 @@ public class ConsultasProducto extends Conexion {
         return numeroVentas;
     }
 
+    // Metodo para rescatar articulos destacados en un jlabel de nuestra vestanaprincipal user
     public static int rescataArticulosDestacados() {
 
         int numeroVentas = 0;
-        String consulta = "SELECT count(destacado) FROM producto "
+        String consulta = "SELECT count(destacado)FROM producto "
                 + "where UPPER(destacado) = 'SI'";
 
         conectar();
@@ -140,12 +144,11 @@ public class ConsultasProducto extends Conexion {
         return numeroVentas;
     }
 
+    // metodo usado para rescatar articulos destacados en user y admin
     public static void ArticulosDestacados(javax.swing.table.DefaultTableModel modelo) {
 
-        // Limpiamos la tabla para que no se dupliquen los datos al pulsar el botón
         modelo.setRowCount(0);
 
-        // Definimos el array de objetos (fila) con 4 columnas según nuestro SELECT
         Object[] fila = new Object[4];
 
         conectar();
@@ -160,7 +163,6 @@ public class ConsultasProducto extends Conexion {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
 
-            // Recorremos el ResultSet y llenamos el modelo
             while (rs.next()) {
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
@@ -180,12 +182,11 @@ public class ConsultasProducto extends Conexion {
         }
     }
 
+    // metodo usado para rescatar articulos en oferta en user y admin
     public static void ArticulosOferta(javax.swing.table.DefaultTableModel modelo) {
 
-        // Limpiamos la tabla para que no se dupliquen los datos al pulsar el botón
         modelo.setRowCount(0);
 
-        // Definimos el array de objetos (fila) con 4 columnas según nuestro SELECT
         Object[] fila = new Object[4];
 
         conectar();
@@ -200,7 +201,6 @@ public class ConsultasProducto extends Conexion {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
 
-            // Recorremos el ResultSet y llenamos el modelo
             while (rs.next()) {
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
@@ -220,12 +220,11 @@ public class ConsultasProducto extends Conexion {
         }
     }
 
+    // metodo usado para rescatar articulos totales en user y admin
     public static void ListadoArticulos(javax.swing.table.DefaultTableModel modelo) {
 
-        // Limpiamos la tabla para que no se dupliquen los datos al pulsar el botón
         modelo.setRowCount(0);
 
-        // Definimos el array de objetos (fila) con 4 columnas según nuestro SELECT
         Object[] fila = new Object[4];
 
         conectar();
@@ -239,7 +238,6 @@ public class ConsultasProducto extends Conexion {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
 
-            // Recorremos el ResultSet y llenamos el modelo
             while (rs.next()) {
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
@@ -257,20 +255,22 @@ public class ConsultasProducto extends Conexion {
 
             cerrarConexion();
         }
-        
+
     }
-    
+
     /**
      * Registra un nuevo producto en la tabla producto de la base de datos.
-     * Inserta todos los campos del producto incluyendo el precio de venta calculado automáticamente.
+     * Inserta todos los campos del producto incluyendo el precio de venta
+     * calculado automáticamente.
+     *
      * @param p
-     * @return 
+     * @return
      */
     public static boolean registrarProducto(Producto p) {
-        
-        String consulta = "INSERT INTO producto (codProducto, nombre, categoria, descripcion, " +
-                      "precio_compra, precio_venta, stock, origen, destacado, oferta, fecha_alta) " +
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String consulta = "INSERT INTO producto (codProducto, nombre, categoria, descripcion, "
+                + "precio_compra, precio_venta, stock, origen, destacado, oferta, fecha_alta) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -295,15 +295,15 @@ public class ConsultasProducto extends Conexion {
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null,
-
-                "Error al registrar artículo: " + ex.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+                    "Error al registrar artículo: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
 
             return false;
         }
 
     }
+// metodo para rescatar el total de productos en el jlbael de la interfaz admin
 
     public static int rescatarProductosNacionales() {
 
@@ -362,5 +362,83 @@ public class ConsultasProducto extends Conexion {
         }
 
         return p;
+    }
+
+    // metodo para rescatar especificamente articulos destacados ADMIN no se puede reutilizar por la cantidad de filas que hay en user.
+    public static void ArticulosDestacadosAdmin(javax.swing.table.DefaultTableModel modelo) {
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[5];
+
+        conectar();
+
+        try {
+
+            String consulta = "SELECT codProducto, nombre, categoria, precio_venta, destacado "
+                    + "FROM producto "
+                    + "WHERE destacado = 'SI' "
+                    + "ORDER BY fecha_alta DESC";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getDouble(4);
+                fila[4] = rs.getString(5);
+
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar artículos destacados: " + e.getMessage());
+
+        } finally {
+
+            cerrarConexion();
+        }
+    }
+
+    // metodo para rescatar especificamente articulos en oferta ADMIN no se puede reutilizar por la cantidad de filas que hay en user.
+    public static void ArticulosOfertaAdmin(javax.swing.table.DefaultTableModel modelo) {
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[5];
+
+        conectar();
+
+        try {
+
+            String consulta = "SELECT codProducto, nombre, categoria, precio_venta, oferta "
+                    + "FROM producto "
+                    + "WHERE oferta = 'SI' "
+                    + "ORDER BY fecha_alta DESC";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getDouble(4);
+                fila[4] = rs.getString(5);
+
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar artículos en oferta: " + e.getMessage());
+
+        } finally {
+
+            cerrarConexion();
+        }
     }
 }

@@ -27,7 +27,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(3, 32, 38));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-
+        ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
@@ -37,7 +37,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
+
     }
 
     /**
@@ -110,7 +110,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosDestacados.setFillsViewportHeight(true);
         tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosDestacados.setRowHeight(50);
+        tablaArticulosDestacados.setRowHeight(40);
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setShowGrid(false);

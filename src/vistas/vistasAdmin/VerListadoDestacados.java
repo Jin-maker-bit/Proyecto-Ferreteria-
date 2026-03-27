@@ -4,6 +4,9 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasProducto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -18,6 +21,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     public VerListadoDestacados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ConsultasProducto.ArticulosDestacadosAdmin((DefaultTableModel) tablaArticulosDestacados.getModel());
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -86,13 +90,21 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tablaArticulosDestacados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablaArticulosDestacados.setEnabled(false);
+        tablaArticulosDestacados.setFillsViewportHeight(true);
         tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaArticulosDestacados.setRowHeight(40);
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setShowGrid(false);
         jScrollPane1.setViewportView(tablaArticulosDestacados);
+        if (tablaArticulosDestacados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosDestacados.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaArticulosDestacados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosDestacados.getColumnModel().getColumn(2).setPreferredWidth(150);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 

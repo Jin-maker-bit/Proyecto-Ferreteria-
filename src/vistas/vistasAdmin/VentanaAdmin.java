@@ -67,13 +67,15 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelAdminSidebar = new javax.swing.JPanel();
         botonRegistrarArticulo = new javax.swing.JButton();
         botonRegistrarUsuario = new javax.swing.JButton();
-        botonVerArticulos = new javax.swing.JButton();
+        botonVerOfertas = new javax.swing.JButton();
         botonVerUsuarios = new javax.swing.JButton();
         botonCategorias = new javax.swing.JButton();
         botonOrigenes = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         botonTienda = new javax.swing.JButton();
         botonVerMiCuenta = new javax.swing.JButton();
+        botonVerDestacados = new javax.swing.JButton();
+        botonVerArticulos = new javax.swing.JButton();
         panelRescatarLabels = new javax.swing.JPanel();
         lblRescatarTiendas = new javax.swing.JLabel();
         lblRescatarProductoNacional = new javax.swing.JLabel();
@@ -131,33 +133,32 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelLogo.setLayout(panelLogoLayout);
         panelLogoLayout.setHorizontalGroup(
             panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblLogo)
-                .addGap(50, 50, 50))
             .addGroup(panelLogoLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelLogoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblLogo))
         );
         panelLogoLayout.setVerticalGroup(
             panelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLogoLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipadx = -9;
+        gridBagConstraints.ipady = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(37, 42, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 72, 0, 0);
         panelPrincipal.add(panelLogo, gridBagConstraints);
 
         lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
@@ -168,7 +169,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 36, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(24, 42, 0, 0);
         panelPrincipal.add(lblTitulo, gridBagConstraints);
 
         lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -179,7 +180,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 36, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 42, 0, 0);
         panelPrincipal.add(lblSubtitulo, gridBagConstraints);
 
         lblAcceso.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -187,10 +188,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblAcceso.setText("ACCESO RÁPIDO");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 17;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 88, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 91, 0, 0);
         panelPrincipal.add(lblAcceso, gridBagConstraints);
 
         panelAdminSidebar.setOpaque(false);
@@ -217,14 +218,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
-        botonVerArticulos.setBackground(new java.awt.Color(9, 48, 64));
-        botonVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        botonVerArticulos.setForeground(new java.awt.Color(191, 150, 99));
-        botonVerArticulos.setText("Ver Artículos");
-        botonVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonVerArticulos.addActionListener(new java.awt.event.ActionListener() {
+        botonVerOfertas.setBackground(new java.awt.Color(9, 48, 64));
+        botonVerOfertas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerOfertas.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerOfertas.setText("Ver Ofertas");
+        botonVerOfertas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerOfertas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVerArticulosActionPerformed(evt);
+                botonVerOfertasActionPerformed(evt);
             }
         });
 
@@ -293,6 +294,28 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
 
+        botonVerDestacados.setBackground(new java.awt.Color(9, 48, 64));
+        botonVerDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerDestacados.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerDestacados.setText("Ver Destacados");
+        botonVerDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerDestacados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerDestacadosActionPerformed(evt);
+            }
+        });
+
+        botonVerArticulos.setBackground(new java.awt.Color(9, 48, 64));
+        botonVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        botonVerArticulos.setForeground(new java.awt.Color(191, 150, 99));
+        botonVerArticulos.setText("Ver Artículos");
+        botonVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVerArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerArticulosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdminSidebarLayout = new javax.swing.GroupLayout(panelAdminSidebar);
         panelAdminSidebar.setLayout(panelAdminSidebarLayout);
         panelAdminSidebarLayout.setHorizontalGroup(
@@ -304,10 +327,12 @@ public class VentanaAdmin extends javax.swing.JFrame {
                     .addComponent(botonCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(botonVerArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerOfertas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonVerUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonTienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonVerMiCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonVerMiCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerDestacados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVerArticulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
             .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -318,8 +343,12 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVerArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonVerDestacados, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonVerOfertas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVerUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,13 +365,13 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 18;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 42, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 47, 0, 0);
         panelPrincipal.add(panelAdminSidebar, gridBagConstraints);
 
         panelRescatarLabels.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99)));
@@ -437,13 +466,13 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 28;
         gridBagConstraints.ipady = -47;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 26, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(7, 32, 0, 0);
         panelPrincipal.add(panelRescatarLabels, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
@@ -520,12 +549,12 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.gridheight = 7;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 109, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 115, 6, 0);
         panelPrincipal.add(panelFinal, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(3, 32, 38));
@@ -555,12 +584,19 @@ public class VentanaAdmin extends javax.swing.JFrame {
         tablaArticulosRegistrados.setEnabled(false);
         tablaArticulosRegistrados.setFillsViewportHeight(true);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosRegistrados.setRowHeight(50);
+        tablaArticulosRegistrados.setRowHeight(40);
         tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setShowGrid(false);
         tablaArticulosRegistrados.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
+        if (tablaArticulosRegistrados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosRegistrados.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaArticulosRegistrados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosRegistrados.getColumnModel().getColumn(2).setPreferredWidth(130);
+            tablaArticulosRegistrados.getColumnModel().getColumn(3).setPreferredWidth(10);
+            tablaArticulosRegistrados.getColumnModel().getColumn(4).setPreferredWidth(20);
+        }
 
         lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo5.setForeground(new java.awt.Color(112, 137, 140));
@@ -589,11 +625,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
         panelPrincipal.add(jPanel2, gridBagConstraints);
 
         menuBarAdmin.setBackground(new java.awt.Color(10, 49, 64));
@@ -756,11 +792,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1013, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
 
         pack();
@@ -776,10 +812,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         regusu.setVisible(true);
     }//GEN-LAST:event_botonRegistrarUsuarioActionPerformed
 
-    private void botonVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosActionPerformed
-        VerListadoArticulos vlistart = new VerListadoArticulos(this, true);
-        vlistart.setVisible(true);
-    }//GEN-LAST:event_botonVerArticulosActionPerformed
+    private void botonVerOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerOfertasActionPerformed
+        VerListadoOfertas vlistof = new VerListadoOfertas(this, true);
+        vlistof.setVisible(true);
+    }//GEN-LAST:event_botonVerOfertasActionPerformed
 
     private void botonCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCategoriasActionPerformed
         VerListadoCategorias vlistcat = new VerListadoCategorias(this, true);
@@ -865,6 +901,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
         vdatcuent.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_botonVerMiCuentaActionPerformed
 
+    private void botonVerDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDestacadosActionPerformed
+        VerListadoDestacados vlistdes = new VerListadoDestacados(this, true);
+        vlistdes.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerDestacadosActionPerformed
+
+    private void botonVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosActionPerformed
+        VerListadoArticulos vlistart = new VerListadoArticulos(this, true);
+        vlistart.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerArticulosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -898,7 +944,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonTienda;
     private javax.swing.JButton botonVerArticulos;
+    private javax.swing.JButton botonVerDestacados;
     private javax.swing.JButton botonVerMiCuenta;
+    private javax.swing.JButton botonVerOfertas;
     private javax.swing.JButton botonVerUsuarios;
     private javax.swing.JMenuItem itemCategorias;
     private javax.swing.JMenuItem itemDestacados;

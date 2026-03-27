@@ -4,6 +4,9 @@
  */
 package vistas.vistasAdmin;
 
+import bbdd.ConsultasProducto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jintae
@@ -18,6 +21,8 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     public VerListadoArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        ConsultasProducto.ListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -36,7 +41,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblTitulo = new javax.swing.JLabel();
         lblSubtitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArticulosOferta = new javax.swing.JTable();
+        tablaListadoArticulos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -91,11 +96,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
         lblSubtitulo.setText("Listado de articulos en la tienda");
 
-        tablaArticulosOferta.setBackground(new java.awt.Color(9, 48, 64));
-        tablaArticulosOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
-        tablaArticulosOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        tablaArticulosOferta.setForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosOferta.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListadoArticulos.setBackground(new java.awt.Color(9, 48, 64));
+        tablaListadoArticulos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
+        tablaListadoArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        tablaListadoArticulos.setForeground(new java.awt.Color(191, 150, 99));
+        tablaListadoArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,13 +116,17 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tablaArticulosOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosOferta.setEnabled(false);
-        tablaArticulosOferta.setGridColor(new java.awt.Color(191, 150, 99));
-        tablaArticulosOferta.setSelectionBackground(new java.awt.Color(191, 150, 99));
-        tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        tablaArticulosOferta.setShowGrid(false);
-        jScrollPane1.setViewportView(tablaArticulosOferta);
+        tablaListadoArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaListadoArticulos.setEnabled(false);
+        tablaListadoArticulos.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaListadoArticulos.setSelectionBackground(new java.awt.Color(191, 150, 99));
+        tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        tablaListadoArticulos.setShowGrid(false);
+        jScrollPane1.setViewportView(tablaListadoArticulos);
+        if (tablaListadoArticulos.getColumnModel().getColumnCount() > 0) {
+            tablaListadoArticulos.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaListadoArticulos.getColumnModel().getColumn(3).setPreferredWidth(10);
+        }
 
         jPanel3.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -656,7 +665,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tablaArticulosOferta;
+    private javax.swing.JTable tablaListadoArticulos;
     private javax.swing.JTextField textoDescripcion;
     // End of variables declaration//GEN-END:variables
 }

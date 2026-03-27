@@ -26,6 +26,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         initComponents();
         tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
         tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
@@ -35,7 +36,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
+       
 
     }
 

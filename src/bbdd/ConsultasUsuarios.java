@@ -11,6 +11,7 @@ import modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +53,7 @@ public class ConsultasUsuarios extends Conexion {
         }
         return user;
     }
-
+// metodo especifico para imprimir total de usuario en la jlbael del admin
     public static int rescatarUsuariosTotales() {
 
         int rescatarProducto = 0;
@@ -76,6 +77,7 @@ public class ConsultasUsuarios extends Conexion {
         return rescatarProducto;
     }
 
+    //metodo especifico para rescatar usuarios activos en la jlabel de la interfaz admin
     public static int rescatarUsuariosActivos() {
 
         int rescatarProducto = 0;
@@ -196,6 +198,49 @@ public class ConsultasUsuarios extends Conexion {
             Conexion.cerrarConexion();
         }
         return actualizado;
+    }
+    //metodo especifico para rescatar la lista total de usuarios para la ventana admin
+    public static void listadoUsuarios(javax.swing.table.DefaultTableModel modelo) {
+
+        modelo.setRowCount(0);
+
+        Object[] fila = new Object[8];
+
+        conectar();
+
+        try {
+
+            String consulta = "SELECT idUsuario, nombre_apellidos, tienda, usuario, pass, tipo, estado, fecha_alta "
+                    + "FROM usuarios "
+                    + "ORDER BY idUsuario ASC";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            while (rs.next()) {
+                fila[0] = rs.getString(1);
+                fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
+                fila[3] = rs.getString(4);
+                fila[4] = rs.getString(5);
+                fila[5] = rs.getString(6);
+                fila[6] = rs.getString(7);
+                fila[7] = rs.getString(8);
+                
+                
+
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de productos " + e.getMessage());
+
+        } finally {
+
+            cerrarConexion();
+        }
+
     }
 
 }
