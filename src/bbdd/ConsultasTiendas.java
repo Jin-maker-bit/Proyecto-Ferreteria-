@@ -160,14 +160,14 @@ public class ConsultasTiendas extends Conexion {
 
         modelo.setRowCount(0);
 
-        Object[] fila = new Object[2];
+        Object[] fila = new Object[3];
 
         conectar();
 
         try {
 
             String consulta = "SELECT denominacion, direccion, responsable "
-                    + "FROM tienda ";
+                    + "FROM tiendas ";
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
@@ -175,6 +175,7 @@ public class ConsultasTiendas extends Conexion {
             while (rs.next()) {
                 fila[0] = rs.getString(1);
                 fila[1] = rs.getString(2);
+                fila[2] = rs.getString(3);
 
                 modelo.addRow(fila);
             }
