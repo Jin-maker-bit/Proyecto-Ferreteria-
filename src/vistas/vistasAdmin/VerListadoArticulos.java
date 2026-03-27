@@ -5,27 +5,46 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasProducto;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
+import utilidades.Utilidades;
 
 /**
+ * Ventana de listado de artículos del administrador. Permite consultar, editar
+ * nombre y descripción, y eliminar productos. Al pulsar sobre un artículo de la
+ * tabla se cargan todos sus datos en el panel derecho. Los campos solo son
+ * editables tras pulsar el botón "Editar Productos".
  *
- * @author jintae
+ * @author Jose y Patricia.
  */
 public class VerListadoArticulos extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoArticulos.class.getName());
 
     /**
-     * Creates new form VerListadoArticulos
+     * Constructor de la ventana de listado de artículos. Inicializa
+     * componentes, establece icono, carga la tabla y deja los campos del panel
+     * derecho no editables hasta pulsar Editar. Creates new form
+     * VerListadoArticulos
      */
     public VerListadoArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        ConsultasProducto.ListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
-        
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+
+        // Cargar tabla al abrir
+        ConsultasProducto.cargarListadoArticulos(
+                (DefaultTableModel) tablaListadoArticulos.getModel());
+
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaListadoArticulos.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
+
+        // Panel derecho bloqueado hasta pulsar Editar
+//        bloquearCampos();
     }
 
     /**
@@ -65,16 +84,18 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario11 = new javax.swing.JLabel();
         campoCodProducto = new javax.swing.JTextField();
         campoNombre = new javax.swing.JTextField();
-        textoDescripcion = new javax.swing.JTextField();
         campoPrecioCompra = new javax.swing.JTextField();
         campoPrecioVenta = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
-        comboCategoria = new javax.swing.JComboBox<>();
-        comboOrigen = new javax.swing.JComboBox<>();
-        comboDestacado = new javax.swing.JComboBox<>();
-        comboOferta = new javax.swing.JComboBox<>();
+        campoCategoria = new javax.swing.JTextField();
+        campoOrigen = new javax.swing.JTextField();
+        campoOferta = new javax.swing.JTextField();
+        campoDestacado = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        campoDescripcion = new javax.swing.JTextArea();
         botonGuardar = new javax.swing.JButton();
-        botonEditarProducto = new javax.swing.JButton();
+        botonEditarProductos = new javax.swing.JButton();
+        botoneEliminar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -117,11 +138,15 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             }
         });
         tablaListadoArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaListadoArticulos.setEnabled(false);
         tablaListadoArticulos.setGridColor(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setShowGrid(false);
+        tablaListadoArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaListadoArticulosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaListadoArticulos);
         if (tablaListadoArticulos.getColumnModel().getColumnCount() > 0) {
             tablaListadoArticulos.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -225,13 +250,14 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INFORMACION DE PRODUCTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(191, 150, 99))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(191, 150, 99));
+        jPanel1.setEnabled(false);
 
         lblUsuario2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario2.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario2.setText("CODIGO PRODUCTO:");
 
         lblUsuario3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblUsuario3.setForeground(new java.awt.Color(191, 150, 99));
+        lblUsuario3.setForeground(new java.awt.Color(255, 0, 51));
         lblUsuario3.setText("NOMBRE:");
 
         lblUsuario4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -239,7 +265,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario4.setText("CATEGORIA:");
 
         lblUsuario5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblUsuario5.setForeground(new java.awt.Color(191, 150, 99));
+        lblUsuario5.setForeground(new java.awt.Color(255, 51, 51));
         lblUsuario5.setText("DESCRIPCIÓN:");
 
         lblUsuario6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -281,62 +307,62 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoNombre.setEnabled(false);
         campoNombre.setName("Denominación"); // NOI18N
 
-        textoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
-        textoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        textoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
-        textoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        textoDescripcion.setName("Denominación"); // NOI18N
-        textoDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoDescripcionActionPerformed(evt);
-            }
-        });
-
         campoPrecioCompra.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioCompra.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoPrecioCompra.setEnabled(false);
         campoPrecioCompra.setName("Denominación"); // NOI18N
 
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoPrecioVenta.setEnabled(false);
         campoPrecioVenta.setName("Denominación"); // NOI18N
 
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoStock.setEnabled(false);
         campoStock.setName("Denominación"); // NOI18N
 
-        comboCategoria.setBackground(new java.awt.Color(3, 32, 38));
-        comboCategoria.setForeground(new java.awt.Color(112, 137, 140));
-        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", " " }));
-        comboCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        comboCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboCategoria.setName("Tipo"); // NOI18N
+        campoCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        campoCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoCategoria.setForeground(new java.awt.Color(112, 137, 140));
+        campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoCategoria.setEnabled(false);
+        campoCategoria.setName("Denominación"); // NOI18N
 
-        comboOrigen.setBackground(new java.awt.Color(3, 32, 38));
-        comboOrigen.setForeground(new java.awt.Color(112, 137, 140));
-        comboOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
-        comboOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        comboOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboOrigen.setName("Tipo"); // NOI18N
+        campoOrigen.setBackground(new java.awt.Color(3, 32, 38));
+        campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoOrigen.setForeground(new java.awt.Color(112, 137, 140));
+        campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoOrigen.setEnabled(false);
+        campoOrigen.setName("Denominación"); // NOI18N
 
-        comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
-        comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
-        comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
-        comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        comboDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboDestacado.setName("Tipo"); // NOI18N
+        campoOferta.setBackground(new java.awt.Color(3, 32, 38));
+        campoOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoOferta.setForeground(new java.awt.Color(112, 137, 140));
+        campoOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoOferta.setEnabled(false);
+        campoOferta.setName("Denominación"); // NOI18N
 
-        comboOferta.setBackground(new java.awt.Color(3, 32, 38));
-        comboOferta.setForeground(new java.awt.Color(112, 137, 140));
-        comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
-        comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        comboOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboOferta.setName("Tipo"); // NOI18N
+        campoDestacado.setBackground(new java.awt.Color(3, 32, 38));
+        campoDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDestacado.setForeground(new java.awt.Color(112, 137, 140));
+        campoDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoDestacado.setEnabled(false);
+        campoDestacado.setName("Denominación"); // NOI18N
+
+        campoDescripcion.setColumns(20);
+        campoDescripcion.setLineWrap(true);
+        campoDescripcion.setRows(5);
+        campoDescripcion.setWrapStyleWord(true);
+        campoDescripcion.setAutoscrolls(false);
+        campoDescripcion.setEnabled(false);
+        jScrollPane2.setViewportView(campoDescripcion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -355,18 +381,21 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario4)
                     .addComponent(lblUsuario3)
                     .addComponent(lblUsuario2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoCodProducto)
-                    .addComponent(campoNombre)
-                    .addComponent(textoDescripcion)
-                    .addComponent(campoPrecioCompra, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoPrecioVenta, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(campoStock, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comboCategoria, 0, 252, Short.MAX_VALUE)
-                    .addComponent(comboOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboDestacado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboOferta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoCodProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                            .addComponent(campoNombre)
+                            .addComponent(campoPrecioCompra, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoPrecioVenta, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoStock, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(campoOferta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(campoDestacado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -383,12 +412,16 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario4)
-                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUsuario5)
-                    .addComponent(textoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblUsuario5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario6)
                     .addComponent(campoPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -400,25 +433,25 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario8)
                     .addComponent(campoStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario9)
-                    .addComponent(comboOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario10)
-                    .addComponent(comboDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario11)
-                    .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(campoOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(191, 150, 99));
-        botonGuardar.setText("GUARDAR");
+        botonGuardar.setText("Guardar");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,14 +459,25 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             }
         });
 
-        botonEditarProducto.setBackground(new java.awt.Color(3, 32, 38));
-        botonEditarProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonEditarProducto.setForeground(new java.awt.Color(191, 150, 99));
-        botonEditarProducto.setText("Editar productos");
-        botonEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEditarProducto.addActionListener(new java.awt.event.ActionListener() {
+        botonEditarProductos.setBackground(new java.awt.Color(3, 32, 38));
+        botonEditarProductos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonEditarProductos.setForeground(new java.awt.Color(191, 150, 99));
+        botonEditarProductos.setText("Editar productos");
+        botonEditarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarProductoActionPerformed(evt);
+                botonEditarProductosActionPerformed(evt);
+            }
+        });
+
+        botoneEliminar.setBackground(new java.awt.Color(3, 32, 38));
+        botoneEliminar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botoneEliminar.setForeground(new java.awt.Color(191, 150, 99));
+        botoneEliminar.setText("Eliminar");
+        botoneEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botoneEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoneEliminarActionPerformed(evt);
             }
         });
 
@@ -466,10 +510,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonEditarProducto)
+                        .addComponent(botonEditarProductos)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonGuardar)
-                        .addGap(82, 82, 82)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botoneEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonVolver))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
@@ -500,9 +546,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botoneEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonEditarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(botonEditarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(9, 9, 9)))
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -571,75 +619,137 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-    RegistrarArticulo ra = new RegistrarArticulo(null, true);
-    this.dispose();
-    ra.setVisible(true);
-    // TODO add your handling code here:
+        RegistrarArticulo ra = new RegistrarArticulo(null, true);
+        this.dispose();
+        ra.setVisible(true);
+
+//    ESTO NO VA AQUI PORQUE ABRE UNA VENTANA DISTINTA: ConsultasProducto.cargarListadoArticulos(
+//        (javax.swing.table.DefaultTableModel) tablaListadoArticulos.getModel());
+        // TODO add your handling code here:
     }//GEN-LAST:event_botonActualizarActionPerformed
 
-    private void textoDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoDescripcionActionPerformed
-
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        guardarArticulo();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
-    private void botonEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEditarProductoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+    private void botonEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductosActionPerformed
+        if (campoCodProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Selecciona un artículo primero.",
+                    "Sin selección",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            campoNombre.setEditable(true);
+            campoDescripcion.setEditable(true);
         }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                VerListadoArticulos dialog = new VerListadoArticulos(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+
+    }//GEN-LAST:event_botonEditarProductosActionPerformed
+
+    private void botoneEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneEliminarActionPerformed
+
+        if (campoCodProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Selecciona un artículo primero.",
+                    "Sin selección",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Seguro que quieres eliminar el artículo " + campoNombre.getText() + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+            if (ConsultasProducto.eliminarProducto(campoCodProducto.getText())) {
+                JOptionPane.showMessageDialog(this, "Artículo eliminado correctamente.");
+                ConsultasProducto.cargarListadoArticulos(
+                        (DefaultTableModel) tablaListadoArticulos.getModel());
+                limpiarFormularioVerListadoArticulos();
             }
-        });
-    }
+        }
+
+
+    }//GEN-LAST:event_botoneEliminarActionPerformed
+
+    private void tablaListadoArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoArticulosMouseClicked
+        int fila = tablaListadoArticulos.getSelectedRow();
+        if (fila != -1) {
+            String codigo = tablaListadoArticulos.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.rescatarProductoPorCodigo(codigo);
+            if (p != null) {
+                campoCodProducto.setText(p.getCodProducto());
+                campoNombre.setText(p.getNombre());
+                campoCategoria.setText(p.getCategoria());
+                campoDescripcion.setText(p.getDescripcion());
+                campoPrecioCompra.setText(String.valueOf(p.getPrecioCompra()));
+                campoPrecioVenta.setText(String.valueOf(p.getPrecioVenta()));
+                campoStock.setText(String.valueOf(p.getStock()));
+                campoOrigen.setText(p.getOrigen());
+                campoDestacado.setText(p.getDestacado());
+                campoOferta.setText(p.getOferta());
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al rescatar el producto.");
+            }
+        }
+
+    }//GEN-LAST:event_tablaListadoArticulosMouseClicked
+
+        /**
+         * @param args the command line arguments
+         */
+        public static void main(String args[]) {
+            /* Set the Nimbus look and feel */
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+             */
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+                logger.log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            //</editor-fold>
+
+            /* Create and display the dialog */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    VerListadoArticulos dialog = new VerListadoArticulos(new javax.swing.JFrame(), true);
+                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    dialog.setVisible(true);
+                }
+            });
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
-    private javax.swing.JButton botonEditarProducto;
+    private javax.swing.JButton botonEditarProductos;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVolver;
+    private javax.swing.JButton botoneEliminar;
+    private javax.swing.JTextField campoCategoria;
     private javax.swing.JTextField campoCodProducto;
+    private javax.swing.JTextArea campoDescripcion;
+    private javax.swing.JTextField campoDestacado;
     private javax.swing.JTextField campoNombre;
+    private javax.swing.JTextField campoOferta;
+    private javax.swing.JTextField campoOrigen;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
     private javax.swing.JTextField campoStock;
-    private javax.swing.JComboBox<String> comboCategoria;
-    private javax.swing.JComboBox<String> comboDestacado;
-    private javax.swing.JComboBox<String> comboOferta;
-    private javax.swing.JComboBox<String> comboOrigen;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JLabel jLabel2;
@@ -647,6 +757,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblImprimirUsuario;
     private javax.swing.JLabel lblRescataFechayHora;
@@ -669,6 +780,81 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaListadoArticulos;
-    private javax.swing.JTextField textoDescripcion;
     // End of variables declaration//GEN-END:variables
-}
+
+    
+    /**
+     * Realiza el registro de .... en la base de datos. Aplica validaciones
+     * únicamente en los campos necesarios del formulario antes de proceder. Si
+     * todas las validaciones son correctas... Si el registro es correcto,
+     * muestra mensaje de confirmación y limpia el formulario.
+     */
+    public void guardarArticulo() {
+
+        if (campoCodProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Selecciona un artículo primero.",
+                    "Sin selección",
+                    JOptionPane.WARNING_MESSAGE);
+
+        } else if (Utilidades.compruebaCampoVacio(campoNombre)) {
+            Utilidades.lanzaAlertaVacio(campoNombre);
+
+        } else if (campoDescripcion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La descripción no puede estar vacía.",
+                    "Campo vacío",
+                    JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            if (ConsultasProducto.actualizarProducto(
+                    campoCodProducto.getText(),
+                    campoNombre.getText(),
+                    campoDescripcion.getText())) {
+
+                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.");
+                ConsultasProducto.cargarListadoArticulos(
+                        (DefaultTableModel) tablaListadoArticulos.getModel());
+                bloquearCampos();
+
+            }
+
+        }
+    }
+    
+    
+        // Falta crear objeto
+        // Falta BBDD
+        // Falta referencia a limpiarCampos
+    
+    
+        /**
+         * Limpia todos los campos del formulario de registro de artículo.
+         */
+    public void limpiarFormularioVerListadoArticulos() {
+
+        campoCodProducto.setText("");
+        campoNombre.setText("");
+        campoCategoria.setText("");
+        campoDescripcion.setText("");
+        campoPrecioCompra.setText("");
+        campoPrecioVenta.setText("");
+        campoStock.setText("");
+        campoOrigen.setText("");
+        campoDestacado.setText("");
+        campoOferta.setText("");
+        campoNombre.setEditable(false);
+        campoDescripcion.setEditable(false);
+    }
+
+    /**
+     * Bloquea los campos del panel derecho para que no sean editables. Se llama
+     * al abrir la ventana y tras guardar o cancelar.
+     */
+    public void bloquearCampos() {
+        campoNombre.setEditable(false);
+        campoDescripcion.setEditable(false);
+    }
+
+} // Final
+
