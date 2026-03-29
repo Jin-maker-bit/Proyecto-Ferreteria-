@@ -28,6 +28,9 @@ public class VentanaLogin extends javax.swing.JFrame {
      */
     public VentanaLogin() {
         initComponents();
+        
+        // Llamamos al Single Musical de JP Ferretería Single Dos
+        utilidades.Utilidades.ReproductorAudio.reproducir("SingleFerreteriaDos.wav");
 
         // Carácter del campo contraseña:
         campoPass.setEchoChar('⚒');

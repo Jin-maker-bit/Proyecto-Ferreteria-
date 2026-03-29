@@ -24,6 +24,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
      */
     public VentanaAdmin() {
         initComponents();
+        
+        // Llamamos al Single Musical de JP Ferretería - Single Uno
+        utilidades.Utilidades.ReproductorAudio.reproducir("SingleFerreteriaUno.wav");
 
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);

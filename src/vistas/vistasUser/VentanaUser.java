@@ -23,7 +23,10 @@ public class VentanaUser extends javax.swing.JFrame {
      */
     public VentanaUser() {
         initComponents();
-        // DisenoUtil.aplicarEstiloRedondeado(lbl, 20); 
+        
+        // Llamamos al Single Musical de JP Ferretería - Single Uno
+        utilidades.Utilidades.ReproductorAudio.reproducir("SingleFerreteriaUno.wav");
+        
 
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -43,6 +46,7 @@ public class VentanaUser extends javax.swing.JFrame {
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
         
+        // DisenoUtil.aplicarEstiloRedondeado(lbl, 20); 
         lblRescatarArticulosDisponibles.setText(String.valueOf(ConsultasProducto.rescataArticulosDisponibles()));
         lblRescatarEnOferta.setText(String.valueOf(ConsultasProducto.rescataArticulosOferta()));
         lblRescatarDestacados.setText(String.valueOf(ConsultasProducto.rescataArticulosDestacados()));

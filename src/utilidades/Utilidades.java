@@ -14,6 +14,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.RenderingHints;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
 
@@ -276,5 +281,57 @@ public class Utilidades {
                 javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
     }
+    
+    
+    
+    public static class ReproductorAudio {
+        
+        // Añadimos esta línea para guardar la canción que está sonando
+        private static Clip clipActual;
+        
+    /**
+     * Reproduce un archivo de audio del paquete audio.
+     * @param nombreArchivo Nombre Single
+     */
+    public static void reproducir(String nombreArchivo) {
+        
+        
+        
+        try {
+            // Si ya hay algo sonando, lo paramos primero
+            parar();
+            
+            // Buscamos el archivo dentro del paquete audio
+            InputStream is = ReproductorAudio.class.getResourceAsStream("/audio/" + nombreArchivo);
+            
+            // Si el archivo no existe o hay error en la ruta, evitamos que pete
+            if (is == null) return;
+                
+            InputStream bufferedIn = new BufferedInputStream(is);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
+            
+            clipActual = AudioSystem.getClip();
+            clipActual.open(ais);
+            clipActual.start();
+            
+        } catch (Exception e) {
+            
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
 
+    
+    
+    /**
+     * Método nuevo para detener la música
+     */
+    public static void parar() {
+        
+        if (clipActual != null && clipActual.isRunning()) {
+            
+            clipActual.stop();
+            clipActual.close();
+        }
+    } 
+}
 }
