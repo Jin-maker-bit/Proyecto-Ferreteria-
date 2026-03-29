@@ -8,6 +8,7 @@ import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -28,9 +29,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         // Cargar tabla:
         ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaArticulosOferta);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -105,7 +104,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -127,9 +126,13 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablaArticulosOferta);
         if (tablaArticulosOferta.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosOferta.getColumnModel().getColumn(0).setResizable(false);
             tablaArticulosOferta.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tablaArticulosOferta.getColumnModel().getColumn(1).setResizable(false);
             tablaArticulosOferta.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosOferta.getColumnModel().getColumn(2).setResizable(false);
             tablaArticulosOferta.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaArticulosOferta.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));

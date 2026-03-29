@@ -8,6 +8,7 @@ import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -39,9 +40,7 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         // Cargar tabla
         ConsultasProducto.ListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaListadoArticulos.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaListadoArticulos);
     }
 
     /**
@@ -104,24 +103,35 @@ public class VerListadoArticulo extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tablaListadoArticulos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaListadoArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tablaListadoArticulos.setFillsViewportHeight(true);
+        tablaListadoArticulos.setFocusable(false);
         tablaListadoArticulos.setGridColor(new java.awt.Color(191, 150, 99));
+        tablaListadoArticulos.setRowHeight(30);
         tablaListadoArticulos.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setShowGrid(false);
+        tablaListadoArticulos.setShowHorizontalLines(true);
         tablaListadoArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaListadoArticulosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaListadoArticulos);
+        if (tablaListadoArticulos.getColumnModel().getColumnCount() > 0) {
+            tablaListadoArticulos.getColumnModel().getColumn(0).setResizable(false);
+            tablaListadoArticulos.getColumnModel().getColumn(1).setResizable(false);
+            tablaListadoArticulos.getColumnModel().getColumn(2).setResizable(false);
+            tablaListadoArticulos.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jPanel3.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -210,10 +220,12 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         jPanel5.setBackground(new java.awt.Color(9, 48, 64));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INFORMACION DE PRODUCTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(191, 150, 99))); // NOI18N
 
+        imprimirInfoProducto.setEditable(false);
         imprimirInfoProducto.setBackground(new java.awt.Color(3, 32, 38));
         imprimirInfoProducto.setColumns(20);
         imprimirInfoProducto.setForeground(new java.awt.Color(191, 150, 99));
         imprimirInfoProducto.setRows(5);
+        imprimirInfoProducto.setFocusable(false);
         jScrollPane4.setViewportView(imprimirInfoProducto);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);

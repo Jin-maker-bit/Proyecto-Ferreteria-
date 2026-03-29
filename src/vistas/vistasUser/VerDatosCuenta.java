@@ -26,15 +26,16 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     public VerDatosCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         cargarDatosPerfil();
-        
+        desactivarEdicionUsuario();
+
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
-        
+
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
@@ -78,6 +79,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoUsuario = new javax.swing.JTextField();
         lblDenominacion6 = new javax.swing.JLabel();
         campoTipo = new javax.swing.JTextField();
+        botonActivarEdicion = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImprimirUsuario = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -293,12 +295,22 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoTipo.setEnabled(false);
         campoTipo.setName("Denominación"); // NOI18N
 
+        botonActivarEdicion.setBackground(new java.awt.Color(191, 150, 99));
+        botonActivarEdicion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonActivarEdicion.setText("Activar edicion");
+        botonActivarEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonActivarEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActivarEdicionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(177, 177, 177))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -317,8 +329,10 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addComponent(campoNombreYApellidos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(botonActivarEdicion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -355,10 +369,11 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDenominacion6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActivarEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -552,6 +567,12 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         actualizarDatosUser(); // TODO add your handling code here:
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    private void botonActivarEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarEdicionActionPerformed
+
+        activarEdicionUsuario();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActivarEdicionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -590,6 +611,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActivarEdicion;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoNombreYApellidos;
@@ -676,4 +698,25 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         }
     }
 
+    public void desactivarEdicionUsuario() {
+        campoNombreYApellidos.setEditable(false);
+        campoPass.setEditable(false);
+        campoNuevoPass.setEditable(false);
+    }
+
+    /**
+     * Activa la edición de nombre y descripción del producto seleccionado. Se
+     * llama únicamente al pulsar el botón Editar Producto con un producto
+     * seleccionado. Manda un aviso informativo al clicar sobre el botón.
+     */
+    public void activarEdicionUsuario() {
+        campoNombreYApellidos.setEditable(true);
+        campoPass.setEditable(true);
+        campoNuevoPass.setEditable(true);
+
+        JOptionPane.showMessageDialog(this,
+                "Ya puede editar los campos NOMBRE y CONTRASEÑA.",
+                "Modo edición activado",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
 }

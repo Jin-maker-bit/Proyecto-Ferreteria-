@@ -8,6 +8,7 @@ import bbdd.ConsultasCategorias;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -28,9 +29,7 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         // Cargar tabla al abrir
         ConsultasCategorias.listadoCategorias((DefaultTableModel) tablaCategorias.getModel());
         
-         //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaCategorias.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaCategorias.setSelectionForeground(new java.awt.Color(191, 150, 99));
+         Utilidades.disenoTablas(tablaCategorias);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -119,7 +118,9 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         tablaCategorias.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaCategorias);
         if (tablaCategorias.getColumnModel().getColumnCount() > 0) {
+            tablaCategorias.getColumnModel().getColumn(0).setResizable(false);
             tablaCategorias.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaCategorias.getColumnModel().getColumn(1).setResizable(false);
             tablaCategorias.getColumnModel().getColumn(1).setPreferredWidth(350);
         }
 

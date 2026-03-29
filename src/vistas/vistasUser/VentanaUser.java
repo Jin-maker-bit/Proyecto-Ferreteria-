@@ -7,6 +7,7 @@ package vistas.vistasUser;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
 
 import vistas.VentanaLogin;
 
@@ -39,9 +40,7 @@ public class VentanaUser extends javax.swing.JFrame {
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaArticulosRegistrados);
         
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
@@ -456,9 +455,14 @@ public class VentanaUser extends javax.swing.JFrame {
         tablaArticulosRegistrados.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
         if (tablaArticulosRegistrados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosRegistrados.getColumnModel().getColumn(0).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaArticulosRegistrados.getColumnModel().getColumn(1).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosRegistrados.getColumnModel().getColumn(2).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaArticulosRegistrados.getColumnModel().getColumn(3).setResizable(false);
+            tablaArticulosRegistrados.getColumnModel().getColumn(4).setResizable(false);
         }
 
         lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -615,7 +619,7 @@ public class VentanaUser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal4, javax.swing.GroupLayout.PREFERRED_SIZE, 1014, Short.MAX_VALUE)
+            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -20,8 +20,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.border.AbstractBorder;
-
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
@@ -30,12 +30,8 @@ import javax.swing.border.AbstractBorder;
  *
  * @author Jose y Patricia
  */
-
-
 // ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
 // DEL PROYECTO 
-
-
 public class Utilidades {
 
     public static boolean compruebaCampoVacio(JTextField campo) {
@@ -133,11 +129,12 @@ public class Utilidades {
         JOptionPane.showMessageDialog(null, "Formato no válido\n");
 
         campo.setBackground(Color.magenta);
-      
+
     }
-    
+
     /**
      * Comprueba si el contenido de un JTextField es un número decimal válido.
+     *
      * @param campo El JTextField a comprobar.
      * @return true si es un double válido, false si no lo es.
      */
@@ -152,11 +149,12 @@ public class Utilidades {
 
     /**
      * Muestra alerta de número decimal no válido.
+     *
      * @param campo El JTextField con el valor incorrecto.
      */
     public static void lanzaAlertaDoubleNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, 
-            "El campo " + campo.getName() + " debe ser un número decimal válido");
+        JOptionPane.showMessageDialog(null,
+                "El campo " + campo.getName() + " debe ser un número decimal válido");
         campo.setBackground(Color.magenta);
     }
 
@@ -186,8 +184,6 @@ public class Utilidades {
                     g2.setColor(new Color(184, 154, 108)); // Dorado
                     g2.setStroke(new BasicStroke(1));
                     g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
-                    
-                    
 
                     g2.dispose();
                 }
@@ -281,57 +277,69 @@ public class Utilidades {
                 javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
     }
-    
-    
-    
+
     public static class ReproductorAudio {
-        
+
         // Añadimos esta línea para guardar la canción que está sonando
         private static Clip clipActual;
-        
-    /**
-     * Reproduce un archivo de audio del paquete audio.
-     * @param nombreArchivo Nombre Single
-     */
-    public static void reproducir(String nombreArchivo) {
-        
-        
-        
-        try {
-            // Si ya hay algo sonando, lo paramos primero
-            parar();
-            
-            // Buscamos el archivo dentro del paquete audio
-            InputStream is = ReproductorAudio.class.getResourceAsStream("/audio/" + nombreArchivo);
-            
-            // Si el archivo no existe o hay error en la ruta, evitamos que pete
-            if (is == null) return;
-                
-            InputStream bufferedIn = new BufferedInputStream(is);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
-            
-            clipActual = AudioSystem.getClip();
-            clipActual.open(ais);
-            clipActual.start();
-            
-        } catch (Exception e) {
-            
-            System.err.println("Error: " + e.getMessage());
+
+        /**
+         * Reproduce un archivo de audio del paquete audio.
+         *
+         * @param nombreArchivo Nombre Single
+         */
+        public static void reproducir(String nombreArchivo) {
+
+            try {
+                // Si ya hay algo sonando, lo paramos primero
+                parar();
+
+                // Buscamos el archivo dentro del paquete audio
+                InputStream is = ReproductorAudio.class.getResourceAsStream("/audio/" + nombreArchivo);
+
+                // Si el archivo no existe o hay error en la ruta, evitamos que pete
+                if (is == null) {
+                    return;
+                }
+
+                InputStream bufferedIn = new BufferedInputStream(is);
+                AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
+
+                clipActual = AudioSystem.getClip();
+                clipActual.open(ais);
+                clipActual.start();
+
+            } catch (Exception e) {
+
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+
+        /**
+         * Método nuevo para detener la música
+         */
+        public static void parar() {
+
+            if (clipActual != null && clipActual.isRunning()) {
+
+                clipActual.stop();
+                clipActual.close();
+            }
         }
     }
 
-    
-    
-    /**
-     * Método nuevo para detener la música
-     */
-    public static void parar() {
-        
-        if (clipActual != null && clipActual.isRunning()) {
-            
-            clipActual.stop();
-            clipActual.close();
-        }
-    } 
-}
+    public static void disenoTablas(JTable tabla) {
+        Color FONDO_OSCURO = new Color(9, 48, 64);
+        Color FONDO_SELECCION = new Color(3, 32, 38);
+        Color DORADO = new Color(191, 150, 99);
+        tabla.setSelectionBackground(FONDO_SELECCION);
+        tabla.setSelectionForeground(DORADO);
+
+        // Configuración de la cabecera (Header)
+        tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.getTableHeader().setResizingAllowed(false);
+        tabla.getTableHeader().setBackground(FONDO_OSCURO);
+        tabla.getTableHeader().setForeground(DORADO);
+        tabla.setGridColor(FONDO_SELECCION);
+    }
 }

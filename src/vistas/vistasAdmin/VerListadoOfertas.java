@@ -31,9 +31,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         // Cargar tabla al abrir
         ConsultasProducto.ArticulosOfertaAdmin((DefaultTableModel) tablaArticulosOferta.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaArticulosOferta);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -153,6 +151,14 @@ public class VerListadoOfertas extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tablaArticulosOferta);
+        if (tablaArticulosOferta.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosOferta.getColumnModel().getColumn(0).setResizable(false);
+            tablaArticulosOferta.getColumnModel().getColumn(1).setResizable(false);
+            tablaArticulosOferta.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosOferta.getColumnModel().getColumn(2).setResizable(false);
+            tablaArticulosOferta.getColumnModel().getColumn(3).setResizable(false);
+            tablaArticulosOferta.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
@@ -519,15 +525,13 @@ public class VerListadoOfertas extends javax.swing.JDialog {
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(botonEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

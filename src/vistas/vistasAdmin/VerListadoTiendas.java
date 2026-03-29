@@ -8,6 +8,7 @@ import bbdd.ConsultasOrigen;
 import bbdd.ConsultasTiendas;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -31,9 +32,7 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         // Cargar tabla al abrir
         ConsultasTiendas.listadoTiendasAdmin((DefaultTableModel) tablaListaTiendas.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaListaTiendas.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaListaTiendas.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaListaTiendas);
         
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
@@ -117,6 +116,11 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         tablaListaTiendas.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaListaTiendas.setShowGrid(false);
         jScrollPane1.setViewportView(tablaListaTiendas);
+        if (tablaListaTiendas.getColumnModel().getColumnCount() > 0) {
+            tablaListaTiendas.getColumnModel().getColumn(0).setResizable(false);
+            tablaListaTiendas.getColumnModel().getColumn(1).setResizable(false);
+            tablaListaTiendas.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 

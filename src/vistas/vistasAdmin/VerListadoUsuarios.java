@@ -30,9 +30,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         // Cargar tabla al abrir
         ConsultasUsuarios.listadoUsuarios((DefaultTableModel) tablaListadoUsuarios.getModel());
         
-         //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaListadoUsuarios.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaListadoUsuarios.setSelectionForeground(new java.awt.Color(191, 150, 99));
+         Utilidades.disenoTablas(tablaListadoUsuarios);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -145,13 +143,21 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablaListadoUsuarios);
         if (tablaListadoUsuarios.getColumnModel().getColumnCount() > 0) {
+            tablaListadoUsuarios.getColumnModel().getColumn(0).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaListadoUsuarios.getColumnModel().getColumn(1).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(1).setPreferredWidth(120);
+            tablaListadoUsuarios.getColumnModel().getColumn(2).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tablaListadoUsuarios.getColumnModel().getColumn(3).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tablaListadoUsuarios.getColumnModel().getColumn(4).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tablaListadoUsuarios.getColumnModel().getColumn(5).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(5).setPreferredWidth(40);
+            tablaListadoUsuarios.getColumnModel().getColumn(6).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(6).setPreferredWidth(50);
+            tablaListadoUsuarios.getColumnModel().getColumn(7).setResizable(false);
             tablaListadoUsuarios.getColumnModel().getColumn(7).setPreferredWidth(60);
         }
 

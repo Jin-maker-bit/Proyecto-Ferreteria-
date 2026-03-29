@@ -8,6 +8,7 @@ import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -28,9 +29,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         // Cargar tabla:
         ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
         
-       //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
+       Utilidades.disenoTablas(tablaArticulosDestacados);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -104,7 +103,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -126,9 +125,13 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tablaArticulosDestacados);
         if (tablaArticulosDestacados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosDestacados.getColumnModel().getColumn(0).setResizable(false);
             tablaArticulosDestacados.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tablaArticulosDestacados.getColumnModel().getColumn(1).setResizable(false);
             tablaArticulosDestacados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosDestacados.getColumnModel().getColumn(2).setResizable(false);
             tablaArticulosDestacados.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaArticulosDestacados.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
