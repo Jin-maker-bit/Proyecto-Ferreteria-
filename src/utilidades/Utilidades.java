@@ -284,54 +284,50 @@ public class Utilidades {
     
     
     
-    public static class ReproductorAudio {
-        
-        // Añadimos esta línea para guardar la canción que está sonando
-        private static Clip clipActual;
-        
+   // clip arriba 
+    private static Clip clipActual;
+
     /**
      * Reproduce un archivo de audio del paquete audio.
-     * @param nombreArchivo Nombre Single
+     * Ahora es un método directo de Utilidades.
+     * @param nombreArchivo Nombre del archivo con extensión.
      */
     public static void reproducir(String nombreArchivo) {
         
-        
-        
         try {
-            // Si ya hay algo sonando, lo paramos primero
-            parar();
             
-            // Buscamos el archivo dentro del paquete audio
-            InputStream is = ReproductorAudio.class.getResourceAsStream("/audio/" + nombreArchivo);
+            pararMusica(); // Nos aseguramos de que no se solapen
+
+            InputStream is = Utilidades.class.getResourceAsStream("/audio/" + nombreArchivo);
             
-            // Si el archivo no existe o hay error en la ruta, evitamos que pete
-            if (is == null) return;
+            if (is != null) {
                 
-            InputStream bufferedIn = new BufferedInputStream(is);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
-            
-            clipActual = AudioSystem.getClip();
-            clipActual.open(ais);
-            clipActual.start();
-            
+                AudioInputStream ais = AudioSystem.getAudioInputStream(new BufferedInputStream(is));
+                
+                clipActual = AudioSystem.getClip();
+                clipActual.open(ais);
+                clipActual.start(); // Comienza
+                
+            } else {
+                
+                System.err.println("Audio no encontrado: " + nombreArchivo);
+            }
         } catch (Exception e) {
             
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error en el reproductor: " + e.getMessage());
         }
     }
 
-    
-    
     /**
-     * Método nuevo para detener la música
+     * Detiene cualquier audio que se esté reproduciendo actualmente.
      */
-    public static void parar() {
+    public static void pararMusica() {
         
         if (clipActual != null && clipActual.isRunning()) {
-            
             clipActual.stop();
             clipActual.close();
         }
-    } 
-}
-}
+    }
+    
+    
+} 
