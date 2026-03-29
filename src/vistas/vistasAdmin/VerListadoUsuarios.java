@@ -5,11 +5,16 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasUsuarios;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
+import vistas.VentanaLogin;
 
 /**
- *
- * @author jintae
+ * Ventana de listado de usuarios del sistema.
+ * Permite visualizar todos los empleados y modificar exclusivamente su Tienda asignada, su Tipo (Rol) y su Estado (Activo / Bloqueado).
+ * @author Jose y Patricia
  */
 public class VerListadoUsuarios extends javax.swing.JDialog {
     
@@ -22,10 +27,27 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        // Cargar tabla al abrir
         ConsultasUsuarios.listadoUsuarios((DefaultTableModel) tablaListadoUsuarios.getModel());
+        
+         //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaListadoUsuarios.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaListadoUsuarios.setSelectionForeground(new java.awt.Color(191, 150, 99));
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
+        
+        // Cargar combo y campos:
+        cargarCombos();
+        desactivarEdicion();
     }
 
     /**
@@ -43,7 +65,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListadoUsuarios = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        lblImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
@@ -60,7 +82,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         lblUsuario7 = new javax.swing.JLabel();
         lblUsuario8 = new javax.swing.JLabel();
         lblUsuario9 = new javax.swing.JLabel();
-        campoCodProducto = new javax.swing.JTextField();
+        campoIdEmpleado = new javax.swing.JTextField();
         campoNombreCompleto = new javax.swing.JTextField();
         campoUsuario = new javax.swing.JTextField();
         comboTienda = new javax.swing.JComboBox<>();
@@ -102,13 +124,25 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
             new String [] {
                 "ID", "Nombre completo", "Tienda", "Usuario", "Contraseña", "Tipo", "Estado", "Fecha alta"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaListadoUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaListadoUsuarios.setEnabled(false);
         tablaListadoUsuarios.setGridColor(new java.awt.Color(191, 150, 99));
         tablaListadoUsuarios.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaListadoUsuarios.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaListadoUsuarios.setShowGrid(false);
+        tablaListadoUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaListadoUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaListadoUsuarios);
         if (tablaListadoUsuarios.getColumnModel().getColumnCount() > 0) {
             tablaListadoUsuarios.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -123,10 +157,10 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
-        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
@@ -140,7 +174,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,7 +182,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -191,7 +225,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
 
         botonNuevo.setBackground(new java.awt.Color(191, 150, 99));
         botonNuevo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonNuevo.setText("NUEVO USUARIO");
+        botonNuevo.setText("Ir a Registrar Nuevo Usuario");
         botonNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +250,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
 
         lblUsuario2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario2.setForeground(new java.awt.Color(191, 150, 99));
-        lblUsuario2.setText("CODIGO PRODUCTO:");
+        lblUsuario2.setText("ID EMPLEADO:");
 
         lblUsuario3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario3.setForeground(new java.awt.Color(191, 150, 99));
@@ -246,23 +280,26 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         lblUsuario9.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario9.setText("FECHA ALTA:");
 
-        campoCodProducto.setBackground(new java.awt.Color(3, 32, 38));
-        campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
-        campoCodProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCodProducto.setName("Denominación"); // NOI18N
+        campoIdEmpleado.setEditable(false);
+        campoIdEmpleado.setBackground(new java.awt.Color(3, 32, 38));
+        campoIdEmpleado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoIdEmpleado.setForeground(new java.awt.Color(112, 137, 140));
+        campoIdEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoIdEmpleado.setName("Codigo Producto"); // NOI18N
 
+        campoNombreCompleto.setEditable(false);
         campoNombreCompleto.setBackground(new java.awt.Color(3, 32, 38));
         campoNombreCompleto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombreCompleto.setForeground(new java.awt.Color(112, 137, 140));
         campoNombreCompleto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombreCompleto.setName("Denominación"); // NOI18N
+        campoNombreCompleto.setName("Nombre Completo"); // NOI18N
 
+        campoUsuario.setEditable(false);
         campoUsuario.setBackground(new java.awt.Color(3, 32, 38));
         campoUsuario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoUsuario.setForeground(new java.awt.Color(112, 137, 140));
         campoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoUsuario.setName("Denominación"); // NOI18N
+        campoUsuario.setName("Usuario"); // NOI18N
         campoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoUsuarioActionPerformed(evt);
@@ -270,13 +307,15 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         });
 
         comboTienda.setBackground(new java.awt.Color(3, 32, 38));
+        comboTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboTienda.setForeground(new java.awt.Color(112, 137, 140));
         comboTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", " " }));
         comboTienda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboTienda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboTienda.setName("Tipo"); // NOI18N
+        comboTienda.setName("Tienda"); // NOI18N
 
         comboTipo.setBackground(new java.awt.Color(3, 32, 38));
+        comboTipo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboTipo.setForeground(new java.awt.Color(112, 137, 140));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -284,26 +323,31 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         comboTipo.setName("Tipo"); // NOI18N
 
         comboEstado.setBackground(new java.awt.Color(3, 32, 38));
+        comboEstado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboEstado.setForeground(new java.awt.Color(112, 137, 140));
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboEstado.setName("Tipo"); // NOI18N
+        comboEstado.setName("Estado"); // NOI18N
 
+        campoFechaAlta.setEditable(false);
         campoFechaAlta.setBackground(new java.awt.Color(3, 32, 38));
         campoFechaAlta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoFechaAlta.setForeground(new java.awt.Color(112, 137, 140));
         campoFechaAlta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoFechaAlta.setName("Denominación"); // NOI18N
+        campoFechaAlta.setName("Fecha de Alta"); // NOI18N
         campoFechaAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoFechaAltaActionPerformed(evt);
             }
         });
 
+        campoPass.setEditable(false);
         campoPass.setBackground(new java.awt.Color(3, 32, 38));
+        campoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPass.setForeground(new java.awt.Color(112, 137, 140));
         campoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
+        campoPass.setName("Pass"); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,7 +372,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(campoPass)
-                                    .addComponent(campoCodProducto)
+                                    .addComponent(campoIdEmpleado)
                                     .addComponent(campoNombreCompleto)
                                     .addComponent(campoUsuario)
                                     .addComponent(comboTienda, 0, 252, Short.MAX_VALUE)
@@ -345,7 +389,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario2)
-                    .addComponent(campoCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario3)
@@ -361,7 +405,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblUsuario6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(campoPass))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario7)
@@ -380,7 +424,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         botonEditarDatos.setBackground(new java.awt.Color(3, 32, 38));
         botonEditarDatos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonEditarDatos.setForeground(new java.awt.Color(191, 150, 99));
-        botonEditarDatos.setText("Editar datos");
+        botonEditarDatos.setText("Clic Para Activar el Panel y Editar");
         botonEditarDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,7 +435,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(191, 150, 99));
-        botonGuardar.setText("GUARDAR");
+        botonGuardar.setText("Guardar Edición de Usuario");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,22 +461,29 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(411, 411, 411))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonEditarDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(botonGuardar)
+                                .addGap(29, 29, 29)
+                                .addComponent(botonVolver)
+                                .addGap(26, 26, 26))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(botonEditarDatos)
-                                .addGap(51, 51, 51)
-                                .addComponent(botonGuardar))
-                            .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addComponent(botonVolver)))
+                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)))
                 .addContainerGap())
         );
         panelPrincipalLayout.setVerticalGroup(
@@ -452,20 +503,19 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEditarDatos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonVolver)
-                        .addGap(29, 29, 29))))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonVolver)
+                            .addComponent(botonGuardar)))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEditarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -533,8 +583,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
     RegistrarUsuario rnu = new RegistrarUsuario(null, true); 
-    this.dispose();
-    rnu.setVisible(true);// TODO add your handling code here:
+    rnu.setVisible(true);
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
@@ -546,12 +595,54 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_campoFechaAltaActionPerformed
 
     private void botonEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarDatosActionPerformed
-        // TODO add your handling code here:
+        if (campoIdEmpleado.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, 
+                "Selecciona un usuario de la tabla primero.", 
+                "Sin selección", 
+                JOptionPane.WARNING_MESSAGE);
+        } else {
+            
+            activarEdicion();
+        }
     }//GEN-LAST:event_botonEditarDatosActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        guardarUsuario();
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void tablaListadoUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoUsuariosMouseClicked
+        
+        int fila = tablaListadoUsuarios.getSelectedRow();
+        if (fila != -1) {
+            
+            // Rellenar campos de texto 
+            campoIdEmpleado.setText(tablaListadoUsuarios.getValueAt(fila, 0).toString()); // 0=ID, 1=Nombre, 3=Usuario, 4=Pass, 7=Fecha
+            campoNombreCompleto.setText(tablaListadoUsuarios.getValueAt(fila, 1).toString());
+            
+            // Los campos de Tienda y Tipo en la tabla están en las columnas 2, 5 y 6
+            String tienda = tablaListadoUsuarios.getValueAt(fila, 2).toString();
+            
+            campoUsuario.setText(tablaListadoUsuarios.getValueAt(fila, 3).toString());
+            campoPass.setText(tablaListadoUsuarios.getValueAt(fila, 4).toString());
+            
+            String tipo = tablaListadoUsuarios.getValueAt(fila, 5).toString();
+            String estado = tablaListadoUsuarios.getValueAt(fila, 6).toString();
+            
+            // Fecha de alta - columna 7:
+            if (tablaListadoUsuarios.getValueAt(fila, 7) != null) {
+                
+                campoFechaAlta.setText(tablaListadoUsuarios.getValueAt(fila, 7).toString());
+            }
+
+            // Seleccionamos los valores en los combos
+            comboTienda.setSelectedItem(tienda);
+            comboTipo.setSelectedItem(tipo);
+            comboEstado.setSelectedItem(estado);
+            
+            desactivarEdicion(); // Bloqueamos por seguridad
+        }
+    }//GEN-LAST:event_tablaListadoUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -595,8 +686,8 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonNuevo;
     private javax.swing.JButton botonVolver;
-    private javax.swing.JTextField campoCodProducto;
     private javax.swing.JTextField campoFechaAlta;
+    private javax.swing.JTextField campoIdEmpleado;
     private javax.swing.JTextField campoNombreCompleto;
     private javax.swing.JPasswordField campoPass;
     private javax.swing.JTextField campoUsuario;
@@ -610,7 +701,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
@@ -630,4 +721,116 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaListadoUsuarios;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    
+    /**
+     * Valida y guarda los cambios de los 3 desplegables.
+     */
+    public void guardarUsuario() {
+        if (campoIdEmpleado.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un usuario primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validar combo seleccione
+        if (Utilidades.compruebaComboNoSeleccionado(comboTienda)) {
+            Utilidades.lanzaAlertaCombo(comboTienda);
+            return;
+            
+        } else if (Utilidades.compruebaComboNoSeleccionado(comboTipo)) {
+            Utilidades.lanzaAlertaCombo(comboTipo);
+            return;
+            
+        } else if (Utilidades.compruebaComboNoSeleccionado(comboEstado)) {
+            Utilidades.lanzaAlertaCombo(comboEstado);
+            return;
+        }
+
+        // Rescatar datos
+        String idUsuario = campoIdEmpleado.getText();
+        String nuevaTienda = comboTienda.getSelectedItem().toString();
+        String nuevoTipo = comboTipo.getSelectedItem().toString();
+        String nuevoEstado = comboEstado.getSelectedItem().toString();
+
+        if (ConsultasUsuarios.actualizarUsuarioRoles(idUsuario, nuevaTienda, nuevoTipo, nuevoEstado)) {
+            JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
+            
+            ConsultasUsuarios.cargarListadoUsuarios((DefaultTableModel) tablaListadoUsuarios.getModel());
+            
+            desactivarEdicion();
+            limpiarFormulario();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar los datos del usuario.", "Error BBDD", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Limpia la pantalla.
+     */
+    public void limpiarFormulario() {
+        campoIdEmpleado.setText("");
+        campoNombreCompleto.setText("");
+        campoUsuario.setText("");
+        campoPass.setText("");
+        campoFechaAlta.setText("");
+        comboTienda.setSelectedIndex(0);
+        comboTipo.setSelectedIndex(0);
+        comboEstado.setSelectedIndex(0);
+        desactivarEdicion();
+    }
+    
+    
+    /**
+     * Carga todos los valores dinámicos en los 3 desplegables.
+     */
+    private void cargarCombos() {
+        
+        // Tienda: Desde su propia tabla
+        comboTienda.removeAllItems();
+        comboTienda.addItem("Seleccione");
+        java.util.ArrayList<String> tiendas = bbdd.ConsultasTiendas.obtenerNombresTiendas();
+        for (String t : tiendas) { comboTienda.addItem(t); }
+
+        // Tipo: que es un ENUM:
+        comboTipo.removeAllItems();
+        comboTipo.addItem("Seleccione");
+        java.util.ArrayList<String> tipos = bbdd.Conexion.obtenerValoresEnum("usuarios", "tipo");
+        for (String t : tipos) { comboTipo.addItem(t); }
+
+        // Estado: que es otro ENUM:
+        comboEstado.removeAllItems();
+        comboEstado.addItem("Seleccione");
+        java.util.ArrayList<String> estados = bbdd.Conexion.obtenerValoresEnum("usuarios", "estado");
+        for (String e : estados) { comboEstado.addItem(e); }
+    }
+    
+    
+    
+    /**
+     * Desactiva los 3 combos.
+     */
+    public void desactivarEdicion() {
+        comboTienda.setEnabled(false);
+        comboTipo.setEnabled(false);
+        comboEstado.setEnabled(false);
+    }
+
+    /**
+     * Activa los 3 combos para su edición.
+     */
+    public void activarEdicion() {
+        
+        comboTienda.setEnabled(true);
+        comboTipo.setEnabled(true);
+        comboEstado.setEnabled(true);
+        
+        JOptionPane.showMessageDialog(this, 
+            "Ya puede modificar los campos Tienda, Tipo y Estado del usuario desde los menús desplegables.", 
+            "Modo edición activado", 
+            JOptionPane.INFORMATION_MESSAGE);
+    }
+  
 }

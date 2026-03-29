@@ -7,8 +7,9 @@ package modelo;
 import java.util.Date;
 
 /**
- *
- * @author jintae
+ * Clase modelo que representa un Producto dentro del inventario de la ferretería.
+ * Almacena toda la información técnica, comercial y de stock de los artículos.
+ * @author Jose y Patricia
  */
 public class Producto {
 
@@ -24,9 +25,26 @@ public class Producto {
     private String oferta;
     private Date fechaAlta;
 
+    /**
+     * Constructor vacío por defecto.
+     */
     public Producto() {
     }
 
+    /**
+     * Constructor parametrizado con todos los atributos del producto.
+     * @param codProducto Código único alfanumérico.
+     * @param nombre Nombre comercial del artículo.
+     * @param categoria Categoría a la que pertenece.
+     * @param descripcion Detalle técnico del producto.
+     * @param precioCompra Precio de adquisición al proveedor.
+     * @param precioVenta Precio final de venta al público (PVP).
+     * @param stock Cantidad de unidades disponibles en almacén.
+     * @param origen Origen del producto (Nacional/Internacional).
+     * @param destacado Indica si es un producto destacado (Sí/No).
+     * @param oferta Indica si el producto tiene un precio especial (Sí/No).
+     * @param fechaAlta Fecha en la que se registró el producto en el sistema.
+     */
     public Producto(String codProducto, String nombre, String categoria, String descripcion, double precioCompra, double precioVenta, int stock, String origen, String destacado, String oferta, Date fechaAlta) {
         this.codProducto = codProducto;
         this.nombre = nombre;
@@ -129,6 +147,11 @@ public class Producto {
         this.fechaAlta = fechaAlta;
     }
 
+    /**
+     * Sobrescribe el método toString para generar una ficha detallada del producto.
+     * Útil para mostrar información en consolas, logs o áreas de texto de la interfaz.
+     * @return String formateado con todos los datos del artículo.
+     */
     @Override
     public String toString() {
         return "===== DETALLE DE ARTICULO =====\n\n"

@@ -12,7 +12,7 @@ import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VentanaUser extends javax.swing.JFrame {
 
@@ -35,6 +35,10 @@ public class VentanaUser extends javax.swing.JFrame {
 
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
@@ -439,7 +443,6 @@ public class VentanaUser extends javax.swing.JFrame {
         });
         tablaArticulosRegistrados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosRegistrados.setEnabled(false);
         tablaArticulosRegistrados.setFillsViewportHeight(true);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setRowHeight(50);
@@ -608,7 +611,7 @@ public class VentanaUser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
+            .addComponent(panelPrincipal4, javax.swing.GroupLayout.PREFERRED_SIZE, 1014, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

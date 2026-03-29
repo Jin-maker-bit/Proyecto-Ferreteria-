@@ -6,8 +6,10 @@ package vistas.vistasAdmin;
 
 import bbdd.Conexion;
 import bbdd.ConsultasTiendas;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import modelo.Tienda;
+import vistas.VentanaLogin;
 
 
 /**
@@ -33,6 +35,14 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         
         // Aquí ejecutamos el método
         cargarComboResponsable();
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
     }
 
     /**
@@ -105,7 +115,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         botonCancelar.setBackground(new java.awt.Color(3, 32, 38));
         botonCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonCancelar.setForeground(new java.awt.Color(191, 150, 99));
-        botonCancelar.setText("Cancelar");
+        botonCancelar.setText("Cerrar");
         botonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +152,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         campoDenominacion.setName("Denominación"); // NOI18N
 
         comboResponsable.setBackground(new java.awt.Color(3, 32, 38));
+        comboResponsable.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboResponsable.setForeground(new java.awt.Color(112, 137, 140));
         comboResponsable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboResponsable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -153,9 +164,9 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         panelSecundarioLayout.setHorizontalGroup(
             panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSecundarioLayout.createSequentialGroup()
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(68, 68, 68)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
                         .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,12 +179,12 @@ public class RegistrarTiendas extends javax.swing.JDialog {
                             .addComponent(campoDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                             .addComponent(campoDenominacion, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                             .addComponent(comboResponsable, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGap(402, 402, 402)
-                        .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSecundarioLayout.createSequentialGroup()
+                        .addGap(329, 329, 329)
+                        .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         panelSecundarioLayout.setVerticalGroup(
             panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,8 +203,8 @@ public class RegistrarTiendas extends javax.swing.JDialog {
                     .addComponent(comboResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addGap(48, 48, 48)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -301,7 +312,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
                 .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -482,31 +493,30 @@ public class RegistrarTiendas extends javax.swing.JDialog {
     
  }
             
-       
-   
-        /**
-         * Limpia los campos del formulario.
-         */
-        public void limpiarTienda() {
-            campoDenominacion.setText("");
-            campoDireccion.setText("");
-            comboResponsable.setSelectedIndex(0);
-        
-        }
+          
+    /**
+     * Limpia los campos del formulario.
+     */
+    public void limpiarTienda() {
+        campoDenominacion.setText("");
+        campoDireccion.setText("");
+        comboResponsable.setSelectedIndex(0);
 
-        /**
-         * Llena el JComboBox solicitando los datos a la capa de base de datos.
-         */
-        private void cargarComboResponsable() {
-            
-            comboResponsable.removeAllItems();
-            comboResponsable.addItem("Seleccione");
+    }
 
-            java.util.ArrayList<String> responsables = ConsultasTiendas.obtenerResponsables();
-            for (String resp : responsables) {
-                comboResponsable.addItem(resp);
-            }
+    /**
+     * Llena el JComboBox solicitando los datos a la capa de base de datos.
+     */
+    private void cargarComboResponsable() {
+
+        comboResponsable.removeAllItems();
+        comboResponsable.addItem("Seleccione");
+
+        java.util.ArrayList<String> responsables = ConsultasTiendas.obtenerResponsables();
+        for (String resp : responsables) {
+            comboResponsable.addItem(resp);
         }
+    }
 
     }
 

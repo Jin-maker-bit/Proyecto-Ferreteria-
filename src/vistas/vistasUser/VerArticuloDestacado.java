@@ -12,7 +12,7 @@ import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VerArticuloDestacado extends javax.swing.JDialog {
 
@@ -24,15 +24,20 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     public VerArticuloDestacado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        
+        // Cargar tabla:
+        ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
+        
+       //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(3, 32, 38));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
+        
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
@@ -360,11 +365,14 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
     }//GEN-LAST:event_itemCerrarActionPerformed
 
     private void tablaArticulosDestacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosDestacadosMouseClicked
+        
         int fila = tablaArticulosDestacados.getSelectedRow();
 
         if (fila != -1) {
+            
             String codigo = tablaArticulosDestacados.getValueAt(fila, 0).toString();
             Producto p = ConsultasProducto.buscarProductoPorCodigo(codigo);
+            
             if (p != null) {
                 imprimirInfoProducto.setText(p.toString());
 

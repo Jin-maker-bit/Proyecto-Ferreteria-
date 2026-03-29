@@ -5,16 +5,27 @@
 package modelo;
 
 /**
- *
- * @author jintae
+ * Clase modelo que representa el origen de un producto (Nacional o Importación).
+ * Sirve como contenedor de datos para transferir la información de los orígenes entre la base de datos y la interfaz de usuario.
+ * @author Jose y Patricia
  */
 public class Origen {
     private String origen;
     private String descripcion;
 
+    /**
+     * Constructor vacío por defecto.
+     * Permite instanciar un objeto de tipo Origen sin datos iniciales.
+     */
     public Origen() {
     }
 
+    /**
+     * Constructor parametrizado.
+     * Crea un objeto Origen inicializando todos sus atributos de una sola vez.
+     * @param origen El nombre del origen.
+     * @param descripcion La descripción detallada del origen.
+     */
     public Origen(String origen, String descripcion) {
         this.origen = origen;
         this.descripcion = descripcion;

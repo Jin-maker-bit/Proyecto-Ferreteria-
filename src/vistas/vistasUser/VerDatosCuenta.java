@@ -14,7 +14,7 @@ import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VerDatosCuenta extends javax.swing.JDialog {
 
@@ -26,12 +26,15 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     public VerDatosCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         cargarDatosPerfil();
+        
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "

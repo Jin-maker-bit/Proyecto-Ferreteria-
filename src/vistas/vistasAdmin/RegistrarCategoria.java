@@ -6,7 +6,9 @@ package vistas.vistasAdmin;
 
 import bbdd.Conexion;
 import bbdd.ConsultasCategorias;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import vistas.VentanaLogin;
 
 
 /**
@@ -30,6 +32,14 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
     }
 
     /**
@@ -95,7 +105,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         botonCancelarCategoria.setBackground(new java.awt.Color(3, 32, 38));
         botonCancelarCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonCancelarCategoria.setForeground(new java.awt.Color(191, 150, 99));
-        botonCancelarCategoria.setText("Cancelar");
+        botonCancelarCategoria.setText("Volver");
         botonCancelarCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -449,7 +459,6 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     
  }
     
-
     /**
      * Limpia todos los campos del formulario de registro de categoría.
      */
@@ -457,7 +466,6 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         
         campoCategoria.setText("");
         campoDescripcion.setText("");
-        
     }
     
 }

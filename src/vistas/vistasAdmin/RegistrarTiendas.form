@@ -163,7 +163,7 @@
                   <Component id="panelSecundario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -218,9 +218,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                       <Component id="lblDireccion" min="-2" pref="127" max="-2" attributes="0"/>
@@ -239,13 +239,13 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="402" max="-2" attributes="0"/>
-                              <Component id="botonRegistrarOrigen" min="-2" pref="135" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="botonCancelar" min="-2" pref="145" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="botonRegistrarOrigen" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <Component id="botonCancelar" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="90" max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -269,8 +269,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botonRegistrarOrigen" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="botonCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="botonRegistrarOrigen" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="botonCancelar" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
@@ -315,7 +315,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cancelar"/>
+                <Property name="text" type="java.lang.String" value="Cerrar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
@@ -400,6 +400,9 @@
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="8c" green="89" red="70" type="rgb"/>

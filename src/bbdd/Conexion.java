@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import modelo.Usuario;
 
 /**
  * Clase de gestión de la conexión con la base de datos MySQL. Proporciona
@@ -39,8 +38,8 @@ public class Conexion {
 
             // PC DE JOSÉ: Cambiado 8809 por 8889 (Puerto por defecto de MAMP) - Con contraseña "root" (mac Jose).
             // PC DE PATRI: Puerto 3307 - Xampp - Sin contraseña.
-            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC&useSSL=false";
-            conn = DriverManager.getConnection(url, "root", "root");
+            String url = "jdbc:mysql://localhost:3307/ferreteria?serverTimezone=UTC&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "");
 
         } catch (ClassNotFoundException | SQLException ex) {
 

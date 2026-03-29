@@ -6,10 +6,12 @@ package vistas.vistasAdmin;
 
 import bbdd.Conexion;
 import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Producto;
 import utilidades.Utilidades;
+import vistas.VentanaLogin;
 
 
 /**
@@ -34,10 +36,17 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
         
-        // Cargar Combos - Realmente la Conexión no hace falta desde aquí Preguntar ya que está en las consultas(?)
-        Conexion.conectar();
+        // Cargar Combos 
         cargarCombosArticulos();
-        Conexion.cerrarConexion();    
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
+            
     }
 
     /**
@@ -77,13 +86,19 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioCompra = new javax.swing.JTextField();
         campoStock = new javax.swing.JTextField();
         lblTienda2 = new javax.swing.JLabel();
+        panelFinal = new javax.swing.JPanel();
+        lblSistemaGestion = new javax.swing.JLabel();
+        lblRescataFechayHora = new javax.swing.JLabel();
         botonRegistrarArticulo = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblImprimirAdmin = new javax.swing.JLabel();
+        lblUsuario2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        itemAcercaDe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA REGISTRAR ARTÍCULO");
@@ -136,6 +151,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblTipo.setOpaque(true);
 
         comboOrigen.setBackground(new java.awt.Color(3, 32, 38));
+        comboOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboOrigen.setForeground(new java.awt.Color(112, 137, 140));
         comboOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -168,6 +184,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoNombre.setName("Nombre"); // NOI18N
 
         comboCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        comboCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboCategoria.setForeground(new java.awt.Color(112, 137, 140));
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -271,6 +288,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblTipo1.setOpaque(true);
 
         comboOferta.setBackground(new java.awt.Color(3, 32, 38));
+        comboOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboOferta.setForeground(new java.awt.Color(112, 137, 140));
         comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -296,6 +314,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioVenta.setName("Precio Venta"); // NOI18N
 
         comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
+        comboDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
         comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -320,6 +339,37 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblTienda2.setText("Oferta");
         lblTienda2.setOpaque(true);
 
+        panelFinal.setBackground(new java.awt.Color(9, 48, 64));
+        panelFinal.setForeground(new java.awt.Color(191, 150, 99));
+        panelFinal.setOpaque(false);
+
+        lblSistemaGestion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblSistemaGestion.setForeground(new java.awt.Color(191, 150, 99));
+        lblSistemaGestion.setText("Sistema de gestión Ferretería JP Fusión");
+
+        lblRescataFechayHora.setBackground(new java.awt.Color(3, 32, 38));
+        lblRescataFechayHora.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        lblRescataFechayHora.setForeground(new java.awt.Color(191, 150, 99));
+
+        javax.swing.GroupLayout panelFinalLayout = new javax.swing.GroupLayout(panelFinal);
+        panelFinal.setLayout(panelFinalLayout);
+        panelFinalLayout.setHorizontalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFinalLayout.createSequentialGroup()
+                .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        panelFinalLayout.setVerticalGroup(
+            panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFinalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout panelSecundario1Layout = new javax.swing.GroupLayout(panelSecundario1);
         panelSecundario1.setLayout(panelSecundario1Layout);
         panelSecundario1Layout.setHorizontalGroup(
@@ -339,7 +389,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     .addComponent(campoStock)
                     .addComponent(campoPrecioVenta)
                     .addComponent(campoPrecioCompra))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundario1Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelSecundario1Layout.setVerticalGroup(
             panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +418,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                 .addGroup(panelSecundario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTienda2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         botonRegistrarArticulo.setBackground(new java.awt.Color(191, 150, 99));
@@ -380,13 +436,44 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         botonSalir.setBackground(new java.awt.Color(3, 32, 38));
         botonSalir.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(191, 150, 99));
-        botonSalir.setText("Cancelar");
         botonSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSalir.setLabel("Volver");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(3, 32, 38));
+
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblUsuario2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lblUsuario2.setForeground(new java.awt.Color(191, 150, 99));
+        lblUsuario2.setText("Usuario:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblUsuario2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsuario2)
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -394,31 +481,41 @@ public class RegistrarArticulo extends javax.swing.JDialog {
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtitulo)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSubtitulo)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)))
+                        .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lblTitulo))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblSubtitulo)
                 .addGap(12, 12, 12)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -431,10 +528,12 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))))
+                            .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37))))
         );
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
 
         menuArchivo.setText("Archivo");
         menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -456,15 +555,15 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         menuAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuAyuda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jMenuItem2.setText("Acerca de");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        itemAcercaDe.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemAcercaDe.setText("Acerca de");
+        itemAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemAcercaDe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                itemAcercaDeActionPerformed(evt);
             }
         });
-        menuAyuda.add(jMenuItem2);
+        menuAyuda.add(itemAcercaDe);
 
         jMenuBar1.add(menuAyuda);
 
@@ -474,22 +573,20 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void itemAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAcercaDeActionPerformed
         utilidades.Utilidades.mostrarAcercaDe(this);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_itemAcercaDeActionPerformed
 
     private void itemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarActionPerformed
         this.dispose();
@@ -499,13 +596,13 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        this.dispose();     
-    }//GEN-LAST:event_botonSalirActionPerformed
-
     private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
         registrarArticulo();
     }//GEN-LAST:event_botonRegistrarArticuloActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -559,15 +656,19 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> comboDestacado;
     private javax.swing.JComboBox<String> comboOferta;
     private javax.swing.JComboBox<String> comboOrigen;
+    private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblEstado1;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblRescataFechayHora;
+    private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
     private javax.swing.JLabel lblTienda2;
     private javax.swing.JLabel lblTipo;
@@ -575,8 +676,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuario1;
+    private javax.swing.JLabel lblUsuario2;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
+    private javax.swing.JPanel panelFinal;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSecundario;
     private javax.swing.JPanel panelSecundario1;
@@ -704,7 +807,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
      */
     private void cargarCombosArticulos() {
         
-        // --- Combo Categoría ---
+        // Combo Categoría 
         comboCategoria.removeAllItems();
         comboCategoria.addItem("Seleccione");
         java.util.ArrayList<String> categorias = bbdd.ConsultasCategorias.obtenerCategorias();
@@ -712,7 +815,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
             comboCategoria.addItem(categ);
         }
 
-        // --- Combo Origen ---
+        // Combo Origen 
         comboOrigen.removeAllItems();
         comboOrigen.addItem("Seleccione");
         java.util.ArrayList<String> origenes = bbdd.ConsultasOrigen.obtenerOrigenes();
@@ -720,17 +823,17 @@ public class RegistrarArticulo extends javax.swing.JDialog {
             comboOrigen.addItem(orig);
         }
 
-        // --- Combo Destacado --- Saca el SI y NO de la tabla producto, columna destacado
+        // Combo Destacado:  Saca el SI y NO de la tabla producto, columna destacado
         comboDestacado.removeAllItems();
         comboDestacado.addItem("Seleccione");
         
-        // Le decimos: "Vete a la tabla 'producto' y saca los valores de 'destacado'"
+              // Le decimos: "Vete a la tabla 'producto' y saca los valores de 'destacado'"
         java.util.ArrayList<String> destacados = bbdd.Conexion.obtenerValoresEnum("producto", "destacado");
         for (String dest : destacados) {
             comboDestacado.addItem(dest);
         }
         
-       // --- Combo Oferta --- Saca el SI y NO de la tabla producto, columna oferta
+       // Combo Oferta:  Saca el SI y NO de la tabla producto, columna oferta
         comboOferta.removeAllItems();
         comboOferta.addItem("Seleccione");
         

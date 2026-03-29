@@ -7,8 +7,9 @@ package modelo;
 import java.util.Date;
 
 /**
- *
- * @author jintae
+ * Clase modelo que representa a un Usuario, empleado, del sistema.
+ * Contiene la información personal, credenciales de acceso, rol dentro de la empresa y su estado actual (Activo/Bloqueado).
+ * @author Jose y Patricia
  */
 public class Usuario {
     private String nombreCompleto;
@@ -19,9 +20,22 @@ public class Usuario {
     private Date fechaAlta;
     private String tienda;
 
+    /**
+     * Constructor vacío por defecto.
+     */
     public Usuario() {
     }
 
+    /**
+     * Constructor parametrizado con todos los atributos.
+     * @param nombreCompleto Nombre y apellidos reales.
+     * @param usuario Nombre de acceso al sistema.
+     * @param pass Contraseña de acceso.
+     * @param tipo Rol o nivel de permisos.
+     * @param estado Estado de habilitación de la cuenta.
+     * @param fechaAlta Fecha de registro.
+     * @param tienda Tienda física asignada.
+     */
     public Usuario(String nombreCompleto, String usuario, String pass, String tipo, String estado, Date fechaAlta, String tienda) {
         this.nombreCompleto = nombreCompleto;
         this.usuario = usuario;

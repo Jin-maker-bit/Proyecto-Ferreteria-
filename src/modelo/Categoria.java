@@ -5,16 +5,26 @@
 package modelo;
 
 /**
- *
- * @author jintae
+ * Clase modelo que representa una categoría de productos en el sistema.
+ * Actúa como contenedor de datos para transportar la información entre  la base de datos y la interfaz gráfica.
+ * @author Jose y Patricia
  */
 public class Categoria {
     private String categoria;
     private String descripcion;
 
+    /**
+     * Constructor vacío por defecto.
+     */
     public Categoria() {
     }
 
+    /**
+     * Constructor parametrizado.
+     * Crea un objeto Categoria inicializando todos sus atributos de una vez.
+     * @param categoria Nombre o título de la categoría
+     * @param descripcion Descripción detallada de lo que engloba esta categoría.
+     */
     public Categoria(String categoria, String descripcion) {
         this.categoria = categoria;
         this.descripcion = descripcion;

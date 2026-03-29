@@ -14,28 +14,41 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author jintae
+ * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla tiendas.
+ * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * @author Jose y Patricia
  */
 public class ConsultasTiendas extends Conexion {
-// metodo para rescaar datos en la jlael de usuario admin
+
+    
+    /**
+     * Cuenta el número total de tiendas registradas en la base de datos.
+     * Este método se utiliza principalmente para mostrar estadísticas rápidas en el panel principal (JLabel) del usuario Administrador.
+     * @return Un entero con el número total de tiendas. 
+     */
     public static int rescataTienda() {
 
         int numeroTienda = 0;
+        
         String consulta = "SELECT count(denominacion) FROM tiendas";
 
         conectar();
 
         try {
+            
             PreparedStatement comando = conn.prepareStatement(consulta);
+            
             try (ResultSet reader = comando.executeQuery()) {
                 if (reader.next()) {
                     numeroTienda = reader.getInt(1);
                 }
             }
         } catch (SQLException e) {
+            
             JOptionPane.showMessageDialog(null, "Error al obtener el número de tiendas.\n" + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
@@ -45,17 +58,17 @@ public class ConsultasTiendas extends Conexion {
     
     
     /**
-     * Obtiene la lista de nombres de los responsables desde la base de datos.
+     * Rescata la lista de nombres y apellidos de todos los responsables de tienda.
+     * Útil para rellenar dinámicamente JComboBox al registrar o editar tiendas.
      * @return ArrayList con los nombres de los responsables.
      */
-    
     public static java.util.ArrayList<String> obtenerResponsables() {
         
         java.util.ArrayList<String> lista = new java.util.ArrayList<>();
         
         String consulta = "SELECT nombre_apellidos FROM responsables_tienda";
         
-        Conexion.conectar();
+        conectar();
         
         try {
             
@@ -72,7 +85,7 @@ public class ConsultasTiendas extends Conexion {
             
         } finally {
             
-            Conexion.cerrarConexion();
+            cerrarConexion();
         }
         
         return lista;
@@ -81,7 +94,8 @@ public class ConsultasTiendas extends Conexion {
     
     
     /**
-     * Inserta una nueva tienda en la base de datos.
+     * Inserta un nuevo registro de tienda en la base de datos de la ferretería.
+     * Emplea PreparedStatement para prevenir inyección SQL.
      * @param ti Objeto Tienda con los datos a insertar.
      * @return true si se insertó correctamente, false si hubo un error.
      */
@@ -91,7 +105,7 @@ public class ConsultasTiendas extends Conexion {
         
         String consulta = "INSERT INTO tiendas (denominacion, direccion, responsable) VALUES (?, ?, ?)";
         
-        Conexion.conectar();
+        conectar();
         
         try {
             
@@ -114,7 +128,7 @@ public class ConsultasTiendas extends Conexion {
             
         } finally {
             
-            Conexion.cerrarConexion();
+            cerrarConexion();
             
         }
         return exito;
@@ -122,7 +136,8 @@ public class ConsultasTiendas extends Conexion {
     
     
     /**
-     * Obtiene la lista de denominaciones de tiendas desde la base de datos.
+     * Rescata la lista de nombres (denominaciones) de todas las tiendas.
+     * Método diseñado para rellenar JComboBox en ventanas como la de Registro de Usuarios.
      * @return ArrayList con los nombres de las tiendas.
      */
     public static java.util.ArrayList<String> obtenerNombresTiendas() {
@@ -131,7 +146,7 @@ public class ConsultasTiendas extends Conexion {
         
         String consulta = "SELECT denominacion FROM tiendas"; 
         
-        Conexion.conectar();
+        conectar();
         
         try {
             
@@ -150,12 +165,17 @@ public class ConsultasTiendas extends Conexion {
             
         } finally {
             
-            Conexion.cerrarConexion();
+            cerrarConexion();
             
         }
         return lista;
     }
     
+    
+    /**
+     * Recupera todos los datos principales de las tiendas y los carga directamente en un modelo de tabla visual.
+     * @param modelo 
+     */
     public static void listadoTiendasAdmin(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -182,7 +202,7 @@ public class ConsultasTiendas extends Conexion {
 
         } catch (SQLException e) {
 
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de productos " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de tiendas " + e.getMessage());
 
         } finally {
 

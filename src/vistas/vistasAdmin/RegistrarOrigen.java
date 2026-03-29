@@ -6,7 +6,9 @@ package vistas.vistasAdmin;
 
 import bbdd.Conexion;
 import bbdd.ConsultasOrigen;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import vistas.VentanaLogin;
 
 
 /**
@@ -29,6 +31,14 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
     }
 
     /**
@@ -99,7 +109,7 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         botonCancelar.setBackground(new java.awt.Color(3, 32, 38));
         botonCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonCancelar.setForeground(new java.awt.Color(191, 150, 99));
-        botonCancelar.setText("Cancelar");
+        botonCancelar.setText("Volver");
         botonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

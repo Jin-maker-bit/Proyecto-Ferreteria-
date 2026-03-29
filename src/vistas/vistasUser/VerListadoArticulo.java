@@ -7,11 +7,12 @@ package vistas.vistasUser;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
 import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VerListadoArticulo extends javax.swing.JDialog {
     
@@ -29,12 +30,18 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
         
+        // Cargar tabla
         ConsultasProducto.ListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaListadoArticulos.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
     }
 
     /**
@@ -62,7 +69,7 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         jToolBar1 = new javax.swing.JToolBar();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        imprimirInfoProducto2 = new javax.swing.JTextArea();
+        imprimirInfoProducto = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         itemCerrar = new javax.swing.JMenuItem();
@@ -105,11 +112,15 @@ public class VerListadoArticulo extends javax.swing.JDialog {
             }
         });
         tablaListadoArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaListadoArticulos.setEnabled(false);
         tablaListadoArticulos.setGridColor(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaListadoArticulos.setShowGrid(false);
+        tablaListadoArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaListadoArticulosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaListadoArticulos);
 
         jPanel3.setBackground(new java.awt.Color(3, 32, 38));
@@ -199,11 +210,11 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         jPanel5.setBackground(new java.awt.Color(9, 48, 64));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INFORMACION DE PRODUCTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(191, 150, 99))); // NOI18N
 
-        imprimirInfoProducto2.setBackground(new java.awt.Color(3, 32, 38));
-        imprimirInfoProducto2.setColumns(20);
-        imprimirInfoProducto2.setForeground(new java.awt.Color(191, 150, 99));
-        imprimirInfoProducto2.setRows(5);
-        jScrollPane4.setViewportView(imprimirInfoProducto2);
+        imprimirInfoProducto.setBackground(new java.awt.Color(3, 32, 38));
+        imprimirInfoProducto.setColumns(20);
+        imprimirInfoProducto.setForeground(new java.awt.Color(191, 150, 99));
+        imprimirInfoProducto.setRows(5);
+        jScrollPane4.setViewportView(imprimirInfoProducto);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -344,6 +355,28 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    private void tablaListadoArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoArticulosMouseClicked
+        
+        int fila = tablaListadoArticulos.getSelectedRow();
+
+        if (fila != -1) {
+            
+            String codigo = tablaListadoArticulos.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.buscarProductoPorCodigo(codigo);
+            
+            if (p != null) {
+                
+                imprimirInfoProducto.setText(p.toString());
+
+                imprimirInfoProducto.setCaretPosition(0);
+                
+            } else {
+                imprimirInfoProducto.setText("Error: No se encontró información");
+
+            }
+        }   
+    }//GEN-LAST:event_tablaListadoArticulosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,19 +417,13 @@ public class VerListadoArticulo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextArea imprimirInfoProducto;
-    private javax.swing.JTextArea imprimirInfoProducto1;
-    private javax.swing.JTextArea imprimirInfoProducto2;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblImprimirUsuario;

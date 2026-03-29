@@ -7,22 +7,22 @@ package bbdd;
 import static bbdd.Conexion.cerrarConexion;
 import static bbdd.Conexion.conectar;
 import static bbdd.Conexion.conn;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
-import modelo.Usuario;
 
 /**
- *
- * @author jintae
+ * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla categorias.
+ * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * @author Jose y Patricia
  */
 public class ConsultasCategorias extends Conexion {
 
+    
     /**
-     * Carga todas las categorías de la tabla categorias.
-     *
+     * Rescata todos los nombres de las categorías registradas en la base de datos.
+     * Este método es especialmente útil para rellenar dinámicamente los JComboBox en las ventanas de registro o edición de artículos.
      * @return ArrayList con los nombres de las categorías.
      */
     public static java.util.ArrayList<String> obtenerCategorias() {
@@ -31,7 +31,7 @@ public class ConsultasCategorias extends Conexion {
 
         String consulta = "SELECT categoria FROM categorias";
 
-        Conexion.conectar();
+        conectar();
 
         try {
 
@@ -49,14 +49,16 @@ public class ConsultasCategorias extends Conexion {
 
         } finally {
 
-            Conexion.cerrarConexion();
+            cerrarConexion();
         }
         return lista;
     }
 
+    
+    
     /**
      * Inserta una nueva categoría en la base de datos.
-     *
+     * Utiliza consultas parametrizadas - PreparedStatement- para mayor seguridad.
      * @param cat Objeto Categoria con los datos a insertar.
      * @return true si se insertó correctamente, false si hubo un error.
      */
@@ -66,7 +68,7 @@ public class ConsultasCategorias extends Conexion {
 
         String consulta = "INSERT INTO categorias (categoria, descripcion) VALUES (?, ?)";
 
-        Conexion.conectar();
+        conectar();
 
         try {
 
@@ -88,13 +90,19 @@ public class ConsultasCategorias extends Conexion {
 
         } finally {
 
-            Conexion.cerrarConexion();
+            cerrarConexion();
         }
 
         return exito;
     }
 
-   public static void listadoCategorias(DefaultTableModel categoria) {
+    
+    /**
+     * Rescata todas las categorías y sus descripciones para mostrarlas en una tabla.
+     * Modifica directamente el modelo de la tabla que se le pasa por parámetro.
+     * @param categoria 
+     */
+    public static void listadoCategorias(DefaultTableModel categoria) {
 
         categoria.setRowCount(0);
 

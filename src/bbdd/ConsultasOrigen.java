@@ -12,13 +12,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
- * @author jintae
+ * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla origen.
+ * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * @author Jose y Patricia
  */
 public class ConsultasOrigen extends Conexion {
     
+    
     /**
-     * Carga todos los orígenes de la tabla  origen de la base de datos.
+     * Rescata todos los nombres de los orígenes registrados en la base de datos.
+     * Este método se utiliza principalmente para cargar dinámicamente el JComboBox, Origen, en la ventana de registrar artículos del administrador.
      * @return ArrayList con los nombres de los orígenes.
      */
     
@@ -29,7 +32,7 @@ public class ConsultasOrigen extends Conexion {
         
         String consulta = "SELECT origen FROM origen";
         
-        Conexion.conectar(); 
+        conectar(); 
         
         try {
             
@@ -47,7 +50,7 @@ public class ConsultasOrigen extends Conexion {
             
         } finally {
             
-            Conexion.cerrarConexion(); 
+            cerrarConexion(); 
         }
         
         return lista;
@@ -56,7 +59,7 @@ public class ConsultasOrigen extends Conexion {
     
     
     /**
-     * Inserta un nuevo origen en la base de datos de la ferretería.
+     * Inserta un nuevo origen de producto en la base de datos de la ferretería.
      * Utiliza PreparedStatement para evitar inyecciones SQL y maneja su propia conexión.
      * @param o Objeto Origen con los datos a insertar.
      * @return true si se insertó correctamente, false si hubo un error.
@@ -67,7 +70,7 @@ public class ConsultasOrigen extends Conexion {
         
         String consulta = "INSERT INTO origen (origen, descripcion) VALUES (?, ?)";
         
-        Conexion.conectar(); 
+        conectar(); 
         
         try {
             
@@ -88,14 +91,19 @@ public class ConsultasOrigen extends Conexion {
             
         } finally {
             
-            Conexion.cerrarConexion(); 
+            cerrarConexion(); 
         }
         
         return exito;
     }
     
-    // metodo exlusivo para usarlo para rescatarlo en la tabla origenes, esto es una consulta para rescatar expresamente datos en la tabla de vistas
-    //ver origen
+    
+    
+    /**
+     * Recupera todos los registros de la tabla 'origen' (nombre y descripción) y los vuelca directamente en el modelo de una tabla visual.
+     * Método de uso exclusivo para la ventana de consulta 'VerListadoOrigenesAdmin'.
+     * @param modelo 
+     */
     public static void ListadoOrigenesAdmin(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -121,7 +129,7 @@ public class ConsultasOrigen extends Conexion {
 
         } catch (SQLException e) {
 
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de productos " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar la lista de orígenes " + e.getMessage());
 
         } finally {
 

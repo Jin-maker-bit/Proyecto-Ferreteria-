@@ -6,8 +6,10 @@ package vistas.vistasAdmin;
 
 import bbdd.Conexion;
 import bbdd.ConsultasUsuarios;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
+import vistas.VentanaLogin;
 
 /**
  * Ventana modal encargada de registrar nuevos usuarios en el sistema.
@@ -32,6 +34,14 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         
         // Aquí ejecutamos el método
         cargarComboUsuarios();
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
     }
 
     /**
@@ -111,7 +121,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         botonCancelar.setBackground(new java.awt.Color(3, 32, 38));
         botonCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonCancelar.setForeground(new java.awt.Color(191, 150, 99));
-        botonCancelar.setText("Cancelar");
+        botonCancelar.setText("Volver");
         botonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +146,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         lblTipo.setOpaque(true);
 
         comboEstado.setBackground(new java.awt.Color(3, 32, 38));
+        comboEstado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboEstado.setForeground(new java.awt.Color(112, 137, 140));
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboEstado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -167,6 +178,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         campoUsuario.setName("Usuario"); // NOI18N
 
         comboTienda.setBackground(new java.awt.Color(3, 32, 38));
+        comboTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboTienda.setForeground(new java.awt.Color(112, 137, 140));
         comboTienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboTienda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -174,6 +186,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         comboTienda.setName("Tienda"); // NOI18N
 
         comboTipo.setBackground(new java.awt.Color(3, 32, 38));
+        comboTipo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboTipo.setForeground(new java.awt.Color(112, 137, 140));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
@@ -181,7 +194,8 @@ public class RegistrarUsuario extends javax.swing.JDialog {
         comboTipo.setName("Tipo"); // NOI18N
 
         campoPass.setBackground(new java.awt.Color(3, 32, 38));
-        campoPass.setForeground(new java.awt.Color(191, 158, 96));
+        campoPass.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoPass.setForeground(new java.awt.Color(112, 137, 140));
         campoPass.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         campoPass.setName("Contraseña"); // NOI18N
 
@@ -218,10 +232,10 @@ public class RegistrarUsuario extends javax.swing.JDialog {
                 .addContainerGap(191, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         panelSecundarioLayout.setVerticalGroup(
             panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,11 +264,11 @@ public class RegistrarUsuario extends javax.swing.JDialog {
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
+                .addGap(37, 37, 37)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
+                    .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(137, 137, 137))
         );
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));

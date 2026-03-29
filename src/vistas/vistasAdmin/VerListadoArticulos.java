@@ -5,17 +5,19 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
 import utilidades.Utilidades;
+import vistas.VentanaLogin;
 
 /**
- * Ventana de listado de artículos del administrador. Permite consultar, editar
- * nombre y descripción, y eliminar productos. Al pulsar sobre un artículo de la
- * tabla se cargan todos sus datos en el panel derecho. Los campos solo son
- * editables tras pulsar el botón "Editar Productos".
- *
+ * Ventana de listado de artículos del administrador. 
+ * Permite consultar la tabla y al seleccionar un registro carga sus datos en el panel derecho.
+ * Los campos solo son editables tras pulsar el botón "Editar Productos".
+ * Permite consultar, editar únicamente Nombre y Descripción, y eliminar productos. 
+ * 
  * @author Jose y Patricia.
  */
 public class VerListadoArticulos extends javax.swing.JDialog {
@@ -23,10 +25,8 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoArticulos.class.getName());
 
     /**
-     * Constructor de la ventana de listado de artículos. Inicializa
-     * componentes, establece icono, carga la tabla y deja los campos del panel
-     * derecho no editables hasta pulsar Editar. Creates new form
-     * VerListadoArticulos
+     * Constructor de la ventana de listado de artículos. 
+     * Inicializa componentes, carga datos y configura la UI.
      */
     public VerListadoArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -35,16 +35,25 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
-        // Cargar tabla al abrir
-        ConsultasProducto.cargarListadoArticulos(
-                (DefaultTableModel) tablaListadoArticulos.getModel());
+        // Cargar tabla al abrir 
+        ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
 
         //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
         tablaListadoArticulos.setSelectionBackground(new java.awt.Color(3, 32, 38));
         tablaListadoArticulos.setSelectionForeground(new java.awt.Color(191, 150, 99));
 
-        // Panel derecho bloqueado hasta pulsar Editar
-//        bloquearCampos();
+        // Bloquear panel derecho al abrir
+        desactivarEdicionProducto();
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
+        
+       
     }
 
     /**
@@ -62,7 +71,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListadoArticulos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        lblImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
@@ -130,7 +139,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,10 +164,10 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(3, 32, 38));
 
-        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
@@ -174,7 +183,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +194,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -239,7 +248,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
         botonActualizar.setBackground(new java.awt.Color(191, 150, 99));
         botonActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonActualizar.setText("REGISTRAR NUEVO ARTICULO");
+        botonActualizar.setText("Ir a Registrar Nuevo Artículo");
         botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +266,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario2.setText("CODIGO PRODUCTO:");
 
         lblUsuario3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblUsuario3.setForeground(new java.awt.Color(255, 0, 51));
+        lblUsuario3.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario3.setText("NOMBRE:");
 
         lblUsuario4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -265,7 +274,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         lblUsuario4.setText("CATEGORIA:");
 
         lblUsuario5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lblUsuario5.setForeground(new java.awt.Color(255, 51, 51));
+        lblUsuario5.setForeground(new java.awt.Color(191, 150, 99));
         lblUsuario5.setText("DESCRIPCIÓN:");
 
         lblUsuario6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -297,71 +306,72 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
         campoCodProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCodProducto.setEnabled(false);
-        campoCodProducto.setName("Denominación"); // NOI18N
+        campoCodProducto.setName("Código Producto"); // NOI18N
 
         campoNombre.setBackground(new java.awt.Color(3, 32, 38));
         campoNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(112, 137, 140));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombre.setEnabled(false);
-        campoNombre.setName("Denominación"); // NOI18N
+        campoNombre.setName("Nombre"); // NOI18N
 
+        campoPrecioCompra.setEditable(false);
         campoPrecioCompra.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioCompra.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioCompra.setEnabled(false);
-        campoPrecioCompra.setName("Denominación"); // NOI18N
+        campoPrecioCompra.setName("Precio Compra"); // NOI18N
 
+        campoPrecioVenta.setEditable(false);
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioVenta.setEnabled(false);
-        campoPrecioVenta.setName("Denominación"); // NOI18N
+        campoPrecioVenta.setName("Precio Venta"); // NOI18N
 
+        campoStock.setEditable(false);
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoStock.setEnabled(false);
-        campoStock.setName("Denominación"); // NOI18N
+        campoStock.setName("Stock"); // NOI18N
 
+        campoCategoria.setEditable(false);
         campoCategoria.setBackground(new java.awt.Color(3, 32, 38));
         campoCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCategoria.setForeground(new java.awt.Color(112, 137, 140));
         campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCategoria.setEnabled(false);
-        campoCategoria.setName("Denominación"); // NOI18N
+        campoCategoria.setName("Categoría"); // NOI18N
 
+        campoOrigen.setEditable(false);
         campoOrigen.setBackground(new java.awt.Color(3, 32, 38));
         campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoOrigen.setForeground(new java.awt.Color(112, 137, 140));
         campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOrigen.setEnabled(false);
-        campoOrigen.setName("Denominación"); // NOI18N
+        campoOrigen.setName("Origen"); // NOI18N
 
+        campoOferta.setEditable(false);
         campoOferta.setBackground(new java.awt.Color(3, 32, 38));
         campoOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoOferta.setForeground(new java.awt.Color(112, 137, 140));
         campoOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOferta.setEnabled(false);
-        campoOferta.setName("Denominación"); // NOI18N
+        campoOferta.setName("Oferta"); // NOI18N
 
+        campoDestacado.setEditable(false);
         campoDestacado.setBackground(new java.awt.Color(3, 32, 38));
         campoDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoDestacado.setForeground(new java.awt.Color(112, 137, 140));
         campoDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDestacado.setEnabled(false);
-        campoDestacado.setName("Denominación"); // NOI18N
+        campoDestacado.setName("Destacado"); // NOI18N
 
+        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
         campoDescripcion.setColumns(20);
+        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
         campoDescripcion.setLineWrap(true);
         campoDescripcion.setRows(5);
         campoDescripcion.setWrapStyleWord(true);
         campoDescripcion.setAutoscrolls(false);
-        campoDescripcion.setEnabled(false);
+        campoDescripcion.setName("Descripción"); // NOI18N
         jScrollPane2.setViewportView(campoDescripcion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -391,11 +401,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                             .addComponent(campoPrecioCompra, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(campoPrecioVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(campoStock, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoOrigen, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)))
-                    .addComponent(campoCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(campoOferta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(campoDestacado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                            .addComponent(campoOrigen)))
+                    .addComponent(campoCategoria, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoOferta, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoDestacado, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -406,9 +416,11 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     .addComponent(lblUsuario2)
                     .addComponent(campoCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario3)
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario4)
@@ -451,7 +463,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(191, 150, 99));
-        botonGuardar.setText("Guardar");
+        botonGuardar.setText("Guardar edición de producto");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,7 +474,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         botonEditarProductos.setBackground(new java.awt.Color(3, 32, 38));
         botonEditarProductos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonEditarProductos.setForeground(new java.awt.Color(191, 150, 99));
-        botonEditarProductos.setText("Editar productos");
+        botonEditarProductos.setText("Clic para Activar el panel y Editar productos");
         botonEditarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -473,7 +485,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         botoneEliminar.setBackground(new java.awt.Color(3, 32, 38));
         botoneEliminar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botoneEliminar.setForeground(new java.awt.Color(191, 150, 99));
-        botoneEliminar.setText("Eliminar");
+        botoneEliminar.setText("Eliminar producto");
         botoneEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botoneEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -496,29 +508,34 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap(332, Short.MAX_VALUE)
+                        .addContainerGap(337, Short.MAX_VALUE)
                         .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonEditarProductos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botoneEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(botonVolver))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(botonEditarProductos))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,22 +553,21 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(botonActualizar)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
+                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addComponent(botonEditarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botoneEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(botonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonEditarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(9, 9, 9)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonVolver)
+                    .addComponent(botoneEliminar)
+                    .addComponent(botonGuardar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -620,12 +636,9 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarArticulo ra = new RegistrarArticulo(null, true);
-        this.dispose();
         ra.setVisible(true);
-
-//    ESTO NO VA AQUI PORQUE ABRE UNA VENTANA DISTINTA: ConsultasProducto.cargarListadoArticulos(
-//        (javax.swing.table.DefaultTableModel) tablaListadoArticulos.getModel());
-        // TODO add your handling code here:
+        // Cuando se cierre la ventana de registro, recargamos la tabla por si hay datos nuevos
+        ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
@@ -633,14 +646,16 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void botonEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductosActionPerformed
+        
         if (campoCodProducto.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(this,
-                    "Selecciona un artículo primero.",
+                    "Selecciona un artículo de la tabla primero.",
                     "Sin selección",
                     JOptionPane.WARNING_MESSAGE);
         } else {
-            campoNombre.setEditable(true);
-            campoDescripcion.setEditable(true);
+            
+            activarEdicionProducto();
         }
 
 
@@ -649,10 +664,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private void botoneEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneEliminarActionPerformed
 
         if (campoCodProducto.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(this,
-                    "Selecciona un artículo primero.",
+                    "Selecciona un artículo de la tabla primero.",
                     "Sin selección",
                     JOptionPane.WARNING_MESSAGE);
+            
             return;
         }
 
@@ -663,10 +680,10 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 JOptionPane.WARNING_MESSAGE);
 
         if (confirmar == JOptionPane.YES_OPTION) {
-            if (ConsultasProducto.eliminarProducto(campoCodProducto.getText())) {
+            
+            if (ConsultasProducto.eliminarProducto(campoCodProducto.getText())) {            
                 JOptionPane.showMessageDialog(this, "Artículo eliminado correctamente.");
-                ConsultasProducto.cargarListadoArticulos(
-                        (DefaultTableModel) tablaListadoArticulos.getModel());
+                ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
                 limpiarFormularioVerListadoArticulos();
             }
         }
@@ -675,11 +692,16 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_botoneEliminarActionPerformed
 
     private void tablaListadoArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoArticulosMouseClicked
+        
         int fila = tablaListadoArticulos.getSelectedRow();
+        
         if (fila != -1) {
+            
             String codigo = tablaListadoArticulos.getValueAt(fila, 0).toString();
             Producto p = ConsultasProducto.rescatarProductoPorCodigo(codigo);
+            
             if (p != null) {
+                
                 campoCodProducto.setText(p.getCodProducto());
                 campoNombre.setText(p.getNombre());
                 campoCategoria.setText(p.getCategoria());
@@ -690,8 +712,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                 campoOrigen.setText(p.getOrigen());
                 campoDestacado.setText(p.getDestacado());
                 campoOferta.setText(p.getOferta());
+                
+                // Por si cambiamos de fila, volvemos a bloquear la edición por seguridad
+                desactivarEdicionProducto();
             } else {
-                JOptionPane.showMessageDialog(this, "Error al rescatar el producto.");
+                
+                JOptionPane.showMessageDialog(this, "Error al rescatar el producto de la base de datos.");
             }
         }
 
@@ -759,7 +785,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
@@ -784,10 +810,9 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
     
     /**
-     * Realiza el registro de .... en la base de datos. Aplica validaciones
-     * únicamente en los campos necesarios del formulario antes de proceder. Si
-     * todas las validaciones son correctas... Si el registro es correcto,
-     * muestra mensaje de confirmación y limpia el formulario.
+     * Guarda los cambios de nombre y descripción del producto seleccionado.
+     * Solo valida nombre y descripción ya que son los únicos campos editables requeridos.
+     * Si la actualización es correcta recarga la tabla y bloquea los campos.
      */
     public void guardarArticulo() {
 
@@ -796,41 +821,40 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     "Selecciona un artículo primero.",
                     "Sin selección",
                     JOptionPane.WARNING_MESSAGE);
-
+            
         } else if (Utilidades.compruebaCampoVacio(campoNombre)) {
             Utilidades.lanzaAlertaVacio(campoNombre);
-
+            
         } else if (campoDescripcion.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "La descripción no puede estar vacía.",
                     "Campo vacío",
                     JOptionPane.WARNING_MESSAGE);
-
         } else {
+            
             if (ConsultasProducto.actualizarProducto(
                     campoCodProducto.getText(),
                     campoNombre.getText(),
                     campoDescripcion.getText())) {
 
                 JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.");
-                ConsultasProducto.cargarListadoArticulos(
-                        (DefaultTableModel) tablaListadoArticulos.getModel());
-                bloquearCampos();
+                
+                // Recargar tabla
+                ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
+                
+                desactivarEdicionProducto();
+                limpiarFormularioVerListadoArticulos();
+        } else {
 
+                JOptionPane.showMessageDialog(this, "Error al actualizar el producto.");
             }
-
-        }
+        }   
     }
-    
-    
-        // Falta crear objeto
-        // Falta BBDD
-        // Falta referencia a limpiarCampos
-    
-    
-        /**
-         * Limpia todos los campos del formulario de registro de artículo.
-         */
+        
+       
+    /**
+     * Limpia todos los campos del formulario de registro de artículo.
+     */
     public void limpiarFormularioVerListadoArticulos() {
 
         campoCodProducto.setText("");
@@ -843,18 +867,39 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         campoOrigen.setText("");
         campoDestacado.setText("");
         campoOferta.setText("");
-        campoNombre.setEditable(false);
-        campoDescripcion.setEditable(false);
+        desactivarEdicionProducto();
     }
 
+    
     /**
-     * Bloquea los campos del panel derecho para que no sean editables. Se llama
-     * al abrir la ventana y tras guardar o cancelar.
+     * Desactiva la edición de nombre y descripción del panel derecho.
+     * Se llama al abrir la ventana, tras guardar y tras limpiar.
      */
-    public void bloquearCampos() {
+    public void desactivarEdicionProducto() {
         campoNombre.setEditable(false);
         campoDescripcion.setEditable(false);
     }
+    
+    /**
+     * Activa la edición de nombre y descripción del producto seleccionado.
+     * Se llama únicamente al pulsar el botón Editar Producto con un producto seleccionado.
+     * Manda un aviso informativo al clicar sobre el botón.
+     */
+    public void activarEdicionProducto() {
+        campoNombre.setEditable(true);
+        campoDescripcion.setEditable(true);
+        
+        JOptionPane.showMessageDialog(this,
+        "Ya puede editar los campos Nombre y Descripción.",
+        "Modo edición activado",
+        JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
+    
+    
+    
+    
 
 } // Final
 

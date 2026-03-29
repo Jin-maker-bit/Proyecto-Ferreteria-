@@ -23,7 +23,7 @@ import javax.swing.border.AbstractBorder;
  * Proporciona métodos reutilizables para el diseño y comportamiento de los
  * componentes gráficos de la interfaz.
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 
 

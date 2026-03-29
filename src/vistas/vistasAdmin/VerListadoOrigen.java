@@ -5,11 +5,13 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasOrigen;
+import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VerListadoOrigen extends javax.swing.JDialog {
     
@@ -24,7 +26,21 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Cargar tabla al abrir
         ConsultasOrigen.ListadoOrigenesAdmin((DefaultTableModel) tablaListaOrigen.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaListaOrigen.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaListaOrigen.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
     }
 
     /**
@@ -42,7 +58,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListaOrigen = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        lblImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
@@ -82,10 +98,17 @@ public class VerListadoOrigen extends javax.swing.JDialog {
             new String [] {
                 "Origen", "Descripción"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaListaOrigen.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaListaOrigen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaListaOrigen.setEnabled(false);
         tablaListaOrigen.setFillsViewportHeight(true);
         tablaListaOrigen.setGridColor(new java.awt.Color(191, 150, 99));
         tablaListaOrigen.setRowHeight(35);
@@ -100,10 +123,10 @@ public class VerListadoOrigen extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
-        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
@@ -117,7 +140,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,7 +148,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -168,7 +191,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
 
         botonActualizar.setBackground(new java.awt.Color(191, 150, 99));
         botonActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonActualizar.setText("NUEVO ORIGEN");
+        botonActualizar.setText("Ir a Registrar Nuevo Origen");
         botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,18 +232,17 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(730, Short.MAX_VALUE)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonVolver)
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))))
-            .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(189, 189, 189)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,8 +262,8 @@ public class VerListadoOrigen extends javax.swing.JDialog {
                 .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(botonVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -308,9 +330,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarOrigen ro = new RegistrarOrigen(null, true);
-        this.dispose();
         ro.setVisible(true);
-       // TODO add your handling code here:
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
@@ -363,7 +383,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;

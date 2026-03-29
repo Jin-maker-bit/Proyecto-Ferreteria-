@@ -131,37 +131,45 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="332" max="32767" attributes="0"/>
+                          <EmptySpace pref="337" max="32767" attributes="0"/>
                           <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="518" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="botonActualizar" min="-2" pref="233" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="botonEditarProductos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="botonGuardar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="botoneEliminar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="botonVolver" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="botonActualizar" min="-2" pref="233" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="botonEditarProductos" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -184,27 +192,25 @@
                   <Component id="jToolBar1" min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="botonActualizar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="botonActualizar" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="231" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="botonEditarProductos" min="-2" pref="73" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="botonGuardar" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="botoneEliminar" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="botonVolver" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botonEditarProductos" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botonVolver" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botoneEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -260,10 +266,10 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
-                    <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
-                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
                     <Column editable="false" title="Categor&#xed;a" type="java.lang.Object"/>
-                    <Column editable="true" title="PVP" type="java.lang.Object"/>
+                    <Column editable="false" title="PVP" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -327,7 +333,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblUsuario1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblImprimirUsuario" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="lblImprimirAdmin" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -341,7 +347,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblUsuario1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblImprimirUsuario" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="lblImprimirAdmin" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="12" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="56" max="-2" attributes="0"/>
@@ -350,7 +356,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblImprimirUsuario">
+            <Component class="javax.swing.JLabel" name="lblImprimirAdmin">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="40" green="30" red="9" type="rgb"/>
@@ -487,7 +493,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Trebuchet MS" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="REGISTRAR NUEVO ARTICULO"/>
+            <Property name="text" type="java.lang.String" value="Ir a Registrar Nuevo Art&#xed;culo"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
@@ -542,13 +548,13 @@
                                   <Component id="campoPrecioCompra" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoPrecioVenta" alignment="1" max="32767" attributes="0"/>
                                   <Component id="campoStock" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="campoOrigen" alignment="0" pref="269" max="32767" attributes="0"/>
+                                  <Component id="campoOrigen" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="campoCategoria" alignment="1" pref="269" max="32767" attributes="0"/>
-                          <Component id="campoOferta" alignment="1" pref="269" max="32767" attributes="0"/>
-                          <Component id="campoDestacado" alignment="1" pref="269" max="32767" attributes="0"/>
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoCategoria" alignment="1" max="32767" attributes="0"/>
+                          <Component id="campoOferta" alignment="1" max="32767" attributes="0"/>
+                          <Component id="campoDestacado" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="305" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -563,9 +569,12 @@
                           <Component id="campoCodProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblUsuario3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblUsuario3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                              <Component id="campoNombre" min="-2" pref="17" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -636,7 +645,7 @@
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="0" red="ff" type="rgb"/>
+                  <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="NOMBRE:"/>
               </Properties>
@@ -658,7 +667,7 @@
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="33" red="ff" type="rgb"/>
+                  <Color blue="63" green="96" red="bf" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="DESCRIPCI&#xd3;N:"/>
               </Properties>
@@ -748,8 +757,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="C&#xf3;digo Producto" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoNombre">
@@ -770,12 +778,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Nombre" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoPrecioCompra">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -792,12 +800,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Precio Compra" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoPrecioVenta">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -814,12 +822,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Precio Venta" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoStock">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -836,12 +844,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Stock" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoCategoria">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -858,12 +866,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Categor&#xed;a" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoOrigen">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -880,12 +888,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Origen" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoOferta">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -902,12 +910,12 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Oferta" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="campoDestacado">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -924,8 +932,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Destacado" noResource="true"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -937,12 +944,21 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="campoDescripcion">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="26" green="20" red="3" type="rgb"/>
+                    </Property>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Trebuchet MS" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="8c" green="89" red="70" type="rgb"/>
+                    </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="autoscrolls" type="boolean" value="false"/>
-                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="Descripci&#xf3;n" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -960,7 +976,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="63" green="96" red="bf" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="text" type="java.lang.String" value="Guardar edici&#xf3;n de producto"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
@@ -980,7 +996,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="63" green="96" red="bf" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Editar productos"/>
+            <Property name="text" type="java.lang.String" value="Clic para Activar el panel y Editar productos"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
@@ -1000,7 +1016,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="63" green="96" red="bf" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="text" type="java.lang.String" value="Eliminar producto"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>

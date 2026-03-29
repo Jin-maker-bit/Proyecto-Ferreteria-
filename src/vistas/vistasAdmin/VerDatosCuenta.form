@@ -130,52 +130,49 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="340" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <Component id="panelSecundario8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="panelSecundario8" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="172" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Component id="lblTitulo8" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lblSubtitulo8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jToolBar9" min="-2" pref="13" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="panelSecundario8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="lblTitulo8" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lblSubtitulo8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jToolBar9" min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="panelSecundario8" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="panelFinal" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -229,46 +226,36 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="botonVolver" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="lblDenominacion4" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="lblDenominacion5" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="lblDenominacion6" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="lblDenominacion3" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblDenominacion1" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="campoUsuario" alignment="0" pref="360" max="32767" attributes="0"/>
-                                  <Component id="campoNombreCompleto" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="campoTipo" max="32767" attributes="0"/>
-                                  <Component id="campoPass" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="campoNuevaPass" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="242" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="lblDenominacion1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblDenominacion3" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblDenominacion4" alignment="1" pref="166" max="32767" attributes="0"/>
+                                  <Component id="lblDenominacion5" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblDenominacion6" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="campoUsuario" min="-2" pref="347" max="-2" attributes="0"/>
+                                  <Component id="campoNombreCompleto" min="-2" pref="347" max="-2" attributes="0"/>
+                                  <Component id="campoPass" alignment="1" min="-2" pref="347" max="-2" attributes="0"/>
+                                  <Component id="campoNuevaPass" alignment="1" min="-2" pref="347" max="-2" attributes="0"/>
+                                  <Component id="campoTipo" min="-2" pref="347" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="botonActualizar" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="botonActualizar" min="-2" pref="142" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="botonVolver" min="-2" pref="126" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -277,38 +264,45 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblDenominacion1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="campoNombreCompleto" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblDenominacion3" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="campoUsuario" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblDenominacion4" pref="28" max="32767" attributes="0"/>
-                          <Component id="campoPass" max="32767" attributes="0"/>
+                          <Component id="lblDenominacion1" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                              <Component id="campoNombreCompleto" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblDenominacion5" pref="28" max="32767" attributes="0"/>
-                          <Component id="campoNuevaPass" max="32767" attributes="0"/>
+                          <Component id="campoUsuario" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="lblDenominacion3" pref="34" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblDenominacion4" max="32767" attributes="0"/>
+                          <Component id="campoPass" pref="34" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDenominacion6" min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="campoTipo" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="lblDenominacion5" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Component id="campoNuevaPass" min="-2" pref="34" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="botonActualizar" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="botonVolver" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblDenominacion6" max="32767" attributes="0"/>
+                          <Component id="campoTipo" pref="36" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botonActualizar" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="botonVolver" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -342,7 +336,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor de Mano"/>
                 </Property>
@@ -383,7 +377,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Nombre Completo" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblDenominacion3">
@@ -419,7 +413,7 @@
                   </Border>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblDenominacion4">
@@ -481,7 +475,7 @@
                   </Border>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Tipo" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -525,7 +519,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="CONTRASE&#xd1;A ACTUAL" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Pass" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="campoNuevaPass">
@@ -547,7 +541,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="CONTRASE&#xd1;A ACTUAL" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Pass Nueva" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -566,7 +560,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="textImprimirUsuario" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="lblImprimirAdmin" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -576,7 +570,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="textImprimirUsuario" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="lblImprimirAdmin" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
                   </Group>
@@ -584,7 +578,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="textImprimirUsuario">
+            <Component class="javax.swing.JLabel" name="lblImprimirAdmin">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="40" green="30" red="9" type="rgb"/>
@@ -683,12 +677,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                      <Component id="lblSubtitulo10" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblSubtitulo11" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
@@ -701,7 +690,12 @@
                           <Component id="labelRol" max="32767" attributes="0"/>
                           <Component id="labelUsuario" pref="125" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblSubtitulo10" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -716,14 +710,14 @@
                           <Component id="labelNombre" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblSubtitulo11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblSubtitulo11" max="32767" attributes="0"/>
+                          <Component id="labelRol" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblSubtitulo9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelUsuario" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="62" max="32767" attributes="0"/>
                   </Group>
@@ -736,6 +730,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Nombre" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelRol">
@@ -746,6 +741,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="cc" type="rgb"/>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Rol" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblSubtitulo9">
@@ -767,6 +763,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Trebuchet MS" size="14" style="1"/>
                 </Property>
+                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblSubtitulo10">

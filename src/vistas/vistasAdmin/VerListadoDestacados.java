@@ -5,26 +5,55 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
+import utilidades.Utilidades;
+import vistas.VentanaLogin;
 
 /**
- *
- * @author jintae
+ * Ventana de listado de artículos.
+ * Permite visualizar el catálogo y al seleccionar un artículo modificar exclusivamente su valor de Destacado: Sí / No a través de un Combo-box.
+ * @author Jose y Patricia
  */
 public class VerListadoDestacados extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoDestacados.class.getName());
 
     /**
-     * Creates new form VerListadoDestacados
+     * Constructor principal de la ventana.
+     * Inicializa los componentes, aplica la identidad visual, carga la tabla y prepara los desplegables.
+     * 
      */
     public VerListadoDestacados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        // Cargar tabla al abrir
         ConsultasProducto.ArticulosDestacadosAdmin((DefaultTableModel) tablaArticulosDestacados.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
+        
+        // Preparar Combo y campos:
+        cargarComboDestacado();
+        desactivarEdicion();
+        
+        
+        
     }
 
     /**
@@ -42,13 +71,13 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArticulosDestacados = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        lblImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
         lblRescataFechayHora = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
-        botonVolver1 = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblUsuario2 = new javax.swing.JLabel();
         lblUsuario3 = new javax.swing.JLabel();
@@ -71,7 +100,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         campoOrigen = new javax.swing.JTextField();
         campoOferta = new javax.swing.JTextField();
         campoCategoria = new javax.swing.JTextField();
-        botonEditarProducto = new javax.swing.JButton();
+        botonEditarArticuloDestacado = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
@@ -92,7 +121,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
 
         lblSubtitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo.setForeground(new java.awt.Color(112, 137, 140));
-        lblSubtitulo.setText("Listado de articulos destacados");
+        lblSubtitulo.setText("Listado de artículos destacados");
 
         tablaArticulosDestacados.setBackground(new java.awt.Color(9, 48, 64));
         tablaArticulosDestacados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -107,7 +136,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,13 +145,17 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         });
         tablaArticulosDestacados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosDestacados.setEnabled(false);
         tablaArticulosDestacados.setFillsViewportHeight(true);
         tablaArticulosDestacados.setGridColor(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setRowHeight(25);
         tablaArticulosDestacados.setSelectionBackground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosDestacados.setShowGrid(false);
+        tablaArticulosDestacados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaArticulosDestacadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaArticulosDestacados);
         if (tablaArticulosDestacados.getColumnModel().getColumnCount() > 0) {
             tablaArticulosDestacados.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -132,10 +165,10 @@ public class VerListadoDestacados extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
-        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
@@ -149,7 +182,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -157,7 +190,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -198,14 +231,14 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         jToolBar1.setMaximumSize(new java.awt.Dimension(2, 2));
         jToolBar1.setMinimumSize(new java.awt.Dimension(2, 2));
 
-        botonVolver1.setBackground(new java.awt.Color(3, 32, 38));
-        botonVolver1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonVolver1.setForeground(new java.awt.Color(191, 150, 99));
-        botonVolver1.setText("Volver");
-        botonVolver1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonVolver1.addActionListener(new java.awt.event.ActionListener() {
+        botonVolver.setBackground(new java.awt.Color(3, 32, 38));
+        botonVolver.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(191, 150, 99));
+        botonVolver.setText("Volver");
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVolver1ActionPerformed(evt);
+                botonVolverActionPerformed(evt);
             }
         });
 
@@ -258,58 +291,54 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
         campoCodProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCodProducto.setEnabled(false);
-        campoCodProducto.setName("Denominación"); // NOI18N
+        campoCodProducto.setName("Codigo Producto"); // NOI18N
 
         campoNombre.setEditable(false);
         campoNombre.setBackground(new java.awt.Color(3, 32, 38));
         campoNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(112, 137, 140));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombre.setEnabled(false);
-        campoNombre.setName("Denominación"); // NOI18N
+        campoNombre.setName("Nombre"); // NOI18N
 
         campoPrecioCompra.setEditable(false);
         campoPrecioCompra.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioCompra.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioCompra.setEnabled(false);
-        campoPrecioCompra.setName("Denominación"); // NOI18N
+        campoPrecioCompra.setName("Precio Compra"); // NOI18N
 
         campoPrecioVenta.setEditable(false);
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioVenta.setEnabled(false);
-        campoPrecioVenta.setName("Denominación"); // NOI18N
+        campoPrecioVenta.setName("Precio Venta"); // NOI18N
 
         campoStock.setEditable(false);
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoStock.setEnabled(false);
         campoStock.setName("Denominación"); // NOI18N
 
         comboDestacado.setBackground(new java.awt.Color(3, 32, 38));
+        comboDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboDestacado.setForeground(new java.awt.Color(112, 137, 140));
         comboDestacado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboDestacado.setEnabled(false);
-        comboDestacado.setName("Tipo"); // NOI18N
+        comboDestacado.setName("Destacado"); // NOI18N
 
         campoDescripcion.setEditable(false);
         campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
         campoDescripcion.setColumns(20);
+        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
         campoDescripcion.setLineWrap(true);
         campoDescripcion.setRows(5);
         campoDescripcion.setWrapStyleWord(true);
         campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setEnabled(false);
+        campoDescripcion.setName("Descripción"); // NOI18N
         jScrollPane2.setViewportView(campoDescripcion);
 
         campoOrigen.setEditable(false);
@@ -317,24 +346,21 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoOrigen.setForeground(new java.awt.Color(112, 137, 140));
         campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOrigen.setEnabled(false);
-        campoOrigen.setName("Denominación"); // NOI18N
+        campoOrigen.setName("Origen"); // NOI18N
 
         campoOferta.setEditable(false);
         campoOferta.setBackground(new java.awt.Color(3, 32, 38));
         campoOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoOferta.setForeground(new java.awt.Color(112, 137, 140));
         campoOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOferta.setEnabled(false);
-        campoOferta.setName("Denominación"); // NOI18N
+        campoOferta.setName("Oferta"); // NOI18N
 
         campoCategoria.setEditable(false);
         campoCategoria.setBackground(new java.awt.Color(3, 32, 38));
         campoCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCategoria.setForeground(new java.awt.Color(112, 137, 140));
         campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCategoria.setEnabled(false);
-        campoCategoria.setName("Denominación"); // NOI18N
+        campoCategoria.setName("Categoría"); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -416,21 +442,21 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                 .addGap(33, 33, 33))
         );
 
-        botonEditarProducto.setBackground(new java.awt.Color(3, 32, 38));
-        botonEditarProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonEditarProducto.setForeground(new java.awt.Color(191, 150, 99));
-        botonEditarProducto.setText("Editar");
-        botonEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonEditarProducto.addActionListener(new java.awt.event.ActionListener() {
+        botonEditarArticuloDestacado.setBackground(new java.awt.Color(3, 32, 38));
+        botonEditarArticuloDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonEditarArticuloDestacado.setForeground(new java.awt.Color(191, 150, 99));
+        botonEditarArticuloDestacado.setText("Clic para Activar el Panel y Editar");
+        botonEditarArticuloDestacado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonEditarArticuloDestacado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarProductoActionPerformed(evt);
+                botonEditarArticuloDestacadoActionPerformed(evt);
             }
         });
 
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(191, 150, 99));
-        botonGuardar.setText("GUARDAR");
+        botonGuardar.setText("Guardar Edición de Artículo Destacado");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,23 +480,25 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditarArticuloDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(295, 295, 295)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(botonEditarProducto)
-                                .addGap(130, 130, 130)
-                                .addComponent(botonGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonVolver1))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonGuardar)
+                        .addGap(39, 39, 39)
+                        .addComponent(botonVolver)
+                        .addGap(47, 47, 47))))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,25 +513,21 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonVolver1)
-                            .addComponent(botonGuardar)))
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(botonEditarArticuloDestacado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonEditarProducto)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonVolver)
+                    .addComponent(botonGuardar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -567,17 +591,58 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
-    private void botonVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolver1ActionPerformed
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         this.dispose();
-    }//GEN-LAST:event_botonVolver1ActionPerformed
+    }//GEN-LAST:event_botonVolverActionPerformed
 
-    private void botonEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEditarProductoActionPerformed
+    private void botonEditarArticuloDestacadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarArticuloDestacadoActionPerformed
+        
+        if (campoCodProducto.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, 
+                "Selecciona un artículo destacado de la tabla primero.", 
+                "Sin selección", 
+                JOptionPane.WARNING_MESSAGE);
+        } else {
+            activarEdicion();
+        }
+    }//GEN-LAST:event_botonEditarArticuloDestacadoActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        guardarArticuloDestacado();
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void tablaArticulosDestacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosDestacadosMouseClicked
+       
+        int fila = tablaArticulosDestacados.getSelectedRow();
+        if (fila != -1) {
+            
+            String codigo = tablaArticulosDestacados.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.rescatarProductoPorCodigo(codigo);
+            
+            if (p != null) {
+                
+                campoCodProducto.setText(p.getCodProducto());
+                campoNombre.setText(p.getNombre());
+                campoCategoria.setText(p.getCategoria());
+                campoDescripcion.setText(p.getDescripcion());
+                campoPrecioCompra.setText(String.valueOf(p.getPrecioCompra()));
+                campoPrecioVenta.setText(String.valueOf(p.getPrecioVenta()));
+                campoStock.setText(String.valueOf(p.getStock()));
+                campoOrigen.setText(p.getOrigen());
+                campoOferta.setText(p.getOferta());
+                
+                
+                comboDestacado.setSelectedItem(p.getDestacado());
+                
+                // Bloquear edición por seguridad al cambiar de fila
+                desactivarEdicion(); 
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al rescatar el producto.");
+            }
+        }
+    }//GEN-LAST:event_tablaArticulosDestacadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -617,9 +682,9 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEditarProducto;
+    private javax.swing.JButton botonEditarArticuloDestacado;
     private javax.swing.JButton botonGuardar;
-    private javax.swing.JButton botonVolver1;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoCategoria;
     private javax.swing.JTextField campoCodProducto;
     private javax.swing.JTextArea campoDescripcion;
@@ -638,7 +703,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
@@ -660,4 +725,96 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaArticulosDestacados;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    /**
+     * Guarda la selección del nuevo estado de Destacado en la base de datos.
+     */
+    public void guardarArticuloDestacado() {
+        
+        if (campoCodProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (Utilidades.compruebaComboNoSeleccionado(comboDestacado)) {
+            Utilidades.lanzaAlertaCombo(comboDestacado);
+            return;
+        }
+
+        String codigo = campoCodProducto.getText();
+        String nuevoDestacado = comboDestacado.getSelectedItem().toString();
+
+        if (ConsultasProducto.actualizarDestacado(codigo, nuevoDestacado)) {
+            
+            JOptionPane.showMessageDialog(this, "Estado destacado actualizado correctamente.");
+            
+            ConsultasProducto.ArticulosDestacadosAdmin((DefaultTableModel) tablaArticulosDestacados.getModel());
+            
+            desactivarEdicion();
+            
+            limpiarFormulario();
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Error al actualizar el estado.", "Error BBDD", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+  
+    /**
+     * Limpia todos los campos del formulario y restablece el estado de edición.
+     */
+    public void limpiarFormulario() {
+        campoCodProducto.setText("");
+        campoNombre.setText("");
+        campoCategoria.setText("");
+        campoDescripcion.setText("");
+        campoPrecioCompra.setText("");
+        campoPrecioVenta.setText("");
+        campoStock.setText("");
+        campoOrigen.setText("");
+        campoOferta.setText("");
+        comboDestacado.setSelectedIndex(0);
+        desactivarEdicion();
+    }
+    
+    
+  
+    /**
+     * Carga dinámicamente los valores permitidos para el estado "Destacado" consultando la estructura ENUM - SI / NO, de la base de datos.
+     */
+    private void cargarComboDestacado() {
+        
+        comboDestacado.removeAllItems();
+        comboDestacado.addItem("Seleccione");
+        
+        java.util.ArrayList<String> destacados = bbdd.Conexion.obtenerValoresEnum("producto", "destacado");
+        for (String dest : destacados) {
+            
+            comboDestacado.addItem(dest);
+        }
+    }
+    
+    
+    /**
+     * Deshabilita el JComboBox de Destacado.
+     */
+    public void desactivarEdicion() {
+        comboDestacado.setEnabled(false);
+    }
+
+    
+    /**
+     * Habilita el JComboBox de Destacado para permitir cambios.
+     */
+    public void activarEdicion() {
+        comboDestacado.setEnabled(true);
+        JOptionPane.showMessageDialog(this, 
+            "Ya puede editar el estado de Destacado del artículo desde el menú desplegable.", 
+            "Modo edición activado", 
+            JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }

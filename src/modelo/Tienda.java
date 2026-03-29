@@ -5,17 +5,31 @@
 package modelo;
 
 /**
- *
- * @author jintae
+ * Clase modelo que representa una Tienda física de la ferretería.
+ * Almacena los datos identificativos del establecimiento, su ubicación y el personal responsable asignado.
+ * @author Jose y Patricia
  */
 public class Tienda {
     private String denominacion;
     private String direccion;
     private String responsable;
 
+    
+    /**
+     * Constructor vacío por defecto.
+     * Facilita la creación de objetos Tienda para ser poblados posteriormente.
+     */
     public Tienda() {
     }
 
+    
+    /**
+     * Constructor parametrizado.
+     * Crea un objeto Tienda con toda su información inicial básica.
+     * @param denominacion Nombre identificativo de la tienda.
+     * @param direccion Ubicación física del local.
+     * @param responsable Nombre del encargado de la sede.
+     */
     public Tienda(String denominacion, String direccion, String responsable) {
         this.denominacion = denominacion;
         this.direccion = direccion;

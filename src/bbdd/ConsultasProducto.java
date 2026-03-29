@@ -15,14 +15,16 @@ import javax.swing.JOptionPane;
 import modelo.Producto;
 
 /**
- *
- * @author jintae
+ * Clase principal encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla producto.
+ * Maneja el registro, modificación, eliminación, listados filtrados y estadísticas.
+ * Hereda de la clase Conexion.
+ * @author Jose y Patricia
  */
 public class ConsultasProducto extends Conexion {
 
+    
     /**
-     * Recupera los tres últimos artículos registrados en la base de datos
-     * ordenados por fecha de alta de forma descendente y los carga en la tabla.
+     * Recupera los tres últimos artículos registrados en la base de datos ordenados por fecha de alta de forma descendente.
      * La tabla que carga este método aparece tanto en VentanaAdmin como en VentanaUser.
      *
      * @param modelo
@@ -67,8 +69,14 @@ public class ConsultasProducto extends Conexion {
             cerrarConexion();
         }
     }
-// Metodo para rescatar Articulos disponibles en un Jlabel de nuestra interfaz de usuario
 
+    
+  
+    /**
+     * Cuenta cuántos artículos hay registrados en total en el catálogo.
+     * Se utiliza para actualizar las estadísticas, JLabel, en la interfaz de usuario.
+     * @return El total de artículos. Devuelve 0 si hay error.
+     */
     public static int rescataArticulosDisponibles() {
 
         int numeroVentas = 0;
@@ -77,72 +85,111 @@ public class ConsultasProducto extends Conexion {
         conectar();
 
         try {
+            
             PreparedStatement comando = conn.prepareStatement(consulta);
+            
             try (ResultSet reader = comando.executeQuery()) {
+                
                 if (reader.next()) {
+                    
                     numeroVentas = reader.getInt(1);
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+            
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de artículos disponibles.\n" + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
         return numeroVentas;
     }
 
-    // Metodo para rescatar articulos en oferta en un jlabel de nuestra vestanaprincipal user
+    
+    
+    /**
+     * Cuenta cuántos artículos tienen actualmente el estado de oferta activo: 'SI'.
+     * Se utiliza para los paneles de estadísticas en las ventanas principales.
+     * @return El total de artículos en oferta.
+     */
     public static int rescataArticulosOferta() {
 
         int numeroVentas = 0;
+        
         String consulta = "SELECT count(oferta) FROM producto "
                 + "where UPPER(oferta) = 'SI'";
 
         conectar();
 
         try {
+            
             PreparedStatement comando = conn.prepareStatement(consulta);
+            
             try (ResultSet reader = comando.executeQuery()) {
+                
                 if (reader.next()) {
                     numeroVentas = reader.getInt(1);
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+            
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de artículos en oferta.\n" + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
         return numeroVentas;
     }
 
-    // Metodo para rescatar articulos destacados en un jlabel de nuestra vestanaprincipal user
+    
+    
+    /**
+     * Cuenta cuántos artículos están marcados como destacados: 'SI'.
+     * Se utiliza para los paneles de estadísticas en las ventanas principales.
+     * @return El total de artículos destacados.
+     */
     public static int rescataArticulosDestacados() {
 
         int numeroVentas = 0;
+        
         String consulta = "SELECT count(destacado)FROM producto "
                 + "where UPPER(destacado) = 'SI'";
 
         conectar();
 
         try {
+            
             PreparedStatement comando = conn.prepareStatement(consulta);
+            
             try (ResultSet reader = comando.executeQuery()) {
+                
                 if (reader.next()) {
                     numeroVentas = reader.getInt(1);
                 }
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+            
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de artículos destacados.\n" + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
         return numeroVentas;
     }
 
-    // metodo usado para rescatar articulos destacados en user y admin
+    
+    
+    /**
+     * Carga en la tabla especificada únicamente los artículos marcados como Destacados.
+     * Versión para consulta general -> 4 columnas.
+     * @param modelo 
+     */
     public static void ArticulosDestacados(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -179,8 +226,14 @@ public class ConsultasProducto extends Conexion {
             cerrarConexion();
         }
     }
+    
+    
 
-    // metodo usado para rescatar articulos en oferta en user y admin
+    /**
+     * Carga en la tabla especificada únicamente los artículos marcados en Oferta.
+     * 
+     * @param modelo 
+     */
     public static void ArticulosOferta(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -218,7 +271,14 @@ public class ConsultasProducto extends Conexion {
         }
     }
 
-    // metodo usado para rescatar articulos totales en user y admin
+    
+    
+    
+    /**
+     * Carga el listado completo de productos en el modelo de la tabla proporcionado.
+     * Muestra: código, nombre, categoría y precio de venta.
+     * @param modelo 
+     */
     public static void ListadoArticulos(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -257,12 +317,12 @@ public class ConsultasProducto extends Conexion {
     }
 
     /**
-     * Registra un nuevo producto en la tabla producto de la base de datos.
+     * Registra un nuevo producto en la tabla producto de la base de datos de la Ferretería.
      * Inserta todos los campos del producto incluyendo el precio de venta
      * calculado automáticamente.
      * 
-     * @param p
-     * @return
+     * @param p Producto con todos los datos validados desde la interfaz.
+     * @return true si la inserción en BBDD es correcta, false si hay error.
      */
     public static boolean registrarProducto(Producto p) {
 
@@ -301,11 +361,18 @@ public class ConsultasProducto extends Conexion {
         }
 
     }
-// metodo para rescatar el total de productos en el jlbael de la interfaz admin
+    
+    
 
+    /**
+     * Cuenta cuántos artículos de la base de datos son de origen Nacional.
+     * Utilizado para alimentar las estadísticas de la interfaz Admin.
+     * @return El total de productos nacionales.
+     */
     public static int rescatarProductosNacionales() {
 
         int rescatarProducto = 0;
+        
         String consulta = "SELECT count(origen) FROM producto "
                 + "where origen = 'Nacional'";
 
@@ -318,16 +385,28 @@ public class ConsultasProducto extends Conexion {
                     rescatarProducto = reader.getInt(1);
                 }
             }
+            
         } catch (SQLException e) {
+            
             JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
         return rescatarProducto;
     }
-
+    
+    
+    
+    /**
+     * Busca y rescata todos los datos de un producto específico mediante su código único.
+     * @param codigo Código alfanumérico del producto a buscar.
+     * @return Objeto Producto con todos sus datos, o null si no se encuentra.
+     */
     public static Producto buscarProductoPorCodigo(String codigo) {
+       
         Producto p = null;
         String sql = "SELECT * FROM producto WHERE codProducto = ?";
 
@@ -354,15 +433,22 @@ public class ConsultasProducto extends Conexion {
                 }
             }
         } catch (SQLException e) {
+            
             javax.swing.JOptionPane.showMessageDialog(null, "Error SQL al buscar producto: " + e.getMessage());
+            
         } finally {
+            
             cerrarConexion();
         }
 
         return p;
     }
 
-    // metodo para rescatar especificamente articulos destacados ADMIN no se puede reutilizar por la cantidad de filas que hay en user.
+   
+    /**
+     * Versión para el panel Administrador: Carga los artículos destacados incluyendo la columna destacado (5 columnas en total).
+     * @param modelo 
+     */
     public static void ArticulosDestacadosAdmin(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -400,8 +486,53 @@ public class ConsultasProducto extends Conexion {
             cerrarConexion();
         }
     }
+    
+    
+    /**
+     * Actualiza EXCLUSIVAMENTE el valor destacado, Sí / No, de un producto.
+     * Llamado desde la ventana VerListadoDestacados.
+     * @param codigo
+     * @param nuevoDestacado
+     * @return 
+     */
+    public static boolean actualizarDestacado(String codigo, String nuevoDestacado) {
+        
+        boolean exito = false;
+        
+        String consulta = "UPDATE producto SET destacado = ? WHERE codProducto = ?";
+        
+        conectar();
+        
+        try {
+            
+            java.sql.PreparedStatement pst = Conexion.conn.prepareStatement(consulta);
+            pst.setString(1, nuevoDestacado);
+            pst.setString(2, codigo);
+            
+            if (pst.executeUpdate() > 0) {
+                
+                exito = true;
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error BBDD al actualizar destacado: " + ex.getMessage());
+            
+        } finally {
+            
+            cerrarConexion();
+            
+        }
+        
+        return exito;
+    }
 
-    // metodo para rescatar especificamente articulos en oferta ADMIN no se puede reutilizar por la cantidad de filas que hay en user.
+    
+    
+    /**
+     * Versión para el panel Administrador: Carga los artículos en oferta incluyendo la columna oferta (5 columnas en total).
+     * @param modelo 
+     */
     public static void ArticulosOfertaAdmin(javax.swing.table.DefaultTableModel modelo) {
 
         modelo.setRowCount(0);
@@ -441,11 +572,10 @@ public class ConsultasProducto extends Conexion {
     }
     
     
-    ////// Prueba ////
     
-    
+   
     /**
-     * Carga todos los productos de la tabla {@code producto} en el modelo de la tabla.
+     * Carga todos los productos de la tabla en el modelo de la tabla.
      * Muestra código, nombre, categoría y precio de venta.
      * @param modelo DefaultTableModel de la JTable donde se cargarán los datos.
      */
@@ -485,6 +615,7 @@ public class ConsultasProducto extends Conexion {
     
     /**
      * Rescata todos los datos de un producto por su código.
+     * Devuelve el objeto instanciado con todos los atributos mapeados.
      * @param codProducto Código del producto a buscar.
      * @return Objeto {@link Producto} con todos los datos, o {@code null} si no existe.
      */
@@ -599,4 +730,82 @@ public class ConsultasProducto extends Conexion {
             cerrarConexion();
         }
     }
+    
+    
+    
+    /**
+     * Carga en la tabla de VerListadoOfertas la información de los artículos para gestionar sus ofertas.
+     * Muestra: Código, Nombre, Categoría, Precio de Venta y Oferta.
+     */
+    public static void cargarListadoOfertas(javax.swing.table.DefaultTableModel modelo) {
+        
+        modelo.setRowCount(0);
+        
+        
+        String consulta = "SELECT codProducto, nombre, categoria, precio_venta, oferta FROM producto";
+        
+        conectar();
+        
+        try {
+            
+            java.sql.Statement st = Conexion.conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(consulta);
+            
+            while (rs.next()) {
+                
+                Object[] fila = new Object[5];
+                fila[0] = rs.getString("codProducto");
+                fila[1] = rs.getString("nombre");
+                fila[2] = rs.getString("categoria");
+                fila[3] = rs.getDouble("precio_venta");
+                fila[4] = rs.getString("oferta");
+                
+                modelo.addRow(fila);
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar la tabla de artículos en oferta: " + ex.getMessage());
+            
+        } finally {
+            
+            cerrarConexion();
+        }
+    }
+
+    
+    /**
+     * Actualiza EXCLUSIVAMENTE el valor 'oferta' de un producto en la base de datos.
+     * Garantiza que el resto de los campos permanezcan inalterados.
+     * 
+     */
+    public static boolean actualizarOferta(String codigo, String nuevaOferta) {
+        
+        boolean exito = false;
+        String consulta = "UPDATE producto SET oferta = ? WHERE codProducto = ?";
+        
+        conectar();
+        
+        try {
+            
+            java.sql.PreparedStatement pst = Conexion.conn.prepareStatement(consulta);
+            
+            pst.setString(1, nuevaOferta);
+            pst.setString(2, codigo);
+            
+            if (pst.executeUpdate() > 0) {
+                exito = true;
+            }
+            
+        } catch (java.sql.SQLException ex) {
+            
+            javax.swing.JOptionPane.showMessageDialog(null, "Error BBDD al actualizar oferta: " + ex.getMessage());
+            
+        } finally {
+            
+            cerrarConexion();
+        }
+        return exito;
+    }
+    
 }

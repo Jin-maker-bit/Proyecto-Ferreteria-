@@ -13,7 +13,7 @@ import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VentanaAdmin extends javax.swing.JFrame {
 
@@ -38,6 +38,12 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        
+        // Rescatar información en los labels:
         lblRescatarTiendas.setText(String.valueOf(ConsultasTiendas.rescataTienda()));
         lblRescatarProductoNacional.setText(String.valueOf(ConsultasProducto.rescatarProductosNacionales()));
         lblRescatarUsuariosTotales.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosTotales()));
@@ -581,7 +587,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         });
         tablaArticulosRegistrados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosRegistrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosRegistrados.setEnabled(false);
         tablaArticulosRegistrados.setFillsViewportHeight(true);
         tablaArticulosRegistrados.setGridColor(new java.awt.Color(191, 150, 99));
         tablaArticulosRegistrados.setRowHeight(40);
@@ -616,9 +621,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(lblSubtitulo5)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -632,13 +636,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 12, 0, 0);
         panelPrincipal.add(jPanel2, gridBagConstraints);
 
-        menuBarAdmin.setBackground(new java.awt.Color(10, 49, 64));
         menuBarAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
-        menuBarAdmin.setForeground(new java.awt.Color(255, 255, 255));
         menuBarAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        menuInventario.setBackground(new java.awt.Color(10, 49, 64));
-        menuInventario.setForeground(new java.awt.Color(10, 49, 64));
         menuInventario.setText("Inventario");
         menuInventario.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
@@ -689,7 +689,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         menuBarAdmin.add(menuInventario);
 
-        menuUsuarios.setForeground(new java.awt.Color(10, 49, 64));
         menuUsuarios.setText("Usuarios");
         menuUsuarios.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
@@ -717,7 +716,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         menuBarAdmin.add(menuUsuarios);
 
-        menuTiendas.setForeground(new java.awt.Color(10, 49, 64));
         menuTiendas.setText("Tiendas");
         menuTiendas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
@@ -756,7 +754,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         menuBarAdmin.add(menuTiendas);
 
-        menuMiCuenta.setForeground(new java.awt.Color(10, 49, 64));
         menuMiCuenta.setText("Mi cuenta");
         menuMiCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
@@ -893,22 +890,22 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
     private void botonTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTiendaActionPerformed
         VerListadoTiendas vlt = new VerListadoTiendas(this, true);
-        vlt.setVisible(true);// TODO add your handling code here:
+        vlt.setVisible(true);
     }//GEN-LAST:event_botonTiendaActionPerformed
 
     private void botonVerMiCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerMiCuentaActionPerformed
         VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
-        vdatcuent.setVisible(true);        // TODO add your handling code here:
+        vdatcuent.setVisible(true);        
     }//GEN-LAST:event_botonVerMiCuentaActionPerformed
 
     private void botonVerDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDestacadosActionPerformed
         VerListadoDestacados vlistdes = new VerListadoDestacados(this, true);
-        vlistdes.setVisible(true);        // TODO add your handling code here:
+        vlistdes.setVisible(true);        
     }//GEN-LAST:event_botonVerDestacadosActionPerformed
 
     private void botonVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerArticulosActionPerformed
         VerListadoArticulos vlistart = new VerListadoArticulos(this, true);
-        vlistart.setVisible(true);        // TODO add your handling code here:
+        vlistart.setVisible(true);        
     }//GEN-LAST:event_botonVerArticulosActionPerformed
 
     /**

@@ -5,11 +5,17 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasProducto;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Producto;
+import utilidades.Utilidades;
+import vistas.VentanaLogin;
 
 /**
- *
- * @author jintae
+ * Ventana de listado de artículos para la gestión de Ofertas.
+ * Permite visualizar el catálogo y al seleccionar un artículo, modificar exclusivamente su valor de Oferta: Sí / No, a través de un Combo-box.
+ * @author Jose y Patricia
  */
 public class VerListadoOfertas extends javax.swing.JDialog {
     
@@ -22,9 +28,27 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        // Cargar tabla al abrir
         ConsultasProducto.ArticulosOfertaAdmin((DefaultTableModel) tablaArticulosOferta.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
+        tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
+        tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
+        
+        // Rescatar fecha y hora en la interfaz
+        LocalDateTime fechaHora = LocalDateTime.now();
+        lblRescataFechayHora.setText("Admin activo — "
+                + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
+
+        // Rescata Administrador:
+        lblImprimirAdmin.setText(VentanaLogin.user);
+        
+        // Preparar combo y campos:
+        cargarComboOferta();
+        desactivarEdicion();
     }
 
     /**
@@ -42,7 +66,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaArticulosOferta = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        lblImprimirUsuario = new javax.swing.JLabel();
+        lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
         panelFinal = new javax.swing.JPanel();
         lblSistemaGestion = new javax.swing.JLabel();
@@ -107,7 +131,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,7 +140,6 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         });
         tablaArticulosOferta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaArticulosOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tablaArticulosOferta.setEnabled(false);
         tablaArticulosOferta.setFillsViewportHeight(true);
         tablaArticulosOferta.setGridColor(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setRowHeight(40);
@@ -124,14 +147,19 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
         tablaArticulosOferta.setShowGrid(false);
         tablaArticulosOferta.setShowHorizontalLines(true);
+        tablaArticulosOferta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaArticulosOfertaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaArticulosOferta);
 
         jPanel1.setBackground(new java.awt.Color(3, 32, 38));
 
-        lblImprimirUsuario.setBackground(new java.awt.Color(9, 48, 64));
-        lblImprimirUsuario.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        lblImprimirUsuario.setForeground(new java.awt.Color(191, 150, 99));
-        lblImprimirUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImprimirAdmin.setBackground(new java.awt.Color(9, 48, 64));
+        lblImprimirAdmin.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblImprimirAdmin.setForeground(new java.awt.Color(191, 150, 99));
+        lblImprimirAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblUsuario1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblUsuario1.setForeground(new java.awt.Color(191, 150, 99));
@@ -145,7 +173,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblUsuario1)
                 .addGap(6, 6, 6)
-                .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -153,7 +181,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario1)
-                    .addComponent(lblImprimirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImprimirAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
@@ -175,7 +203,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
             .addGroup(panelFinalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblSistemaGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                 .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -254,40 +282,35 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         campoCodProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodProducto.setForeground(new java.awt.Color(112, 137, 140));
         campoCodProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCodProducto.setEnabled(false);
-        campoCodProducto.setName("Denominación"); // NOI18N
+        campoCodProducto.setName("Codigo Producto"); // NOI18N
 
         campoNombre.setEditable(false);
         campoNombre.setBackground(new java.awt.Color(3, 32, 38));
         campoNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoNombre.setForeground(new java.awt.Color(112, 137, 140));
         campoNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombre.setEnabled(false);
-        campoNombre.setName("Denominación"); // NOI18N
+        campoNombre.setName("Nombre"); // NOI18N
 
         campoPrecioCompra.setEditable(false);
         campoPrecioCompra.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioCompra.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioCompra.setEnabled(false);
-        campoPrecioCompra.setName("Denominación"); // NOI18N
+        campoPrecioCompra.setName("Precio Compra"); // NOI18N
 
         campoPrecioVenta.setEditable(false);
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPrecioVenta.setEnabled(false);
-        campoPrecioVenta.setName("Denominación"); // NOI18N
+        campoPrecioVenta.setName("Precio Venta"); // NOI18N
 
         campoStock.setEditable(false);
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoStock.setForeground(new java.awt.Color(112, 137, 140));
         campoStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoStock.setEnabled(false);
-        campoStock.setName("Denominación"); // NOI18N
+        campoStock.setName("Stock"); // NOI18N
         campoStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoStockActionPerformed(evt);
@@ -295,22 +318,23 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         });
 
         comboOferta.setBackground(new java.awt.Color(3, 32, 38));
+        comboOferta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         comboOferta.setForeground(new java.awt.Color(112, 137, 140));
         comboOferta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
         comboOferta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         comboOferta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboOferta.setEnabled(false);
-        comboOferta.setName("Tipo"); // NOI18N
+        comboOferta.setName("Oferta"); // NOI18N
 
         campoDescripcion.setEditable(false);
         campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
         campoDescripcion.setColumns(20);
+        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
         campoDescripcion.setLineWrap(true);
         campoDescripcion.setRows(5);
         campoDescripcion.setWrapStyleWord(true);
         campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setEnabled(false);
+        campoDescripcion.setName("Descripción"); // NOI18N
         jScrollPane2.setViewportView(campoDescripcion);
 
         campoOrigen.setEditable(false);
@@ -318,24 +342,21 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         campoOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoOrigen.setForeground(new java.awt.Color(112, 137, 140));
         campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoOrigen.setEnabled(false);
-        campoOrigen.setName("Denominación"); // NOI18N
+        campoOrigen.setName("Origen"); // NOI18N
 
         campoDestacado.setEditable(false);
         campoDestacado.setBackground(new java.awt.Color(3, 32, 38));
         campoDestacado.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoDestacado.setForeground(new java.awt.Color(112, 137, 140));
         campoDestacado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDestacado.setEnabled(false);
-        campoDestacado.setName("Denominación"); // NOI18N
+        campoDestacado.setName("Destacado"); // NOI18N
 
         campoCategoria.setEditable(false);
         campoCategoria.setBackground(new java.awt.Color(3, 32, 38));
         campoCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCategoria.setForeground(new java.awt.Color(112, 137, 140));
         campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoCategoria.setEnabled(false);
-        campoCategoria.setName("Denominación"); // NOI18N
+        campoCategoria.setName("Categoría"); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -427,7 +448,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         botonEditarProducto.setBackground(new java.awt.Color(3, 32, 38));
         botonEditarProducto.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonEditarProducto.setForeground(new java.awt.Color(191, 150, 99));
-        botonEditarProducto.setText("Editar productos");
+        botonEditarProducto.setText("Clic Para Activar el Panel y Editar");
         botonEditarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,7 +459,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         botonGuardar.setBackground(new java.awt.Color(3, 32, 38));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(191, 150, 99));
-        botonGuardar.setText("GUARDAR");
+        botonGuardar.setText("Guardar Edición de Artículo en Oferta");
         botonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,28 +480,32 @@ public class VerListadoOfertas extends javax.swing.JDialog {
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGap(297, 297, 297)
-                                .addComponent(panelFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(92, 92, 92))
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(botonEditarProducto)
-                                .addGap(78, 78, 78)
-                                .addComponent(botonGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonVolver1))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(botonEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonVolver1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,23 +519,22 @@ public class VerListadoOfertas extends javax.swing.JDialog {
                 .addComponent(lblSubtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                        .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(49, 49, 49)
+                        .addComponent(botonEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonVolver1)
-                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(botonEditarProducto)
-                                .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(53, 53, 53))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonVolver1))
+                .addGap(14, 14, 14)
+                .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -579,16 +603,56 @@ public class VerListadoOfertas extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolver1ActionPerformed
 
     private void botonEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductoActionPerformed
-        // TODO add your handling code here:
+        
+        if (campoCodProducto.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, 
+                "Selecciona un artículo de la tabla primero.", 
+                "Sin selección", 
+                JOptionPane.WARNING_MESSAGE);
+        } else {
+            
+            activarEdicion();
+        }
     }//GEN-LAST:event_botonEditarProductoActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        guardarArticuloEnOferta();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void campoStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoStockActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoStockActionPerformed
+
+    private void tablaArticulosOfertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosOfertaMouseClicked
+        
+        int fila = tablaArticulosOferta.getSelectedRow();
+        if (fila != -1) {
+            
+            String codigo = tablaArticulosOferta.getValueAt(fila, 0).toString();
+            Producto p = ConsultasProducto.rescatarProductoPorCodigo(codigo);
+            
+            if (p != null) {
+                
+                campoCodProducto.setText(p.getCodProducto());
+                campoNombre.setText(p.getNombre());
+                campoCategoria.setText(p.getCategoria());
+                campoDescripcion.setText(p.getDescripcion());
+                campoPrecioCompra.setText(String.valueOf(p.getPrecioCompra()));
+                campoPrecioVenta.setText(String.valueOf(p.getPrecioVenta()));
+                campoStock.setText(String.valueOf(p.getStock()));
+                campoOrigen.setText(p.getOrigen());
+                campoDestacado.setText(p.getDestacado()); 
+                               
+                comboOferta.setSelectedItem(p.getOferta());
+                
+                desactivarEdicion(); 
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Error al rescatar el producto.");
+            }
+        }
+    }//GEN-LAST:event_tablaArticulosOfertaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -649,7 +713,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JLabel lblImprimirUsuario;
+    private javax.swing.JLabel lblImprimirAdmin;
     private javax.swing.JLabel lblRescataFechayHora;
     private javax.swing.JLabel lblSistemaGestion;
     private javax.swing.JLabel lblSubtitulo;
@@ -671,4 +735,99 @@ public class VerListadoOfertas extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tablaArticulosOferta;
     // End of variables declaration//GEN-END:variables
+
+    
+    /**
+     * Guarda el nuevo estado de oferta del artículo en la base de datos.
+     * Primero verifica que haya un artículo seleccionado y que el desplegable no esté en la opción por defecto.
+     * Si la actualización es exitosa, recarga la tabla para mostrar los cambios y limpia el formulario.
+     */
+    public void guardarArticuloEnOferta() {
+        
+        if (campoCodProducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecciona un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (Utilidades.compruebaComboNoSeleccionado(comboOferta)) {
+            Utilidades.lanzaAlertaCombo(comboOferta);
+            return;
+        }
+
+        String codigo = campoCodProducto.getText();
+        String nuevaOferta = comboOferta.getSelectedItem().toString();
+
+        if (ConsultasProducto.actualizarOferta(codigo, nuevaOferta)) {
+            
+            JOptionPane.showMessageDialog(this, "Estado de oferta actualizado correctamente.");
+            ConsultasProducto.cargarListadoOfertas((DefaultTableModel) tablaArticulosOferta.getModel());
+            
+            desactivarEdicion();
+           
+            limpiarFormulario();
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Error al actualizar la oferta.", "Error BBDD", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    /**
+     * Limpia todos los campos del formulario.
+     */
+    public void limpiarFormulario() {
+        campoCodProducto.setText("");
+        campoNombre.setText("");
+        campoCategoria.setText("");
+        campoDescripcion.setText("");
+        campoPrecioCompra.setText("");
+        campoPrecioVenta.setText("");
+        campoStock.setText("");
+        campoOrigen.setText("");
+        campoDestacado.setText("");
+        comboOferta.setSelectedIndex(0);
+        desactivarEdicion();
+    }
+    
+    
+    /**
+     * Carga dinámicamente los valores permitidos para el estado Oferta.
+     * Consulta directamente la estructura ENUM de la tabla 'producto' en la base de datos para rellenar el JComboBox de forma automática.
+     */
+    private void cargarComboOferta() {
+        comboOferta.removeAllItems();
+        comboOferta.addItem("Seleccione");
+        java.util.ArrayList<String> ofertas = bbdd.Conexion.obtenerValoresEnum("producto", "oferta");
+        for (String of : ofertas) {
+            comboOferta.addItem(of);
+        }
+    }
+    
+    /**
+     * Bloquea el componente desplegable de Ofertas.
+     * Se llama al iniciar la ventana, al cambiar de fila en la tabla y después de guardar para evitar modificaciones accidentales.
+     */
+    public void desactivarEdicion() {
+        comboOferta.setEnabled(false);
+    }
+
+    
+    /**
+     * Habilita el JComboBox de Ofertas para que el usuario pueda interactuar con él.
+     * Manda un aviso informativo al clicar sobre el botón.
+     */
+    public void activarEdicion() {
+        comboOferta.setEnabled(true);
+        JOptionPane.showMessageDialog(this, 
+            "Ya puede cambiar el estado de oferta del artículo desde el menú desplegable.", 
+            "Modo edición activado", 
+            JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
+
+
+
+
+
 }

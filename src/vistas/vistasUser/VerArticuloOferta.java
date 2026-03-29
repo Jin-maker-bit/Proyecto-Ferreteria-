@@ -12,7 +12,7 @@ import vistas.VentanaLogin;
 
 /**
  *
- * @author jintae
+ * @author Jose y Patricia
  */
 public class VerArticuloOferta extends javax.swing.JDialog {
 
@@ -24,14 +24,20 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     public VerArticuloOferta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+                
+        // Cargar tabla:
+        ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
+        
+        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
         tablaArticulosOferta.setSelectionBackground(new java.awt.Color(3, 32, 38));
         tablaArticulosOferta.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        ConsultasProducto.ArticulosOferta((DefaultTableModel) tablaArticulosOferta.getModel());
+        
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
         // Rescata Usuario:
         lblImprimirUsuario.setText(VentanaLogin.user);
+        
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Usuario activo — "
@@ -358,11 +364,14 @@ public class VerArticuloOferta extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void tablaArticulosOfertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosOfertaMouseClicked
+        
         int fila = tablaArticulosOferta.getSelectedRow();
 
         if (fila != -1) {
+            
             String codigo = tablaArticulosOferta.getValueAt(fila, 0).toString();
             Producto p = ConsultasProducto.buscarProductoPorCodigo(codigo);
+            
             if (p != null) {
                 imprimirInfoProducto.setText(p.toString());
 
@@ -371,7 +380,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                 imprimirInfoProducto.setText("Error: No se encontró información");
 
             }
-        }        // TODO add your handling code here:
+        }       
     }//GEN-LAST:event_tablaArticulosOfertaMouseClicked
 
     /**

@@ -10,8 +10,9 @@ import java.sql.SQLException;
 import modelo.Acceso;
 
 /**
- *
- * @author jintae
+ * Clase encargada de gestionar las consultas a la base de datos relacionadas con los accesos al sistema (login y auditoría - accesos).
+ * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * @author Jose y Patricia
  */
 
 
@@ -20,7 +21,8 @@ public class ConsultasAccesos extends Conexion{
     
     /**
      * Registra un nuevo acceso en la tabla Accesos de la base de datos.
-     * Se llama cada vez que un usuario se loga correctamente en el sistema.
+     * Se llama cada vez que un usuario inicia sesión correctamente en el sistema.
+     * Guarda un registro de auditoría con su usuario, fecha y dirección IP.
      * 
      * @param usuario
      * @param fecha
@@ -56,11 +58,12 @@ public class ConsultasAccesos extends Conexion{
     
     
     /**
-     * Verifica si el usuario y la contraseña coinciden en la base de datos.
-     * Extrae su rol - tipo y su estado actual, Activo / Bloqueado.
+     * Verifica si las credenciales, el usuario y la contraseña, coinciden en la base de datos.
+     * Si el login es correcto, extrae su rol (Admin o User) y su estado actual (Activo o Bloqueado).
      * @param user Nombre de usuario.
      * @param pass Contraseña.
-     * @return Un Array de String donde [0] es el Tipo y [1] es el Estado. Devuelve null si no existe.
+     * @return Un Array de String donde [0] es el Tipo y [1] es el Estado. 
+     * Devuelve null si no existe o la contraseña es incorrecta.
      */
     public static String[] verificarLogin(String user, String pass) {
         
@@ -95,12 +98,6 @@ public class ConsultasAccesos extends Conexion{
         }
         return datos;
     }
-    
-    
-    
-   
-    
-    
     
     
 }
