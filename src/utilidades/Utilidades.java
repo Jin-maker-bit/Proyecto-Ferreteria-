@@ -20,8 +20,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.border.AbstractBorder;
-
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
@@ -32,11 +32,9 @@ import javax.swing.border.AbstractBorder;
  */
 
 
-// ACTUALMENTE EN CONSTRUCCIÓN - SE IRÁN AÑADIENDO MÉTODOS CONFORME AVANCE EL DESARROLLO
-// DEL PROYECTO 
-
-
 public class Utilidades {
+    
+    // Gestión de Comprobaciones //
 
     public static boolean compruebaCampoVacio(JTextField campo) {
         return "".equals(campo.getText());
@@ -133,11 +131,12 @@ public class Utilidades {
         JOptionPane.showMessageDialog(null, "Formato no válido\n");
 
         campo.setBackground(Color.magenta);
-      
+
     }
-    
+
     /**
      * Comprueba si el contenido de un JTextField es un número decimal válido.
+     *
      * @param campo El JTextField a comprobar.
      * @return true si es un double válido, false si no lo es.
      */
@@ -150,13 +149,19 @@ public class Utilidades {
         }
     }
 
+    
+    
+    // Gestión de Diseño //
+    
+    
     /**
      * Muestra alerta de número decimal no válido.
+     *
      * @param campo El JTextField con el valor incorrecto.
      */
     public static void lanzaAlertaDoubleNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, 
-            "El campo " + campo.getName() + " debe ser un número decimal válido");
+        JOptionPane.showMessageDialog(null,
+                "El campo " + campo.getName() + " debe ser un número decimal válido");
         campo.setBackground(Color.magenta);
     }
 
@@ -186,8 +191,6 @@ public class Utilidades {
                     g2.setColor(new Color(184, 154, 108)); // Dorado
                     g2.setStroke(new BasicStroke(1));
                     g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
-                    
-                    
 
                     g2.dispose();
                 }
@@ -241,6 +244,27 @@ public class Utilidades {
     }
 
     /**
+         * Aplica el estilo visual corporativo de Ferretería JP a los componentes JTable.
+         * Centraliza la configuración de colores (Dorado/Oscuro), impide el movimiento de columnas y unifica el diseño de cabeceras para mantener una interfaz profesional y coherente en toda la aplicación.
+         * @param tabla 
+         */
+        public static void disenoTablas(JTable tabla) {
+        Color FONDO_OSCURO = new Color(9, 48, 64);
+        Color FONDO_SELECCION = new Color(3, 32, 38);
+        Color DORADO = new Color(191, 150, 99);
+        tabla.setSelectionBackground(FONDO_SELECCION);
+        tabla.setSelectionForeground(DORADO);
+
+        // Configuración de la cabecera (Header)
+        tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.getTableHeader().setResizingAllowed(false);
+        tabla.getTableHeader().setBackground(FONDO_OSCURO);
+        tabla.getTableHeader().setForeground(DORADO);
+        tabla.setGridColor(FONDO_SELECCION);
+    }
+        
+        
+    /**
      * Método centralizado que muestra un diálogo de confirmación antes de
      * cerrar la aplicación. Cumple con el requerimiento RI2 - comunicación con
      * el usuario.
@@ -281,53 +305,67 @@ public class Utilidades {
                 javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
     }
-    
-    
-    
-   // clip arriba 
-    private static Clip clipActual;
 
-    /**
-     * Reproduce un archivo de audio del paquete audio.
-     * Ahora es un método directo de Utilidades.
-     * @param nombreArchivo Nombre del archivo con extensión.
-     */
-    public static void reproducir(String nombreArchivo) {
-        
-        try {
-            
-            pararMusica(); // Nos aseguramos de que no se solapen
+    
+    
+    
+        // Gestion de Audio //
+    
+       
+        /**
+         * Se declaran estos métodos en la raíz de Utilidades para facilitar la edición futura y el mantenimiento de las funciones sonoras de Ferretería JP.
+         */
+        private static Clip clipActual;
+        // Añadimos esta línea para guardar la canción que está sonando
+        // Variable para controlar el audio
 
-            InputStream is = Utilidades.class.getResourceAsStream("/audio/" + nombreArchivo);
-            
-            if (is != null) {
-                
-                AudioInputStream ais = AudioSystem.getAudioInputStream(new BufferedInputStream(is));
-                
+        /**
+         * Reproduce un archivo de audio del paquete audio directamente desde Utilidades.
+         * Uso: Utilidades.reproducir("archivo.wav");
+         *
+         * @param nombreArchivoWav Nombre Single
+         */
+        public static void reproducir(String nombreArchivoWav) {
+
+            try {
+                // Si ya hay algo sonando, lo paramos primero
+                parar();
+
+                // Buscamos el archivo dentro del paquete audio
+                InputStream is = Utilidades.class.getResourceAsStream("/audio/" + nombreArchivoWav);
+
+                // Si el archivo no existe o hay error en la ruta, evitamos que pete
+                if (is == null) {
+                    System.err.println("No se pudo encontrar el audio: " + nombreArchivoWav);
+                    return;
+                }
+
+                InputStream bufferedIn = new BufferedInputStream(is);
+                AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
+
                 clipActual = AudioSystem.getClip();
                 clipActual.open(ais);
-                clipActual.start(); // Comienza
-                
-            } else {
-                
-                System.err.println("Audio no encontrado: " + nombreArchivo);
+                clipActual.start();
+
+            } catch (Exception e) {
+
+                System.err.println("Error al reproducir el audio: " + e.getMessage());
             }
-        } catch (Exception e) {
-            
-            System.err.println("Error en el reproductor: " + e.getMessage());
+        }
+
+        /**
+         * Método para detener la música de forma global.
+         * Libera los recursos del sistema.
+         * Centralizado para el control de silencio en la aplicación.
+         */
+        public static void parar() {
+
+            if (clipActual != null && clipActual.isRunning()) {
+
+                clipActual.stop();
+                clipActual.close();
+            }
         }
     }
 
-    /**
-     * Detiene cualquier audio que se esté reproduciendo actualmente.
-     */
-    public static void pararMusica() {
-        
-        if (clipActual != null && clipActual.isRunning()) {
-            clipActual.stop();
-            clipActual.close();
-        }
-    }
     
-    
-} 

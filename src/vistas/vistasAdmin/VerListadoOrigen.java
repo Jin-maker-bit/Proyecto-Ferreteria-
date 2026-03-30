@@ -7,6 +7,7 @@ package vistas.vistasAdmin;
 import bbdd.ConsultasOrigen;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -30,9 +31,7 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         // Cargar tabla al abrir
         ConsultasOrigen.ListadoOrigenesAdmin((DefaultTableModel) tablaListaOrigen.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaListaOrigen.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaListaOrigen.setSelectionForeground(new java.awt.Color(191, 150, 99));
+        Utilidades.disenoTablas(tablaListaOrigen);
         
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
@@ -117,7 +116,9 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         tablaListaOrigen.setShowGrid(false);
         jScrollPane1.setViewportView(tablaListaOrigen);
         if (tablaListaOrigen.getColumnModel().getColumnCount() > 0) {
+            tablaListaOrigen.getColumnModel().getColumn(0).setResizable(false);
             tablaListaOrigen.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaListaOrigen.getColumnModel().getColumn(1).setResizable(false);
             tablaListaOrigen.getColumnModel().getColumn(1).setPreferredWidth(250);
         }
 

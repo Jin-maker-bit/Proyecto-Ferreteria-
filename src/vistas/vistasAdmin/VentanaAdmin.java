@@ -9,6 +9,7 @@ import bbdd.ConsultasTiendas;
 import bbdd.ConsultasUsuarios;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
+import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
@@ -42,10 +43,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         
-        //Este código pone el color de la tabla en el color oscuro y mantiene la letra en dorado para que se pueda ver.
-        tablaArticulosRegistrados.setSelectionBackground(new java.awt.Color(3, 32, 38));
-        tablaArticulosRegistrados.setSelectionForeground(new java.awt.Color(191, 150, 99));
-        
+        Utilidades.disenoTablas(tablaArticulosRegistrados);
         // Rescatar información en los labels:
         lblRescatarTiendas.setText(String.valueOf(ConsultasTiendas.rescataTienda()));
         lblRescatarProductoNacional.setText(String.valueOf(ConsultasProducto.rescatarProductosNacionales()));
@@ -599,10 +597,15 @@ public class VentanaAdmin extends javax.swing.JFrame {
         tablaArticulosRegistrados.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tablaArticulosRegistrados);
         if (tablaArticulosRegistrados.getColumnModel().getColumnCount() > 0) {
+            tablaArticulosRegistrados.getColumnModel().getColumn(0).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tablaArticulosRegistrados.getColumnModel().getColumn(1).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaArticulosRegistrados.getColumnModel().getColumn(2).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(2).setPreferredWidth(130);
+            tablaArticulosRegistrados.getColumnModel().getColumn(3).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(3).setPreferredWidth(10);
+            tablaArticulosRegistrados.getColumnModel().getColumn(4).setResizable(false);
             tablaArticulosRegistrados.getColumnModel().getColumn(4).setPreferredWidth(20);
         }
 

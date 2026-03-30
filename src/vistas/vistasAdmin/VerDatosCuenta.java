@@ -27,10 +27,12 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         cargarDatosPerfil();
+        
+        desactivarEdicionUsuario();
 
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
-        
+
         // Rescatar fecha y hora en la interfaz
         LocalDateTime fechaHora = LocalDateTime.now();
         lblRescataFechayHora.setText("Admin activo — "
@@ -67,6 +69,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         campoPass = new javax.swing.JPasswordField();
         campoNuevaPass = new javax.swing.JPasswordField();
+        botonActivarEdicion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
@@ -121,7 +124,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
 
         botonActualizar.setBackground(new java.awt.Color(191, 150, 99));
         botonActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        botonActualizar.setText("Actualizar");
+        botonActualizar.setText("Guardar Cambios");
         botonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,6 +206,16 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoNuevaPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoNuevaPass.setName("Pass Nueva"); // NOI18N
 
+        botonActivarEdicion.setBackground(new java.awt.Color(191, 150, 99));
+        botonActivarEdicion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        botonActivarEdicion.setText("Activar edicion");
+        botonActivarEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonActivarEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActivarEdicionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelSecundario8Layout = new javax.swing.GroupLayout(panelSecundario8);
         panelSecundario8.setLayout(panelSecundario8Layout);
         panelSecundario8Layout.setHorizontalGroup(
@@ -226,13 +239,16 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                             .addComponent(campoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundario8Layout.createSequentialGroup()
-                        .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundario8Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(208, 208, 208))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundario8Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(botonActivarEdicion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
         panelSecundario8Layout.setVerticalGroup(
             panelSecundario8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,19 +270,18 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                     .addComponent(lblDenominacion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(campoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelSecundario8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelSecundario8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDenominacion5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelSecundario8Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(campoNuevaPass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoNuevaPass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(panelSecundario8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblDenominacion6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(campoTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(38, 38, 38)
                 .addGroup(panelSecundario8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonActivarEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -523,8 +538,15 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-       actualizarDatosAdmin(); // TODO add your handling code here:
+        actualizarDatosAdmin(); // TODO add your handling code here:
     }//GEN-LAST:event_botonActualizarActionPerformed
+
+    private void botonActivarEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarEdicionActionPerformed
+    
+
+            activarEdicionUsuario();
+              // TODO add your handling code here:
+    }//GEN-LAST:event_botonActivarEdicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,6 +586,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonActivarEdicion;
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonVolver;
     private javax.swing.JTextField campoNombreCompleto;
@@ -609,7 +632,7 @@ private void cargarDatosPerfil() {
         Usuario logado = obtenerDatosPerfil(userActivo);
 
         if (logado != null) {
-            
+
             labelNombre.setText(logado.getNombreCompleto());
             labelRol.setText(logado.getTipo());
             labelUsuario.setText(logado.getUsuario());
@@ -620,12 +643,12 @@ private void cargarDatosPerfil() {
     }
 
     private void actualizarDatosAdmin() {
-        
+
         String nuevoNombre = campoNombreCompleto.getText();
         String passActual = new String(campoPass.getPassword());
         String nuevaPass = new String(campoNuevaPass.getPassword());
         String usuarioActivo = VentanaLogin.user;
-        
+
         if (Utilidades.compruebaCampoVacio(campoNombreCompleto)) {
             Utilidades.lanzaAlertaVacio(campoNombreCompleto);
             return;
@@ -638,7 +661,6 @@ private void cargarDatosPerfil() {
             Utilidades.lanzaAlertaVacio(campoNuevaPass);
             return;
         }
-        
 
         boolean exito = actualizarDatos(usuarioActivo, nuevoNombre, nuevaPass, passActual);
 
@@ -649,4 +671,27 @@ private void cargarDatosPerfil() {
             JOptionPane.showMessageDialog(this, "Error: La contraseña actual no es correcta.", "Error de validación", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    public void desactivarEdicionUsuario() {
+        campoNombreCompleto.setEditable(false);
+        campoPass.setEditable(false);
+        campoNuevaPass.setEditable(false);
+    }
+
+    /**
+     * Activa la edición de nombre y descripción del producto seleccionado. Se
+     * llama únicamente al pulsar el botón Editar Producto con un producto
+     * seleccionado. Manda un aviso informativo al clicar sobre el botón.
+     */
+    public void activarEdicionUsuario() {
+        campoNombreCompleto.setEditable(true);
+        campoPass.setEditable(true);
+        campoNuevaPass.setEditable(true);
+
+        JOptionPane.showMessageDialog(this,
+                "Ya puede editar los campos NOMBRE y CONTRASEÑA.",
+                "Modo edición activado",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+
 }
