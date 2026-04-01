@@ -267,7 +267,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -294,8 +294,8 @@ public class VerArticuloOferta extends javax.swing.JDialog {
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addComponent(botonVolver)
+                        .addGap(9, 9, 9)))
+                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -306,6 +306,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         menuArchivo.setBackground(new java.awt.Color(10, 49, 64));
         menuArchivo.setForeground(new java.awt.Color(10, 49, 64));
         menuArchivo.setText("Archivo");
+        menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuArchivo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
         itemCerrar.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -323,6 +324,7 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         menuAyuda.setBackground(new java.awt.Color(10, 49, 64));
         menuAyuda.setForeground(new java.awt.Color(10, 49, 64));
         menuAyuda.setText("Ayuda");
+        menuAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuAyuda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
         itemAcercaDe.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N

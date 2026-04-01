@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import utilidades.Utilidades;
 
 import vistas.VentanaLogin;
+import vistas.vistasAdmin.VerListadoArticulos;
 
 /**
  *
@@ -98,13 +99,13 @@ public class VentanaUser extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        itemVerArticulos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        itemVerDestacados = new javax.swing.JMenuItem();
+        itemVerOfertas = new javax.swing.JMenu();
+        itemOfertas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        itemVerMicuenta = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         itemAcercaDe = new javax.swing.JMenuItem();
 
@@ -242,31 +243,32 @@ public class VentanaUser extends javax.swing.JFrame {
         panelUserSidebar.setLayout(panelUserSidebarLayout);
         panelUserSidebarLayout.setHorizontalGroup(
             panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUserSidebarLayout.createSequentialGroup()
-                .addGap(0, 36, Short.MAX_VALUE)
-                .addGroup(panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonVerDestacadosUser, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                    .addComponent(botonVerArticulosUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonVerOfertasUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonVerMiCuentaUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUserSidebarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(panelUserSidebarLayout.createSequentialGroup()
+                .addGroup(panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelUserSidebarLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonVerArticulosUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVerDestacadosUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVerOfertasUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonVerMiCuentaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelUserSidebarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         panelUserSidebarLayout.setVerticalGroup(
             panelUserSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUserSidebarLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(botonVerArticulosUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonVerDestacadosUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonVerOfertasUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonVerMiCuentaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
@@ -467,7 +469,7 @@ public class VentanaUser extends javax.swing.JFrame {
 
         lblSubtitulo5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblSubtitulo5.setForeground(new java.awt.Color(112, 137, 140));
-        lblSubtitulo5.setText("ARTICULOS AÑADIDOS RECIENTEMENTE A LA TIENDA");
+        lblSubtitulo5.setText("3 ÚLTIMOS ARTICULOS AÑADIDOS RECIENTEMENTE A LA TIENDA:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -477,7 +479,9 @@ public class VentanaUser extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSubtitulo5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lblSubtitulo5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -549,10 +553,15 @@ public class VentanaUser extends javax.swing.JFrame {
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jMenuItem1.setText("Ver Artículos");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu1.add(jMenuItem1);
+        itemVerArticulos.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerArticulos.setText("Ver Artículos");
+        itemVerArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerArticulosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemVerArticulos);
 
         jMenuBar1.add(jMenu1);
 
@@ -562,25 +571,35 @@ public class VentanaUser extends javax.swing.JFrame {
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jMenuItem2.setText("Ver Destacados");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu2.add(jMenuItem2);
+        itemVerDestacados.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerDestacados.setText("Ver Destacados");
+        itemVerDestacados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerDestacados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerDestacadosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(itemVerDestacados);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setBackground(new java.awt.Color(10, 49, 64));
-        jMenu3.setForeground(new java.awt.Color(10, 49, 64));
-        jMenu3.setText("Ofertas");
-        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerOfertas.setBackground(new java.awt.Color(10, 49, 64));
+        itemVerOfertas.setForeground(new java.awt.Color(10, 49, 64));
+        itemVerOfertas.setText("Ofertas");
+        itemVerOfertas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerOfertas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
-        jMenuItem3.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jMenuItem3.setText("Ver Ofertas");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu3.add(jMenuItem3);
+        itemOfertas.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemOfertas.setText("Ver Ofertas");
+        itemOfertas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemOfertas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemOfertasActionPerformed(evt);
+            }
+        });
+        itemVerOfertas.add(itemOfertas);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(itemVerOfertas);
 
         jMenu4.setBackground(new java.awt.Color(10, 49, 64));
         jMenu4.setForeground(new java.awt.Color(10, 49, 64));
@@ -588,10 +607,15 @@ public class VentanaUser extends javax.swing.JFrame {
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
 
-        jMenuItem4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jMenuItem4.setText("Ver Mi Cuenta");
-        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu4.add(jMenuItem4);
+        itemVerMicuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        itemVerMicuenta.setText("Ver Mi Cuenta");
+        itemVerMicuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemVerMicuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVerMicuentaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(itemVerMicuenta);
 
         jMenuBar1.add(jMenu4);
 
@@ -619,7 +643,7 @@ public class VentanaUser extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal4, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
+            .addComponent(panelPrincipal4, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -658,6 +682,26 @@ public class VentanaUser extends javax.swing.JFrame {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    private void itemVerArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerArticulosActionPerformed
+        VerListadoArticulo vlart = new VerListadoArticulo(this, true);
+        vlart.setVisible(true);
+    }//GEN-LAST:event_itemVerArticulosActionPerformed
+
+    private void itemVerDestacadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerDestacadosActionPerformed
+        VerArticuloDestacado vartdes = new VerArticuloDestacado(this, true);
+        vartdes.setVisible(true);
+    }//GEN-LAST:event_itemVerDestacadosActionPerformed
+
+    private void itemOfertasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemOfertasActionPerformed
+        VerArticuloOferta vartof = new VerArticuloOferta(this, true);
+        vartof.setVisible(true);
+    }//GEN-LAST:event_itemOfertasActionPerformed
+
+    private void itemVerMicuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVerMicuentaActionPerformed
+        VerDatosCuenta vdatcuent = new VerDatosCuenta(this, true);
+        vdatcuent.setVisible(true);
+    }//GEN-LAST:event_itemVerMicuentaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -690,15 +734,15 @@ public class VentanaUser extends javax.swing.JFrame {
     private javax.swing.JButton botonVerMiCuentaUser;
     private javax.swing.JButton botonVerOfertasUser;
     private javax.swing.JMenuItem itemAcercaDe;
+    private javax.swing.JMenuItem itemOfertas;
+    private javax.swing.JMenuItem itemVerArticulos;
+    private javax.swing.JMenuItem itemVerDestacados;
+    private javax.swing.JMenuItem itemVerMicuenta;
+    private javax.swing.JMenu itemVerOfertas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

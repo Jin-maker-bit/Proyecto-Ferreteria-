@@ -4,155 +4,117 @@
  */
 package utilidades;
 
-import java.awt.BasicStroke;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.RenderingHints;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.border.AbstractBorder;
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
- * Proporciona métodos reutilizables para el diseño y comportamiento de los
- * componentes gráficos de la interfaz.
- *
+ * Centraliza la lógica de validación, diseño visual y gestión de audio.
  * @author Jose y Patricia
  */
-
-
 public class Utilidades {
     
-    // Gestión de Comprobaciones //
+    
+            // ** Gestión de Comprobaciones - Validación y Color Corporativo ** //
+    
+    // Definimos el color de fondo original para que no se ponga blanco sino con los colores corporativos
+    private static final Color FONDO_ORIGINAL = new Color(9, 48, 64);
 
+    /**
+     * Verifica si un campo está vacío. 
+     * Si tiene texto, resetea el color al original.
+     */
     public static boolean compruebaCampoVacio(JTextField campo) {
-        return "".equals(campo.getText());
-
+        if (!campo.getText().trim().isEmpty()) {
+            campo.setBackground(FONDO_ORIGINAL);
+            return false;
+        }
+        return true;
     }
 
     public static void lanzaAlertaVacio(JTextField campo) {
-        JOptionPane.showMessageDialog(null,
-                "El campo " + campo.getName() + " es obligatorio");
+        JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " es obligatorio");
         campo.setBackground(Color.magenta);
     }
-
+    
+    
+    /**
+     * Verifica JComboBox. Si el índice es mayor a 0 (opción válida), 
+     * Si tiene indice seleccionado resetea el color al original.
+     */
     public static boolean compruebaComboNoSeleccionado(JComboBox combo) {
-        return combo.getSelectedIndex() == 0;
+        // Si el índice es > 0, es que ha seleccionado algo correcto
+        if (combo.getSelectedIndex() > 0) {
+            combo.setBackground(FONDO_ORIGINAL); // Volvemos al FondoOriginal
+            return false; // No está "no seleccionado", está bien
+        }
+        return true; // Sigue en el índice 0 o -1 (error)
     }
 
     public static void lanzaAlertaCombo(JComboBox combo) {
-        JOptionPane.showMessageDialog(null,
-                "Debe seleccionar un elemento en el desplegable " + combo.getName());
+        JOptionPane.showMessageDialog(null, "Debe seleccionar un elemento en: " + combo.getName());
+        combo.setBackground(Color.magenta); // Marcamos el error
     }
-
+    
+    
+    /**
+     * Valida números ENTEROS (Stock, ID) y que no sean negativos.
+     * Si tiene texto, resetea el color al original.
+     */
     public static boolean compruebaEntero(JTextField campo) {
-        String numeroTecleado = campo.getText();
-        int miNumero;
         try {
-            miNumero = Integer.parseInt(numeroTecleado);
-            return true;
+            int valor = Integer.parseInt(campo.getText().trim());
+            if (valor >= 0) {
+                campo.setBackground(FONDO_ORIGINAL);
+                return true;
+            }
+            return false;
         } catch (NumberFormatException e) {
             return false;
         }
     }
-
-    public static void lanzaAlertaNumeroNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " debe ser númerico");
-        campo.setBackground(Color.magenta);
-    }
-
-    static String patronDNI = "^[0-9]{8}[A-Za-z]$";
-
-    public static boolean compruebaDNI(JTextField campo) {
-        return campo.getText().matches(patronDNI);
-    }
-
-    public static void lanzaAlertaFormatoDNI(JTextField campo) {
-        JOptionPane.showMessageDialog(null, "El formato DNI es invalido");
-        campo.setBackground(Color.magenta);
-    }
-
-    public static boolean compruebaTelefonoValido(JTextField campo) {
-        String telefono = campo.getText().trim();
-        if (telefono.startsWith("-")) {
-            return false;
-        }
-        String telefonoLimpio = telefono.replaceAll("[\\s-]", "");
-        boolean valido = telefonoLimpio.matches("^([6789]\\d{8}|[+]\\d{10,15})$");
-        return valido;
-    }
-
-    public static void lanzaAlertaTelefonoNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, "Formato de teléfono no válido\n");
-        campo.setBackground(Color.magenta);
-
-    }
-
-    public static boolean compruebaEmailValido(JTextField campo) {
-        String email = campo.getText().trim().toLowerCase();
-
-        if (email.isEmpty()) {
-            return false;
-        }
-
-        String patronEmail = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$";
-        boolean valido = email.matches(patronEmail);
-        return valido;
-    }
-
-    public static void lanzaAlertaEmailNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null,
-                "Formato de email no válido");
-        campo.setBackground(Color.magenta);
-    }
-
-    public static boolean compruebaCiclo(JTextField campo) {
-        String texto = campo.getText().trim();
-        boolean valido = texto.matches("^[a-zA-Z]{3}$");
-
-        if (valido) {
-            campo.setText(texto.toUpperCase());
-        }
-        return valido;
-    }
-
-    public static void lanzaAlertaCicloNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, "Formato no válido\n");
-
-        campo.setBackground(Color.magenta);
-
-    }
-
+    
     /**
-     * Comprueba si el contenido de un JTextField es un número decimal válido.
-     *
-     * @param campo El JTextField a comprobar.
-     * @return true si es un double válido, false si no lo es.
+     * Informa al usuario mediante una alerta de que el dato introducido no es un número válido o es negativo. 
+     * Resalta el campo en color magenta para facilitar la identificación visual del error en el formulario.
+     * @param campo 
+     */
+    public static void lanzaAlertaNumeroNoValido(JTextField campo) {
+        JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " debe ser un numérico positivo.");
+        campo.setBackground(Color.magenta);
+    }
+    
+    
+    /**
+     * Valida números DECIMALES (Precios, IVA) y que no sean negativos.
+     * Acepta puntos y comas.
+     * Si tiene texto, resetea el color al original.
      */
     public static boolean compruebaDouble(JTextField campo) {
         try {
-            Double.parseDouble(campo.getText().trim());
-            return true;
+            // Sustituimos la coma por un punto antes de intentar convertirlo
+            String NumeritoConPunto = campo.getText().trim().replace(',', '.');
+            double valor = Double.parseDouble(NumeritoConPunto);
+            
+            if (valor >= 0) {
+                campo.setBackground(FONDO_ORIGINAL);
+                return true;
+            }
+            return false;
+            
         } catch (NumberFormatException e) {
+            
             return false;
         }
     }
-
-    
-    
-    // Gestión de Diseño //
-    
     
     /**
      * Muestra alerta de número decimal no válido.
@@ -164,47 +126,26 @@ public class Utilidades {
                 "El campo " + campo.getName() + " debe ser un número decimal válido");
         campo.setBackground(Color.magenta);
     }
+    
 
-    public class AplicarBorde {
-
-        public static void aplicarBordeOvalado(JLabel label, int arco) {
-            // 1. IMPORTANTE: Quitar la opacidad estándar para que no dibuje el cuadrado
-            label.setOpaque(false);
-
-            label.setBorder(new AbstractBorder() {
-                @Override
-                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                    Graphics2D g2 = (Graphics2D) g.create();
-
-                    // Suavizado para que no se vea "pixelado"
-                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-                    // --- EL SECRETO SENIOR ---
-                    // En lugar de un fondo sólido que tape el texto, 
-                    // pintamos el fondo redondeado AQUÍ, pero el JLabel 
-                    // ya se encargará de pintar su texto después por su cuenta.
-                    // 1. Pintar el fondo con el color que elegiste en NetBeans
-                    g2.setColor(c.getBackground());
-                    g2.fillRoundRect(x, y, width - 1, height - 1, arco, arco);
-
-                    // 2. Pintar el contorno (puedes usar el color de texto o uno fijo)
-                    g2.setColor(new Color(184, 154, 108)); // Dorado
-                    g2.setStroke(new BasicStroke(1));
-                    g2.drawRoundRect(x, y, width - 1, height - 1, arco, arco);
-
-                    g2.dispose();
-                }
-
-                @Override
-                public Insets getBorderInsets(Component c) {
-                    // Reducimos los márgenes para que el texto tenga espacio
-                    // Si pones 20 como antes, el texto se "sale" del label
-                    return new Insets(4, 10, 4, 10);
-                }
-            });
-        }
+    /**
+     * Formatea un número double para que muestre solo dos decimales.
+     * Útil para mostrar precios en tablas y etiquetas de forma profesional.
+     * Usa 'Locale.US' para obligar al sistema a usar siempre el punto (.) aunque el usuario utilice la coma (,).
+     * @param valor El número con muchos decimales.
+     * @return String con el número formateado.
+     */
+    public static String formatoDosDecimales(double valor) {
+        // Usamos String.format para redondear y fijar 2 decimales
+        // Usamos Locale.US para asegurar que el separador sea SIEMPRE un punto (.)
+        return String.format(java.util.Locale.US, "%.2f", valor); 
+        // (%) Inicio (.) Decimales (2) El número que vamos a fijar (f) Float Denota que es Double decimal
     }
-
+    
+    
+    
+            // ** Gestión de Diseño Visual ** //
+    
     /**
      * Configura el icono de la ventana proporcionada, sirve tanto para JFrame
      * como para JDialog. Aplicamos POLIMORFISMO al recibir un objeto de tipo
@@ -243,12 +184,14 @@ public class Utilidades {
         }
     }
 
+    
     /**
-         * Aplica el estilo visual corporativo de Ferretería JP a los componentes JTable.
-         * Centraliza la configuración de colores (Dorado/Oscuro), impide el movimiento de columnas y unifica el diseño de cabeceras para mantener una interfaz profesional y coherente en toda la aplicación.
-         * @param tabla 
-         */
-        public static void disenoTablas(JTable tabla) {
+     * Aplica el estilo visual corporativo de Ferretería JP a los componentes JTable.
+     * Centraliza la configuración de colores (Dorado/Oscuro), impide el movimiento de columnas y unifica el diseño de cabeceras para mantener una interfaz profesional y coherente en toda la aplicación.
+     * @param tabla 
+     */
+    public static void disenoTablas(JTable tabla) {
+        
         Color FONDO_OSCURO = new Color(9, 48, 64);
         Color FONDO_SELECCION = new Color(3, 32, 38);
         Color DORADO = new Color(191, 150, 99);
@@ -263,7 +206,10 @@ public class Utilidades {
         tabla.setGridColor(FONDO_SELECCION);
     }
         
-        
+    
+
+        // ** Gestión de Diálogos e interacción con el Usuario ** //  
+    
     /**
      * Método centralizado que muestra un diálogo de confirmación antes de
      * cerrar la aplicación. Cumple con el requerimiento RI2 - comunicación con
@@ -297,11 +243,11 @@ public class Utilidades {
     public static void mostrarAcercaDe(java.awt.Component parent) {
         javax.swing.JOptionPane.showMessageDialog(
                 parent,
-                "Ferretería JP Fusión\n"
-                + "Versión 1.0\n"
-                + "Desarrollado por Jose & Patricia\n"
-                + "Año 2026",
-                "Acerca de",
+                "Ferretería JP Fusión"
+                + "\nVersión 1.0"
+                + "\nDesarrollado por Jose & Patricia"
+                + "\nAño 2026",
+                "Acerca de", // No le ponemos \n para que salga el titulo en el cuadrito 
                 javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
     }
@@ -309,63 +255,63 @@ public class Utilidades {
     
     
     
-        // Gestion de Audio //
-    
-       
-        /**
-         * Se declaran estos métodos en la raíz de Utilidades para facilitar la edición futura y el mantenimiento de las funciones sonoras de Ferretería JP.
-         */
-        private static Clip clipActual;
-        // Añadimos esta línea para guardar la canción que está sonando
-        // Variable para controlar el audio
+        // ** Gestion de Audio ** //
+         
+    /**
+     * Se declaran estos métodos en la raíz de Utilidades para facilitar la edición futura y el mantenimiento de las funciones sonoras de Ferretería JP.
+     */
+    private static Clip clipActual;
+    // Añadimos esta línea para guardar la canción que está sonando
+    // Variable para controlar el audio
 
-        /**
-         * Reproduce un archivo de audio del paquete audio directamente desde Utilidades.
-         * Uso: Utilidades.reproducir("archivo.wav");
-         *
-         * @param nombreArchivoWav Nombre Single
-         */
-        public static void reproducir(String nombreArchivoWav) {
+    /**
+     * Reproduce un archivo de audio del paquete audio directamente desde Utilidades.
+     * Uso: Utilidades.reproducir("archivo.wav");
+     *
+     * @param nombreArchivoWav Nombre Single
+     */
+    public static void reproducir(String nombreArchivoWav) {
 
-            try {
-                // Si ya hay algo sonando, lo paramos primero
-                parar();
+        try {
+            // Si ya hay algo sonando, lo paramos primero
+            parar();
 
-                // Buscamos el archivo dentro del paquete audio
-                InputStream is = Utilidades.class.getResourceAsStream("/audio/" + nombreArchivoWav);
+            // Buscamos el archivo dentro del paquete audio
+            InputStream is = Utilidades.class.getResourceAsStream("/audio/" + nombreArchivoWav);
 
-                // Si el archivo no existe o hay error en la ruta, evitamos que pete
-                if (is == null) {
-                    System.err.println("No se pudo encontrar el audio: " + nombreArchivoWav);
-                    return;
-                }
-
-                InputStream bufferedIn = new BufferedInputStream(is);
-                AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
-
-                clipActual = AudioSystem.getClip();
-                clipActual.open(ais);
-                clipActual.start();
-
-            } catch (Exception e) {
-
-                System.err.println("Error al reproducir el audio: " + e.getMessage());
+            // Si el archivo no existe o hay error en la ruta, evitamos que pete
+            if (is == null) {
+                System.err.println("No se pudo encontrar el audio: " + nombreArchivoWav);
+                return;
             }
-        }
 
-        /**
-         * Método para detener la música de forma global.
-         * Libera los recursos del sistema.
-         * Centralizado para el control de silencio en la aplicación.
-         */
-        public static void parar() {
+            InputStream bufferedIn = new BufferedInputStream(is);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(bufferedIn);
 
-            if (clipActual != null && clipActual.isRunning()) {
+            clipActual = AudioSystem.getClip();
+            clipActual.open(ais);
+            clipActual.start();
 
-                clipActual.stop();
-                clipActual.close();
-            }
+        } catch (Exception e) {
+
+            System.err.println("Error al reproducir el audio: " + e.getMessage());
         }
     }
+
+    /**
+     * Método para detener la música de forma global.
+     * Libera los recursos del sistema.
+     * Centralizado para el control de silencio en la aplicación.
+     */
+    public static void parar() {
+
+        if (clipActual != null && clipActual.isRunning()) {
+
+            clipActual.stop();
+            clipActual.close();
+        }
+    }
+    
+}
 
     

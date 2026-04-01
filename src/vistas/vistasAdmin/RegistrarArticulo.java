@@ -36,6 +36,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
         
+        // Nada más abrir la ventana ya sale la sugerencia del Codigo Producto para llevar un orden
+        String sugerenciaCodigoProducto = ConsultasProducto.generarSiguienteCodigoProducto();
+        campoCodigo.setText(sugerenciaCodigoProducto);
+        campoCodigo.setEditable(false); // Bloqueado: Para que el usuario no lo cambie, no es requisito pero lo hemos decidido así para mejor funcionalidad
+        
         // Cargar Combos 
         cargarCombosArticulos();
         
@@ -326,6 +331,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioCompra.setForeground(new java.awt.Color(112, 137, 140));
         campoPrecioCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoPrecioCompra.setName("Precio Compra"); // NOI18N
+        campoPrecioCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoPrecioCompraFocusLost(evt);
+            }
+        });
 
         campoStock.setBackground(new java.awt.Color(3, 32, 38));
         campoStock.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -604,6 +614,49 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
+    private void campoPrecioCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPrecioCompraFocusLost
+       
+        // ** Evento FocusLost ** //
+        
+        // Evento que se activa justo en cuanto el usuario sale de el, en este caso tras ingresar la cantidad en Precio Compra
+        // Y nos ejecuta:
+        
+        try {
+        
+        // Rescatamos el texto y Cambiamos la coma por punto antes de calcular por si nos pusieran coma ya que no nos la cogeria
+        String numeroConPunto = campoPrecioCompra.getText().trim().replace(',', '.'); // Doblemente blindando
+            
+        // Rescatamos el precio de compra
+        double precioCompra = Double.parseDouble(numeroConPunto);
+
+        // Cálculo: Incremento 30% y luego añadir 21% de IVA
+        // Matemáticamente es: Compra * 1.30 (margen) * 1.21 (IVA)
+        double precioVentaSinIncremento = precioCompra * 1.30 * 1.21; // El incremento se calcula en esta sola línea 
+
+        // Redondeo otra vez a 2 decimales:
+        double precioVentaAplicado = Math.round(precioVentaSinIncremento * 100.0) / 100.0;
+        
+        // Lo ponemos en el campo de Precio Venta formateado con 2 decimales
+        campoPrecioVenta.setText(utilidades.Utilidades.formatoDosDecimales(precioVentaAplicado));
+        
+        // También formateamos el de compra para que quede bonito
+        campoPrecioCompra.setText(utilidades.Utilidades.formatoDosDecimales(precioCompra));
+
+        } catch (NumberFormatException e) { 
+            // Si el usuario mete letras o deja el campo vacío, no hacemos cálculos para evitar errores
+            
+            
+            // Resumen:
+            // No se tocan consultas, ni tablas, se controla el origen del dato.
+            // Es la forma más limpia de trabajar.
+            // Automatización del cálculo Precio venta.
+            
+            // Se puede investigar el Evento --> KeyReleased: Funciona de la misma manera pero mientras el Usuario aún está tecleando.
+        
+    }
+    
+    }//GEN-LAST:event_campoPrecioCompraFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -745,7 +798,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         String categoria = comboCategoria.getSelectedItem().toString();
         String descripcion = campoDescripcion.getText().trim();
         double precioCompra = Double.parseDouble(campoPrecioCompra.getText().trim());
-        double precioVenta = precioCompra * 1.30 * 1.21;
+        double precioVenta = Double.parseDouble(campoPrecioVenta.getText().trim());
         int stock = Integer.parseInt(campoStock.getText().trim());
         String origen = comboOrigen.getSelectedItem().toString();
         String destacado = comboDestacado.getSelectedItem().toString();
@@ -786,9 +839,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
     /**
      * Limpia todos los campos del formulario de registro de artículo.
+     * Automatiza y genera el siguiente Codigo de Producto al realizarse el reseteo y comenzar un nuevo registro.
+     * Proporciona una buena experiencia al usuario.
      */
     public void limpiarArticulo() {
-        campoCodigo.setText("");
+        //campoCodigo.setText(""); // Ya no hace falta pero lo dejo por si hubiera que modificarlo por si no gusta la idea.
         campoNombre.setText("");
         campoDescripcion.setText("");
         campoPrecioCompra.setText("");
@@ -798,6 +853,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         comboOrigen.setSelectedIndex(0);
         comboDestacado.setSelectedIndex(0);
         comboOferta.setSelectedIndex(0);
+        
+        String sugerenciaCodigoProducto = ConsultasProducto.generarSiguienteCodigoProducto();
+        campoCodigo.setText(sugerenciaCodigoProducto);
+        campoCodigo.setEditable(false); // Bloqueado: Para que el usuario no lo cambie, no es requisito pero lo hemos decidido así para mejor funcionalidad
     }
     
     /**

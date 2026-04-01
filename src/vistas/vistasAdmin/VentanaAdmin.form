@@ -240,6 +240,9 @@
                   <Font name="Trebuchet MS" size="12" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Acerca de"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor de Mano"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -275,12 +278,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelPrincipal" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelPrincipal" alignment="0" pref="1000" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelPrincipal" alignment="0" pref="596" max="32767" attributes="0"/>
+          <Component id="panelPrincipal" pref="578" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -331,7 +334,7 @@
                       <Component id="lblLogo" min="-2" pref="88" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -419,7 +422,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="botonOrigenes" max="32767" attributes="0"/>
                           <Component id="botonCategorias" max="32767" attributes="0"/>
@@ -461,7 +464,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botonVerMiCuenta" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace pref="9" max="32767" attributes="0"/>
-                      <Component id="botonSalir" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="botonSalir" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -730,7 +734,7 @@
                           <Component id="lblRescatarUsuariosActivos" min="-2" pref="129" max="-2" attributes="0"/>
                           <Component id="lbl4" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -975,22 +979,22 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="lblSistemaGestion" min="-2" pref="276" max="-2" attributes="0"/>
                       <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Component id="lblRescataFechayHora" min="-2" pref="276" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblSistemaGestion" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblRescataFechayHora" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblSistemaGestion" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRescataFechayHora" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1041,7 +1045,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="666" max="-2" attributes="0"/>
-                          <Component id="lblSubtitulo5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="lblSubtitulo5" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -1154,7 +1161,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="8c" green="89" red="70" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ARTICULOS A&#xd1;ADIDOS RECIENTEMENTE A LA TIENDA"/>
+                <Property name="text" type="java.lang.String" value="3 &#xda;LTIMOS ARTICULOS A&#xd1;ADIDOS RECIENTEMENTE A LA TIENDA:"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -26,8 +26,8 @@ public class ConsultasProducto extends Conexion {
     /**
      * Recupera los tres últimos artículos registrados en la base de datos ordenados por fecha de alta de forma descendente.
      * La tabla que carga este método aparece tanto en VentanaAdmin como en VentanaUser.
-     *
-     * @param modelo
+     * Ordena por fecha y, ante empates, por código para garantizar el orden cronológico real.
+     * @param modelo El modelo de la tabla a completar.
      */
     public static void ultimos3Articulos(javax.swing.table.DefaultTableModel modelo) {
 
@@ -42,9 +42,9 @@ public class ConsultasProducto extends Conexion {
         try {
 
             String consulta = "SELECT codProducto, nombre, categoria, stock, precio_venta "
-                    + "FROM producto "
-                    + "ORDER BY fecha_alta DESC "
-                    + "LIMIT 3";
+                + "FROM producto "
+                + "ORDER BY fecha_alta DESC, codProducto DESC " // <--- DESC en ambos
+                + "LIMIT 3";
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
@@ -807,5 +807,55 @@ public class ConsultasProducto extends Conexion {
         }
         return exito;
     }
+    
+    
+    
+    /**
+     * Genera automáticamente por orden el siguiente código de producto para nuevos registros.
+     * Consulta el último código almacenado en la base de datos, extrae su valor numérico y lo incrementa en una unidad y le devuelve el formato prefijado. Ej: Pasar de "P020" a "P021".
+     * Ante la ausencia de un campo AUTO_INCREMENT en la estructura de la base de datos, este método subsana ya que simula un contador automático. 
+     * Rescata el código más alto, incrementa su valor y mantiene el formato "P000".
+     * Este sistema garantiza un orden cronológico estricto en las consultas, permitiendo que la tabla de "Últimos 3 artículos" funcione correctamente mediante un doble criterio de ordenación (fecha_alta y codProducto), subsanando así la falta de precisión en el tipo de dato DATE ya que no registra la hora exacta.
+     * Por tanto, el incremento del codProducto permite a la aplicación distinguir el orden de creación entre artículos registrados el mismo día, garantizando que el último registro sea siempre el que encabece las tablas y listados.
+     * @return String con el siguiente código, Ej: "P021", "P022", "P023", etc.
+     */
+    public static String generarSiguienteCodigoProducto() {
+    
+        String nuevoCodigo = "P001"; // Valor por defecto si la tabla está vacía
+        
+        conectar();
+        
+        try {
+            // Buscamos el código más alto (alfabéticamente y por longitud)
+            String sql = "SELECT codProducto FROM producto ORDER BY LENGTH(codProducto) DESC, codProducto DESC LIMIT 1";
+            
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                
+                String ultimoCodigo = rs.getString(1); // Ej: P020
+                // Quitamos la 'P' y cualquier espacio, y convertimos a número y nos quedamos con el número
+                String soloNumero = ultimoCodigo.replace("P", "").trim();
+                int numero = Integer.parseInt(soloNumero);
+                
+                // Sumamos 1 y volvemos a poner la 'P' con formato
+                // Así generamos el siguiente con el formato P000
+                nuevoCodigo = String.format("P%03d", numero + 1); 
+            }
+            
+        } catch (Exception e) {
+            
+            System.err.println("Error al generar Código de Producto: " + e.getMessage());
+            
+        } finally {
+            
+            cerrarConexion();
+        }
+        
+        return nuevoCodigo;
+    }
+    
+    
     
 }
