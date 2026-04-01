@@ -63,10 +63,11 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         lblDireccion = new javax.swing.JLabel();
         botonCancelar = new javax.swing.JButton();
         botonRegistrarOrigen = new javax.swing.JButton();
-        campoDireccion = new javax.swing.JTextField();
         lblDenominacion = new javax.swing.JLabel();
         campoDenominacion = new javax.swing.JTextField();
         comboResponsable = new javax.swing.JComboBox<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        campoDireccionTienda = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -133,12 +134,6 @@ public class RegistrarTiendas extends javax.swing.JDialog {
             }
         });
 
-        campoDireccion.setBackground(new java.awt.Color(3, 32, 38));
-        campoDireccion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoDireccion.setForeground(new java.awt.Color(112, 137, 140));
-        campoDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDireccion.setName("Dirección"); // NOI18N
-
         lblDenominacion.setBackground(new java.awt.Color(191, 150, 99));
         lblDenominacion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         lblDenominacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -159,31 +154,41 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         comboResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboResponsable.setName("Responsable"); // NOI18N
 
+        campoDireccionTienda.setBackground(new java.awt.Color(3, 32, 38));
+        campoDireccionTienda.setColumns(20);
+        campoDireccionTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDireccionTienda.setForeground(new java.awt.Color(112, 137, 140));
+        campoDireccionTienda.setLineWrap(true);
+        campoDireccionTienda.setRows(5);
+        campoDireccionTienda.setWrapStyleWord(true);
+        campoDireccionTienda.setAutoscrolls(false);
+        campoDireccionTienda.setName("Descripción"); // NOI18N
+        jScrollPane6.setViewportView(campoDireccionTienda);
+
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
         panelSecundarioLayout.setHorizontalGroup(
             panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSecundarioLayout.createSequentialGroup()
+                .addGap(397, 397, 397)
+                .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDenominacion, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblDenominacion, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelSecundarioLayout.createSequentialGroup()
-                                .addComponent(lblResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)))
-                        .addGap(66, 66, 66)
-                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                            .addComponent(campoDenominacion, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                            .addComponent(comboResponsable, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSecundarioLayout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addGap(66, 66, 66)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoDenominacion, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addComponent(comboResponsable, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         panelSecundarioLayout.setVerticalGroup(
@@ -193,11 +198,11 @@ public class RegistrarTiendas extends javax.swing.JDialog {
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDenominacion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoDenominacion, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
@@ -423,12 +428,13 @@ public class RegistrarTiendas extends javax.swing.JDialog {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrarOrigen;
     private javax.swing.JTextField campoDenominacion;
-    private javax.swing.JTextField campoDireccion;
+    private javax.swing.JTextArea campoDireccionTienda;
     private javax.swing.JComboBox<String> comboResponsable;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblDenominacion;
     private javax.swing.JLabel lblDireccion;
@@ -457,8 +463,11 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         if (utilidades.Utilidades.compruebaCampoVacio(campoDenominacion)) {
             utilidades.Utilidades.lanzaAlertaVacio(campoDenominacion);
 
-        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDireccion)) {
-            utilidades.Utilidades.lanzaAlertaVacio(campoDireccion);
+        } else if (campoDireccionTienda.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La descripción no puede estar vacía.",
+                    "Campo vacío",
+                    JOptionPane.WARNING_MESSAGE);
             
         } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboResponsable)) {
             utilidades.Utilidades.lanzaAlertaCombo(comboResponsable);
@@ -466,7 +475,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
         } else {
             
             String denominacion = campoDenominacion.getText().trim();
-            String direccion = campoDireccion.getText().trim();
+            String direccion = campoDireccionTienda.getText().trim();
             String responsable = comboResponsable.getSelectedItem().toString();
 
             
@@ -477,9 +486,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
             if (ConsultasTiendas.registrarTienda(nuevaTienda)) {
                 
                 JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
-                
-             
-            
+                           
             Conexion.cerrarConexion();
 
             limpiarTienda();
@@ -499,7 +506,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
      */
     public void limpiarTienda() {
         campoDenominacion.setText("");
-        campoDireccion.setText("");
+        campoDireccionTienda.setText("");
         comboResponsable.setSelectedIndex(0);
 
     }

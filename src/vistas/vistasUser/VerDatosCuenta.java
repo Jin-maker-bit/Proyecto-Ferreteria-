@@ -216,7 +216,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoNombreYApellidos.setForeground(new java.awt.Color(191, 150, 99));
         campoNombreYApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoNombreYApellidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNombreYApellidos.setName("NOMBRE Y APELLIDOS"); // NOI18N
+        campoNombreYApellidos.setName("Nombre Completo"); // NOI18N
         campoNombreYApellidos.setOpaque(true);
 
         lblSubtitulo4.setBackground(new java.awt.Color(112, 137, 140));
@@ -230,7 +230,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoPass.setForeground(new java.awt.Color(191, 150, 99));
         campoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoPass.setName("CONTRASEÑA ACTUAL"); // NOI18N
+        campoPass.setName("Pass Actual"); // NOI18N
 
         botonGuardar.setBackground(new java.awt.Color(191, 182, 158));
         botonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -254,7 +254,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoNuevoPass.setForeground(new java.awt.Color(191, 150, 99));
         campoNuevoPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoNuevoPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoNuevoPass.setName("NUEVA CONTRASEÑA"); // NOI18N
+        campoNuevoPass.setName("Nueva Pass"); // NOI18N
 
         botonVolver.setBackground(new java.awt.Color(191, 150, 99));
         botonVolver.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -279,7 +279,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoUsuario.setEnabled(false);
-        campoUsuario.setName("Denominación"); // NOI18N
+        campoUsuario.setName("Usuario"); // NOI18N
 
         lblDenominacion6.setBackground(new java.awt.Color(191, 150, 99));
         lblDenominacion6.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -293,7 +293,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoTipo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoTipo.setEnabled(false);
-        campoTipo.setName("Denominación"); // NOI18N
+        campoTipo.setName("Tipo"); // NOI18N
 
         botonActivarEdicion.setBackground(new java.awt.Color(191, 150, 99));
         botonActivarEdicion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -719,7 +719,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         campoNuevoPass.setEditable(true);
 
         JOptionPane.showMessageDialog(this,
-                "Ya puede editar los campos NOMBRE y CONTRASEÑA.",
+                "Ya puede editar los campos Nombre y Pass.",
                 "Modo edición activado",
                 JOptionPane.INFORMATION_MESSAGE);
     }

@@ -545,7 +545,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="NOMBRE Y APELLIDOS" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Nombre Completo" noResource="true"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
@@ -581,7 +581,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="CONTRASE&#xd1;A ACTUAL" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Pass Actual" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonGuardar">
@@ -636,7 +636,7 @@
                     </LineBorder>
                   </Border>
                 </Property>
-                <Property name="name" type="java.lang.String" value="NUEVA CONTRASE&#xd1;A" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Nueva Pass" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonVolver">
@@ -692,7 +692,7 @@
                   </Border>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblDenominacion6">
@@ -728,7 +728,7 @@
                   </Border>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
-                <Property name="name" type="java.lang.String" value="Denominaci&#xf3;n" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Tipo" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="botonActivarEdicion">

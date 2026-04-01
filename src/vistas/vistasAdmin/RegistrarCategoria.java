@@ -60,7 +60,8 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         botonCancelarCategoria = new javax.swing.JButton();
         botonRegistrarCategoria = new javax.swing.JButton();
         campoCategoria = new javax.swing.JTextField();
-        campoDescripcion = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        campoDescripcionCategoria = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
@@ -129,11 +130,16 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         campoCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoCategoria.setName("Categoria"); // NOI18N
 
-        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
-        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
-        campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setName("Descripción"); // NOI18N
+        campoDescripcionCategoria.setBackground(new java.awt.Color(3, 32, 38));
+        campoDescripcionCategoria.setColumns(20);
+        campoDescripcionCategoria.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcionCategoria.setForeground(new java.awt.Color(112, 137, 140));
+        campoDescripcionCategoria.setLineWrap(true);
+        campoDescripcionCategoria.setRows(5);
+        campoDescripcionCategoria.setWrapStyleWord(true);
+        campoDescripcionCategoria.setAutoscrolls(false);
+        campoDescripcionCategoria.setName("Descripción"); // NOI18N
+        jScrollPane4.setViewportView(campoDescripcionCategoria);
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -145,14 +151,14 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                     .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(87, 87, 87)
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(panelSecundarioLayout.createSequentialGroup()
-                            .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(54, 54, 54)
-                            .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(campoCategoria)
+                    .addGroup(panelSecundarioLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         panelSecundarioLayout.setVerticalGroup(
@@ -162,19 +168,15 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSecundarioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
+                    .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegistrarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCancelarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jToolBar1.setBackground(new java.awt.Color(191, 150, 99));
@@ -239,7 +241,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         panelFinalLayout.setVerticalGroup(
             panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFinalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(panelFinalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblSistemaGestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblRescataFechayHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -284,9 +286,9 @@ public class RegistrarCategoria extends javax.swing.JDialog {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(191, 150, 99), 4));
@@ -333,7 +335,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -397,11 +399,12 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     private javax.swing.JButton botonCancelarCategoria;
     private javax.swing.JButton botonRegistrarCategoria;
     private javax.swing.JTextField campoCategoria;
-    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextArea campoDescripcionCategoria;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescripcion;
@@ -429,13 +432,16 @@ public class RegistrarCategoria extends javax.swing.JDialog {
         if (utilidades.Utilidades.compruebaCampoVacio(campoCategoria)) {
             utilidades.Utilidades.lanzaAlertaVacio(campoCategoria);
 
-        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDescripcion)) {
-            utilidades.Utilidades.lanzaAlertaVacio(campoDescripcion);
+        } else if (campoDescripcionCategoria.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La descripción no puede estar vacía.",
+                    "Campo vacío",
+                    JOptionPane.WARNING_MESSAGE);
         
         } else {
            
             String nombreCategoria = campoCategoria.getText().trim();
-            String descripcion = campoDescripcion.getText().trim();
+            String descripcion = campoDescripcionCategoria.getText().trim();
           
             modelo.Categoria nuevaCategoria = new modelo.Categoria(nombreCategoria, descripcion);
            
@@ -465,7 +471,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
     public void limpiarCategoria() {
         
         campoCategoria.setText("");
-        campoDescripcion.setText("");
+        campoDescripcionCategoria.setText("");
     }
     
 }

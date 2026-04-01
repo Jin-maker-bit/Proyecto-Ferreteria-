@@ -12,11 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Clase de gestión de la conexión con la base de datos MySQL. Proporciona
- * métodos estáticos para establecer y cerrar la conexión, así como para
- * realizar las consultas relacionadas con la autenticación y recuperación de
- * datos de los usuarios logados.
- *
+ * Clase de gestión de la conexión con la base de datos MySQL. 
+ * Proporciona métodos estáticos para establecer y cerrar la conexión, así como para realizar las consultas relacionadas con la autenticación y recuperación de datos de los usuarios logados.
  * @author Jose y Patricia
  */
 public class Conexion {
@@ -28,8 +25,9 @@ public class Conexion {
     private static String ip;
 
     /**
-     * Método que establece la conexión con el servidor MySQL. Utiliza el driver
-     * JDBC para conectar con la base de datos ferreteria.
+     * Método que establece la conexión con el servidor MySQL. 
+     * Utiliza el driver JDBC para conectar con la base de datos ferreteria.
+     * Configurado para soportar entornos locales MAMP (Jose) y XAMPP (Patri).
      */
     public static void conectar() {
         try {
@@ -50,9 +48,8 @@ public class Conexion {
 
     /**
      * Método que finaliza la conexión activa con el servidor de base de datos.
-     * Sirve también para liberar recursos del sistema. Se recomienda llamar a
-     * este método siempre después de completar cualquier operación con la base
-     * de datos.
+     * Sirve también para liberar recursos del sistema. 
+     * Se recomienda llamar a este método siempre después de completar cualquier operación con la base de datos.
      */
     public static void cerrarConexion() {
 
@@ -68,14 +65,11 @@ public class Conexion {
     }
 
     /**
-     * Método que valida las credenciales de un usuario en base a la base de
-     * datos de Ferretería. Sólo permite el acceso a usuarios con estado activo
-     * y no bloqueado.
-     *
+     * Método que valida las credenciales de un usuario en base a la base de datos de Ferretería. 
+     * Sólo permite el acceso a usuarios con estado activo y no bloqueado.
      * @param user Nombre de usuario introducida en la ventana de login.
      * @param pass Contraseña introducida en la ventana de login.
-     * @return validación correcta y entrada a la aplicación si las credenciales
-     * son correctas. En caso contrario no permitir acceso.
+     * @return validación correcta y entrada a la aplicación si las credenciales son correctas. En caso contrario no permitir acceso.
      */
     public static boolean acceder(String user, String pass) {
 

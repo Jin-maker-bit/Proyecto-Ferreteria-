@@ -78,8 +78,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblFecha = new javax.swing.JLabel();
         campoNombre = new javax.swing.JTextField();
         comboCategoria = new javax.swing.JComboBox<>();
-        campoDescripcion = new javax.swing.JTextField();
         campoCodigo = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        campoDescripcionArticulo = new javax.swing.JTextArea();
         panelSecundario1 = new javax.swing.JPanel();
         lblUsuario1 = new javax.swing.JLabel();
         lblTipo1 = new javax.swing.JLabel();
@@ -196,17 +197,22 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         comboCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboCategoria.setName("Categoría"); // NOI18N
 
-        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
-        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
-        campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setName("Descripción"); // NOI18N
-
         campoCodigo.setBackground(new java.awt.Color(3, 32, 38));
         campoCodigo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoCodigo.setForeground(new java.awt.Color(112, 137, 140));
         campoCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoCodigo.setName("Código"); // NOI18N
+
+        campoDescripcionArticulo.setBackground(new java.awt.Color(3, 32, 38));
+        campoDescripcionArticulo.setColumns(20);
+        campoDescripcionArticulo.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcionArticulo.setForeground(new java.awt.Color(112, 137, 140));
+        campoDescripcionArticulo.setLineWrap(true);
+        campoDescripcionArticulo.setRows(5);
+        campoDescripcionArticulo.setWrapStyleWord(true);
+        campoDescripcionArticulo.setAutoscrolls(false);
+        campoDescripcionArticulo.setName("Descripción"); // NOI18N
+        jScrollPane4.setViewportView(campoDescripcionArticulo);
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -231,17 +237,14 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelSecundarioLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSecundarioLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(comboOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
-                                    .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoCodigo, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(29, 29, 29)
+                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(comboOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
+                                .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoCodigo, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelSecundarioLayout.setVerticalGroup(
@@ -269,8 +272,8 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(106, 106, 106)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -535,8 +538,8 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -700,7 +703,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JButton botonRegistrarUsuario;
     private javax.swing.JButton botonSalir;
     private javax.swing.JTextField campoCodigo;
-    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextArea campoDescripcion;
+    private javax.swing.JTextArea campoDescripcion1;
+    private javax.swing.JTextArea campoDescripcionArticulo;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecioCompra;
     private javax.swing.JTextField campoPrecioVenta;
@@ -713,6 +718,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblEstado1;
@@ -763,8 +771,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     } else if (Utilidades.compruebaComboNoSeleccionado(comboOrigen)) {
         Utilidades.lanzaAlertaCombo(comboOrigen);
 
-    } else if (Utilidades.compruebaCampoVacio(campoDescripcion)) {
-        Utilidades.lanzaAlertaVacio(campoDescripcion);
+    } else if (campoDescripcionArticulo.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La descripción no puede estar vacía.",
+                    "Campo vacío",
+                    JOptionPane.WARNING_MESSAGE);
 
     } else if (Utilidades.compruebaCampoVacio(campoPrecioCompra)) {
         Utilidades.lanzaAlertaVacio(campoPrecioCompra);
@@ -796,7 +807,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         String codProducto = campoCodigo.getText().trim();
         String nombre = campoNombre.getText().trim();
         String categoria = comboCategoria.getSelectedItem().toString();
-        String descripcion = campoDescripcion.getText().trim();
+        String descripcion = campoDescripcionArticulo.getText().trim();
         double precioCompra = Double.parseDouble(campoPrecioCompra.getText().trim());
         double precioVenta = Double.parseDouble(campoPrecioVenta.getText().trim());
         int stock = Integer.parseInt(campoStock.getText().trim());
@@ -845,7 +856,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     public void limpiarArticulo() {
         //campoCodigo.setText(""); // Ya no hace falta pero lo dejo por si hubiera que modificarlo por si no gusta la idea.
         campoNombre.setText("");
-        campoDescripcion.setText("");
+        campoDescripcionArticulo.setText("");
         campoPrecioCompra.setText("");
         campoPrecioVenta.setText("");
         campoStock.setText("");

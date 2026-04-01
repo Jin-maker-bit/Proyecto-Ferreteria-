@@ -60,7 +60,8 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         botonCancelar = new javax.swing.JButton();
         botonRegistrarOrigen = new javax.swing.JButton();
         campoOrigen = new javax.swing.JTextField();
-        campoDescripcion = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        campoDescripcionOrigen = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         lblImprimirAdmin = new javax.swing.JLabel();
         lblUsuario1 = new javax.swing.JLabel();
@@ -133,11 +134,16 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         campoOrigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoOrigen.setName("Origen"); // NOI18N
 
-        campoDescripcion.setBackground(new java.awt.Color(3, 32, 38));
-        campoDescripcion.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        campoDescripcion.setForeground(new java.awt.Color(112, 137, 140));
-        campoDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
-        campoDescripcion.setName("Descripción"); // NOI18N
+        campoDescripcionOrigen.setBackground(new java.awt.Color(3, 32, 38));
+        campoDescripcionOrigen.setColumns(20);
+        campoDescripcionOrigen.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        campoDescripcionOrigen.setForeground(new java.awt.Color(112, 137, 140));
+        campoDescripcionOrigen.setLineWrap(true);
+        campoDescripcionOrigen.setRows(5);
+        campoDescripcionOrigen.setWrapStyleWord(true);
+        campoDescripcionOrigen.setAutoscrolls(false);
+        campoDescripcionOrigen.setName("Descripción"); // NOI18N
+        jScrollPane6.setViewportView(campoDescripcionOrigen);
 
         javax.swing.GroupLayout panelSecundarioLayout = new javax.swing.GroupLayout(panelSecundario);
         panelSecundario.setLayout(panelSecundarioLayout);
@@ -150,10 +156,14 @@ public class RegistrarOrigen extends javax.swing.JDialog {
                         .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85)
-                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelSecundarioLayout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSecundarioLayout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jScrollPane6)
+                                .addGap(3, 3, 3))))
                     .addGroup(panelSecundarioLayout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,14 +178,11 @@ public class RegistrarOrigen extends javax.swing.JDialog {
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelSecundarioLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(campoDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(53, 53, 53)
+                .addGap(81, 81, 81)
+                .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
                 .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegistrarOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -397,12 +404,17 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrarOrigen;
-    private javax.swing.JTextField campoDescripcion;
+    private javax.swing.JTextArea campoDescripcionCategoria;
+    private javax.swing.JTextArea campoDescripcionCategoria1;
+    private javax.swing.JTextArea campoDescripcionOrigen;
     private javax.swing.JTextField campoOrigen;
     private javax.swing.JMenuItem itemAcercaDe;
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblImprimirAdmin;
@@ -431,13 +443,16 @@ public class RegistrarOrigen extends javax.swing.JDialog {
         if (utilidades.Utilidades.compruebaCampoVacio(campoOrigen)) {
             utilidades.Utilidades.lanzaAlertaVacio(campoOrigen);
 
-        } else if (utilidades.Utilidades.compruebaCampoVacio(campoDescripcion)) {
-            utilidades.Utilidades.lanzaAlertaVacio(campoDescripcion);
+        } else if (campoDescripcionOrigen.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La descripción no puede estar vacía.",
+                    "Campo vacío",
+                    JOptionPane.WARNING_MESSAGE);
         
         } else {
 
             String nombreOrigen = campoOrigen.getText().trim();
-            String descripcion = campoDescripcion.getText().trim();
+            String descripcion = campoDescripcionOrigen.getText().trim();
 
             modelo.Origen nuevoOrigen = new modelo.Origen(nombreOrigen, descripcion);
 
@@ -468,7 +483,7 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     public void limpiarOrigen() {
         
         campoOrigen.setText("");
-        campoDescripcion.setText("");
+        campoDescripcionOrigen.setText("");
         
     }
 
