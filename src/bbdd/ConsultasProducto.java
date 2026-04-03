@@ -742,7 +742,7 @@ public class ConsultasProducto extends Conexion {
         modelo.setRowCount(0);
         
         
-        String consulta = "SELECT codProducto, nombre, categoria, precio_venta, oferta FROM producto";
+        String consulta = "SELECT codProducto, nombre, categoria, precio_venta, oferta FROM producto WHERE oferta = 'SI' ";
         
         conectar();
         

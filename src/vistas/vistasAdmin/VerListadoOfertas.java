@@ -780,6 +780,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         if (ConsultasProducto.actualizarOferta(codigo, nuevaOferta)) {
             
             JOptionPane.showMessageDialog(this, "Estado de oferta actualizado correctamente.");
+            
             ConsultasProducto.cargarListadoOfertas((DefaultTableModel) tablaArticulosOferta.getModel());
             
             desactivarEdicion();
