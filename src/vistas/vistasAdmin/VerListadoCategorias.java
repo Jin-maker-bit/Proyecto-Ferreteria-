@@ -336,6 +336,9 @@ public class VerListadoCategorias extends javax.swing.JDialog {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarCategoria rc = new RegistrarCategoria(null, true);
         rc.setVisible(true);
+        
+        // Cargar tabla al salir
+        ConsultasCategorias.listadoCategorias((DefaultTableModel) tablaCategorias.getModel());
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed

@@ -332,6 +332,9 @@ public class VerListadoTiendas extends javax.swing.JDialog {
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         RegistrarTiendas rt = new RegistrarTiendas(null, true);
         rt.setVisible(true);
+        
+        // Cargar tabla al salir
+        ConsultasTiendas.listadoTiendasAdmin((DefaultTableModel) tablaListaTiendas.getModel());
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed

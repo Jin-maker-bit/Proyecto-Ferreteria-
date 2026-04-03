@@ -332,6 +332,9 @@ public class VerListadoOrigen extends javax.swing.JDialog {
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarOrigen ro = new RegistrarOrigen(null, true);
         ro.setVisible(true);
+        
+        // Cargar tabla al salir
+        ConsultasOrigen.ListadoOrigenesAdmin((DefaultTableModel) tablaListaOrigen.getModel());
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed

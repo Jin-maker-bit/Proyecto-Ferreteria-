@@ -590,6 +590,9 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
     RegistrarUsuario rnu = new RegistrarUsuario(null, true); 
     rnu.setVisible(true);
+    
+    // Cargar tabla al salir
+    ConsultasUsuarios.listadoUsuarios((DefaultTableModel) tablaListadoUsuarios.getModel());
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
