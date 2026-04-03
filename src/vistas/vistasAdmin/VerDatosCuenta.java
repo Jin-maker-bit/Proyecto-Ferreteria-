@@ -348,7 +348,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         labelNombre.setName("Nombre"); // NOI18N
 
         labelRol.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        labelRol.setForeground(new java.awt.Color(204, 0, 0));
+        labelRol.setForeground(new java.awt.Color(9, 48, 64));
         labelRol.setName("Rol"); // NOI18N
 
         lblSubtitulo9.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -668,7 +668,22 @@ private void cargarDatosPerfil() {
             Utilidades.lanzaAlertaVacio(campoNuevaPass);
             return;
         }
+        
+        // Confirmación de seguridad
+        int respuesta = javax.swing.JOptionPane.showConfirmDialog(
+                this, 
+                "¿Está seguro de que desea actualizar sus datos personales y / o contraseña?", 
+                "Confirmar actualización", 
+                javax.swing.JOptionPane.YES_NO_OPTION, 
+                javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
 
+        // Si el usuario pulsa NO cierra la ventana, salimos del método sin hacer nada
+        if (respuesta != javax.swing.JOptionPane.YES_OPTION) {
+            return; 
+        }
+        
+        // Pero si responde sí:
         boolean exito = actualizarDatos(usuarioActivo, nuevoNombre, nuevaPass, passActual);
 
         if (exito) {
