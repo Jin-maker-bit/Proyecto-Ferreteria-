@@ -737,7 +737,7 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     public void guardarArticuloDestacado() {
         
         if (campoCodProducto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Selecciona un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -745,10 +745,26 @@ public class VerListadoDestacados extends javax.swing.JDialog {
             Utilidades.lanzaAlertaCombo(comboDestacado);
             return;
         }
-
-        String codigo = campoCodProducto.getText();
+        
+        // Nueva confirmación:
+        String nombreArticuloDestacado = campoNombre.getText();
         String nuevoDestacado = comboDestacado.getSelectedItem().toString();
+        
+        int respuesta = JOptionPane.showConfirmDialog(
+            this, 
+            "¿Desea cambiar el estado de " + nombreArticuloDestacado + " a " + nuevoDestacado + "?", 
+            "Confirmar Cambio", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE
+        );
 
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return; // El usuario canceló, salimos del método
+        }
+       
+        
+        String codigo = campoCodProducto.getText();
+        
         if (ConsultasProducto.actualizarDestacado(codigo, nuevoDestacado)) {
             
             JOptionPane.showMessageDialog(this, "Estado destacado actualizado correctamente.");

@@ -736,7 +736,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
      */
     public void guardarUsuario() {
         if (campoIdEmpleado.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Selecciona un usuario primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -756,10 +756,29 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
 
         // Rescatar datos
         String idUsuario = campoIdEmpleado.getText();
+        String nombreCompleto = campoNombreCompleto.getText(); // Usamos esto para el mensaje de validar cambios
         String nuevaTienda = comboTienda.getSelectedItem().toString();
         String nuevoTipo = comboTipo.getSelectedItem().toString();
         String nuevoEstado = comboEstado.getSelectedItem().toString();
 
+        // Nueva confirmación:
+        String mensajeConfirmacion = "¿Desea actualizar al usuario " + nombreCompleto + " con los siguientes datos?"
+            + "\n Tienda: " + nuevaTienda 
+            + "\n Tipo: " + nuevoTipo 
+            + "\n Estado: " + nuevoEstado;
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                this, 
+                mensajeConfirmacion, 
+                "Confirmar Edición de Usuario", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return; // El usuario canceló
+        }
+                
         if (ConsultasUsuarios.actualizarUsuarioRoles(idUsuario, nuevaTienda, nuevoTipo, nuevoEstado)) {
             JOptionPane.showMessageDialog(this, "Usuario actualizado correctamente.");
             

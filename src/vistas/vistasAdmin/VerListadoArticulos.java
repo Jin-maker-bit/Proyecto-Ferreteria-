@@ -659,6 +659,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
             return;
         }
 
+        //Confirmación:
         int confirmar = JOptionPane.showConfirmDialog(this,
                 "¿Seguro que quieres eliminar el artículo " + campoNombre.getText() + "?",
                 "Confirmar eliminación",
@@ -803,7 +804,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
         if (campoCodProducto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Selecciona un artículo primero.",
+                    "Seleccione un artículo primero.",
                     "Sin selección",
                     JOptionPane.WARNING_MESSAGE);
 
@@ -816,6 +817,21 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     "Campo vacío",
                     JOptionPane.WARNING_MESSAGE);
         } else {
+            
+            // Nueva Confirmación
+            String nombreArticuloListado = campoNombre.getText();
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this, 
+                    "¿Está seguro de que desea actualizar los datos de " + nombreArticuloListado + "?", 
+                    "Confirmar actualización de producto", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            
+            if (respuesta != JOptionPane.YES_OPTION) {
+                return;
+            }
 
             if (ConsultasProducto.actualizarProducto(
                     campoCodProducto.getText(),
