@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.Conexion;
 import bbdd.ConsultasTiendas;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -15,16 +14,18 @@ import vistas.VentanaLogin;
 /**
  * Ventana modal encargada de registrar nuevas tiendas de productos en el sistema.
  * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
- * @author Jose y Patricia.
+ * 
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class RegistrarTiendas extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarTiendas.class.getName());
 
     /**
-     * Constructor principal de la ventana Registrar Tienda.
-     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
-     * Creates new form RegistrarTiendas
+     * Constructor principal de la ventana "Registrar Tiendas".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public RegistrarTiendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -454,7 +455,7 @@ public class RegistrarTiendas extends javax.swing.JDialog {
 
     
      /**
-      * Ventana modal encargada de registrar nuevos registros en el sistema.
+      * Realiza el registro de una nueva sede en el sistema.
       * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
       * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
       */
@@ -465,8 +466,8 @@ public class RegistrarTiendas extends javax.swing.JDialog {
 
         } else if (campoDireccionTienda.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "La descripción no puede estar vacía.",
-                    "Campo vacío",
+                    "El campo dirección en registro tienda no puede estar vacío.",
+                    "Por favor, añada los datos requeridos.",
                     JOptionPane.WARNING_MESSAGE);
             
         } else if (utilidades.Utilidades.compruebaComboNoSeleccionado(comboResponsable)) {
@@ -481,19 +482,17 @@ public class RegistrarTiendas extends javax.swing.JDialog {
             
             Tienda nuevaTienda = new Tienda(denominacion, direccion, responsable);
             
-            Conexion.conectar();
-
             if (ConsultasTiendas.registrarTienda(nuevaTienda)) {
                 
-                JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
+                JOptionPane.showMessageDialog(this, 
+                        "Tienda registrada correctamente.");  
                            
-            Conexion.cerrarConexion();
-
             limpiarTienda();
             
             } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al registrar tienda.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al registrar tienda.");
         }
         
     }

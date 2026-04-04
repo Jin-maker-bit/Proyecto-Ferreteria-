@@ -17,7 +17,11 @@ import javax.swing.JOptionPane;
 /**
  * Clase principal encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla usuarios.
  * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ConsultasUsuarios extends Conexion {
 
@@ -25,8 +29,9 @@ public class ConsultasUsuarios extends Conexion {
     /**
      * Obtiene todos los datos de un usuario específico a partir de su nombre de login.
      * Utilizado para cargar los datos del perfil o validar permisos puntuales.
-     * @param loginUsuario
-     * @return 
+     * 
+     * @param loginUsuario El alias o nombre de inicio de sesión del usuario.
+     * @return Objeto - Usuario - mapeado con los datos de la Base de datos o Null si no existe.
      */
     public static Usuario obtenerDatosUsuario(String loginUsuario) {
 
@@ -67,6 +72,7 @@ public class ConsultasUsuarios extends Conexion {
     /**
      * Cuenta el número total de usuarios registrados en el sistema.
      * Se utiliza para cargar las estadísticas rápidas, JLabel, en el panel del Administrador.
+     * 
      * @return Un entero con la cantidad total de usuarios.
      */
     public static int rescatarUsuariosTotales() {
@@ -101,7 +107,8 @@ public class ConsultasUsuarios extends Conexion {
     
    /**
     * Cuenta el número de usuarios que actualmente tienen el estado Activo.
-     * Se utiliza para cargar las estadísticas rápidas, JLabel, en el panel del Administrador.
+    * Se utiliza para cargar las estadísticas rápidas, JLabel, en el panel del Administrador.
+    * 
     * @return Un entero con la cantidad de usuarios activos.
     */
     public static int rescatarUsuariosActivos() {
@@ -140,6 +147,7 @@ public class ConsultasUsuarios extends Conexion {
      /**
       * Registra un nuevo empleado, usuario, en la base de datos de la ferretería.
       * Convierte automáticamente la fecha de Java a formato SQL.
+      * 
       * @param usu Objeto Usuario con los datos a insertar.
       * @return true si se insertó correctamente, false si hubo un error.
       */
@@ -184,7 +192,8 @@ public class ConsultasUsuarios extends Conexion {
     
     /**
      * Rescata la información pública del perfil del usuario (Nombre, login, tipo y tienda).
-     * Se utiliza para mostrar los datos en la ventana de 'Mi Perfil'.
+     * Se utiliza para mostrar los datos en la ventana de Mi Perfil.
+     * 
      * @param userLogado El nombre de usuario que ha iniciado sesión.
      * @return Un objeto Usuario con la información del perfil.
      */
@@ -214,7 +223,7 @@ public class ConsultasUsuarios extends Conexion {
             
         } catch (SQLException e) {
             
-            System.err.println("Error en obtener datos del perfil: " + e.getMessage());
+            System.err.println("Error al obtener datos del perfil: " + e.getMessage());
             
         } finally {
             
@@ -227,7 +236,8 @@ public class ConsultasUsuarios extends Conexion {
     
     /**
      * Actualiza el nombre real y la contraseña de un usuario desde su panel de perfil.
-     * Requiere que el usuario introduzca su contraseña actual como medida de seguridad.
+     * Implementa una medida de seguridad doble verificando la contraseña actual antes de aplicar cambios.
+     * 
      * @param user El nombre de login del usuario.
      * @param nuevoNombre El nuevo nombre y apellidos a registrar.
      * @param nuevaPass La nueva contraseña deseada.
@@ -257,7 +267,7 @@ public class ConsultasUsuarios extends Conexion {
             }
         } catch (SQLException e) {
             
-            System.err.println("Error al actualizar: " + e.getMessage());
+            System.err.println("Error al actualizar datos: " + e.getMessage());
             
         } finally {
             
@@ -269,9 +279,10 @@ public class ConsultasUsuarios extends Conexion {
     
     
     /**
-     * Carga en la tabla de la vista VerListadoUsuarios la información completa de los empleados.
-     * A diferencia del método anterior, este extrae los datos llamando por el nombre exacto de la columna.
-     * @param modelo 
+     * Carga el listado completo de empleados en el modelo de tabla proporcionado.
+     * Extrae información detallada incluyendo credenciales, roles y estados ordenando los registros por su ID de forma ascendente.
+     * 
+     * @param modelo El DefaultTableModel de la JTable donde se volcarán los datos (requiere 8 columnas).
      */
     public static void listadoUsuarios(javax.swing.table.DefaultTableModel modelo) {
 
@@ -315,11 +326,12 @@ public class ConsultasUsuarios extends Conexion {
     }
     
     
-    
-    
+      
     /**
-     * Carga en la tabla toda la información de todos los usuarios registrados.
-     * Para VerListadoUsuarios
+     * Recupera el listado completo de usuarios de la base de datos y los vuelca en el modelo de la tabla.
+     * A diferencia de otros métodos, este utiliza el nombre explícito de las columnas de la base de datos para garantizar la integridad del mapeo de datos.
+     * 
+     * @param modelo El DefaultTableModel que se desea poblar (debe tener 8 columnas configuradas).
      */
     public static void cargarListadoUsuarios(javax.swing.table.DefaultTableModel modelo) {
         
@@ -359,11 +371,12 @@ public class ConsultasUsuarios extends Conexion {
     
     /**
      * Actualiza los permisos de administración (Tienda, Tipo/Rol y Estado) de un usuario.
-     * Método diseñado para proteger el resto de datos personales (nombre, contraseña) durante la edición desde el panel VerListadoUsuarios.
+     * Este método protege la privacidad del empleado al no permitir modificar su contraseña desde el panel de gestión de administrador.
+     * 
      * @param idUsuario idUsuario El ID numérico único del usuario en la base de datos.
      * @param tienda La nueva tienda a la que pertenece.
-     * @param tipo El nuevo rol.
-     * @param estado El nuevo estado de acceso
+     * @param tipo El nuevo rol (Admin / User).
+     * @param estado El nuevo estado de acceso.
      * @return true si la actualización fue correcta, false en caso de error.
      */
     public static boolean actualizarUsuarioRoles(String idUsuario, String tienda, String tipo, String estado) {

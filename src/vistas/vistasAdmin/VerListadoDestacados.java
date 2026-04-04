@@ -13,17 +13,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- * Ventana de listado de artículos.
+ * Ventana modal que se encarga de gestionar el listado de artículos destacados.
  * Permite visualizar el catálogo y al seleccionar un artículo modificar exclusivamente su valor de Destacado: Sí / No a través de un Combo-box.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoDestacados extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoDestacados.class.getName());
 
     /**
-     * Constructor principal de la ventana.
-     * Inicializa los componentes, aplica la identidad visual, carga la tabla y prepara los desplegables.
+     * Constructor principal de la ventana "Ver Listado Destacados".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      * 
      */
     public VerListadoDestacados(java.awt.Frame parent, boolean modal) {
@@ -598,6 +601,12 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    /**
+     * Activa el modo edición si hay un artículo seleccionado en la tabla.
+     * Valida que el formulario no esté vacío antes de habilitar el Combo Box.
+     * 
+     * @param evt Evento de acción disparado por el botón de edición de 'Clic para Activar el Panel y Editar'.
+     */
     private void botonEditarArticuloDestacadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarArticuloDestacadoActionPerformed
         
         if (campoCodProducto.getText().isEmpty()) {
@@ -615,6 +624,11 @@ public class VerListadoDestacados extends javax.swing.JDialog {
         guardarArticuloDestacado();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    /**
+     * Rescata el objeto Producto completo mediante su código y vuelca la información en el panel de detalle derecho para su visualización.
+     * 
+     * @param evt Evento de clic capturado por el componente JTable.
+     */
     private void tablaArticulosDestacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosDestacadosMouseClicked
        
         int fila = tablaArticulosDestacados.getSelectedRow();
@@ -642,7 +656,9 @@ public class VerListadoDestacados extends javax.swing.JDialog {
                 desactivarEdicion(); 
             } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al rescatar el producto.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al rescatar la información del producto seleccionado."
+                                + "Inténtelo de nuevo");
             }
         }
     }//GEN-LAST:event_tablaArticulosDestacadosMouseClicked
@@ -737,7 +753,8 @@ public class VerListadoDestacados extends javax.swing.JDialog {
     public void guardarArticuloDestacado() {
         
         if (campoCodProducto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un artículo primero.", 
+                    "Sin selección", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.Conexion;
 import bbdd.ConsultasCategorias;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -15,16 +14,18 @@ import vistas.VentanaLogin;
  * Ventana modal encargada de registrar nuevos categorías de productos en el sistema.
  * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
  * Aplica validaciones de formato, evitando campos vacíos, y delega la persistencia de los datos a la capa de base de datos.
- * @author Jose y Patricia.
+ * 
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class RegistrarCategoria extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarCategoria.class.getName());
 
     /**
-     * Constructor principal de la ventana Registrar Categoría.
-     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
-     * Creates new form RegistrarCategoria
+     * Constructor principal de la ventana "Registrar Categoría".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión activa.
      */
     public RegistrarCategoria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -423,7 +424,7 @@ public class RegistrarCategoria extends javax.swing.JDialog {
 
     
     /**
-     * Ventana modal encargada de registrar nuevas categorías en el sistema.
+     * Ejecuta el proceso de registro de una nueva categoría en el sistema.
      * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
      * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
      */
@@ -434,8 +435,8 @@ public class RegistrarCategoria extends javax.swing.JDialog {
 
         } else if (campoDescripcionCategoria.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "La descripción no puede estar vacía.",
-                    "Campo vacío",
+                    "El campo descripción en categoría no puede estar vacío.",
+                    "Por favor, añada los datos requeridos.",
                     JOptionPane.WARNING_MESSAGE);
         
         } else {
@@ -444,21 +445,18 @@ public class RegistrarCategoria extends javax.swing.JDialog {
             String descripcion = campoDescripcionCategoria.getText().trim();
           
             modelo.Categoria nuevaCategoria = new modelo.Categoria(nombreCategoria, descripcion);
-           
-            Conexion.conectar();
-             
+                      
             if (ConsultasCategorias.registrarCategoria(nuevaCategoria)) {
                 
-                JOptionPane.showMessageDialog(this, "Categoría registrada correctamente.");  
-                
-            
-            Conexion.cerrarConexion();
-
+                JOptionPane.showMessageDialog(this, 
+                        "Categoría registrada correctamente.");  
+   
             limpiarCategoria();
                            
             } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al registrar la categoría.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al registrar la categoría.");
         }
         
     }

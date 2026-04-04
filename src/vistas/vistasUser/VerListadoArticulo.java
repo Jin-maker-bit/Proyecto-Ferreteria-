@@ -12,15 +12,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- *
+ * Ventana modal que despliega el inventario completo de "Ferretería JP Fusión".
+ * Proporciona una vista global de todos los productos registrados, permitiendo a los usuarios de nivel user consultar precios y detalles técnicos detallados mediante la selección de registros en tiempo real.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoArticulo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoArticulo.class.getName());
 
     /**
-     * Creates new form VerListadoArticulo
+     * Constructor principal de la ventana "Ver Listado Artículo".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -362,6 +367,12 @@ public class VerListadoArticulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    /**
+     * Gestiona la recuperación de información técnica del producto seleccionado.
+     * Al hacer clic en una fila, el sistema identifica el código de producto, consulta el modelo completo en la BBDD y formatea los datos en el área de texto lateral para su lectura.
+     *
+     * @param evt Evento de ratón (clic) sobre la tabla
+     */
     private void tablaListadoArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoArticulosMouseClicked
         
         int fila = tablaListadoArticulos.getSelectedRow();
@@ -378,7 +389,7 @@ public class VerListadoArticulo extends javax.swing.JDialog {
                 imprimirInfoProducto.setCaretPosition(0);
                 
             } else {
-                imprimirInfoProducto.setText("Error: No se encontró información");
+                imprimirInfoProducto.setText("Error: Los datos técnicos no están disponibles");
 
             }
         }   

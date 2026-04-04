@@ -18,7 +18,11 @@ import modelo.Producto;
  * Clase principal encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla producto.
  * Maneja el registro, modificación, eliminación, listados filtrados y estadísticas.
  * Hereda de la clase Conexion.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ConsultasProducto extends Conexion {
 
@@ -27,7 +31,8 @@ public class ConsultasProducto extends Conexion {
      * Recupera los tres últimos artículos registrados en la base de datos ordenados por fecha de alta de forma descendente.
      * La tabla que carga este método aparece tanto en VentanaAdmin como en VentanaUser.
      * Ordena por fecha y, ante empates, por código para garantizar el orden cronológico real.
-     * @param modelo El modelo de la tabla a completar.
+     * 
+     * @param modelo El modelo de la tabla a completar (5 columnas).
      */
     public static void ultimos3Articulos(javax.swing.table.DefaultTableModel modelo) {
 
@@ -75,6 +80,7 @@ public class ConsultasProducto extends Conexion {
     /**
      * Cuenta cuántos artículos hay registrados en total en el catálogo.
      * Se utiliza para actualizar las estadísticas, JLabel, en la interfaz de usuario.
+     * 
      * @return El total de artículos. Devuelve 0 si hay error.
      */
     public static int rescataArticulosDisponibles() {
@@ -112,6 +118,7 @@ public class ConsultasProducto extends Conexion {
     /**
      * Cuenta cuántos artículos tienen actualmente el estado de oferta activo: 'SI'.
      * Se utiliza para los paneles de estadísticas en las ventanas principales.
+     * 
      * @return El total de artículos en oferta.
      */
     public static int rescataArticulosOferta() {
@@ -150,6 +157,7 @@ public class ConsultasProducto extends Conexion {
     /**
      * Cuenta cuántos artículos están marcados como destacados: 'SI'.
      * Se utiliza para los paneles de estadísticas en las ventanas principales.
+     * 
      * @return El total de artículos destacados.
      */
     public static int rescataArticulosDestacados() {
@@ -188,7 +196,8 @@ public class ConsultasProducto extends Conexion {
     /**
      * Carga en la tabla especificada únicamente los artículos marcados como Destacados.
      * Versión para consulta general -> 4 columnas.
-     * @param modelo 
+     * 
+     * @param modelo DefaultTableModel donde volcar los datos.
      */
     public static void ArticulosDestacados(javax.swing.table.DefaultTableModel modelo) {
 
@@ -230,9 +239,10 @@ public class ConsultasProducto extends Conexion {
     
 
     /**
-     * Carga en la tabla especificada únicamente los artículos marcados en Oferta.
+     * Carga en el modelo de tabla proporcionado únicamente los artículos marcados con el estado oferta SI.
+     * Los resultados se muestran ordenados por fecha de alta de forma descendente, priorizando las ofertas más recientes.
      * 
-     * @param modelo 
+     * @param modelo El DefaultTableModel de la JTable (se requieren 4 columnas: Código, Nombre, Categoría y Precio).
      */
     public static void ArticulosOferta(javax.swing.table.DefaultTableModel modelo) {
 
@@ -277,7 +287,8 @@ public class ConsultasProducto extends Conexion {
     /**
      * Carga el listado completo de productos en el modelo de la tabla proporcionado.
      * Muestra: código, nombre, categoría y precio de venta.
-     * @param modelo 
+     * 
+     * @param modelo DefaultTableModel donde volcar los datos.
      */
     public static void ListadoArticulos(javax.swing.table.DefaultTableModel modelo) {
 
@@ -330,6 +341,8 @@ public class ConsultasProducto extends Conexion {
                 + "precio_compra, precio_venta, stock, origen, destacado, oferta, fecha_alta) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        conectar ();
+        
         try {
 
             PreparedStatement pst = conn.prepareStatement(consulta);
@@ -358,6 +371,9 @@ public class ConsultasProducto extends Conexion {
                     JOptionPane.ERROR_MESSAGE);
 
             return false;
+            
+        } finally {           
+            cerrarConexion();
         }
 
     }
@@ -367,6 +383,7 @@ public class ConsultasProducto extends Conexion {
     /**
      * Cuenta cuántos artículos de la base de datos son de origen Nacional.
      * Utilizado para alimentar las estadísticas de la interfaz Admin.
+     * 
      * @return El total de productos nacionales.
      */
     public static int rescatarProductosNacionales() {
@@ -388,7 +405,7 @@ public class ConsultasProducto extends Conexion {
             
         } catch (SQLException e) {
             
-            JOptionPane.showMessageDialog(null, "Error al obtener el número de ventas.\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener el número de productos nacionales.\n" + e.getMessage());
             
         } finally {
             
@@ -402,6 +419,7 @@ public class ConsultasProducto extends Conexion {
     
     /**
      * Busca y rescata todos los datos de un producto específico mediante su código único.
+     * 
      * @param codigo Código alfanumérico del producto a buscar.
      * @return Objeto Producto con todos sus datos, o null si no se encuentra.
      */
@@ -432,9 +450,10 @@ public class ConsultasProducto extends Conexion {
                     );
                 }
             }
+            
         } catch (SQLException e) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error SQL al buscar producto: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al buscar producto por su código: " + e.getMessage());
             
         } finally {
             
@@ -446,8 +465,11 @@ public class ConsultasProducto extends Conexion {
 
    
     /**
-     * Versión para el panel Administrador: Carga los artículos destacados incluyendo la columna destacado (5 columnas en total).
-     * @param modelo 
+     * Recupera y carga en el modelo de tabla los artículos marcados como destacados específicamente para la vista de Administración.
+     * Incluye una quinta columna con el estado SI / NO para facilitar la gestión.
+     * Los resultados se ordenan cronológicamente (más recientes primero).
+     * 
+     * @param modelo El DefaultTableModel de la JTable administrativa (requiere 5 columnas).
      */
     public static void ArticulosDestacadosAdmin(javax.swing.table.DefaultTableModel modelo) {
 
@@ -479,7 +501,7 @@ public class ConsultasProducto extends Conexion {
 
         } catch (SQLException e) {
 
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar artículos destacados: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar los artículos destacados: " + e.getMessage());
 
         } finally {
 
@@ -491,9 +513,10 @@ public class ConsultasProducto extends Conexion {
     /**
      * Actualiza EXCLUSIVAMENTE el valor destacado, Sí / No, de un producto.
      * Llamado desde la ventana VerListadoDestacados.
-     * @param codigo
-     * @param nuevoDestacado
-     * @return 
+     * 
+     * @param codigo El código único del producto que se desea modificar.
+     * @param nuevoDestacado El nuevo estado a asignar: "SI" o "NO".
+     * @return true si la actualización se realizó con éxito. False en caso contrario.
      */
     public static boolean actualizarDestacado(String codigo, String nuevoDestacado) {
         
@@ -516,7 +539,7 @@ public class ConsultasProducto extends Conexion {
             
         } catch (java.sql.SQLException ex) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error BBDD al actualizar destacado: " + ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al actualizar el valor destacado: " + ex.getMessage());
             
         } finally {
             
@@ -530,8 +553,11 @@ public class ConsultasProducto extends Conexion {
     
     
     /**
-     * Versión para el panel Administrador: Carga los artículos en oferta incluyendo la columna oferta (5 columnas en total).
-     * @param modelo 
+     * Recupera y carga en el modelo de tabla los artículos en oferta para la vista de Administración.
+     * Incluye una quinta columna con el valor del estado 'oferta' para facilitar su gestión y edición.
+     * Los resultados se ordenan por fecha de alta de forma descendente.
+     * 
+     * @param modelo El DefaultTableModel de la JTable Admin (requiere 5 columnas configuradas).
      */
     public static void ArticulosOfertaAdmin(javax.swing.table.DefaultTableModel modelo) {
 
@@ -575,9 +601,10 @@ public class ConsultasProducto extends Conexion {
     
    
     /**
-     * Carga todos los productos de la tabla en el modelo de la tabla.
-     * Muestra código, nombre, categoría y precio de venta.
-     * @param modelo DefaultTableModel de la JTable donde se cargarán los datos.
+     * Recupera el catálogo completo de productos de la base de datos.
+     * Vuelca la información de identificación básica y comercial (código, nombre, categoría y precio) directamente en el modelo de la tabla proporcionado.
+     * 
+     * @param modelo El DefaultTableModel de la JTable donde se visualizarán los artículos (requiere 4 columnas).
      */
     public static void cargarListadoArticulos(javax.swing.table.DefaultTableModel modelo) {
         
@@ -604,7 +631,7 @@ public class ConsultasProducto extends Conexion {
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null,
-                "Error al cargar artículos: " + ex.getMessage());
+                "Error al cargar el listado de artículos: " + ex.getMessage());
             
         } finally {
             
@@ -616,8 +643,9 @@ public class ConsultasProducto extends Conexion {
     /**
      * Rescata todos los datos de un producto por su código.
      * Devuelve el objeto instanciado con todos los atributos mapeados.
+     * 
      * @param codProducto Código del producto a buscar.
-     * @return Objeto {@link Producto} con todos los datos, o {@code null} si no existe.
+     * @return Objeto Producto con todos los datos o null si no existe.
      */
     public static Producto rescatarProductoPorCodigo(String codProducto) {
         
@@ -649,7 +677,7 @@ public class ConsultasProducto extends Conexion {
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null,
-                "Error al rescatar producto: " + ex.getMessage());
+                "Error al rescatar todos los datos de un producto por su código: " + ex.getMessage());
             
         } finally {
             
@@ -662,7 +690,8 @@ public class ConsultasProducto extends Conexion {
     
     /**
      * Actualiza el nombre y descripción de un producto en la tabla {@code producto}.
-     * Solo permite modificar nombre y descripción según RF12.
+     * Solo permite modificar nombre y descripción según requisitos requeridos.
+     * 
      * @param codProducto Código del producto a actualizar.
      * @param nombre Nuevo nombre del producto.
      * @param descripcion Nueva descripción del producto.
@@ -699,9 +728,11 @@ public class ConsultasProducto extends Conexion {
 
     
     /**
-     * Elimina un producto de la tabla {@code producto} por su código.
-     * @param codProducto Código del producto a eliminar.
-     * @return {@code true} si la eliminación fue correcta, {@code false} si hubo error.
+     * Elimina de forma permanente un registro de la tabla Producto utilizando su código único.
+     * Implementa consultas parametrizadas para garantizar la seguridad de la operación.
+     * 
+     * @param codProducto Identificador alfanumérico (P000) del producto a eliminar.
+     * @return true si la eliminación fue correcta. Devuelve false si hubo error.
      */
     public static boolean eliminarProducto(String codProducto) {
         
@@ -734,13 +765,14 @@ public class ConsultasProducto extends Conexion {
     
     
     /**
-     * Carga en la tabla de VerListadoOfertas la información de los artículos para gestionar sus ofertas.
-     * Muestra: Código, Nombre, Categoría, Precio de Venta y Oferta.
+     * Recupera y vuelca en el modelo de tabla la información de los artículos que tienen una oferta activa.
+     * Diseñado para la ventana VerListadoOfertas, permitiendo visualizar los campos clave para la gestión de promociones.
+     * 
+     * @param modelo El DefaultTableModel de la JTable (requiere 5 columnas: Código, Nombre, Categoría, Precio y Oferta).
      */
     public static void cargarListadoOfertas(javax.swing.table.DefaultTableModel modelo) {
         
         modelo.setRowCount(0);
-        
         
         String consulta = "SELECT codProducto, nombre, categoria, precio_venta, oferta FROM producto WHERE oferta = 'SI' ";
         
@@ -774,11 +806,15 @@ public class ConsultasProducto extends Conexion {
     }
 
     
-    /**
-     * Actualiza EXCLUSIVAMENTE el valor 'oferta' de un producto en la base de datos.
-     * Garantiza que el resto de los campos permanezcan inalterados.
-     * 
-     */
+    
+     /**
+      * Actualiza EXCLUSIVAMENTE el valor 'oferta' de un producto en la base de datos.
+      * Garantiza que el resto de los campos permanezcan inalterados.
+      * 
+      * @param codigo Código del Producto a modificar.
+      * @param nuevaOferta Nuevo valor 'SI / NO'.
+      * @return true si se actualiza correctamente.
+      */
     public static boolean actualizarOferta(String codigo, String nuevaOferta) {
         
         boolean exito = false;
@@ -799,7 +835,7 @@ public class ConsultasProducto extends Conexion {
             
         } catch (java.sql.SQLException ex) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error BBDD al actualizar oferta: " + ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al actualizar el valor oferta: " + ex.getMessage());
             
         } finally {
             
@@ -817,7 +853,8 @@ public class ConsultasProducto extends Conexion {
      * Rescata el código más alto, incrementa su valor y mantiene el formato "P000".
      * Este sistema garantiza un orden cronológico estricto en las consultas, permitiendo que la tabla de "Últimos 3 artículos" funcione correctamente mediante un doble criterio de ordenación (fecha_alta y codProducto), subsanando así la falta de precisión en el tipo de dato DATE ya que no registra la hora exacta.
      * Por tanto, el incremento del codProducto permite a la aplicación distinguir el orden de creación entre artículos registrados el mismo día, garantizando que el último registro sea siempre el que encabece las tablas y listados.
-     * @return String con el siguiente código, Ej: "P021", "P022", "P023", etc.
+     * 
+     * @return String con el siguiente código generado, Ej: "P021", "P022", "P023", etc.
      */
     public static String generarSiguienteCodigoProducto() {
     
@@ -846,7 +883,7 @@ public class ConsultasProducto extends Conexion {
             
         } catch (Exception e) {
             
-            System.err.println("Error al generar Código de Producto: " + e.getMessage());
+            System.err.println("Error al generar un nuevo código de Producto: " + e.getMessage());
             
         } finally {
             

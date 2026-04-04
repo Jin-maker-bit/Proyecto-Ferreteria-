@@ -13,15 +13,23 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- *
+ * Ventana Principal para perfiles de Administrador.
+ * Muestra:
+ * - Estadísticas en tiempo real (Tiendas, Productos, Usuarios).
+ * - Tabla con los 3 últimos artículos registrados recientemente.
+ * - Acceso directo a todos los módulos de gestión y reportes.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VentanaAdmin extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAdmin.class.getName());
 
     /**
-     * Creates new form VentanaAdmin
+     * Constructor de la Ventana Principal - "Ventana Admin".
+     * Inicializa los componentes visuales y la experiencia multimedia, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real.
      */
     public VentanaAdmin() {
         initComponents();
@@ -43,8 +51,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         
+        // Diseño tabla 3 últimos artículos
         Utilidades.disenoTablas(tablaArticulosRegistrados);
-        // Rescatar información en los labels:
+        
+        // Rescatar información en los contadores:
         lblRescatarTiendas.setText(String.valueOf(ConsultasTiendas.rescataTienda()));
         lblRescatarProductoNacional.setText(String.valueOf(ConsultasProducto.rescatarProductosNacionales()));
         lblRescatarUsuariosTotales.setText(String.valueOf(ConsultasUsuarios.rescatarUsuariosTotales()));
@@ -884,6 +894,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         vlistor.setVisible(true);
     }//GEN-LAST:event_itemOrigenesActionPerformed
 
+    /**
+     * Al registrar un artículo, al ser el JDialog modal, el código se detiene.
+     * Al cerrar el registro, llamamos a ejecutar la consulta a la tabla de nuevo antes de cerrar para que la tabla muestre el nuevo producto inmediatamente.
+     * @param evt Evento de acción del botón registrar artículo.
+     */
     private void botonRegistrarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarArticuloActionPerformed
         RegistrarArticulo regart = new RegistrarArticulo(this, true);
         regart.setVisible(true);

@@ -12,7 +12,11 @@ import modelo.Acceso;
 /**
  * Clase encargada de gestionar las consultas a la base de datos relacionadas con los accesos al sistema (login y auditoría - accesos).
  * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 
 
@@ -24,13 +28,14 @@ public class ConsultasAccesos extends Conexion{
      * Se llama cada vez que un usuario inicia sesión correctamente en el sistema.
      * Guarda un registro de auditoría con su usuario, fecha y dirección IP.
      * 
+     * Objeto de tipo Acceso que contiene el usuario, la fecha y la IP.
      * @param usuario
      * @param fecha
      * @param ip 
      */
     public static void registrarAcceso(Acceso acc) {
         
-    String consulta = "INSERT INTO accesos (usuario, fecha, ip) VALUES (?, ?, ?)";
+        String consulta = "INSERT INTO accesos (usuario, fecha, ip) VALUES (?, ?, ?)";
     
         conectar(); 
     
@@ -47,12 +52,12 @@ public class ConsultasAccesos extends Conexion{
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, 
-                "Error al registrar acceso: " + ex.getMessage());
+                "Error al registrar el acceso: " + ex.getMessage());
             
         } finally {
             
         cerrarConexion(); 
-    }
+        }
         
     }
     
@@ -60,6 +65,7 @@ public class ConsultasAccesos extends Conexion{
     /**
      * Verifica si las credenciales, el usuario y la contraseña, coinciden en la base de datos.
      * Si el login es correcto, extrae su rol (Admin o User) y su estado actual (Activo o Bloqueado).
+     * 
      * @param user Nombre de usuario.
      * @param pass Contraseña.
      * @return Un Array de String donde [0] es el Tipo y [1] es el Estado. 
@@ -90,7 +96,7 @@ public class ConsultasAccesos extends Conexion{
             
         } catch (java.sql.SQLException ex) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al comprobar usuario: " + ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al comprobar la verificación de credenciales: " + ex.getMessage());
             
         } finally {
             

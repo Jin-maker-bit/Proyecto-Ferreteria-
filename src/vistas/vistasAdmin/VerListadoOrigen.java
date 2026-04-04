@@ -11,15 +11,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
+ * Ventana modal que que gestiona la visualización de los orígenes de procedencia.
+ * Permite al administrador consultar el listado de fabricantes o países de  origen registrados y acceder al formulario de alta para nuevos registros.
  *
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoOrigen extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoOrigen.class.getName());
 
     /**
-     * Creates new form VerListadoOrigen
+     * Constructor principal de la ventana "Ver Listado Origen".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoOrigen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -329,6 +334,12 @@ public class VerListadoOrigen extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    /**
+     * Abre el formulario modal para registrar un nuevo origen.
+     * Al cerrarse el formulario de registro, el código continúa y refresca automáticamente la tabla para mostrar el nuevo origen añadido.
+     * 
+     * @param evt Evento de acción al pulsar el botón de registro.
+     */
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarOrigen ro = new RegistrarOrigen(null, true);
         ro.setVisible(true);

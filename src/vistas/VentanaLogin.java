@@ -12,19 +12,22 @@ import java.net.UnknownHostException;
 
 /**
  * Ventana de Login - inicio de sesión de la aplicación Ferretería JP Fusión.
- * Permite el acceso a dos tipos de usuarios Admin y / o user. Admin accede a la
- * ventana VentanaAdmin con gestión completa. User accede a la ventana
- * VentanaUser con gestión parcial y con más opciones de tipo consulta.
+ * Permite el acceso a dos tipos de usuarios Admin y / o user. 
+ * 
+ * - Perfil Admin: Acceso total a gestión, inventario y usuarios (VentanaAdmin). 
+ * - Perfil User: Acceso restringido únicamente a consultas de catálogo (VentanaUser).
  *
- * @author Jose y Patricia.
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VentanaLogin extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaLogin.class.getName());
 
     /**
-     * Constructor de la ventana de login. 
-     * Creates new form VentanaLogin
+     * Constructor de la ventana Login. 
+     * Inicializa los componentes gráficos, reproduce el tema musical corporativo y personaliza la estética de los campos de seguridad.
      */
     public VentanaLogin() {
         initComponents();
@@ -262,20 +265,25 @@ public class VentanaLogin extends javax.swing.JFrame {
     
     
     /**
-     * Contraseña introducida por el usuario en el campo Pass en la ventana de
-     * login
+     * Contraseña introducida por el usuario en el campo Pass en la ventana de login
      */
     private String pass;
 
     /**
      * Nombre de Usuario introducido por el usuario para logarse.
+     * Usuario que ha iniciado sesión.
      */
     public static String user;
 
     /**
      * Determina qué ventana principal se abre tras el login.
+     * Rol de usuario logado (admin / user)
      */
     public static String tipoUsuario;
+    
+    /**
+     * Dirección IP del equipo desde el que se realiza la conexión.
+     */
     public static String ip;
     
     
@@ -284,7 +292,8 @@ public class VentanaLogin extends javax.swing.JFrame {
      * Método que procesa el intento de inicio de sesión.
      * Valida que los campos no estén vacíos usando la clase Utilidades.
      * Comprueba credenciales y bloqueos en la BBDD.
-     * Redirige a la interfaz correspondiente.
+     * Registra el acceso (log) con la IP del equipo.
+     * Redirige a la interfaz correspondiente según el Rol de Administrador o Usuario.
      */
     public void accesoLogin() {
         
@@ -366,8 +375,8 @@ public class VentanaLogin extends javax.swing.JFrame {
     }
     
     /**
-     * Rescatar la IP del equipo para accesos.
-     * @ return La IP del equipo.
+     * Rescatar la dirección IP local del equipo para accesos.
+     * @ return String con la IP del equipo o null si no se puede determinar. 
      */
     public String rescataIp() {
 

@@ -17,20 +17,31 @@ import javax.swing.JTable;
 
 /**
  * Clase de utilidades generales de la aplicación Ferretería JP Fusión.
- * Centraliza la lógica de validación, diseño visual y gestión de audio.
+ * Centraliza la lógica de validación, diseño visual corporativo y gestión de recursos multimedia.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class Utilidades {
     
     
-            // ** Gestión de Comprobaciones - Validación y Color Corporativo ** //
+    
+    
+                // **** Gestión de Comprobaciones - Validación y Color Corporativo **** //
+    
+    
     
     // Definimos el color de fondo original para que no se ponga blanco sino con los colores corporativos
     private static final Color FONDO_ORIGINAL = new Color(9, 48, 64);
+    
 
     /**
-     * Verifica si un campo está vacío. 
-     * Si tiene texto, resetea el color al original.
+     * Verifica si un campo de texto está vacío o contiene solo espacios.
+     * Si tiene texto y es válido, restaura el color de fondo al original corporativo.
+     * 
+     * @param campo El JTextField a validar.
+     * @return true si el campo está vacío, false si contiene texto.
      */
     public static boolean compruebaCampoVacio(JTextField campo) {
         if (!campo.getText().trim().isEmpty()) {
@@ -40,6 +51,12 @@ public class Utilidades {
         return true;
     }
 
+    /**
+     * Lanza un mensaje de error y resalta el campo vacío.
+     * Cambia el fondo del campo a color Magenta para resaltar el error visualmente.
+     * 
+     * @param campo El campo obligatorio no rellenado.
+     */
     public static void lanzaAlertaVacio(JTextField campo) {
         JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " es obligatorio");
         campo.setBackground(Color.magenta);
@@ -47,8 +64,12 @@ public class Utilidades {
     
     
     /**
-     * Verifica JComboBox. Si el índice es mayor a 0 (opción válida), 
-     * Si tiene indice seleccionado resetea el color al original.
+     * Verifica JComboBox. 
+     * Verifica si un JComboBox tiene una selección válida (índice > 0).
+     * Si tiene indice seleccionado restaura el color de fondo al original corporativo.
+     * 
+     * @param combo El JComboBox a validar.
+     * @return true si no hay selección válida.
      */
     public static boolean compruebaComboNoSeleccionado(JComboBox combo) {
         // Si el índice es > 0, es que ha seleccionado algo correcto
@@ -59,15 +80,25 @@ public class Utilidades {
         return true; // Sigue en el índice 0 o -1 (error)
     }
 
+    
+    /**
+     * Lanza alerta indicando que no se ha seleccionado un elemento del combo.
+     * Cambia el fondo del campo a color Magenta para resaltar el error visualmente.
+     * 
+     * @param combo El componente JComboBox.
+     */
     public static void lanzaAlertaCombo(JComboBox combo) {
-        JOptionPane.showMessageDialog(null, "Debe seleccionar un elemento en: " + combo.getName());
+        JOptionPane.showMessageDialog(null, "Debe seleccionar un elemento desplegable en: " + combo.getName());
         combo.setBackground(Color.magenta); // Marcamos el error
     }
     
-    
+   
     /**
-     * Valida números ENTEROS (Stock, ID) y que no sean negativos.
-     * Si tiene texto, resetea el color al original.
+     * Valida que el texto introducido sea un número entero positivo.
+     * Si tiene texto y es válido, restaura el color de fondo al original corporativo.
+     * 
+     * @param campo JTextField con el dato numérico.
+     * @return true si es un entero válido >= 0.
      */
     public static boolean compruebaEntero(JTextField campo) {
         try {
@@ -83,20 +114,22 @@ public class Utilidades {
     }
     
     /**
-     * Informa al usuario mediante una alerta de que el dato introducido no es un número válido o es negativo. 
+     * Informa al usuario mediante una alerta de que el número introducido debe ser un número entero positivo y resalta el error.
      * Resalta el campo en color magenta para facilitar la identificación visual del error en el formulario.
-     * @param campo 
+     * @param campo Campo con el error.
      */
     public static void lanzaAlertaNumeroNoValido(JTextField campo) {
-        JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " debe ser un numérico positivo.");
+        JOptionPane.showMessageDialog(null, "El campo " + campo.getName() + " debe ser un número entero positivo.");
         campo.setBackground(Color.magenta);
     }
     
     
     /**
-     * Valida números DECIMALES (Precios, IVA) y que no sean negativos.
-     * Acepta puntos y comas.
-     * Si tiene texto, resetea el color al original.
+     * Valida números Decimales, aceptando comas y convirtiéndolas a puntos.
+     * Si tiene texto y es válido, restaura el color de fondo al original corporativo.
+     * 
+     * @param campo JTextField con el precio o dato decimal.
+     * @return true si es un decimal válido >= 0.
      */
     public static boolean compruebaDouble(JTextField campo) {
         try {
@@ -117,23 +150,25 @@ public class Utilidades {
     }
     
     /**
-     * Muestra alerta de número decimal no válido.
+     * Muestra una alerta al usuario mediante un mensaje de que el valor introducido no es un número decimal válido o es negativo.  
+     * Cambia el fondo del campo a color Magenta para resaltar el error visualmente.
      *
      * @param campo El JTextField con el valor incorrecto.
      */
     public static void lanzaAlertaDoubleNoValido(JTextField campo) {
         JOptionPane.showMessageDialog(null,
-                "El campo " + campo.getName() + " debe ser un número decimal válido");
+                "El campo " + campo.getName() + " debe ser un número válido decimal positivo");
         campo.setBackground(Color.magenta);
     }
     
 
     /**
-     * Formatea un número double para que muestre solo dos decimales.
+     * Formatea un número double 2 decimales usando el punto como separador
      * Útil para mostrar precios en tablas y etiquetas de forma profesional.
      * Usa 'Locale.US' para obligar al sistema a usar siempre el punto (.) aunque el usuario utilice la coma (,).
-     * @param valor El número con muchos decimales.
-     * @return String con el número formateado.
+     * 
+     * @param valor El número decimal. (2.498998)
+     * @return String formateado, es decir, el número ya formateado (2.50)
      */
     public static String formatoDosDecimales(double valor) {
         // Usamos String.format para redondear y fijar 2 decimales
@@ -144,13 +179,14 @@ public class Utilidades {
     
     
     
-            // ** Gestión de Diseño Visual ** //
+        
+    
+                            // **** Gestión de Diseño Visual **** //
+    
     
     /**
-     * Configura el icono de la ventana proporcionada, sirve tanto para JFrame
-     * como para JDialog. Aplicamos POLIMORFISMO al recibir un objeto de tipo
-     * 'Window', esto nos permite que el método sea universal y acepte tanto
-     * JFrames como JDialogs.
+     * Configura el icono de la ventana proporcionada, sirve tanto para JFramecomo para JDialog. 
+     * Aplicamos Polimorfismo al recibir un objeto de tipo 'Window', esto nos permite que el método sea universal y acepte tanto JFrames como JDialogs.
      *
      * @param ventana La ventana, Frame o Dialog, a la que se le asigna el logo.
      */
@@ -185,10 +221,11 @@ public class Utilidades {
     }
 
     
+    
     /**
      * Aplica el estilo visual corporativo de Ferretería JP a los componentes JTable.
      * Centraliza la configuración de colores (Dorado/Oscuro), impide el movimiento de columnas y unifica el diseño de cabeceras para mantener una interfaz profesional y coherente en toda la aplicación.
-     * @param tabla 
+     * @param tabla JTable a personalizar.
      */
     public static void disenoTablas(JTable tabla) {
         
@@ -207,13 +244,14 @@ public class Utilidades {
     }
         
     
+    
+    
 
-        // ** Gestión de Diálogos e interacción con el Usuario ** //  
+                    // **** Gestión de Diálogos e interacción con el Usuario **** //  
+    
     
     /**
-     * Método centralizado que muestra un diálogo de confirmación antes de
-     * cerrar la aplicación. Cumple con el requerimiento RI2 - comunicación con
-     * el usuario.
+     * Método centralizado que muestra un diálogo de confirmación antes de cerrar la aplicación y cierra el sistema.     
      *
      * @param ventana La ventana desde la que se invoca el cierre.
      */
@@ -232,13 +270,13 @@ public class Utilidades {
         }
     }
 
+    
+    
     /**
-     * Muestra un diálogo informativo con los datos de la aplicación corporativa
-     * y técnica del sistema. Se ha diseñado utilizando un parámetro genérico
-     * para aprovechar el polimorfismo. Reutilizable desde cualquier ventana de
-     * la aplicación.
+     * Muestra un mensaje diálogo informativo con los créditos del proyecto. 
+     * Se ha diseñado utilizando un parámetro genérico para aprovechar el polimorfismo. Reutilizable desde cualquier ventana de la aplicación.
      *
-     * @param parent Componente padre desde el que se lanza el diálogo.
+     * @param parent Componente desde el que se lanza.
      */
     public static void mostrarAcercaDe(java.awt.Component parent) {
         javax.swing.JOptionPane.showMessageDialog(
@@ -255,7 +293,7 @@ public class Utilidades {
     
     
     
-        // ** Gestion de Audio ** //
+                        // ***** Gestion de Recursos Multimedia ***** //
          
     /**
      * Se declaran estos métodos en la raíz de Utilidades para facilitar la edición futura y el mantenimiento de las funciones sonoras de Ferretería JP.
@@ -265,10 +303,10 @@ public class Utilidades {
     // Variable para controlar el audio
 
     /**
-     * Reproduce un archivo de audio del paquete audio directamente desde Utilidades.
+     * Reproduce un archivo WAV del paquete audio directamente desde Utilidades.
      * Uso: Utilidades.reproducir("archivo.wav");
      *
-     * @param nombreArchivoWav Nombre Single
+     * @param nombreArchivoWav Nombre del archivo - Single.
      */
     public static void reproducir(String nombreArchivoWav) {
 

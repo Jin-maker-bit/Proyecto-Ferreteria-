@@ -13,23 +13,27 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- *
+ * Ventana modal que permite al usuario visualizar sus datos de perfil y gestionar la seguridad de su cuenta mediante la actualización de su contraseña.
+ * Implementa un sistema de seguridad para evitar modificaciones accidentales.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerDatosCuenta extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerDatosCuenta.class.getName());
 
     /**
-     * Creates new form VerDatosCuenta
+     * Constructor principal de la ventana "Ver Datos Cuenta".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerDatosCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
         cargarDatosPerfil();
-        desactivarEdicionUsuario();
-
+        
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
 
@@ -41,6 +45,8 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         lblRescataFechayHora.setText("Usuario activo — "
                 + fechaHora.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
 
+        // Preparar campos:
+        desactivarEdicionUsuario();
     }
 
     /**
@@ -568,13 +574,15 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        actualizarDatosUser(); // TODO add your handling code here:
+        actualizarDatosUser(); 
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    /**
+     * Evento para habilitar los campos de texto, permitiendo al usuario interactuar con su información.
+     * @param evt Evento del botón 'Activar Edición'.
+     */
     private void botonActivarEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarEdicionActionPerformed
-
         activarEdicionUsuario();
-        // TODO add your handling code here:
     }//GEN-LAST:event_botonActivarEdicionActionPerformed
 
     /**
@@ -657,6 +665,11 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+    /**
+     * Recupera la información del usuario desde la Base de Datos utilizando el nombre de usuario almacenado en la sesión de Login.
+     */
     private void cargarDatosPerfil() {
 
         String userActivo = VentanaLogin.user;
@@ -664,6 +677,7 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         Usuario logado = obtenerDatosPerfil(userActivo);
 
         if (logado != null) {
+            
             labelNombre.setText(logado.getNombreCompleto());
             labelRol.setText(logado.getTipo());
             labelTienda.setText(logado.getTienda());
@@ -674,11 +688,20 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         }
     }
 
+    
+    /**
+     * Proceso de actualización de datos:
+     * 1. Valida que los campos no estén vacíos.
+     * 2. Solicita confirmación al usuario.
+     * 3. Verifica la contraseña actual antes de aplicar cambios por seguridad.
+     */
     private void actualizarDatosUser() {
+        
         String nuevoNombre = campoNombreYApellidos.getText();
         String passActual = new String(campoPass.getPassword());
         String nuevaPass = new String(campoNuevoPass.getPassword());
         String usuarioActivo = VentanaLogin.user;
+        
         if (Utilidades.compruebaCampoVacio(campoNombreYApellidos)) {
             Utilidades.lanzaAlertaVacio(campoNombreYApellidos);
             return;
@@ -710,23 +733,33 @@ public class VerDatosCuenta extends javax.swing.JDialog {
         boolean exito = actualizarDatos(usuarioActivo, nuevoNombre, nuevaPass, passActual);
 
         if (exito) {
-            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+            JOptionPane.showMessageDialog(this, 
+                    "Datos actualizados con éxito..");
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Error: La contraseña actual no es correcta.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error: La contraseña actual no es correcta.", 
+                    "Fallo de autenticación.", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    
+    /**
+     * Bloquea la edición de los campos. 
+     * Se usa al iniciar la ventana para proteger la integridad de los datos.
+     */
     public void desactivarEdicionUsuario() {
         campoNombreYApellidos.setEditable(false);
         campoPass.setEditable(false);
         campoNuevoPass.setEditable(false);
     }
 
+    
+    
     /**
-     * Activa la edición de nombre y descripción del producto seleccionado. Se
-     * llama únicamente al pulsar el botón Editar Producto con un producto
-     * seleccionado. Manda un aviso informativo al clicar sobre el botón.
+     * Activa la edición de nombre y descripción del producto seleccionado. 
+     * Se llama únicamente al pulsar el botón Editar Producto con un producto seleccionado. 
+     * Manda un aviso informativo al clicar sobre el botón.
      */
     public void activarEdicionUsuario() {
         campoNombreYApellidos.setEditable(true);
@@ -738,4 +771,5 @@ public class VerDatosCuenta extends javax.swing.JDialog {
                 "Modo edición activado",
                 JOptionPane.INFORMATION_MESSAGE);
     }
+    
 }

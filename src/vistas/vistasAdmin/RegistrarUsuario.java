@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.Conexion;
 import bbdd.ConsultasUsuarios;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -14,16 +13,18 @@ import vistas.VentanaLogin;
 /**
  * Ventana modal encargada de registrar nuevos usuarios en el sistema.
  * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
- * @author Jose y Patricia.
+ * 
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class RegistrarUsuario extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName());
 
     /**
-     * Constructor principal de la ventana Registrar Usuario.
-     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
-     * Creates new form RegistrarUsuario
+     * Constructor principal de la ventana "Registrar Usuario".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public RegistrarUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -517,7 +518,7 @@ public class RegistrarUsuario extends javax.swing.JDialog {
 
     
     /**
-      * Ventana modal encargada de registrar nuevos usuarios en el sistema.
+      * Realiza el registro de nuevos usuarios en el sistema.
       * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
       * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
      */
@@ -558,15 +559,15 @@ public class RegistrarUsuario extends javax.swing.JDialog {
 
             if (ConsultasUsuarios.registrarUsuario(nuevoUsuario)) {
                 
-                JOptionPane.showMessageDialog(this, "Usuario registrado correctamente.");
-                
-                Conexion.cerrarConexion();
+                JOptionPane.showMessageDialog(this, 
+                        "Usuario registrado correctamente.");
                 
                 limpiarUsuario();
                 
             } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al registrar el usuario.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al registrar el usuario.");
             }
         }
     }
@@ -586,7 +587,8 @@ public class RegistrarUsuario extends javax.swing.JDialog {
     
        
     /**
-     * Llena el JComboBox solicitando los datos a la capa de base de datos.
+     * Llena los JComboBox solicitando los datos a la capa de base de datos.
+     * Incluye: roles, estados y tiendas registradas.
      */
     private void cargarComboUsuarios() {
         

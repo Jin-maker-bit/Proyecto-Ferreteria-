@@ -13,16 +13,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- * Ventana de listado de artículos para la gestión de Ofertas.
+ * Ventana modal de gestión comercial para el control de ofertas.
  * Permite visualizar el catálogo y al seleccionar un artículo, modificar exclusivamente su valor de Oferta: Sí / No, a través de un Combo-box.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoOfertas extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoOfertas.class.getName());
 
     /**
-     * Creates new form VerListadoOfertas
+     * Constructor principal de la ventana "Ver Listado Ofertas".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoOfertas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -606,6 +610,11 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolver1ActionPerformed
 
+    /**
+     * Habilita el panel de edición lateral. 
+     * Valida que exista un producto cargado en los campos de texto antes de permitir la interacción con el selector de oferta.
+     * @param evt Evento de acción del botón Editar.
+     */
     private void botonEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductoActionPerformed
         
         if (campoCodProducto.getText().isEmpty()) {
@@ -620,6 +629,7 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botonEditarProductoActionPerformed
 
+    
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         guardarArticuloEnOferta();
     }//GEN-LAST:event_botonGuardarActionPerformed
@@ -628,6 +638,11 @@ public class VerListadoOfertas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoStockActionPerformed
 
+    /**
+     * Evento de selección de fila en la tabla.
+     * Recupera el objeto Producto íntegro y lo desglosa en el panel lateral para facilitar la toma de decisiones al administrador.
+     * @param evt Evento de ratón (clic) sobre la tabla
+     */
     private void tablaArticulosOfertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosOfertaMouseClicked
         
         int fila = tablaArticulosOferta.getSelectedRow();
@@ -745,11 +760,13 @@ public class VerListadoOfertas extends javax.swing.JDialog {
      * Guarda el nuevo estado de oferta del artículo en la base de datos.
      * Primero verifica que haya un artículo seleccionado y que el desplegable no esté en la opción por defecto.
      * Si la actualización es exitosa, recarga la tabla para mostrar los cambios y limpia el formulario.
+     * Incluye una confirmación de doble paso para evitar cambios accidentales en la estrategia de precios de la ferretería.
      */
     public void guardarArticuloEnOferta() {
         
         if (campoCodProducto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione un artículo primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un artículo primero.", 
+                    "Sin selección", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -779,7 +796,8 @@ public class VerListadoOfertas extends javax.swing.JDialog {
 
         if (ConsultasProducto.actualizarOferta(codigo, nuevaOferta)) {
             
-            JOptionPane.showMessageDialog(this, "Estado de oferta actualizado correctamente.");
+            JOptionPane.showMessageDialog(this, 
+                    "Estado de oferta actualizado correctamente.");
             
             ConsultasProducto.cargarListadoOfertas((DefaultTableModel) tablaArticulosOferta.getModel());
             
@@ -789,7 +807,8 @@ public class VerListadoOfertas extends javax.swing.JDialog {
             
         } else {
             
-            JOptionPane.showMessageDialog(this, "Error al actualizar la oferta.", "Error BBDD", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error al actualizar la oferta en el servidor.", "Revise su conexión o BBDD", JOptionPane.ERROR_MESSAGE);
         }
     }
     

@@ -16,7 +16,11 @@ import javax.swing.JOptionPane;
 /**
  * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla tiendas.
  * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ConsultasTiendas extends Conexion {
 
@@ -24,7 +28,8 @@ public class ConsultasTiendas extends Conexion {
     /**
      * Cuenta el número total de tiendas registradas en la base de datos.
      * Este método se utiliza principalmente para mostrar estadísticas rápidas en el panel principal (JLabel) del usuario Administrador.
-     * @return Un entero con el número total de tiendas. 
+     * 
+     * @return Un número entero que representa el número total de tiendas encontradas en la tabla.
      */
     public static int rescataTienda() {
 
@@ -45,7 +50,7 @@ public class ConsultasTiendas extends Conexion {
             }
         } catch (SQLException e) {
             
-            JOptionPane.showMessageDialog(null, "Error al obtener el número de tiendas.\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al obtener estadísticas de tiendas.\n" + e.getMessage());
             
         } finally {
             
@@ -60,6 +65,7 @@ public class ConsultasTiendas extends Conexion {
     /**
      * Rescata la lista de nombres y apellidos de todos los responsables de tienda.
      * Útil para rellenar dinámicamente JComboBox al registrar o editar tiendas.
+     * 
      * @return ArrayList con los nombres de los responsables.
      */
     public static java.util.ArrayList<String> obtenerResponsables() {
@@ -81,7 +87,7 @@ public class ConsultasTiendas extends Conexion {
             
         } catch (java.sql.SQLException ex) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar responsables: " + ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar responsables de tienda: " + ex.getMessage());
             
         } finally {
             
@@ -96,7 +102,8 @@ public class ConsultasTiendas extends Conexion {
     /**
      * Inserta un nuevo registro de tienda en la base de datos de la ferretería.
      * Emplea PreparedStatement para prevenir inyección SQL.
-     * @param ti Objeto Tienda con los datos a insertar.
+     * 
+     * @param ti Objeto de tipo Tienda que contiene denominación, dirección y responsable.
      * @return true si se insertó correctamente, false si hubo un error.
      */
     public static boolean registrarTienda(modelo.Tienda ti) {
@@ -138,6 +145,7 @@ public class ConsultasTiendas extends Conexion {
     /**
      * Rescata la lista de nombres (denominaciones) de todas las tiendas.
      * Método diseñado para rellenar JComboBox en ventanas como la de Registro de Usuarios.
+     * 
      * @return ArrayList con los nombres de las tiendas.
      */
     public static java.util.ArrayList<String> obtenerNombresTiendas() {
@@ -161,7 +169,7 @@ public class ConsultasTiendas extends Conexion {
             
         } catch (java.sql.SQLException ex) {
             
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar tiendas: " + ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar los nombres de nuestras tiendas: " + ex.getMessage());
             
         } finally {
             
@@ -174,7 +182,8 @@ public class ConsultasTiendas extends Conexion {
     
     /**
      * Recupera todos los datos principales de las tiendas y los carga directamente en un modelo de tabla visual.
-     * @param modelo 
+     * 
+     * @param modelo El DefaultTableModel de la JTable (requiere 3 columnas).
      */
     public static void listadoTiendasAdmin(javax.swing.table.DefaultTableModel modelo) {
 
@@ -202,7 +211,7 @@ public class ConsultasTiendas extends Conexion {
 
         } catch (SQLException e) {
 
-            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar las lista de tiendas " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al cargar el listado de tiendas: " + e.getMessage());
 
         } finally {
 

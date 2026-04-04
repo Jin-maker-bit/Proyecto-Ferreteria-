@@ -13,20 +13,22 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- * Ventana de listado de artículos del administrador. Permite consultar la tabla
- * y al seleccionar un registro carga sus datos en el panel derecho. Los campos
- * solo son editables tras pulsar el botón "Editar Productos". Permite
- * consultar, editar únicamente Nombre y Descripción, y eliminar productos.
+ * Ventana modal de administración del catálogo.
+ * Permite consultar la tabla y al seleccionar un registro carga sus datos en el panel derecho. 
+ * Los campos solo son editables tras pulsar el botón "Editar Productos". 
+ * Permite consultar, editar únicamente Nombre y Descripción, y eliminar productos.
  *
- * @author Jose y Patricia.
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoArticulos extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoArticulos.class.getName());
 
     /**
-     * Constructor de la ventana de listado de artículos. Inicializa
-     * componentes, carga datos y configura la UI.
+     * Constructor principal de la ventana "Ver Listado Articulos".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -38,7 +40,7 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         // Cargar tabla al abrir 
         ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
 
-       Utilidades.disenoTablas(tablaListadoArticulos);
+        Utilidades.disenoTablas(tablaListadoArticulos);
 
         // Bloquear panel derecho al abrir
         desactivarEdicionProducto();
@@ -620,6 +622,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    /**
+     * Abre el formulario para registrar un nuevo artículo y actualiza el listado.
+     * Al cerrarse el formulario de registro, el código continúa y refresca automáticamente la tabla para mostrar el nuevo artículo añadido ya actualizado.
+     * 
+     * @param evt Evento de acción al pulsar el botón de registro.
+     */
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarArticulo ra = new RegistrarArticulo(null, true);
         ra.setVisible(true);
@@ -631,6 +639,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
         guardarArticulo();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    /**
+     * Gestiona el evento de activación del panel de edición.
+     * Verifica que exista un producto cargado en los campos (procedente de una selección en la tabla) antes de habilitar la escritura.
+     * 
+     * @param evt Evento de acción del botón Editar.
+     */
     private void botonEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarProductosActionPerformed
 
         if (campoCodProducto.getText().isEmpty()) {
@@ -647,6 +661,12 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_botonEditarProductosActionPerformed
 
+    /**
+     * Gestiona el evento de eliminación de un artículo.
+     * Realiza una comprobación previa de selección y si es positiva, procede a solicitar la confirmación definitiva antes de ejecutar la baja en la base de datos.
+     * 
+     * @param evt Evento de acción del botón Eliminar.
+     */
     private void botoneEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneEliminarActionPerformed
 
         if (campoCodProducto.getText().isEmpty()) {
@@ -678,6 +698,13 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_botoneEliminarActionPerformed
 
+    /**
+     * Evento de selección en la tabla: Gestiona la selección de un artículo en la tabla.
+     * Rescata el objeto completo desde la BBDD usando el ID de la fila seleccionada.
+     * Al hacer clic, se identifica el código del producto, se consulta el registro completo en la base de datos y se pueblan los campos del panel de detalles para su consulta o edición.
+     * 
+     * @param evt Evento de ratón (clic) sobre la tabla
+     */
     private void tablaListadoArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoArticulosMouseClicked
 
         int fila = tablaListadoArticulos.getSelectedRow();
@@ -796,9 +823,8 @@ public class VerListadoArticulos extends javax.swing.JDialog {
 
     /**
      * Guarda los cambios de nombre y descripción del producto seleccionado.
-     * Solo valida nombre y descripción ya que son los únicos campos editables
-     * requeridos. Si la actualización es correcta recarga la tabla y bloquea
-     * los campos.
+     * Solo valida nombre y descripción ya que son los únicos campos editables requeridos. 
+     * Si la actualización es correcta recarga la tabla y bloquea los campos.
      */
     public void guardarArticulo() {
 
@@ -838,16 +864,19 @@ public class VerListadoArticulos extends javax.swing.JDialog {
                     campoNombre.getText(),
                     campoDescripcion.getText())) {
 
-                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente.");
+                JOptionPane.showMessageDialog(this, 
+                        "Producto actualizado correctamente.");
 
                 // Recargar tabla
                 ConsultasProducto.cargarListadoArticulos((DefaultTableModel) tablaListadoArticulos.getModel());
 
                 desactivarEdicionProducto();
                 limpiarFormularioVerListadoArticulos();
+                
             } else {
 
-                JOptionPane.showMessageDialog(this, "Error al actualizar el producto.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al actualizar el producto.");
             }
         }
     }
@@ -871,8 +900,8 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }
 
     /**
-     * Desactiva la edición de nombre y descripción del panel derecho. Se llama
-     * al abrir la ventana, tras guardar y tras limpiar.
+     * Desactiva la edición de nombre y descripción del panel derecho. 
+     * Se llama al abrir la ventana, tras guardar y tras limpiar.
      */
     public void desactivarEdicionProducto() {
         campoNombre.setEditable(false);
@@ -880,19 +909,19 @@ public class VerListadoArticulos extends javax.swing.JDialog {
     }
 
     /**
-     * Activa la edición de nombre y descripción del producto seleccionado. Se
-     * llama únicamente al pulsar el botón Editar Producto con un producto
-     * seleccionado. Manda un aviso informativo al clicar sobre el botón.
+     * Activa la edición de nombre y descripción del producto seleccionado. 
+     * Se llama únicamente al pulsar el botón Editar Producto con un producto seleccionado. 
+     * Manda un aviso informativo al clicar sobre el botón.
      */
     public void activarEdicionProducto() {
         campoNombre.setEditable(true);
         campoDescripcion.setEditable(true);
 
         JOptionPane.showMessageDialog(this,
-                "Ya puede editar los campos Nombre y Descripción.",
+                "Los campos Nombre y Descripción ya se encuentran disponibles para poder editar",
                 "Modo edición activado",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-} // Final
+} 
 

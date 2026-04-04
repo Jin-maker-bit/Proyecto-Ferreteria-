@@ -14,18 +14,20 @@ import java.sql.Statement;
 /**
  * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla origen.
  * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ConsultasOrigen extends Conexion {
-    
-    
+      
     /**
      * Rescata todos los nombres de los orígenes registrados en la base de datos.
-     * Este método se utiliza principalmente para cargar dinámicamente el JComboBox, Origen, en la ventana de registrar artículos del administrador.
-     * @return ArrayList con los nombres de los orígenes.
+     * Este método se utiliza para cargar dinámicamente el JComboBox de Origen  en la interfaz de registro de artículos.
+     * 
+     * @return ArrayList de String con los nombres de los orígenes.
      */
-    
-    //Este metodo carga el combo origen de la ventana registrar articulo de vistas admin.
     public static java.util.ArrayList<String> obtenerOrigenes() {
         
         java.util.ArrayList<String> lista = new java.util.ArrayList<>();
@@ -60,7 +62,8 @@ public class ConsultasOrigen extends Conexion {
     
     /**
      * Inserta un nuevo origen de producto en la base de datos de la ferretería.
-     * Utiliza PreparedStatement para evitar inyecciones SQL y maneja su propia conexión.
+     * Utiliza PreparedStatement para evitar inyecciones SQL.
+     * 
      * @param o Objeto Origen con los datos a insertar.
      * @return true si se insertó correctamente, false si hubo un error.
      */
@@ -102,7 +105,8 @@ public class ConsultasOrigen extends Conexion {
     /**
      * Recupera todos los registros de la tabla 'origen' (nombre y descripción) y los vuelca directamente en el modelo de una tabla visual.
      * Método de uso exclusivo para la ventana de consulta 'VerListadoOrigenesAdmin'.
-     * @param modelo 
+     * 
+     * @param modelo El DefaultTableModel de la JTable que recibirá los datos.
      */
     public static void ListadoOrigenesAdmin(javax.swing.table.DefaultTableModel modelo) {
 

@@ -13,15 +13,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- *
+ * Ventana modal para la gestión del perfil del usuario en sesión.
+ * Permite visualizar datos estáticos (Usuario, Rol) y actualizar datos editables (Nombre, Contraseña) bajo validación de seguridad.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerDatosCuenta extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerDatosCuenta.class.getName());
 
     /**
-     * Creates new form VerDatosCuenta
+     * Constructor principal de la ventana "Ver Datos Cuenta".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real.  
      */
     public VerDatosCuenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -545,14 +550,11 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-        actualizarDatosAdmin(); // TODO add your handling code here:
+        actualizarDatosAdmin(); 
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonActivarEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActivarEdicionActionPerformed
-    
-
-            activarEdicionUsuario();
-              // TODO add your handling code here:
+       activarEdicionUsuario();      
     }//GEN-LAST:event_botonActivarEdicionActionPerformed
 
     /**
@@ -632,7 +634,12 @@ public class VerDatosCuenta extends javax.swing.JDialog {
     private javax.swing.JPanel panelPrincipal8;
     private javax.swing.JPanel panelSecundario8;
     // End of variables declaration//GEN-END:variables
-private void cargarDatosPerfil() {
+
+    
+    /**
+     * Recupera la información del usuario logueado desde la base de datos y la distribuye entre los labels informativos y campos de texto.
+     */
+    private void cargarDatosPerfil() {
 
         String userActivo = VentanaLogin.user;
 
@@ -649,6 +656,12 @@ private void cargarDatosPerfil() {
         }
     }
 
+    
+    /**
+     * Proceso de actualización de credenciales.
+     * Valida que el nombre no esté vacío y que se proporcione la contraseña actual para autorizar el cambio por la nueva.
+     * Doble validación mediante mensaje de confirmación.
+     */
     private void actualizarDatosAdmin() {
 
         String nuevoNombre = campoNombreCompleto.getText();
@@ -687,23 +700,32 @@ private void cargarDatosPerfil() {
         boolean exito = actualizarDatos(usuarioActivo, nuevoNombre, nuevaPass, passActual);
 
         if (exito) {
-            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
-            this.dispose();
+            JOptionPane.showMessageDialog(this, 
+                    "Datos actualizados correctamente.");
+                    this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Error: La contraseña actual no es correcta.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, 
+                    "Error: La contraseña actual no es correcta.", "Error de validación", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    
+    /**
+     * Restringe la edición de los campos del perfil.
+     * Se ejecuta al iniciar la ventana para proteger la integridad de los datos y tras una actualización exitosa.
+     */
     public void desactivarEdicionUsuario() {
         campoNombreCompleto.setEditable(false);
         campoPass.setEditable(false);
         campoNuevaPass.setEditable(false);
     }
 
+    
+    
     /**
-     * Activa la edición de nombre y descripción del producto seleccionado. Se
-     * llama únicamente al pulsar el botón Editar Producto con un producto
-     * seleccionado. Manda un aviso informativo al clicar sobre el botón.
+     * Activa la edición de nombre y descripción del producto seleccionado. 
+     * Se llama únicamente al pulsar el botón Editar Producto con un producto seleccionado. 
+     * Manda un aviso informativo al clicar sobre el botón.
      */
     public void activarEdicionUsuario() {
         campoNombreCompleto.setEditable(true);
@@ -711,7 +733,7 @@ private void cargarDatosPerfil() {
         campoNuevaPass.setEditable(true);
 
         JOptionPane.showMessageDialog(this,
-                "Ya puede editar los campos Nombre y Pass.",
+                "Los campos de Nombre y Pass ya se encuentran disponibles para poder editar.",
                 "Modo edición activado",
                 JOptionPane.INFORMATION_MESSAGE);
     }

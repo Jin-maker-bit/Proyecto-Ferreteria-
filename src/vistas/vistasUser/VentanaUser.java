@@ -10,18 +10,23 @@ import javax.swing.table.DefaultTableModel;
 import utilidades.Utilidades;
 
 import vistas.VentanaLogin;
-import vistas.vistasAdmin.VerListadoArticulos;
 
 /**
- *
+ * Ventana Principal para perfiles User.
+ * Esta ventana centraliza las funciones de consulta de inventario, visualización de promociones y gestión de la cuenta personal. 
+ * Incluye un panel de estadísticas rápidas y un listado de las últimas incorporaciones al catálogo.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VentanaUser extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaUser.class.getName());
 
     /**
-     * Creates new form VentanaUser
+     * Constructor de "Ventana User".
+     * Inicializa los componentes visuales y la experiencia multimedia, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real.
      */
     public VentanaUser() {
         initComponents();
@@ -41,6 +46,7 @@ public class VentanaUser extends javax.swing.JFrame {
         // Cargar tabla 3 últimos artículos 
         ConsultasProducto.ultimos3Articulos((DefaultTableModel) tablaArticulosRegistrados.getModel());
         
+        // Diseño tabla 3 últimos artículos
         Utilidades.disenoTablas(tablaArticulosRegistrados);
         
         // Rescata Usuario:
@@ -50,11 +56,7 @@ public class VentanaUser extends javax.swing.JFrame {
         lblRescatarArticulosDisponibles.setText(String.valueOf(ConsultasProducto.rescataArticulosDisponibles()));
         lblRescatarEnOferta.setText(String.valueOf(ConsultasProducto.rescataArticulosOferta()));
         lblRescatarDestacados.setText(String.valueOf(ConsultasProducto.rescataArticulosDestacados()));
-        
-
-        
-      
-        
+     
     }
 
     /**

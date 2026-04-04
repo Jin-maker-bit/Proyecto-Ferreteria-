@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.ConsultasOrigen;
 import bbdd.ConsultasTiendas;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
@@ -12,15 +11,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
+ * Ventana modal para la visualización y gestión del registro de tiendas.
+ * Proporciona una vista tabular de las sucursales existentes: Denominación, Dirección y Responsable, y permite el acceso al flujo de registro de nuevos puntos de venta.
  *
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoTiendas extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoTiendas.class.getName());
 
     /**
-     * Creates new form VerListadoTiendas
+     * Constructor principal de la ventana "Ver Listado Tiendas".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoTiendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -329,6 +333,12 @@ public class VerListadoTiendas extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    /**
+     * Abre el formulario modal para dar de alta una nueva sucursal.
+     * Al cerrarse el formulario de registro, el código continúa y refresca automáticamente la tabla para mostrar la nueva tienda añadida.
+     * 
+     * @param evt Evento de acción al pulsar el botón de registro.
+     */
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         RegistrarTiendas rt = new RegistrarTiendas(null, true);
         rt.setVisible(true);

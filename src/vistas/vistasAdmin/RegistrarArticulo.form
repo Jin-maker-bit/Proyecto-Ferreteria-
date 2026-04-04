@@ -175,7 +175,7 @@
                           <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="panelSecundario" pref="0" max="32767" attributes="0"/>
+                          <Component id="panelSecundario" pref="323" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="botonRegistrarArticulo" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
@@ -266,12 +266,10 @@
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane4" pref="225" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="comboOrigen" alignment="0" pref="225" max="32767" attributes="0"/>
-                                      <Component id="comboCategoria" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="campoNombre" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="campoCodigo" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="comboOrigen" alignment="0" pref="225" max="32767" attributes="0"/>
+                                  <Component id="comboCategoria" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoNombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="campoCodigo" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>

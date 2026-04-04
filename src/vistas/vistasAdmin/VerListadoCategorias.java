@@ -5,22 +5,26 @@
 package vistas.vistasAdmin;
 
 import bbdd.ConsultasCategorias;
-import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- *
+ * Ventana modal que muestra el catálogo completo de categorías.
+ * Permite la visualización de las categorías existentes y el acceso al formulario de registro para añadir nuevas clasificaciones al sistema.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoCategorias extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoCategorias.class.getName());
 
     /**
-     * Creates new form VerListadoCategorias
+     * Constructor principal de la ventana "Ver Listado Categorias".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoCategorias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -333,6 +337,12 @@ public class VerListadoCategorias extends javax.swing.JDialog {
         utilidades.Utilidades.mostrarAcercaDe(this);
     }//GEN-LAST:event_itemAcercaDeActionPerformed
 
+    /**
+     * Abre el formulario para registrar una nueva categoría.
+     * Al ser un JDialog modal, la ejecución se detiene aquí hasta que se cierra RegistrarCategoria. 
+     * Al volver, se refresca la tabla automáticamente para mostrar los posibles cambios.
+     * @param evt Evento de acción al pulsar el botón de registro.
+     */
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         RegistrarCategoria rc = new RegistrarCategoria(null, true);
         rc.setVisible(true);

@@ -7,7 +7,11 @@ package bbdd;
 /**
  * Clase encargada de gestionar las consultas a la base de datos relacionadas con la tabla responsables_tienda.
  * Hereda de la clase Conexion para la gestión de la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ConsultasResponsableTienda extends Conexion{
     
@@ -15,7 +19,8 @@ public class ConsultasResponsableTienda extends Conexion{
     /**
      * Obtiene la lista completa de los nombres de los responsables desde la base de datos.
      * Separa la lógica de datos de la interfaz gráfica - Patrón MVC, permitiendo rellenar dinámicamente componentes como los JComboBox.
-     * @return ArrayList con los nombres de los responsables.
+     * 
+     * @return ArrayList de String con los nombres y apellidos de los responsables registrados.
      */
     public static java.util.ArrayList<String> obtenerResponsables() {
         
@@ -37,7 +42,7 @@ public class ConsultasResponsableTienda extends Conexion{
         } catch (java.sql.SQLException ex) {
            
            javax.swing.JOptionPane.showMessageDialog(null, 
-                "Error al cargar responsables: " + ex.getMessage(), 
+                "Error al cargar responsables de tienda: " + ex.getMessage(), 
                 "Error BBDD", 
                 javax.swing.JOptionPane.ERROR_MESSAGE);
             

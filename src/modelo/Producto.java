@@ -9,7 +9,10 @@ import java.util.Date;
 /**
  * Clase modelo que representa un Producto dentro del inventario de la ferretería.
  * Almacena toda la información técnica, comercial y de stock de los artículos.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class Producto {
 
@@ -33,6 +36,7 @@ public class Producto {
 
     /**
      * Constructor parametrizado con todos los atributos del producto.
+     * 
      * @param codProducto Código único alfanumérico.
      * @param nombre Nombre comercial del artículo.
      * @param categoria Categoría a la que pertenece.
@@ -59,90 +63,178 @@ public class Producto {
         this.fechaAlta = fechaAlta;
     }
 
+    /**
+     * 
+     * @return El código único del producto.
+     */
     public String getCodProducto() {
         return codProducto;
     }
 
+    /**
+     * 
+     * @param codProducto 
+     */
     public void setCodProducto(String codProducto) {
         this.codProducto = codProducto;
     }
 
+    /**
+     * 
+     * @return El nombre comercial del producto.
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * 
+     * @param nombre 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * 
+     * @return La categoría asociada.
+     */
     public String getCategoria() {
         return categoria;
     }
 
+    /**
+     * 
+     * @param categoria 
+     */
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
+    /**
+     * 
+     * @return La descripción técnica.
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * 
+     * @param descripcion 
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * 
+     * @return El coste de compra para la ferretería.
+     */
     public double getPrecioCompra() {
         return precioCompra;
     }
 
+    /**
+     * 
+     * @param precioCompra 
+     */
     public void setPrecioCompra(double precioCompra) {
         this.precioCompra = precioCompra;
     }
 
+    /**
+     * 
+     * @return El precio de venta al público.
+     */
     public double getPrecioVenta() {
         return precioVenta;
     }
 
+    /**
+     * 
+     * @param precioVenta 
+     */
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
+    /**
+     * 
+     * @return Las unidades disponibles.
+     */
     public int getStock() {
         return stock;
     }
 
+    /**
+     * 
+     * @param stock 
+     */
     public void setStock(int stock) {
         this.stock = stock;
     }
 
+    /**
+     * 
+     * @return El origen del producto.
+     */
     public String getOrigen() {
         return origen;
     }
 
+    /**
+     * 
+     * @param origen 
+     */
     public void setOrigen(String origen) {
         this.origen = origen;
     }
 
+    /**
+     * 
+     * @return SI, si es destacado; NO en caso contrario.
+     */
     public String getDestacado() {
         return destacado;
     }
 
+    /**
+     * 
+     * @param destacado 
+     */
     public void setDestacado(String destacado) {
         this.destacado = destacado;
     }
 
+    /**
+     * 
+     * @return SI, si está en oferta; NO en caso contrario.
+     */
     public String getOferta() {
         return oferta;
     }
 
+    /**
+     * 
+     * @param oferta 
+     */
     public void setOferta(String oferta) {
         this.oferta = oferta;
     }
 
+    /**
+     * 
+     * @return La fecha de registro en el sistema.
+     */
     public Date getFechaAlta() {
         return fechaAlta;
     }
 
+    /**
+     * 
+     * @param fechaAlta 
+     */
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
@@ -150,25 +242,27 @@ public class Producto {
     /**
      * Sobrescribe el método toString para generar una ficha detallada del producto.
      * Útil para mostrar información en consolas, logs o áreas de texto de la interfaz.
-     * @return String formateado con todos los datos del artículo.
+     * 
+     * @return String formateado con la ficha técnica y comercial del artículo.
      */
     @Override
     public String toString() {
-        return "===== DETALLE DE ARTICULO =====\n\n"
-                + "CODIGO:         " + codProducto + "\n"
-                + "NOMBRE:         " + nombre + "\n"
-                + "CATEGORÍA:      " + categoria + "\n"
-                + "ORIGEN:         " + origen + "\n"
-                + "DESTACADO:      " + destacado + "\n"
-                + "OFERTA:         " + oferta + "\n"
-                + "-------------------------------\n"
-                + " \n"
-                + "PRECIO COMPRA:  " + precioCompra + " €\n"
-                + "PRECIO PVP:     " + precioVenta + " €\n"
-                + "STOCK:          " + stock + " unidades\n"
-                + "-------------------------------\n"
-                + "DESCRIPCIÓN:\n" + descripcion + "\n\n"
-                + "FECHA ALTA:     " + fechaAlta;
+        
+        return "•==•==•==• DETALLES DE ARTICULO •==•==•==•\n"
+                + "\n • CODIGO:         " + codProducto 
+                + "\n • NOMBRE:         " + nombre 
+                + "\n • CATEGORÍA:      " + categoria 
+                + "\n • ORIGEN:         " + origen 
+                + "\n • DESTACADO:      " + destacado 
+                + "\n • OFERTA:         " + oferta  
+                + "\n================================\n"
+                + "\n • PRECIO COMPRA:  " + precioCompra + " € "
+                + "\n • PRECIO PVP:     " + precioVenta + " € "
+                + "\n • STOCK:          " + stock + " unidades "
+                + "\n================================\n"
+                + "\n • DESCRIPCIÓN:    " + descripcion 
+                + "\n • FECHA ALTA:     " + fechaAlta
+                + "\n================================\n";
     }
 
 }

@@ -15,7 +15,12 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Clase encargada de gestionar todas las consultas a la base de datos relacionadas con la tabla categorias.
  * Hereda de la clase Conexion para facilitar el acceso a la BBDD.
+ * Todos los métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
+ * 
  */
 public class ConsultasCategorias extends Conexion {
 
@@ -23,6 +28,7 @@ public class ConsultasCategorias extends Conexion {
     /**
      * Rescata todos los nombres de las categorías registradas en la base de datos.
      * Este método es especialmente útil para rellenar dinámicamente los JComboBox en las ventanas de registro o edición de artículos.
+     * 
      * @return ArrayList con los nombres de las categorías.
      */
     public static java.util.ArrayList<String> obtenerCategorias() {
@@ -59,6 +65,7 @@ public class ConsultasCategorias extends Conexion {
     /**
      * Inserta una nueva categoría en la base de datos.
      * Utiliza consultas parametrizadas - PreparedStatement- para mayor seguridad.
+     * 
      * @param cat Objeto Categoria con los datos a insertar.
      * @return true si se insertó correctamente, false si hubo un error.
      */
@@ -100,7 +107,8 @@ public class ConsultasCategorias extends Conexion {
     /**
      * Rescata todas las categorías y sus descripciones para mostrarlas en una tabla.
      * Modifica directamente el modelo de la tabla que se le pasa por parámetro.
-     * @param categoria 
+     * 
+     * @param categoria El DefaultTableModel de la JTable donde se mostrarán las categorías (requiere 2 columnas).
      */
     public static void listadoCategorias(DefaultTableModel categoria) {
 

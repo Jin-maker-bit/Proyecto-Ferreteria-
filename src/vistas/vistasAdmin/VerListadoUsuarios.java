@@ -12,16 +12,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
- * Ventana de listado de usuarios del sistema.
+ * Ventana modal de administración de personal.
  * Permite visualizar todos los empleados y modificar exclusivamente su Tienda asignada, su Tipo (Rol) y su Estado (Activo / Bloqueado).
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerListadoUsuarios extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerListadoUsuarios.class.getName());
 
     /**
-     * Creates new form VerListadoUsuarios
+     * Constructor principal de la ventana "Ver Listado Usuarios".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerListadoUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -306,11 +310,6 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         campoUsuario.setForeground(new java.awt.Color(112, 137, 140));
         campoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoUsuario.setName("Usuario"); // NOI18N
-        campoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoUsuarioActionPerformed(evt);
-            }
-        });
 
         comboTienda.setBackground(new java.awt.Color(3, 32, 38));
         comboTienda.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
@@ -342,11 +341,6 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         campoFechaAlta.setForeground(new java.awt.Color(112, 137, 140));
         campoFechaAlta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(112, 137, 140)));
         campoFechaAlta.setName("Fecha de Alta"); // NOI18N
-        campoFechaAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoFechaAltaActionPerformed(evt);
-            }
-        });
 
         campoPass.setEditable(false);
         campoPass.setBackground(new java.awt.Color(3, 32, 38));
@@ -587,6 +581,12 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    /**
+     * Abre el formulario modal para dar de alta un nuevo usuario.
+     * Al cerrarse el formulario de registro, el código continúa y refresca automáticamente la tabla para mostrar al ultimo usuario añadida.
+     * 
+     * @param evt Evento de acción al pulsar el botón de registro.
+     */
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
     RegistrarUsuario rnu = new RegistrarUsuario(null, true); 
     rnu.setVisible(true);
@@ -595,14 +595,12 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     ConsultasUsuarios.listadoUsuarios((DefaultTableModel) tablaListadoUsuarios.getModel());
     }//GEN-LAST:event_botonNuevoActionPerformed
 
-    private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoUsuarioActionPerformed
-
-    private void campoFechaAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFechaAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoFechaAltaActionPerformed
-
+    /**
+     * Activa el modo edición si hay un artículo seleccionado en la tabla.
+     * Valida que el formulario no esté vacío antes de habilitar el Combo Box.
+     * 
+     * @param evt Evento de acción disparado por el botón de edición de 'Clic para Activar el Panel y Editar'.
+     */
     private void botonEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarDatosActionPerformed
         if (campoIdEmpleado.getText().isEmpty()) {
             
@@ -620,6 +618,11 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
         guardarUsuario();
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    /**
+     * Rescata el objeto Usuario completo mediante su código y vuelca la información en el panel de detalle derecho para su visualización.
+     * 
+     * @param evt Evento de clic capturado por el componente JTable.
+     */
     private void tablaListadoUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListadoUsuariosMouseClicked
         
         int fila = tablaListadoUsuarios.getSelectedRow();
@@ -736,10 +739,12 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
     
     /**
      * Valida y guarda los cambios de los 3 desplegables.
+     * Solo permite la edición de Tienda, Tipo y Estado.
+     * Tiene doble confirmación de seguridad - Doble paso. 
      */
     public void guardarUsuario() {
         if (campoIdEmpleado.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Seleccione un usuario primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Seleccione un usuario de la tabla primero.", "Sin selección", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -791,7 +796,7 @@ public class VerListadoUsuarios extends javax.swing.JDialog {
             limpiarFormulario();
             
         } else {
-            JOptionPane.showMessageDialog(this, "Error al actualizar los datos del usuario.", "Error BBDD", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al actualizar los datos del usuario.", "Error en la conexión o en la BBDD", JOptionPane.ERROR_MESSAGE);
         }
     }
 

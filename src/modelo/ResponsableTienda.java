@@ -9,7 +9,10 @@ import java.util.Date;
 /**
  * Clase modelo que representa a un Responsable de Tienda.
  * Se utiliza para gestionar el personal encargado de las diferentes sedes de la ferretería y su antigüedad en el sistema.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class ResponsableTienda {
     private String respTienda;
@@ -25,6 +28,7 @@ public class ResponsableTienda {
     /**
      * Constructor parametrizado.
      * Inicializa un objeto ResponsableTienda con su nombre y fecha de registro.
+     * 
      * @param respTienda Nombre completo del responsable.
      * @param fechaAlta Fecha de alta en el sistema.
      */
@@ -33,18 +37,34 @@ public class ResponsableTienda {
         this.fechaAlta = fechaAlta;
     }
 
+    /**
+     * 
+     * @return El nombre completo del responsable de la tienda.
+     */
     public String getRespTienda() {
         return respTienda;
     }
 
+    /**
+     * 
+     * @param respTienda El nombre del responsable a establecer.
+     */
     public void setRespTienda(String respTienda) {
         this.respTienda = respTienda;
     }
 
+    /**
+     * 
+     * @return La fecha en la que el responsable fue dado de alta.
+     */
     public Date getFechaAlta() {
         return fechaAlta;
     }
 
+    /**
+     * 
+     * @param fechaAlta La fecha de alta a establecer.
+     */
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }

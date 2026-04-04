@@ -774,9 +774,6 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="Usuario" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoUsuarioActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboTienda">
               <Properties>
@@ -896,9 +893,6 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="Fecha de Alta" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoFechaAltaActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="campoPass">
               <Properties>

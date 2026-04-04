@@ -14,7 +14,11 @@ import java.sql.Statement;
 /**
  * Clase de gestión de la conexión con la base de datos MySQL. 
  * Proporciona métodos estáticos para establecer y cerrar la conexión, así como para realizar las consultas relacionadas con la autenticación y recuperación de datos de los usuarios logados.
+ * La mayoría de métodos gestionan íntegramente el ciclo de vida de la conexión: Apertura/Cierre.
+ * 
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class Conexion {
 
@@ -24,12 +28,14 @@ public class Conexion {
     public static Connection conn;
     private static String ip;
 
+    
     /**
      * Método que establece la conexión con el servidor MySQL. 
      * Utiliza el driver JDBC para conectar con la base de datos ferreteria.
-     * Configurado para soportar entornos locales MAMP (Jose) y XAMPP (Patri).
+     * Configurado para soportar entornos locales MAMP (puerto 8889) y XAMPP (3307).
      */
     public static void conectar() {
+        
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,11 +47,12 @@ public class Conexion {
 
         } catch (ClassNotFoundException | SQLException ex) {
 
-            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, "¡Error al conectar a la base de datos!", ex);
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, "Error de conexión con la base de datos", ex);
 
         }
     }
 
+   
     /**
      * Método que finaliza la conexión activa con el servidor de base de datos.
      * Sirve también para liberar recursos del sistema. 
@@ -64,18 +71,24 @@ public class Conexion {
         }
     }
 
+    
     /**
      * Método que valida las credenciales de un usuario en base a la base de datos de Ferretería. 
-     * Sólo permite el acceso a usuarios con estado activo y no bloqueado.
+     * Solo permite el acceso si el usuario existe, la contraseña coincide y su estado es activo.
+     * 
      * @param user Nombre de usuario introducida en la ventana de login.
      * @param pass Contraseña introducida en la ventana de login.
      * @return validación correcta y entrada a la aplicación si las credenciales son correctas. En caso contrario no permitir acceso.
      */
     public static boolean acceder(String user, String pass) {
-
+        
+        conectar();
+        
+        String consulta = "SELECT usuario, pass FROM usuarios WHERE usuario=? and pass=? and estado ='activo'";
+        boolean loginCorrecto = false; // Variable auxiliar para el retorno
+        
+        
         try {
-
-            String consulta = "SELECT usuario, pass FROM usuarios WHERE usuario=? and pass=? and estado ='activo'";
 
             PreparedStatement pst;
             ResultSet rs;
@@ -86,33 +99,41 @@ public class Conexion {
 
             rs = pst.executeQuery();
 
-            return (rs.next());
+            if (rs.next()) {
+                loginCorrecto = true; // Si hay resultado, las credenciales son válidas
+            }
 
         } catch (SQLException ex) {
 
             System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-
+            loginCorrecto = false;
+        
+        } finally {
+            
+            cerrarConexion(); // Cerramos siempre
         }
-        return false;
+        
+        return loginCorrecto;
     }
 
+    
+    
     /**
-     * Método que recupera el tipo o rol de usuario logado desde la base de
-     * datos Ferretería.
-     *
+     * Método que recupera el tipo o rol de usuario logado desde la base de datos Ferretería.
+     * 
      * @param user Nombre de usuario del que se recupera el tipo.
-     * @return Admin o User según credenciales introducidas o nullo si no se
-     * encuentra al usuario.
+     * @return El rol / tipo: Admin o User según credenciales introducidas o null si no se encuentra.
      */
     public static String recuperaTipo(String user) {
 
         String tipo = null;
-
         String consultaTipo = "SELECT tipo FROM usuarios WHERE usuario='" + user + "'";
 
         Statement st;
         ResultSet rs;
 
+        conectar();
+        
         try {
 
             st = conn.createStatement();
@@ -124,38 +145,31 @@ public class Conexion {
             }
         } catch (SQLException ex) {
 
-            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex); 
 
+        } finally {
+            
+            cerrarConexion();
         }
         return tipo;
     }
 
-    /**
-     * Método que recupera los datos básicos del usuario logado desde la base de
-     * datos de la Ferretería. Devuelve un array con nombre, apellidos y tipo
-     * del usuario.
-     *
-     * @param user Nombre de usuario del que se quieren recuperar los datos.
-     * @return Array con nombre, apellidos y tipo o nulo si no se encuentra.
-     */
-    /**
-     * Recupera el objeto Usuario completo según el login. Ajustado para que
-     * coincida con el campo único 'nombreCompleto' de la DB.
-     */
     
-
+    
     /**
-     * Método que comprueba si un nombre de usuario existe en la base de datos
-     * de la Ferretería.
-     *
+     * Método que comprueba si un nombre de usuario existe en la base de datos de la Ferretería.
+     * 
      * @param usuario Nombre de usuario que se quiere comprobar.
      * @return Usuario disponible o nulo.
      */
     public static boolean compruebaUsuario(String usuario) {
 
+        String consulta = "SELECT usuario FROM usuarios WHERE usuario = ?";
+        boolean UsuarioExiste = false; // Variable auxiliar para el retorno
+        
+        conectar();
+        
         try {
-
-            String consulta = "SELECT usuario FROM usuarios WHERE usuario = ?";
 
             PreparedStatement pst;
             ResultSet rs;
@@ -164,26 +178,32 @@ public class Conexion {
             pst.setString(1, usuario);
             rs = pst.executeQuery();
 
-            return rs.next();
+            if (rs.next()){
+                UsuarioExiste = true;           
+            }
 
         } catch (SQLException ex) {
 
             System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
 
+        } finally {
+        
+        cerrarConexion();
+         
         }
-        return false;
+        return UsuarioExiste;
     }
+    
+    
+    
 
     /**
-     * Extrae los valores permitidos de una columna tipo ENUM en la base de
-     * datos. Utiliza la sentencia SQL para obtener la definición estructural de
-     * la columna. Posteriormente, procesa la cadena devuelta por el motor de
-     * base de datos para aislar los valores. Gestiona su propio ciclo de vida
-     * de conexión - abrir / cerrar - para garantizar la seguridad y liberar
-     * recursos en el bloque.
-     *
-     * @param tabla El nombre de la tabla
-     * @param columna El nombre de la columna
+     * Extrae los valores permitidos de una columna tipo ENUM en la base de datos. 
+     * Utiliza la sentencia SQL para obtener la definición estructural de la columna. 
+     * Posteriormente, procesa la cadena devuelta por el motor de base de datos para aislar los valores. 
+     * 
+     * @param tabla El nombre de la tabla en la base de datos.
+     * @param columna El nombre de la columna.
      * @return ArrayList con los valores limpios del ENUM.
      */
     public static java.util.ArrayList<String> obtenerValoresEnum(String tabla, String columna) {
@@ -192,7 +212,7 @@ public class Conexion {
 
         String consulta = "SHOW COLUMNS FROM " + tabla + " LIKE '" + columna + "'";
 
-        Conexion.conectar();
+        conectar();
 
         try {
 
@@ -209,7 +229,7 @@ public class Conexion {
 
                 for (String valor : valores) {
 
-                    lista.add(valor);
+                    lista.add(valor.trim());
                 }
             }
         } catch (java.sql.SQLException ex) {
@@ -218,7 +238,7 @@ public class Conexion {
 
         } finally {
 
-            Conexion.cerrarConexion();
+            cerrarConexion();
         }
 
         return lista;

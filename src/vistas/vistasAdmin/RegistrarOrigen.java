@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.Conexion;
 import bbdd.ConsultasOrigen;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -14,16 +13,18 @@ import vistas.VentanaLogin;
 /**
  * Ventana modal encargada de registrar nuevos orígenes de productos en el sistema.
  * Proporciona la interfaz gráfica para que el administrador introduzca los datos.
- * @author Jose y Patricia.
+ * 
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class RegistrarOrigen extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarOrigen.class.getName());
 
     /**
-     * Constructor principal de la ventana Registrar Origen.
-     * Inicializa los componentes visuales y aplica la identidad corporativa de la ferretería.
-     * Creates new form RegistrarOrigen
+     * Constructor principal de la ventana "Registrar Origen".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real.
      */
     public RegistrarOrigen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -434,7 +435,7 @@ public class RegistrarOrigen extends javax.swing.JDialog {
     
     
     /**
-     * Ventana modal encargada de registrar nuevas orígenes en el sistema.
+     * Ejecuta la lógica de registro de un nuevo origen.
      * Aplica validaciones de seguridad comprobando que los campos no estén vacíos.
      * Si las validaciones son correctas, instancia un objeto y delega la inserción a la capa de base de datos.
      */
@@ -445,8 +446,8 @@ public class RegistrarOrigen extends javax.swing.JDialog {
 
         } else if (campoDescripcionOrigen.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "La descripción no puede estar vacía.",
-                    "Campo vacío",
+                    "El campo descripción en origen no puede estar vacío.",
+                    "Por favor, añada los datos requeridos.",
                     JOptionPane.WARNING_MESSAGE);
         
         } else {
@@ -454,27 +455,24 @@ public class RegistrarOrigen extends javax.swing.JDialog {
             String nombreOrigen = campoOrigen.getText().trim();
             String descripcion = campoDescripcionOrigen.getText().trim();
 
-            modelo.Origen nuevoOrigen = new modelo.Origen(nombreOrigen, descripcion);
-
-            Conexion.conectar();
+            modelo.Origen nuevoOrigen = new modelo.Origen(nombreOrigen, descripcion);           
             
             if (ConsultasOrigen.registrarOrigen(nuevoOrigen)) {
                 
-                JOptionPane.showMessageDialog(this, "Origen registrado correctamente.");  
+                JOptionPane.showMessageDialog(this, 
+                        "Origen registrado correctamente.");  
                  
-            
-            Conexion.cerrarConexion();
-                
             limpiarOrigen();
             
          } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al registrar el orígen.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al registrar el orígen.");
         }
         
-    }
+        }
     
- }
+     }
     
 
     /**

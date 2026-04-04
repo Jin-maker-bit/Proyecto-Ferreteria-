@@ -4,7 +4,6 @@
  */
 package vistas.vistasAdmin;
 
-import bbdd.Conexion;
 import bbdd.ConsultasProducto;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -17,16 +16,18 @@ import vistas.VentanaLogin;
 /**
  * Ventana modal encargada de registrar nuevos artículos en el sistema.
  * Implementa la interfaz gráfica para la introducción de datos del producto, delegando la carga de listas desplegables y la persistencia de datos a la capa de modelo - BBDD.
- * @author Jose y Patricia.
+ * 
+ * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class RegistrarArticulo extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistrarArticulo.class.getName());
 
     /**
-     * Constructor principal de la ventana.
-     * Inicializa los componentes visuales, aplica la identidad corporativa y carga dinámicamente los datos de los desplegables.
-     * Creates new form RegistrarArticulo
+     * Constructor principal de la ventana "Registrar Articulo".
+     * Inicializa los componentes visuales, aplica la identidad corporativa, carga dinámicamente los datos de los desplegables y muestra la información de sesión activa.
      */
     public RegistrarArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -616,7 +617,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
-
+    /**
+     * Gestiona el evento de pérdida de foco en el precio de compra.
+     * Calcula automáticamente el Precio de Venta aplicando un margen del 30% y un IVA del 21% sobre el precio de adquisición.
+     * @param evt El evento de foco (FocusEvent) que dispara la acción al salir del componente.
+     */
     private void campoPrecioCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoPrecioCompraFocusLost
        
         // ** Evento FocusLost ** //
@@ -625,27 +630,31 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         // Y nos ejecuta:
         
         try {
-        
-        // Rescatamos el texto y Cambiamos la coma por punto antes de calcular por si nos pusieran coma ya que no nos la cogeria
-        String numeroConPunto = campoPrecioCompra.getText().trim().replace(',', '.'); // Doblemente blindando
-            
-        // Rescatamos el precio de compra
-        double precioCompra = Double.parseDouble(numeroConPunto);
 
-        // Cálculo: Incremento 30% y luego añadir 21% de IVA
-        // Matemáticamente es: Compra * 1.30 (margen) * 1.21 (IVA)
-        double precioVentaSinIncremento = precioCompra * 1.30 * 1.21; // El incremento se calcula en esta sola línea 
+            // Rescatamos el texto y Cambiamos la coma por punto antes de calcular por si nos pusieran coma ya que no nos la cogeria
+            String numeroConPunto = campoPrecioCompra.getText().trim().replace(',', '.'); // Doblemente blindando
 
-        // Redondeo otra vez a 2 decimales:
-        double precioVentaAplicado = Math.round(precioVentaSinIncremento * 100.0) / 100.0;
-        
-        // Lo ponemos en el campo de Precio Venta formateado con 2 decimales
-        campoPrecioVenta.setText(utilidades.Utilidades.formatoDosDecimales(precioVentaAplicado));
-        
-        // También formateamos el de compra para que quede bonito
-        campoPrecioCompra.setText(utilidades.Utilidades.formatoDosDecimales(precioCompra));
+            // Rescatamos el precio de compra
+            double precioCompra = Double.parseDouble(numeroConPunto);
+
+            // Cálculo: Incremento 30% y luego añadir 21% de IVA
+            // Matemáticamente es: Compra * 1.30 (margen) * 1.21 (IVA)
+            double precioVentaSinIncremento = precioCompra * 1.30 * 1.21; // El incremento se calcula en esta sola línea 
+
+            // Redondeo otra vez a 2 decimales:
+            double precioVentaAplicado = Math.round(precioVentaSinIncremento * 100.0) / 100.0;
+
+            // Lo ponemos en el campo de Precio Venta formateado con 2 decimales
+            campoPrecioVenta.setText(utilidades.Utilidades.formatoDosDecimales(precioVentaAplicado));
+
+            // También formateamos el de compra para que quede bonito
+            campoPrecioCompra.setText(utilidades.Utilidades.formatoDosDecimales(precioCompra));
 
         } catch (NumberFormatException e) { 
+            
+            System.err.println("Error en el formato numérico, revise: " + e.getMessage());
+            
+            }
             // Si el usuario mete letras o deja el campo vacío, no hacemos cálculos para evitar errores
             
             
@@ -656,7 +665,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
             
             // Se puede investigar el Evento --> KeyReleased: Funciona de la misma manera pero mientras el Usuario aún está tecleando.
         
-    }
+    
     
     }//GEN-LAST:event_campoPrecioCompraFocusLost
 
@@ -753,11 +762,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
      * Aplica validaciones sobre todos los campos del formulario antes de proceder.
      * Si todas las validaciones son correctas, rescata los valores, calcula el precio de venta automáticamente, crea un objeto y lo inserta en la base de datos.
      * Si el registro es correcto, muestra mensaje de confirmación y limpia el formulario.
-     * 
      */
     public void registrarArticulo() {
 
-    // Validaciones
+        // Validaciones
 
     if (Utilidades.compruebaCampoVacio(campoCodigo)) {
         Utilidades.lanzaAlertaVacio(campoCodigo);
@@ -773,8 +781,8 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
     } else if (campoDescripcionArticulo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "La descripción no puede estar vacía.",
-                    "Campo vacío",
+                    "El campo descripción en el registro de artículo no puede estar vacío.",
+                    "Por favor, añada los datos requeridos.",
                     JOptionPane.WARNING_MESSAGE);
 
     } else if (Utilidades.compruebaCampoVacio(campoPrecioCompra)) {
@@ -824,28 +832,24 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         // lo quitamos de Interfaz ya que no hace falta que aparezca allí 
         // pero sí que nos lo rescate para que lo mande a la BBDD
         
-
-        // BBDD
-        Conexion.conectar();
-        
+      
         if (ConsultasProducto.registrarProducto(p)) {
             
-            JOptionPane.showMessageDialog(this, "Artículo registrado correctamente.");
-        
-        
-        Conexion.cerrarConexion();
+            JOptionPane.showMessageDialog(this, 
+                    "Artículo registrado en inventario correctamente.");
 
         // Limpiar campos registrar artículo
         limpiarArticulo();
         
         } else {
                 
-                JOptionPane.showMessageDialog(this, "Error al registrar el artículo.");
+                JOptionPane.showMessageDialog(this, 
+                        "Error al registrar el artículo, no se pudo acceder al almacén de datos.");
         }
         
-    }
+        }
     
- }
+    }
 
 
     /**
@@ -871,8 +875,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     }
     
     /**
-     * Llena dinámicamente todos los JComboBox. 
-     * Obtiene y carga los datos de registro de las tablas desde la base de datos Ferretería.
+     * Obtiene y carga dinámicamente todos los JComboBox de Categorías, Orígenes y valores ENUM (Oferta/Destacado) directamente de la BBDD.
      * Siempre restablece los componentes e inserta la opción "Seleccione" en el índice 0.
      */
     private void cargarCombosArticulos() {

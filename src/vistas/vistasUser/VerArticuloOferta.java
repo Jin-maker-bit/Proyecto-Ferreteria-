@@ -12,15 +12,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
+ * Ventana modal diseñada para que el usuario consulte las promociones vigentes.
+ * Presenta un listado de productos filtrados por el estado 'Oferta' y permite visualizar la ficha técnica completa de cada artículo al interactuar con la tabla.
  *
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerArticuloOferta extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerArticuloOferta.class.getName());
 
     /**
-     * Creates new form VerArticuloOferta
+     * Constructor de la ventana de artículos en oferta.
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerArticuloOferta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -368,6 +373,12 @@ public class VerArticuloOferta extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_botonVolverActionPerformed
 
+    /**
+     * Gestiona la interacción con la tabla de ofertas.
+     * Al seleccionar un registro, recupera el objeto Producto íntegro desde la base de datos usando su código y muestra su ficha detallada en el panel lateral.
+     * 
+     * @param evt Evento de ratón (clic) sobre la tabla
+     */
     private void tablaArticulosOfertaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosOfertaMouseClicked
         
         int fila = tablaArticulosOferta.getSelectedRow();

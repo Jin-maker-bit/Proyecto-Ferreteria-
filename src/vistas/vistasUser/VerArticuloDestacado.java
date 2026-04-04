@@ -12,15 +12,20 @@ import utilidades.Utilidades;
 import vistas.VentanaLogin;
 
 /**
+ * Ventana modal para la consulta de productos destacados.
+ * Permite a los empleados visualizar rápidamente los artículos en promoción o de alta relevancia, mostrando un desglose detallado al seleccionar cualquier fila de la tabla.
  *
  * @author Jose y Patricia
+ * @version 1.0
+ * @since 2026
  */
 public class VerArticuloDestacado extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VerArticuloDestacado.class.getName());
 
     /**
-     * Creates new form VerArticuloDestacado
+     * Constructor de la ventana de "Ver Artículo Destacado".
+     * Inicializa los componentes visuales, aplica la identidad corporativa de la ferretería y muestra la información de sesión y tiempo real. 
      */
     public VerArticuloDestacado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,7 +34,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         // Cargar tabla:
         ConsultasProducto.ArticulosDestacados((DefaultTableModel) tablaArticulosDestacados.getModel());
         
-       Utilidades.disenoTablas(tablaArticulosDestacados);
+        Utilidades.disenoTablas(tablaArticulosDestacados);
         
         // Establecer icono: LogoIcono_JP
         utilidades.Utilidades.establecerIcono(this);
@@ -369,6 +374,12 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_itemCerrarActionPerformed
 
+    /**
+     * Gestiona la selección de productos en la tabla.
+     * Recupera el código de producto de la fila seleccionada y realiza una consulta a la base de datos para obtener el objeto Producto completo, volcando sus atributos en el área de información lateral.
+     * 
+     * @param evt Evento de ratón (clic) sobre la tabla
+     */
     private void tablaArticulosDestacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaArticulosDestacadosMouseClicked
         
         int fila = tablaArticulosDestacados.getSelectedRow();
@@ -383,7 +394,7 @@ public class VerArticuloDestacado extends javax.swing.JDialog {
 
                 imprimirInfoProducto.setCaretPosition(0);
             } else {
-                imprimirInfoProducto.setText("Error: No se encontró información");
+                imprimirInfoProducto.setText("Error: No se pudo recuperar la ficha técnica del producto");
 
             }
         }
