@@ -19,6 +19,7 @@ import java.sql.Statement;
  * @author Jose y Patricia
  * @version 1.0
  * @since 2026
+ * 
  */
 public class Conexion {
 
