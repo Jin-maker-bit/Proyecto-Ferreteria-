@@ -43,8 +43,8 @@ public class Conexion {
 
             // PC DE JOSÉ: Cambiado 8809 por 8889 (Puerto por defecto de MAMP) - Con contraseña "root" (mac Jose).
             // PC DE PATRI: Puerto 3307 - Xampp - Sin contraseña.
-            String url = "jdbc:mysql://localhost:3307/ferreteria?serverTimezone=UTC&useSSL=false";
-            conn = DriverManager.getConnection(url, "root", "");
+            String url = "jdbc:mysql://localhost:8889/ferreteria?serverTimezone=UTC&useSSL=false";
+            conn = DriverManager.getConnection(url, "root", "root");
 
         } catch (ClassNotFoundException | SQLException ex) {
 
@@ -117,83 +117,6 @@ public class Conexion {
         return loginCorrecto;
     }
 
-    
-    
-    /**
-     * Método que recupera el tipo o rol de usuario logado desde la base de datos Ferretería.
-     * 
-     * @param user Nombre de usuario del que se recupera el tipo.
-     * @return El rol / tipo: Admin o User según credenciales introducidas o null si no se encuentra.
-     */
-    public static String recuperaTipo(String user) {
-
-        String tipo = null;
-        String consultaTipo = "SELECT tipo FROM usuarios WHERE usuario='" + user + "'";
-
-        Statement st;
-        ResultSet rs;
-
-        conectar();
-        
-        try {
-
-            st = conn.createStatement();
-
-            rs = st.executeQuery(consultaTipo);
-
-            if (rs.next()) {
-                tipo = rs.getString(1);
-            }
-        } catch (SQLException ex) {
-
-            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex); 
-
-        } finally {
-            
-            cerrarConexion();
-        }
-        return tipo;
-    }
-
-    
-    
-    /**
-     * Método que comprueba si un nombre de usuario existe en la base de datos de la Ferretería.
-     * 
-     * @param usuario Nombre de usuario que se quiere comprobar.
-     * @return Usuario disponible o nulo.
-     */
-    public static boolean compruebaUsuario(String usuario) {
-
-        String consulta = "SELECT usuario FROM usuarios WHERE usuario = ?";
-        boolean UsuarioExiste = false; // Variable auxiliar para el retorno
-        
-        conectar();
-        
-        try {
-
-            PreparedStatement pst;
-            ResultSet rs;
-
-            pst = conn.prepareStatement(consulta);
-            pst.setString(1, usuario);
-            rs = pst.executeQuery();
-
-            if (rs.next()){
-                UsuarioExiste = true;           
-            }
-
-        } catch (SQLException ex) {
-
-            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-
-        } finally {
-        
-        cerrarConexion();
-         
-        }
-        return UsuarioExiste;
-    }
     
     
     

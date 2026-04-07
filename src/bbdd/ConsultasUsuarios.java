@@ -26,6 +26,84 @@ import javax.swing.JOptionPane;
 public class ConsultasUsuarios extends Conexion {
 
     
+    
+    
+    /**
+     * Método que recupera el tipo o rol de usuario logado desde la base de datos Ferretería.
+     * 
+     * @param user Nombre de usuario del que se recupera el tipo.
+     * @return El rol / tipo: Admin o User según credenciales introducidas o null si no se encuentra.
+     */
+    public static String recuperaTipo(String user) {
+
+        String tipo = null;
+        String consultaTipo = "SELECT tipo FROM usuarios WHERE usuario='" + user + "'";
+
+        Statement st;
+        ResultSet rs;
+
+        conectar();
+        
+        try {
+
+            st = conn.createStatement();
+
+            rs = st.executeQuery(consultaTipo);
+
+            if (rs.next()) {
+                tipo = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex); 
+
+        } finally {
+            
+            cerrarConexion();
+        }
+        return tipo;
+    }
+
+    
+    
+    /**
+     * Método que comprueba si un nombre de usuario existe en la base de datos de la Ferretería.
+     * 
+     * @param usuario Nombre de usuario que se quiere comprobar.
+     * @return Usuario disponible o nulo.
+     */
+    public static boolean compruebaUsuario(String usuario) {
+
+        String consulta = "SELECT usuario FROM usuarios WHERE usuario = ?";
+        boolean UsuarioExiste = false; // Variable auxiliar para el retorno
+        
+        conectar();
+        
+        try {
+
+            PreparedStatement pst;
+            ResultSet rs;
+
+            pst = conn.prepareStatement(consulta);
+            pst.setString(1, usuario);
+            rs = pst.executeQuery();
+
+            if (rs.next()){
+                UsuarioExiste = true;           
+            }
+
+        } catch (SQLException ex) {
+
+            System.getLogger(Conexion.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+
+        } finally {
+        
+        cerrarConexion();
+         
+        }
+        return UsuarioExiste;
+    }
+    
     /**
      * Obtiene todos los datos de un usuario específico a partir de su nombre de login.
      * Utilizado para cargar los datos del perfil o validar permisos puntuales.
