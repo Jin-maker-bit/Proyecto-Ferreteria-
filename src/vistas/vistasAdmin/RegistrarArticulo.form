@@ -720,6 +720,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="campoPrecioVenta">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="26" green="20" red="3" type="rgb"/>
                 </Property>
@@ -793,6 +794,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoPrecioCompraFocusLost"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoPrecioCompraActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="campoStock">

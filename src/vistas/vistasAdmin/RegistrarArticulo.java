@@ -241,11 +241,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addGap(29, 29, 29)
                         .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addGroup(panelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(comboOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, 225, Short.MAX_VALUE)
-                                .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(campoNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoCodigo, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(comboOrigen, 0, 225, Short.MAX_VALUE)
+                            .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(campoNombre)
+                            .addComponent(campoCodigo))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelSecundarioLayout.setVerticalGroup(
@@ -316,6 +315,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         lblEstado1.setText("Destacado");
         lblEstado1.setOpaque(true);
 
+        campoPrecioVenta.setEditable(false);
         campoPrecioVenta.setBackground(new java.awt.Color(3, 32, 38));
         campoPrecioVenta.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         campoPrecioVenta.setForeground(new java.awt.Color(112, 137, 140));
@@ -338,6 +338,11 @@ public class RegistrarArticulo extends javax.swing.JDialog {
         campoPrecioCompra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 campoPrecioCompraFocusLost(evt);
+            }
+        });
+        campoPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoPrecioCompraActionPerformed(evt);
             }
         });
 
@@ -539,7 +544,7 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                         .addComponent(panelSecundario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(panelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 323, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -669,6 +674,10 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     
     }//GEN-LAST:event_campoPrecioCompraFocusLost
 
+    private void campoPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPrecioCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoPrecioCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -712,8 +721,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JButton botonRegistrarUsuario;
     private javax.swing.JButton botonSalir;
     private javax.swing.JTextField campoCodigo;
-    private javax.swing.JTextArea campoDescripcion;
-    private javax.swing.JTextArea campoDescripcion1;
     private javax.swing.JTextArea campoDescripcionArticulo;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoPrecioCompra;
@@ -727,8 +734,6 @@ public class RegistrarArticulo extends javax.swing.JDialog {
     private javax.swing.JMenuItem itemCerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblEstado;
@@ -787,6 +792,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
 
     } else if (Utilidades.compruebaCampoVacio(campoPrecioCompra)) {
         Utilidades.lanzaAlertaVacio(campoPrecioCompra);
+        
+    } else if (Utilidades.compruebaDouble(campoPrecioCompra)) {
+        Utilidades.lanzaAlertaDoubleNoValido(campoPrecioCompra);
 
     } else if (!Utilidades.compruebaDouble(campoPrecioCompra)) { 
         Utilidades.lanzaAlertaDoubleNoValido(campoPrecioCompra);
