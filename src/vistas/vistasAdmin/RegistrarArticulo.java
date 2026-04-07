@@ -789,12 +789,9 @@ public class RegistrarArticulo extends javax.swing.JDialog {
                     "El campo descripción en el registro de artículo no puede estar vacío.",
                     "Por favor, añada los datos requeridos.",
                     JOptionPane.WARNING_MESSAGE);
-
+        
     } else if (Utilidades.compruebaCampoVacio(campoPrecioCompra)) {
         Utilidades.lanzaAlertaVacio(campoPrecioCompra);
-        
-    } else if (Utilidades.compruebaDouble(campoPrecioCompra)) {
-        Utilidades.lanzaAlertaDoubleNoValido(campoPrecioCompra);
 
     } else if (!Utilidades.compruebaDouble(campoPrecioCompra)) { 
         Utilidades.lanzaAlertaDoubleNoValido(campoPrecioCompra);
